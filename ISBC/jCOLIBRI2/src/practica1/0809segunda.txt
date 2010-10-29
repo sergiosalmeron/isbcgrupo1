@@ -1,0 +1,506 @@
+
+
+Case Alicante,0,1,Xerez,1,09,2
+Case Tenerife,3,2,Gimnástic,1,09,2
+Case Levante,2,1,Zaragoza,1,09,2
+Case Celta,0,1,Girona,1,09,2
+Case Rayo,1,0,Murcia,1,09,2
+Case R.Sociedad,1,0,Las Palmas,1,09,2
+Case Albacete,2,1,Sevilla Atlético,1,09,2
+Case Córdoba,0,3,Hércules,1,09,2
+Case Elche,0,1,Eibar,1,09,2
+Case Huesca,2,2,Castellón,1,09,2
+Case Salamanca,0,0,Alavés,1,09,2
+
+Case Hércules,1,1,Rayo,2,09,2
+Case Zaragoza,2,2,R.Sociedad,2,09,2
+Case Alavés,1,0,Córdoba,2,09,2
+Case Castellón,2,0,Celta,2,09,2
+Case Gimnástic,1,1,Huesca,2,09,2
+Case Girona,3,0,Alicante,2,09,2
+Case Murcia,1,2,Levante,2,09,2
+Case Eibar,3,2,Tenerife,2,09,2
+Case Sevilla Atlético,1,1,Salamanca,2,09,2
+Case Las Palmas,2,0,Elche,2,09,2
+Case Xerez,2,1,Albacete,2,09,2
+
+Case Alicante,0,0,Castellón,3,09,2
+Case Córdoba,1,1,Sevilla Atlético,3,09,2
+Case Celta,0,2,Gimnástic,3,09,2
+Case Rayo,2,1,Alavés,3,09,2
+Case R.Sociedad,2,0,Murcia,3,09,2
+Case Huesca,2,0,Eibar,3,09,2
+Case Las Palmas,2,2,Zaragoza,3,09,2
+Case Albacete,1,1,Girona,3,09,2
+Case Elche,2,4,Tenerife,3,09,2
+Case Levante,0,2,Hércules,3,09,2
+Case Salamanca,2,1,Xerez,3,09,2
+
+Case Alavés,2,2,Levante,4,09,2
+Case Gimnástic,1,1,Alicante,4,09,2
+Case Murcia,0,0,Las Palmas,4,09,2
+Case Sevilla Atlético,0,0,Rayo,4,09,2
+Case Castellón,1,0,Albacete,4,09,2
+Case Tenerife,1,1,Huesca,4,09,2
+Case Girona,0,1,Salamanca,4,09,2
+Case Hércules,1,1,R.Sociedad,4,09,2
+Case Zaragoza,2,0,Elche,4,09,2
+ECase ibar,0,0,Celta,4,09,2
+Case Xerez,0,1,Córdoba,4,09,2
+
+Case Córdoba,2,0,Girona,5,09,2
+Case R.Sociedad,1,1,Alavés,5,09,2
+Case Zaragoza,2,1,Murcia,5,09,2
+Case Las Palmas,1,1,Hércules,5,09,2
+Case Albacete,3,2,Gimnástic,5,09,2
+Case Alicante,3,1,Eibar,5,09,2
+Case Elche,2,2,Huesca,5,09,2
+Case Levante,2,0,Sevilla Atlético,5,09,2
+Case Celta,2,1,Tenerife,5,09,2
+Case Rayo,3,3,Xerez,5,09,2
+Case Salamanca,1,0,Castellón,5,09,2
+
+Case Tenerife,3,1,Alicante,6,09,2
+Case Girona,1,1,Rayo,6,09,2
+Case Hércules,2,1,Zaragoza,6,09,2
+Case Eibar,1,1,Albacete,6,09,2
+Case Sevilla Atlético,1,0,R.Sociedad,6,09,2
+Case Xerez,2,0,Levante,6,09,2
+Case Alavés,2,1,Las Palmas,6,09,2
+Case Castellón,1,1,Córdoba,6,09,2
+Case Gimnástic,2,0,Salamanca,6,09,2
+Case Murcia,1,0,Elche,6,09,2
+Case Huesca,0,0,Celta,6,09,2
+
+Case Alicante,1,3,Huesca,7,09,2
+Case Murcia,0,0,Hércules,7,09,2
+Case R.Sociedad,0,0,Xerez,7,09,2
+Case Zaragoza,4,2,Alavés,7,09,2
+Case Las Palmas,2,0,Sevilla Atlético,7,09,2
+Case Albacete,0,1,Tenerife,7,09,2
+Case Córdoba,0,0,Gimnástic,7,09,2
+Case Elche,1,1,Celta,7,09,2
+Case Levante,1,1,Girona,7,09,2
+Case Rayo,4,2,Castellón,7,09,2
+Case Salamanca,2,0,Eibar,7,09,2
+
+Case Alavés,4,1,Murcia,8,09,2
+Case Castellón,4,1,Levante,8,09,2
+Case Tenerife,2,3,Salamanca,8,09,2
+Case Girona,0,0,R.Sociedad,8,09,2
+Case Celta,2,2,Alicante,8,09,2
+Case Sevilla Atlético,0,4,Zaragoza,8,09,2
+Case Xerez,1,0,Las Palmas,8,09,2
+Case Gimnástic,3,1,Rayo,8,09,2
+Case Hércules,0,0,Elche,8,09,2
+Case Eibar,1,0,Córdoba,8,09,2
+Case Huesca,1,2,Albacete,8,09,2
+
+Case Córdoba,2,0,Tenerife,9,09,2
+Case Elche,0,0,Alicante,9,09,2
+Case Rayo,4,1,Eibar,9,09,2
+Case Zaragoza,2,1,Xerez,9,09,2
+Case Las Palmas,2,2,Girona,9,09,2
+Case Albacete,1,1,Celta,9,09,2,09,2
+Case Hércules,3,0,Alavés,9,09,2
+Case Levante,2,2,Gimnástic,9,09,2
+Case Murcia,1,0,Sevilla Atlético,9
+Case R.Sociedad,2,3,Castellón,9,09,2
+Case Salamanca,2,0,Huesca,9,09,2
+
+Case Castellón,1,1,Las Palmas,10,09,2
+Case Gimnástic,1,2,R.Sociedad,10,09,2
+Case Girona,1,0,Zaragoza,10,09,2
+Case Huesca,3,1,Córdoba,10,09,2
+Case Alicante,1,2,Albacete,10,09,2
+Case Alavés,0,3,Elche,10,09,2
+Case Tenerife,2,0,Rayo,10,09,2
+Case Celta,2,0,Salamanca,10,09,2
+Case Eibar,0,0,Levante,10,09,2
+Case Sevilla Atlético,1,2,Hércules,10,09,2
+Case Xerez,5,3,Murcia,10,09,2
+
+Case Córdoba,3,4,Celta,11,09,2
+Case Levante,2,1,Tenerife,11,09,2
+Case Rayo,1,0,Huesca,11,09,2
+Case Murcia,2,0,Girona,11,09,2
+Case R.Sociedad,0,0,Eibar,11,09,2
+Case Las Palmas,2,2,Gimnástic,11,09,2
+Case Alavés,2,2,Sevilla Atlético,11,09,2
+Case Elche,0,0,Albacete,11,09,2
+Case Hércules,0,0,Xerez,11,09,2
+Case Zaragoza,1,1,Castellón,11,09,2
+Case Salamanca,2,0,Alicante,11,09,2
+
+Case Albacete,2,2,Salamanca,12,09,2
+Case Alicante,2,2,Córdoba,12,09,2
+Case Gimnástic,0,0,Zaragoza,12,09,2
+Case Eibar,1,2,Las Palmas,12,09,2
+Case Castellón,2,0,Murcia,12,09,2
+Case Tenerife,1,1,R.Sociedad,12,09,2
+Case Girona,1,0,Hércules,12,09,2
+Case Celta,0,0,Rayo,12,09,2
+Case Huesca,2,1,Levante,12,09,2
+Case Sevilla Atlético,0,2,Elche,12,09,2
+Case Xerez,5,0,Alavés,12,09,2
+
+Case Córdoba,1,0,Albacete,13,09,2
+Case Hércules,0,0,Castellón,13,09,2
+Case Murcia,1,1,Gimnástic,13,09,2
+Case Zaragoza,3,0,Eibar,13,09,2
+Case Sevilla Atlético,1,2,Xerez,13,09,2
+Case Las Palmas,0,1,Tenerife,13,09,2
+Case Alavés,1,0,Girona,13,09,2
+Case Elche,3,1,Salamanca,13,09,2
+Case Levante,1,3,Celta,13,09,2
+Case Rayo,0,0,Alicante,13,09,2
+Case R.Sociedad,1,0,Huesca,13,09,2
+
+Case Albacete,2,1,Rayo,14,09,2
+Case Girona,1,0,Sevilla Atlético,14,09,2
+Case Celta,0,0,R.Sociedad,14,09,2
+Case Eibar,3,1,Murcia,14,09,2
+Case Huesca,2,1,Las Palmas,14,09,2
+Case Xerez,3,1,Elche,14,09,2
+Case Alicante,0,2,Levante,14,09,2
+Case Castellón,0,1,Alavés,14,09,2
+Case Tenerife,1,2,Zaragoza,14,09,2
+Case Gimnástic,2,2,Hércules,14,09,2
+Case Salamanca,1,0,Córdoba,14,09,2
+
+Case Alavés,1,1,Gimnástic,15,09,2
+Case Elche,3,1,Córdoba,15,09,2
+Case Levante,3,1,Albacete,15,09,2
+Case Rayo,1,1,Salamanca,15,09,2
+Case R.Sociedad,1,0,Alicante,15,09,2
+Case Zaragoza,2,2,Huesca,15,09,2
+Case Las Palmas,2,0,Celta,15,09,2
+Case Xerez,2,2,Girona,15,09,2
+Case Hércules,2,0,Eibar,15,09,2
+Case Murcia,2,2,Tenerife,15,09,2
+Case Sevilla Atlético,0,2,Castellón,15,09,2
+
+Case Albacete,2,1,R.Sociedad,16,09,2
+Case Alicante,1,2,Las Palmas,16,09,2
+Case Córdoba,0,1,Rayo,16,09,2
+Case Celta,2,0,Zaragoza,16,09,2
+Case Huesca,1,0,Murcia,16,09,2
+Case Castellón,2,2,Xerez,16,09,2
+Case Tenerife,3,2,Hércules,16,09,2
+Case Gimnástic,3,1,Sevilla Atlético,16,09,2
+Case Girona,1,1,Elche,16,09,2
+Case Eibar,1,0,Alavés,16,09,2
+Case Salamanca,3,0,Levante,16,09,2
+
+Case Elche,2,0,Rayo,17,09,2
+Case Girona,1,0,Castellón,17,09,2
+Case Hércules,3,2,Huesca,17,09,2
+Case Levante,3,0,Córdoba,17,09,2
+Case R.Sociedad,1,0,Salamanca,17,09,2
+Case Zaragoza,3,0,Alicante,17,09,2
+Case Sevilla Atlético,0,0,Eibar,17,09,2
+Case Las Palmas,3,0,Albacete,17,09,2
+Case Alavés,1,2,Tenerife,17,09,2
+Case Xerez,1,2,Gimnástic,17,09,2
+Case Murcia,1,0,Celta,17,09,2
+
+Case Albacete,1,1,Zaragoza,18,09,2
+Case Alicante,0,2,Murcia,18,09,2
+Case Castellón,2,2,Elche,18,09,2
+Case Gimnástic,3,0,Girona,18,09,2
+Case Eibar,1,1,Xerez,18,09,2
+Case Salamanca,2,2,Las Palmas,18,09,2
+Case Tenerife,2,1,Sevilla Atlético,18,09,2
+Case Córdoba,2,2,R.Sociedad,18,09,2
+Case Celta,2,1,Hércules,18,09,2
+Case Rayo,0,0,Levante,18,09,2
+Case Huesca,2,0,Alavés,18,09,2
+
+Case Alavés,1,2,Celta,19,09,2
+Case Hércules,1,2,Alicante,19,09,2
+Case Murcia,1,0,Albacete,19,09,2
+Case Zaragoza,1,0,Salamanca,19,09,2
+Case Sevilla Atlético,1,1,Huesca,19,09,2
+Case Las Palmas,0,0,Córdoba,19,09,2
+Case Castellón,2,1,Gimnástic,19,09,2
+Case Elche,0,2,Levante,19,09,2
+Case Girona,2,0,Eibar,19,09,2
+Case R.Sociedad,1,1,Rayo,19,09,2
+Case Xerez,2,0,Tenerife,19,09,2
+
+Case Albacete,0,3,Hércules,20,09,2
+Case Córdoba,1,0,Zaragoza,20,09,2
+Case Levante,0,2,R.Sociedad,20,09,2
+Case Celta,2,0,Sevilla Atlético,20,09,2
+Case Rayo,1,1,Las Palmas,20,09,2
+Case Salamanca,2,3,Murcia,20,09,2
+Case Alicante,0,2,Alavés,20,09,2
+Case Tenerife,4,1,Girona,20,09,2
+Case Elche,2,0,Gimnástic,20,09,2
+Case Eibar,0,1,Castellón,20,09,2
+Case Huesca,1,1,Xerez,20,09,2
+
+Case Alavés,0,2,Albacete,21,09,2
+Case Castellón,2,2,Tenerife,21,09,2
+Case Girona,2,0,Huesca,21,09,2
+Case Murcia,1,0,Córdoba,21,09,2
+Case R.Sociedad,0,0,Elche,21,09,2
+Case Las Palmas,1,2,Levante,21,09,2
+Case Xerez,2,0,Celta,21,09,2
+Case Hércules,2,2,Salamanca,21,09,2
+Case Zaragoza,2,3,Rayo,21,09,2
+Case Sevilla Atlético,2,3,Alicante,21,09,2
+Case Gimnástic,2,0,Eibar,21,09,2
+
+Case Castellón,1,1,Huesca,22,09,2
+Case Girona,2,2,Celta,22,09,2
+Case Hércules,1,0,Córdoba,22,09,2
+Case Murcia,0,1,Rayo,22,09,2
+Case Sevilla Atlético,1,1,Albacete,22,09,2
+Case Las Palmas,0,1,R.Sociedad,22,09,2
+Case Alavés,1,1,Salamanca,22,09,2
+Case Gimnástic,0,1,Tenerife,22,09,2
+Case Zaragoza,2,1,Levante,22,09,2
+Case Eibar,1,2,Elche,22,09,2
+Case Xerez,2,0,Alicante,22,09,2
+
+Case Albacete,0,2,Xerez,23,09,2
+Case Levante,2,1,Murcia,23,09,2
+Case Rayo,1,0,Hércules,23,09,2
+Case R.Sociedad,1,1,Zaragoza,23,09,2
+Case Alicante,1,1,Girona,23,09,2
+Case Tenerife,2,0,Eibar,23,09,2
+Case Córdoba,3,0,Alavés,23,09,2
+Case Elche,1,1,Las Palmas,23,09,2
+Case Celta,1,2,Castellón,23,09,2
+Case Huesca,3,2,Gimnástic,23,09,2
+Case Salamanca,6,0,Sevilla Atlético,23,09,2
+
+Case Gimnástic,1,1,Celta,24,09,2
+Case Girona,3,3,Albacete,24,09,2
+Case Hércules,4,2,Levante,24,09,2
+Case Murcia,2,0,R.Sociedad,24,09,2
+Case Zaragoza,2,0,Las Palmas,24,09,2
+Case Eibar,2,0,Huesca,24,09,2
+Case Sevilla Atlético,0,2,Córdoba,24,09,2
+Case Alavés,0,2,Rayo,24,09,2
+Case Castellón,2,0,Alicante,24,09,2
+Case Tenerife,3,2,Elche,24,09,2
+Case Xerez,2,1,Salamanca,24,09,2
+
+Case Albacete,2,0,Castellón,25,09,2
+Case Elche,2,0,Zaragoza,25,09,2
+Case Celta,1,2,Eibar,25,09,2
+Case Rayo,1,0,Sevilla Atlético,25,09,2
+Case Huesca,0,0,Tenerife,25,09,2
+Case Las Palmas,0,1,Murcia,25,09,2
+Case Alicante,1,3,Gimnástic,25,09,2
+Case Córdoba,1,2,Xerez,25,09,2
+Case Levante,2,3,Alavés,25,09,2
+Case R.Sociedad,1,2,Hércules,25,09,2
+Case Salamanca,2,2,Girona,25,09,2
+
+Case Alavés,2,1,R.Sociedad,26,09,2
+Case Girona,1,1,Córdoba,26,09,2
+Case Hércules,4,2,Las Palmas,26,09,2
+Case Murcia,1,4,Zaragoza,26,09,2
+Case Huesca,3,2,Elche,26,09,2
+Case Xerez,1,1,Rayo,26,09,2
+Case Castellón,2,0,Salamanca,26,09,2
+Case Tenerife,3,0,Celta,26,09,2
+Case Gimnástic,1,0,Albacete,26,09,2
+Case Eibar,1,2,Alicante,26,09,2
+Case Sevilla Atlético,1,2,Levante,26,09,2
+
+Case Albacete,2,0,Eibar,27,09,2
+Case Alicante,2,2,Tenerife,27,09,2
+Case Córdoba,2,1,Castellón,27,09,2
+Case Celta,0,1,Huesca,27,09,2
+Case Rayo,1,1,Girona,27,09,2
+Case Las Palmas,2,1,Alavés,27,09,2
+Case Elche,1,1,Murcia,27,09,2
+Case Levante,2,2,Xerez,27,09,2
+Case R.Sociedad,1,0,Sevilla Atlético,27,09,2
+Case Zaragoza,2,2,Hércules,27,09,2
+Case Salamanca,4,0,Gimnástic,27,09,2
+
+Case Alavés,2,2,Zaragoza,28,09,2
+Case Castellón,0,0,Rayo,28,09,2
+Case Gimnástic,2,2,Córdoba,28,09,2
+Case Celta,2,2,Elche,28,09,2
+Case Sevilla Atlético,2,2,Las Palmas,28,09,2
+Case Xerez,1,3,R.Sociedad,28,09,2
+Case Tenerife,1,1,Albacete,28,09,2
+Case Girona,0,0,Levante,28,09,2
+Case Hércules,3,2,Murcia,28,09,2
+Case Eibar,1,2,Salamanca,28,09,2
+Case Huesca,0,1,Alicante,28,09,2
+
+Case Albacete,0,2,Huesca,29,09,2
+Case Alicante,2,2,Celta,29,09,2
+Case Córdoba,1,1,Eibar,29,09,2
+Case Levante,3,1,Castellón,29,09,2
+Case Murcia,1,0,Alavés,29,09,2
+Case Zaragoza,4,0,Sevilla Atlético,29,09,2
+Case Las Palmas,2,3,Xerez,29,09,2
+Case Salamanca,1,2,Tenerife,29,09,2
+Case Elche,2,2,Hércules,29,09,2
+Case Rayo,3,2,Gimnástic,29,09,2
+Case R.Sociedad,2,0,Girona,29,09,2
+
+Case Castellón,0,3,R.Sociedad,30,09,2
+Case Girona,2,2,Las Palmas,30,09,2
+Case Celta,0,0,Albacete,30,09,2
+Case Sevilla Atlético,3,3,Murcia,30,09,2
+Case Xerez,1,2,Zaragoza,30,09,2
+Case Alicante,0,3,Elche,30,09,2
+Case Alavés,1,3,Hércules,30,09,2
+Case Tenerife,2,0,Córdoba,30,09,2
+Case Gimnástic,2,0,Levante,30,09,2
+Case Eibar,0,1,Rayo,30,09,2
+Case Huesca,0,0,Salamanca,30,09,2
+
+Case Córdoba,1,0,Huesca,31,09,2
+Case Rayo,0,0,Tenerife,31,09,2
+Case R.Sociedad,0,0,Gimnástic,31,09,2
+Case Zaragoza,1,0,Girona,31,09,2
+Case Las Palmas,1,0,Castellón,31,09,2
+Case Albacete,0,2,Alicante,31,09,2
+Case Elche,1,0,Alavés,31,09,2
+Case Hércules,8,0,Sevilla Atlético,31,09,2
+Case Levante,2,0,Eibar,31,09,2
+Case Murcia,1,2,Xerez,31,09,2
+Case Salamanca,2,1,Celta,31,09,2
+
+Case Castellón,1,1,Zaragoza,32,09,2
+Case Gimnástic,0,0,Las Palmas,32,09,2
+Case Girona,1,0,Murcia,32,09,2
+Case Eibar,1,1,R.Sociedad,32,09,2
+Case Sevilla Atlético,1,1,Alavés,32,09,2
+Case Xerez,3,0,Hércules,32,09,2
+Case Albacete,2,1,Elche,32,09,2
+Case Alicante,0,0,Salamanca,32,09,2
+Case Tenerife,5,1,Levante,32,09,2
+Case Celta,1,0,Córdoba,32,09,2
+Case Huesca,0,1,Rayo,32,09,2
+
+Case Elche,2,0,Sevilla Atlético,33,09,2
+Case Levante,1,0,Huesca,33,09,2
+Case Rayo,4,1,Celta,33,09,2
+Case R.Sociedad,1,2,Tenerife,33,09,2
+Case Zaragoza,1,0,Gimnástic,33,09,2
+Case Las Palmas,1,0,Eibar,33,09,2
+Case Salamanca,3,1,Albacete,33,09,2
+Case Alavés,1,2,Xerez,33,09,2
+Case Córdoba,2,1,Alicante,33,09,2
+Case Hércules,3,0,Girona,33,09,2
+Case Murcia,2,2,Castellón,33,09,2
+
+Case Albacete,1,1,Córdoba,34,09,2
+Case Castellón,0,0,Hércules,34,09,2
+Case Tenerife,2,0,Las Palmas,34,09,2
+Case Gimnástic,3,0,Murcia,34,09,2
+Case Girona,0,1,Alavés,34,09,2
+Case Eibar,2,3,Zaragoza,34,09,2
+Case Alicante,2,0,Rayo,34,09,2
+Case Celta,2,2,Levante,34,09,2
+Case Huesca,1,2,R.Sociedad,34,09,2
+Case Salamanca,1,1,Elche,34,09,2
+Case Xerez,2,0,Sevilla Atlético,34,09,2
+
+Case Levante,2,0,Alicante,35,09,2
+Case Rayo,0,3,Albacete,35,09,2
+Case Murcia,2,0,Eibar,35,09,2
+Case R.Sociedad,2,2,Celta,35,09,2
+Case Zaragoza,1,1,Tenerife,35,09,2
+Case Las Palmas,1,1,Huesca,35,09,2
+Case Alavés,0,1,Castellón,35,09,2
+Case Córdoba,0,2,Salamanca,35,09,2
+Case Elche,0,1,Xerez,35,09,2
+Case Hércules,2,2,Gimnástic,35,09,2
+Case Sevilla Atlético,2,1,Girona,35,09,2
+
+Case Albacete,0,1,Levante,36,09,2
+Case Córdoba,1,1,Elche,36,09,2
+Case Celta,0,1,Las Palmas,36,09,2
+Case Eibar,0,1,Hércules,36,09,2
+Case Huesca,0,1,Zaragoza,36,09,2
+Case Salamanca,0,1,Rayo,36,09,2
+Case Alicante,1,2,R.Sociedad,36,09,2
+Case Castellón,3,0,Sevilla Atlético,36,09,2
+Case Tenerife,3,1,Murcia,36,09,2
+Case Gimnástic,1,1,Alavés,36,09,2
+Case Girona,0,2,Xerez,36,09,2
+
+Case Alavés,1,1,Eibar,37,09,2
+Case Elche,2,1,Girona,37,09,2
+Case Hércules,3,1,Tenerife,37,09,2
+Case Rayo,5,0,Córdoba,37,09,2
+Case Murcia,0,0,Huesca,37,09,2
+Case R.Sociedad,1,0,Albacete,37,09,2
+Case Zaragoza,3,0,Celta,37,09,2
+Case Las Palmas,0,1,Alicante,37,09,2
+Case Levante,1,2,Salamanca,37,09,2
+Case Sevilla Atlético,1,3,Gimnástic,37,09,2
+Case Xerez,1,0,Castellón,37,09,2
+
+Case Albacete,1,0,Las Palmas,38,09,2
+Case Alicante,0,3,Zaragoza,38,09,2
+Case Córdoba,3,1,Levante,38,09,2
+Case Celta,2,2,Murcia,38,09,2
+Case Salamanca,0,1,R.Sociedad,38,09,2
+Case Castellón,1,2,Girona,38,09,2
+Case Tenerife,3,0,Alavés,38,09,2
+Case Gimnástic,2,1,Xerez,38,09,2
+Case Rayo,1,2,Elche,38,09,2
+Case Eibar,2,2,Sevilla Atlético,38,09,2
+Case Huesca,0,0,Hércules,38,09,2
+
+Case Alavés,3,0,Huesca,39,09,2
+Case Girona,2,1,Gimnástic,39,09,2
+Case Levante,1,0,Rayo,39,09,2
+Case Murcia,3,1,Alicante,39,09,2
+Case Zaragoza,3,0,Albacete,39,09,2
+Case Sevilla Atlético,0,4,Tenerife,39,09,2
+Case Xerez,3,0,Eibar,39,09,2
+Case Elche,0,1,Castellón,39,09,2
+Case Hércules,2,2,Celta,39,09,2
+Case R.Sociedad,0,2,Córdoba,39,09,2
+Case Las Palmas,1,1,Salamanca,39,09,2
+
+Case Albacete,0,0,Murcia,40,09,2
+Case Alicante,1,2,Hércules,40,09,2
+Case Gimnástic,0,1,Castellón,40,09,2
+Case Córdoba,4,1,Las Palmas,40,09,2
+Case Celta,2,1,Alavés,40,09,2
+Case Rayo,4,1,R.Sociedad,40,09,2
+Case Salamanca,1,3,Zaragoza,40,09,2
+Case Tenerife,2,0,Xerez,40,09,2
+Case Levante,2,0,Elche,40,09,2
+Case Eibar,2,2,Girona,40,09,2
+Case Huesca,3,0,Sevilla Atlético,40,09,2
+
+Case Alavés,1,0,Alicante,41,09,2
+Case Girona,0,1,Tenerife,41,09,2
+Case Hércules,4,1,Albacete,41,09,2
+Case Murcia,2,1,Salamanca,41,09,2
+Case Zaragoza,3,1,Córdoba,41,09,2
+Case Sevilla Atlético,0,0,Celta,41,09,2
+Case Las Palmas,0,0,Rayo,41,09,2
+Case Xerez,2,1,Huesca,41,09,2
+Case Castellón,4,0,Eibar,41,09,2
+Case Gimnástic,2,0,Elche,41,09,2
+Case R.Sociedad,1,1,Levante,41,09,2
+
+Case Albacete,1,0,Alavés,42,09,2
+Case Alicante,3,3,Sevilla Atlético,42,09,2
+Case Córdoba,2,1,Murcia,42,09,2
+Case Elche,1,2,R.Sociedad,42,09,2
+Case Levante,2,2,Las Palmas,42,09,2
+Case Celta,1,1,Xerez,42,09,2
+Case Rayo,2,2,Zaragoza,42,09,2
+Case Eibar,1,0,Gimnástic,42,09,2
+Case Huesca,3,1,Girona,42,09,2
+Case Salamanca,1,5,Hércules,42,09,2
+Case Tenerife,1,2,Castellón,42 ,09,2
+

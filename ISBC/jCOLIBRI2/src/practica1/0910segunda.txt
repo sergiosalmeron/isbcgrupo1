@@ -1,0 +1,504 @@
+
+Case Celta,1,2,Numancia,1,10,2
+Case Cádiz,0,1,Salamanca,1,10,2
+Case Villarreal “B”,2,2,Levante,1,10,2
+Case Betis,3,0,Córdoba,1,10,2
+Case Castellón,0,0,Hércules,1,10,2
+Case Real Unión,0,1,Recreativo,1,10,2
+Case Case Rayo,3,0,Albacete,1,10,2
+Case Girona,0,1,Cartagena,1,10,2
+Case Murcia,0,1,Gimnástic,1,10,2
+Case Las Palmas,1,1,R.Sociedad,1,10,2
+Case Elche,0,2,Huesca,1,10,2
+
+Case Gimnástic,1,1,Girona,2,10,2
+Case R.Sociedad,0,0,Murcia,2,10,2
+Case Huesca,1,1,Las Palmas,2,10,2
+Case Numancia,4,1,Elche,2,10,2
+Case Salamanca,1,1,Celta,2,10,2
+Case Levante,1,1,Cádiz,2,10,2
+Case Córdoba,3,1,Villarreal “B”,2,10,2
+Case Hércules,3,2,Betis,2,10,2
+Case Recreativo,2,0,Castellón,2,10,2
+Case Albacete,1,0,Real Unión,2,10,2
+Case Cartagena,2,0,Rayo,2,10,2
+
+Case Villarreal “B”,1,0,Hércules,3,10,2
+Case Gimnástic,1,2,R.Sociedad,3,10,2
+Case Murcia,1,1,Huesca,3,10,2
+Case Las Palmas,1,0,Numancia,3,10,2
+Case Elche,2,2,Salamanca,3,10,2
+Case Celta,1,1,Levante,3,10,2
+Case Cádiz,0,0,Córdoba,3,10,2
+Case Betis,3,0,Recreativo,3,10,2
+Case Castellón,3,5,Albacete,3,10,2
+Case Real Unión,1,1,Cartagena,3,10,2
+Case Girona,1,1,Rayo,3,10,2
+
+Case R.Sociedad,2,2,Girona,4,10,2
+Case Huesca,0,1,Gimnástic,4,10,2
+Case Numancia,1,1,Murcia,4,10,2
+Case Salamanca,0,1,Las Palmas,4,10,2
+Case Levante,2,1,Elche,4,10,2
+Case Hércules,1,0,Cádiz,4,10,2
+Case Recreativo,2,1,Villarreal “B”,4,10,2
+Case Albacete,1,3,Betis,4,10,2
+Case Cartagena,2,1,Castellón,4,10,2
+Case Rayo,2,0,Real Unión,4,10,2
+Case Córdoba,1,0,Celta,4,10,2
+
+Case R.Sociedad,2,0,Huesca,5,10,2
+Case Gimnástic,0,1,Numancia,5,10,2
+Case Murcia,2,2,Salamanca,5,10,2
+Case Las Palmas,0,1,Levante,5,10,2
+Case Elche,3,0,Córdoba,5,10,2
+Case Celta,0,1,Hércules,5,10,2
+Case Cádiz,1,0,Recreativo,5,10,2
+Case Villarreal “B”,2,2,Albacete,5,10,2
+Case Betis,0,0,Cartagena,5,10,2
+Case Castellón,1,3,Rayo,5,10,2
+Case Girona,0,2,Real Unión 5,10,2
+
+Case Cartagena,0,0,Villarreal “B”,6,10,2
+Case Rayo,2,2,Betis,6,10,2
+Case Real Unión,3,1,Castellón,6,10,2
+Case Levante,2,2,Murcia,6,10,2
+Case Córdoba,1,0,Las Palmas,6,10,2
+Case Hércules,3,0,Elche,6,10,2
+Case Recreativo,1,2,Celta,6,10,2
+Case Albacete,0,1,Cádiz,6,10,2
+Case Huesca,2,2,Girona,6,10,2
+Case Numancia,1,3,R.Sociedad,6,10,2
+Case Salamanca,1,0,Gimnástic,6,10,2
+
+Case Huesca,0,0,Numancia,7,10,2
+Case R.Sociedad,2,0,Salamanca,7,10,2
+Case Gimnástic,1,0,Levante,7,10,2
+Case Murcia,1,1,Córdoba,7,10,2
+Case Las Palmas,0,0,Hércules,7,10,2
+Case Elche,3,2,Recreativo,7,10,2
+Case Celta,1,1,Albacete,7,10,2
+Case Cádiz,1,3,Cartagena,7,10,2
+Case Villarreal “B”,0,2,Rayo,7,10,2
+Case Betis,1,1,Real Unión,7,10,2
+Case Girona,1,0,Castellón,7,10,2
+
+Case Numancia,3,1,Girona,8,10,2
+Case Salamanca,2,1,Huesca,8,10,2
+Case Recreativo,2,0,Las Palmas,8,10,2
+Case Córdoba,1,1,Gimnástic,8,10,2
+Case Hércules,1,1,Murcia,8,10,2
+Case Levante,1,0,R.Sociedad,8,10,2
+Case Albacete,2,2,Elche,8,10,2
+Case Cartagena,1,1,Celta,8,10,2
+Case Rayo,2,2,Cádiz,8,10,2
+Case Real Unión,0,1,Villarreal “B”,8,10,2
+Case Castellón,1,0,Betis,8,10,2
+
+Case Numancia,1,1,Salamanca,9,10,2
+Case Huesca,0,0,Levante,9,10,2
+Case R.Sociedad,1,0,Córdoba,9,10,2
+Case Gimnástic,1,1,Hércules,9,10,2
+Case Murcia,0,1,Recreativo,9,10,2
+Case Las Palmas,4,0,Albacete,9,10,2
+Case Elche,1,1,Cartagena,9,10,2
+Case Celta,0,0,Rayo,9,10,2
+Case Cádiz,2,1,Real Unión,9,10,2
+Case Villarreal “B”,3,1,Castellón,9,10,2
+Case Girona,0,2,Betis,9,10,2
+
+Case Rayo,0,1,Elche,10,10,2
+Case Real Unión,2,0,Celta,10,10,2
+Case Castellón,4,1,Cádiz,10,10,2
+Case Betis,4,0,Villarreal “B”,10,10,2
+Case Salamanca,0,1,Girona,10,10,2
+Case Levante,3,1,Numancia,10,10,2
+Case Córdoba,2,1,Huesca,10,10,2
+Case Hércules,5,1,R.Sociedad,10,10,2
+Case Recreativo,0,1,Gimnástic,10,10,2
+Case Albacete,3,2,Murcia,10,10,2
+Case Cartagena,4,1,Las Palmas,10,10,2
+
+Case Salamanca,3,2,Levante,11,10,2
+Case Numancia,2,2,Córdoba,11,10,2
+Case Huesca,1,0,Hércules,11,10,2
+Case R.Sociedad,1,0,Recreativo,11,10,2
+Case Gimnástic,1,3,Albacete,11,10,2
+Case Murcia,1,4,Cartagena,11,10,2
+Case Las Palmas,2,1,Rayo,11,10,2
+Case Elche,2,1,Real Unión,11,10,2
+Case Celta,2,1,Castellón,11,10,2
+Case Cádiz,2,2,Betis,11,10,2
+Case Girona,3,1,Villarreal “B”,11,10,2
+
+Case Levante,3,2,Girona,12,10,2
+Case Córdoba,2,0,Salamanca,12,10,2
+Case Hércules,1,0,Numancia,12,10,2
+Case Recreativo,2,0,Huesca,12,10,2
+Case Albacete,0,0,R.Sociedad,12,10,2
+Case Cartagena,0,2,Gimnástic,12,10,2
+Case Rayo,2,0,Murcia,12,10,2
+Case Real Unión,0,0,Las Palmas,12,10,2
+Case Castellón,0,2,Elche,12,10,2
+Case Betis,1,1,Celta,12,10,2
+Case Villarreal “B”,2,0,Cádiz,12,10,2
+
+Case Levante,0,0,Córdoba,13,10,2
+Case Salamanca,0,0,Hércules,13,10,2
+Case Numancia,1,1,Recreativo,13,10,2
+Case Huesca,2,1,Albacete,13,10,2
+Case R.Sociedad,1,0,Cartagena,13,10,2
+Case Gimnástic,1,1,Rayo,13,10,2
+Case Murcia,3,0,Real Unión,13,10,2
+Case Las Palmas,2,2,Castellón,13,10,2
+Case Elche,3,0,Betis,13,10,2
+Case Celta,0,2,Villarreal “B”,13,10,2
+Case Girona,4,0,Cádiz,13,10,2
+
+Case Córdoba,2,2,Girona,14,10,2
+Case Hércules,2,1,Levante,14,10,2
+Case Recreativo,0,2,Salamanca,14,10,2
+Case Albacete,2,3,Numancia,14,10,2
+Case Cartagena,1,0,Huesca,14,10,2
+Case Rayo,3,3,R.Sociedad,14,10,2
+Case Real Unión,1,0,Gimnástic,14,10,2
+Case Castellón,2,1,Murcia,14,10,2
+Case Betis,1,0,Las Palmas,14,10,2
+Case Villarreal “B”,2,2,Elche,14,10,2
+Case Cádiz,3,1,Celta,14,10,2
+
+Case Córdoba,1,1,Hércules,15,10,2
+Case Levante,1,1,Recreativo,15,10,2
+Case Salamanca,3,2,Albacete,15,10,2
+Case Numancia,2,1,Cartagena,15,10,2
+Case Huesca,2,1,Rayo,15,10,2
+Case R.Sociedad,4,1,Real Unión,15,10,2
+Case Gimnástic,2,1,Castellón,15,10,2
+Case Murcia,2,0,Betis,15,10,2
+Case Las Palmas,0,0,Villarreal “B”,15,10,2
+Case Elche,1,1,Cádiz,15,10,2
+Case Girona,1,2,Celta,15,10,2
+
+Case Hércules,2,0,Girona,16,10,2
+Case Recreativo,0,0,Córdoba,16,10,2
+Case Albacete,1,0,Levante,16,10,2
+Case Cartagena,3,4,Salamanca,16,10,2
+Case Rayo,4,1,Numancia,16,10,2
+Case Real Unión,1,1,Huesca,16,10,2
+Case Castellón,0,1,R.Sociedad,16,10,2
+Case Betis,3,0,Gimnástic,16,10,2
+Case Villarreal “B”,2,1,Murcia,16,10,2
+Case Cádiz,0,0,Las Palmas,16,10,2
+Case Celta,2,1,Elche,16,10,2
+
+Case Hércules,2,0,Recreativo,17,10,2
+Case Córdoba,0,2,Albacete,17,10,2
+Case Levante,1,2,Cartagena,17,10,2
+Case Salamanca,0,1,Rayo,17,10,2
+Case Numancia,1,0,Real Unión,17,10,2
+Case Huesca,2,0,Castellón,17,10,2
+Case R.Sociedad,2,0,Betis,17,10,2
+Case Gimnástic,2,1,Villarreal “B”,17,10,2
+Case Murcia,2,2,Cádiz,17,10,2
+Case Las Palmas,1,1,Celta,17,10,2
+Case Girona,3,2,Elche,17,10,2
+
+Case Betis,1,1,Huesca,18,10,2
+Case Villarreal “B”,1,1,R.Sociedad,18,10,2
+Case Cádiz,0,1,Gimnástic,18,10,2
+Case Celta,1,1,Murcia,18,10,2
+Case Elche,2,5,Las Palmas,18,10,2
+Case Recreativo,2,2,Girona,18,10,2
+Case Albacete,1,2,Hércules,18,10,2
+Case Cartagena,0,0,Córdoba,18,10,2
+Case Rayo,0,0,Levante,18,10,2
+Case Real Unión,1,1,Salamanca,18,10,2
+Case Castellón,0,1,Numancia,18,10,2
+
+Case Recreativo,0,0,Albacete,19,10,2
+Case Hércules,2,0,Cartagena,19,10,2
+Case Levante,1,0,Real Unión,19,10,2
+Case Salamanca,1,1,Castellón,19,10,2
+Case Numancia,3,0,Betis,19,10,2
+Case Huesca,0,1,Villarreal “B”,19,10,2
+Case R.Sociedad,4,1,Cádiz,19,10,2
+Case Gimnástic,0,2,Celta,19,10,2
+Case Murcia,0,2,Elche,19,10,2
+Case Girona,0,2,Las Palmas,19,10,2
+Case Córdoba,0,0,Rayo,19,10,2
+
+Case Girona,2,2,Albacete,20,10,2
+Case Cartagena,1,0,Recreativo,20,10,2
+Case Rayo,4,4,Hércules,20,10,2
+Case Real Unión,2,3,Córdoba,20,10,2
+Case Castellón,0,0,Levante,20,10,2
+Case Betis,1,0,Salamanca,20,10,2
+Case Villarreal “B”,1,0,Numancia,20,10,2
+Case Cádiz,0,0,Huesca,20,10,2
+Case Celta,0,1,R.Sociedad,20,10,2
+Case Elche,2,2,Gimnástic,20,10,2
+Case Las Palmas,0,3,Murcia,20,10,2
+
+Case Albacete,0,0,Cartagena,21,10,2
+Case Recreativo,2,0,Rayo,21,10,2
+Case Hércules,1,0,Real Unión,21,10,2
+Case Córdoba,0,0,Castellón,21,10,2
+Case Levante,1,0,Betis,21,10,2
+Case Salamanca,2,4,Villarreal “B”,21,10,2
+Case Numancia,1,3,Cádiz,21,10,2
+Case Huesca,1,1,Celta,21,10,2
+Case R.Sociedad,0,1,Elche,21,10,2
+Case Gimnástic,2,1,Las Palmas,21,10,2
+Case Murcia,0,0,Girona,21,10,2
+
+Case Numancia,0,0,Celta,22,10,2
+Case Salamanca,1,1,Cádiz,22,10,2
+Case Levante,2,1,Villarreal “B”,22,10,2
+Case Córdoba,0,1,Betis,22,10,2
+Case Hércules,1,2,Castellón,22,10,2
+Case Recreativo,0,0,Real Unión,22,10,2
+Case Albacete,2,2,Rayo,22,10,2
+Case Cartagena,4,1,Girona,22,10,2
+Case Gimnástic,2,3,Murcia,22,10,2
+Case R.Sociedad,2,2,Las Palmas,22,10,2
+Case Huesca,0,0,Elche,22,10,2
+
+Case Girona,0,2,Gimnástic,23,10,2
+Case Murcia,1,1,R.Sociedad,23,10,2
+Case Las Palmas,0,0,Huesca,23,10,2
+Case Elche,0,1,Numancia,23,10,2
+Case Celta,0,0,Salamanca,23,10,2
+Case Cádiz,2,4,Levante,23,10,2
+Case Villarreal “B”,4,0,Córdoba,23,10,2
+Case Betis,1,1,Hércules,23,10,2
+Case Castellón,0,0,Recreativo,23,10,2
+Case Real Unión,2,1,Albacete,23,10,2
+Case Rayo,2,3,Cartagena,23,10,2
+
+Case Hércules,4,2,Villarreal “B”,24,10,2
+Case R.Sociedad,1,0,Gimnástic,24,10,2
+Case Huesca,1,0,Murcia,24,10,2
+Case Numancia,3,1,Las Palmas,24,10,2
+Case Salamanca,0,1,Elche,24,10,2
+Case Levante,1,0,Celta,24,10,2
+Case Córdoba,1,0,Cádiz,24,10,2
+Case Recreativo,1,1,Betis,24,10,2
+Case Albacete,1,1,Castellón,24,10,2
+Case Cartagena,1,0,Real Unión,24,10,2
+Case Rayo,0,3,Girona,24,10,2
+
+Case Girona,1,0,R.Sociedad,25,10,2
+Case Gimnástic,0,1,Huesca,25,10,2
+Case Murcia,1,0,Numancia,25,10,2
+Case Las Palmas,2,2,Salamanca,25,10,2
+Case Elche,0,0,Levante,25,10,2
+Case Cádiz,2,2,Hércules,25,10,2
+Case Villarreal “B”,1,1,Recreativo,25,10,2
+Case Betis,0,0,Albacete,25,10,2
+Case Castellón,2,2,Cartagena,25,10,2
+Case Real Unión,2,1,Rayo,25,10,2
+Case Celta,1,0,Córdoba,25,10,2
+
+Case Huesca,1,1,R.Sociedad,26,10,2
+Case Numancia,1,1,Gimnástic,26,10,2
+Case Salamanca,0,2,Murcia,26,10,2
+Case Levante,1,1,Las Palmas,26,10,2
+Case Córdoba,2,0,Elche,26,10,2
+Case Hércules,1,0,Celta,26,10,2
+Case Recreativo,2,1,Cádiz,26,10,2
+Case Albacete,1,1,Villarreal “B”,26,10,2
+Case Cartagena,1,2,Betis,26,10,2
+Case Rayo,3,0,Castellón,26,10,2
+Case Real Unión,1,1,Girona,26,10,2
+
+Case Villarreal “B”,0,0,Cartagena,27,10,2
+Case Betis,3,1,Rayo,27,10,2
+Case Castellón,1,1,Real Unión,27,10,2
+Case Murcia,1,1,Levante,27,10,2
+Case Las Palmas,1,0,Córdoba,27,10,2
+Case Elche,2,0,Hércules,27,10,2
+Case Celta,1,1,Recreativo,27,10,2
+Case Cádiz,4,3,Albacete,27,10,2
+Case Girona,2,0,Huesca,27,10,2
+Case R.Sociedad,2,1,Numancia,27,10,2
+Case Gimnástic,1,2,Salamanca,27,10,2
+
+Case Numancia,1,0,Huesca,28,10,2
+Case Salamanca,0,0,R.Sociedad,28,10,2
+Case Levante,6,1,Gimnástic,28,10,2
+Case Córdoba,0,1,Murcia,28,10,2
+Case Hércules,0,1,Las Palmas,28,10,2
+Case Recreativo,2,1,Elche,28,10,2
+Case Albacete,0,2,Celta,28,10,2
+Case Cartagena,4,1,Cádiz,28,10,2
+Case Rayo,0,2,Villarreal “B”,28,10,2
+Case Real Unión,1,3,Betis,28,10,2
+Case Castellón,0,1,Girona,28,10,2
+
+Case Girona,0,0,Numancia,29,10,2
+Case Huesca,2,0,Salamanca,29,10,2
+Case Las Palmas,1,1,Recreativo,29,10,2
+Case Gimnástic,0,2,Córdoba,29,10,2
+Case Murcia,0,0,Hércules,29,10,2
+Case R.Sociedad,3,1,Levante,29,10,2
+Case Elche,2,1,Albacete,29,10,2
+Case Celta,1,0,Cartagena,29,10,2
+Case Cádiz,1,1,Rayo,29,10,2
+Case Villarreal “B”,3,1,Real Unión,29,10,2
+Case Betis,2,0,Castellón,29,10,2
+
+Case Salamanca,1,3,Numancia,30,10,2
+Case Levante,1,1,Huesca,30,10,2
+Case Córdoba,2,0,R.Sociedad,30,10,2
+Case Hércules,0,1,Gimnástic,30,10,2
+Case Recreativo,0,2,Murcia,30,10,2
+Case Albacete,3,2,Las Palmas,30,10,2
+Case Cartagena,0,2,Elche,30,10,2
+Case Rayo,1,2,Celta,30,10,2
+Case Real Unión,0,0,Cádiz,30,10,2
+Case Castellón,3,2,Villarreal “B”,30,10,2
+Case Betis,0,1,Girona,30,10,2
+
+Case Elche,2,2,Rayo,31,10,2
+Case Celta,0,1,Real Unión,31,10,2
+Case Cádiz,1,0,Castellón,31,10,2
+Case Villarreal “B”,2,2,Betis,31,10,2
+Case Girona,1,0,Salamanca,31,10,2
+Case Numancia,0,1,Levante,31,10,2
+Case Huesca,0,0,Córdoba,31,10,2
+Case R.Sociedad,1,0,Hércules,31,10,2
+Case Gimnástic,1,1,Recreativo,31,10,2
+Case Murcia,0,2,Albacete,31,10,2
+Case Las Palmas,0,1,Cartagena,31,10,2
+
+Case Levante,2,0,Salamanca,32,10,2
+Case Córdoba,2,1,Numancia,32,10,2
+Case Hércules,0,2,Huesca,32,10,2
+Case Recreativo,2,0,R.Sociedad,32,10,2
+Case Albacete,1,1,Gimnástic,32,10,2
+Case Cartagena,3,2,Murcia,32,10,2
+Case Rayo,3,2,Las Palmas,32,10,2
+Case Real Unión,0,3,Elche,32,10,2
+Case Castellón,2,1,Celta,32,10,2
+Case Betis,4,0,Cádiz,32,10,2
+Case Villarreal “B”,2,0,Girona,32,10,2
+
+Case Girona,0,4,Levante,33,10,2
+Case Salamanca,1,0,Córdoba,33,10,2
+Case Numancia,1,1,Hércules,33,10,2
+Case Huesca,1,2,Recreativo,33,10,2
+Case R.Sociedad,0,0,Albacete,33,10,2
+Case Gimnástic,3,2,Cartagena,33,10,2
+Case Murcia,0,3,Rayo,33,10,2
+Case Las Palmas,2,1,Real Unión,33,10,2
+Case Elche,2,0,Castellón,33,10,2
+Case Celta,1,1,Betis,33,10,2
+Case Cádiz,0,0,Villarreal “B”,33,10,2
+
+Case Córdoba,2,1,Levante,34,10,2
+Case Hércules,4,0,Salamanca,34,10,2
+Case Recreativo,1,3,Numancia,34,10,2
+Case Albacete,0,0,Huesca,34,10,2
+Case Cartagena,1,1,R.Sociedad,34,10,2
+Case Rayo,2,3,Gimnástic,34,10,2
+Case Real Unión,2,0,Murcia,34,10,2
+Case Castellón,2,0,Las Palmas,34,10,2
+Case Betis,0,3,Elche,34,10,2
+Case Villarreal “B”,1,0,Celta,34,10,2
+Case Cádiz,2,0,Girona,34,10,2
+
+Case Girona,2,1,Córdoba,35,10,2
+Case Levante,2,1,Hércules,35,10,2
+Case Salamanca,1,2,Recreativo,35,10,2
+Case Numancia,1,1,Albacete,35,10,2
+Case Huesca,0,2,Cartagena,35,10,2
+Case R.Sociedad,1,0,Rayo,35,10,2
+Case Gimnástic,1,2,Real Unión,35,10,2
+Case Murcia,1,1,Castellón,35,10,2
+Case Las Palmas,1,1,Betis,35,10,2
+Case Elche,2,3,Villarreal “B”,35,10,2
+Case Celta,2,1,Cádiz,35,10,2
+
+Case Hércules,4,0,Córdoba,36,10,2
+Case Recreativo,0,1,Levante,36,10,2
+Case Albacete,2,1,Salamanca,36,10,2
+Case Cartagena,2,1,Numancia,36,10,2
+Case Rayo,4,1,Huesca,36,10,2
+Case Real Unión,0,0,R.Sociedad,36,10,2
+Case Castellón,0,0,Gimnástic,36,10,2
+Case Betis,1,1,Murcia,36,10,2
+Case Villarreal “B”,2,5,Las Palmas,36,10,2
+Case Cádiz,2,1,Elche,36,10,2
+Case Celta,2,1,Girona,36,10,2
+
+Case Girona,1,1,Hércules,37,10,2
+Case Córdoba,1,1,Recreativo,37,10,2
+Case Levante,1,1,Albacete,37,10,2
+Case Salamanca,1,0,Cartagena,37,10,2
+Case Numancia,1,1,Rayo,37,10,2
+Case Huesca,2,3,Real Unión,37,10,2
+Case R.Sociedad,0,0,Castellón,37,10,2
+Case Gimnástic,0,1,Betis,37,10,2
+Case Murcia,2,2,Villarreal “B”,37,10,2
+Case Las Palmas,1,1,Cádiz,37,10,2
+Case Elche,1,0,Celta,37,10,2
+
+Case Recreativo,0,0,Hércules,38,10,2
+Case Albacete,3,0,Córdoba,38,10,2
+Case Cartagena,3,5,Levante,38,10,2
+Case Rayo,0,0,Salamanca,38,10,2
+Case Real Unión,4,3,Numancia,38,10,2
+Case Castellón,1,2,Huesca,38,10,2
+Case Betis,1,0,R.Sociedad,38,10,2
+Case Villarreal “B”,1,0,Gimnástic,38,10,2
+Case Cádiz,1,0,Murcia,38,10,2
+Case Celta,1,0,Las Palmas,38,10,2
+Case Elche,4,0,Girona,38,10,2
+
+Case Huesca,0,1,Betis,39,10,2
+Case R.Sociedad,2,1,Villarreal “B”,39,10,2
+Case Gimnástic,0,2,Cádiz,39,10,2
+Case Murcia,4,1,Celta,39,10,2
+Case Las Palmas,4,1,Elche,39,10,2
+Case Girona,0,0,Recreativo,39,10,2
+Case Hércules,5,1,Albacete,39,10,2
+Case Córdoba,1,2,Cartagena,39,10,2
+Case Levante,2,1,Rayo,39,10,2
+Case Salamanca,3,0,Real Unión,39,10,2
+Case Numancia,2,1,Castellón,39,10,2
+
+Case Albacete,1,3,Recreativo,40,10,2
+Case Cartagena,0,0,Hércules,40,10,2
+Case Real Unión,2,1,Levante,40,10,2
+Case Castellón,1,2,Salamanca,40,10,2
+Case Betis,2,0,Numancia,40,10,2
+Case Villarreal “B”,1,1,Huesca,40,10,2
+Case Cádiz,1,3,R.Sociedad,40,10,2
+Case Celta,3,1,Gimnástic,40,10,2
+Case Elche,1,2,Murcia,40,10,2
+Case Las Palmas,0,1,Girona,40,10,2
+Case Rayo,3,2,Córdoba,40,10,2
+
+Case Albacete,3,0,Girona,41,10,2
+Case Recreativo,1,0,Cartagena,41,10,2
+Case Hércules,2,1,Rayo,41,10,2
+Case Córdoba,4,0,Real Unión,41,10,2
+Case Levante,3,1,Castellón,41,10,2
+Case Salamanca,1,1,Betis,41,10,2
+Case Numancia,1,0,Villarreal “B”,41,10,2
+Case Huesca,2,1,Cádiz,41,10,2
+Case R.Sociedad,2,0,Celta,41,10,2
+Case Gimnástic,3,1,Elche,41,10,2
+Case Murcia,1,0,Las Palmas,41,10,2
+
+Case Cartagena,0,4,Albacete,42,10,2
+Case Rayo,4,0,Recreativo,42,10,2
+Case Real Unión,0,2,Hércules,42,10,2
+Case Castellón,0,1,Córdoba,42,10,2
+Case Betis,4,0,Levante,42,10,2
+Case Villarreal “B”,1,2,Salamanca,42,10,2
+Case Cádiz,4,2,Numancia,42,10,2
+Case Celta,0,1,Huesca,42,10,2
+Case Elche,4,1,R.Sociedad,42,10,2
+Case Las Palmas,1,0,Gimnástic,42,10,2
+Case Girona,1,1,Murcia,42,10,2
