@@ -15,7 +15,7 @@ public class QuinielaSolution implements CaseComponent {
 	/**
 	 * 
 	 */
-	String Resultado;
+	String resultado;
 	//String CaseId;
 	public QuinielaSolution() {
 		// TODO Auto-generated constructor stub
@@ -26,21 +26,21 @@ public class QuinielaSolution implements CaseComponent {
 	 */
 	@Override
 	public String toString() {
-		return "QuinielaSolution [Resultado=" + Resultado + "]";
+		return "QuinielaSolution [Resultado=" + resultado + "]";
 	}
 
 	/**
 	 * @return the resultado
 	 */
 	public String getResultado() {
-		return Resultado;
+		return resultado;
 	}
 
 	/**
 	 * @param resultado the resultado to set
 	 */
 	public void setResultado(String resultado) {
-		Resultado = resultado;
+		resultado = resultado;
 	}
 
 	/* (non-Javadoc)

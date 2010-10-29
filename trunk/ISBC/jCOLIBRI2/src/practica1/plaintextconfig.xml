@@ -1,0 +1,18 @@
+<TextFileConfiguration>
+	<FilePath>practica1/casospractica1.txt</FilePath>
+	<Delimiters>,</Delimiters>
+	<DescriptionClassName>practica1.QuinielaCaso</DescriptionClassName>
+	<DescriptionMappings>
+		<Map>nombreLocal</Map>
+		<Map>resultLocal</Map>
+		<Map>resultVisit</Map>
+		<Map>nombreVisitante</Map>
+		<Map>jornada</Map>
+		<Map>temporada</Map>
+		<Map>division</Map>		
+	</DescriptionMappings>
+	<SolutionClassName>practica1.QuinielaSolution</SolutionClassName>
+	<SolutionMappings>
+		<Map>resultado</Map>
+	</SolutionMappings>
+</TextFileConfiguration>

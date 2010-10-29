@@ -27,6 +27,24 @@ public class QuinielaCaso implements CaseComponent, CBRCaseBase {
 	Integer resultLocal;
 	Integer resultVisit;
 	String nombreVisitante;
+	Integer jornada;
+	Integer temporada;
+	Integer division;
+
+	/**
+	 * @return the jornada
+	 */
+	public Integer getJornada() {
+		return jornada;
+	}
+
+	/**
+	 * @param jornada the jornada to set
+	 */
+	public void setJornada(Integer jornada) {
+		this.jornada = jornada;
+	}
+
 	/**
 	 * @return the nombreLocal
 	 */
@@ -116,14 +134,14 @@ public class QuinielaCaso implements CaseComponent, CBRCaseBase {
 	 */
 	@Override
 	public String toString() {
-		return "QuinielaCaso [nombreLocal=" + nombreLocal + ", resultLocal="
-				+ resultLocal + ", resultVisit=" + resultVisit
-				+ ", nombreVisitante=" + nombreVisitante + ", temporada="
+		return "QuinielaCaso [caseId=" + caseId + ", nombreLocal="
+				+ nombreLocal + ", resultLocal=" + resultLocal
+				+ ", resultVisit=" + resultVisit + ", nombreVisitante="
+				+ nombreVisitante + ", jornada=" + jornada + ", temporada="
 				+ temporada + ", division=" + division + "]";
 	}
 
-	Integer temporada;
-	Integer division;
+
 	
 	public QuinielaCaso() {
 		// TODO Auto-generated constructor stub
