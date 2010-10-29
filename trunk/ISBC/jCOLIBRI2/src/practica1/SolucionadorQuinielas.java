@@ -5,6 +5,7 @@ package practica1;
 
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
+import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
@@ -49,7 +50,11 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	@Override
 	public CBRCaseBase preCycle() throws ExecutionException {
 		// TODO Auto-generated method stub
-		return null;
+		_caseBase.init(_connector);
+		java.util.Collection<CBRCase> cases = _caseBase.getCases();
+		for(CBRCase c: cases)
+			System.out.println(c);
+		return _caseBase;
 	}
 
 	/* (non-Javadoc)
@@ -67,6 +72,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	@Override
 	public void postCycle() throws ExecutionException {
 		// TODO Auto-generated method stub
+		_connector.close();
 
 	}
 
