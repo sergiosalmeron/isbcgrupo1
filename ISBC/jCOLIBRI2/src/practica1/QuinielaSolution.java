@@ -16,6 +16,7 @@ public class QuinielaSolution implements CaseComponent {
 	 * 
 	 */
 	String resultado;
+	Double confianza;
 	//String CaseId;
 	public QuinielaSolution() {
 		// TODO Auto-generated constructor stub
@@ -40,7 +41,7 @@ public class QuinielaSolution implements CaseComponent {
 	 * @param resultado the resultado to set
 	 */
 	public void setResultado(String resultado) {
-		resultado = resultado;
+		this.resultado = resultado;
 	}
 
 	/* (non-Javadoc)
@@ -50,6 +51,11 @@ public class QuinielaSolution implements CaseComponent {
 	public Attribute getIdAttribute() {
 		// TODO Auto-generated method stub
 		return new Attribute("Resultado", this.getClass());
+	}
+
+	public Double getConfidence() {
+		// TODO Auto-generated method stub
+		return confianza;
 	}
 
 }
