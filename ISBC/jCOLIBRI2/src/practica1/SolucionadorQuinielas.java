@@ -63,7 +63,13 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	@Override
 	public void cycle(CBRQuery query) throws ExecutionException {
 		// TODO Auto-generated method stub
-
+		double prediccion;
+		if(res_predict!=res_real)
+			prediccion = 1.0;
+		else prediccion = 0.0;
+		
+		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
+		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (predict.getConfidence()));
 	}
 
 	/* (non-Javadoc)
@@ -86,6 +92,14 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			quiniela.configure();
 			quiniela.preCycle();
 			quiniela.cycle(null);
+			Vector<Double> vec = Evaulator.getEvaluationReport().getSeries("Errores");
+			double avg = 0.0;
+			for (Double d: vec)
+				avg+=d;
+			avg=avg/(double)Evaluator.getEvaluationReport().getNumberOfCycles();
+			Evaluator.getEvaluationReport().putOtherData("Media", Double.toString(avg));
+			System.out.println(Evaluator.getEvaluationReport());
+			jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluacion Quinielas",false);
 		} catch (ExecutionException e) {
 			org.apache.commons.logging.LogFactory.getLog(SolucionadorQuinielas.class).error(e);
 		}
