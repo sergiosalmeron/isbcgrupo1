@@ -3,15 +3,24 @@
  */
 package practica1;
 
+import java.util.*;
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
+import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
+import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
+import jcolibri.method.retrieve.NNretrieval.NNConfig;
+import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
+import jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
+import jcolibri.method.retrieve.NNretrieval.similarity.local.Interval;
+import jcolibri.test.test16.EmailSolution;
 import jcolibri.test.test6.Test6;
+import jcolibri.test.test8.TravelDescription;
 
 /**
  * @author anicetobacter
@@ -63,12 +72,25 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	@Override
 	public void cycle(CBRQuery query) throws ExecutionException {
 		// TODO Auto-generated method stub
+		NNConfig simConfig = new NNConfig();
+		simConfig.setDescriptionSimFunction(new Average());
+		simConfig.addMapping(new Attribute("nombreLocal", QuinielaCaso.class), new Equal());
+		Attribute duration = new Attribute("resultLocal", QuinielaCaso.class);
+		simConfig.addMapping(duration, new Interval(31));
+		simConfig.setWeight(duration, 0.5);
+		simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
+		simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
+		simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
 		double prediccion;
-		if(res_predict!=res_real)
+		CBRCase _case = (CBRCase)query;
+		QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
+		if(!sol.equals(_case.getResult()))
 			prediccion = 1.0;
 		else prediccion = 0.0;
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
+		QuinielaSolution predict;
+		predict = new QuinielaSolution();//Esto no esta bien inicializado hay que ver como se trata
 		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (predict.getConfidence()));
 	}
 
@@ -91,8 +113,14 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		try {
 			quiniela.configure();
 			quiniela.preCycle();
-			quiniela.cycle(null);
-			Vector<Double> vec = Evaulator.getEvaluationReport().getSeries("Errores");
+			QuinielaCaso hola = new QuinielaCaso();
+			hola.setDivision(1);
+			hola.setNombreLocal("Deportivo");
+			hola.setNombreVisitante("Sporting");
+			CBRQuery query = new CBRQuery();
+			query.setDescription(hola);
+			quiniela.cycle(query);
+			Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
 			double avg = 0.0;
 			for (Double d: vec)
 				avg+=d;

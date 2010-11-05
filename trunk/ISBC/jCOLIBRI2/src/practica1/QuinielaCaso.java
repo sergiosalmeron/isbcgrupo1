@@ -17,7 +17,7 @@ import jcolibri.exception.InitializingException;
  * @author anicetobacter
  *
  */
-public class QuinielaCaso implements CaseComponent, CBRCaseBase {
+public class QuinielaCaso implements CaseComponent {
 
 	/**
 	 * 
@@ -176,47 +176,47 @@ public class QuinielaCaso implements CaseComponent, CBRCaseBase {
 	/* (non-Javadoc)
 	 * @see jcolibri.cbrcore.CBRCaseBase#close()
 	 */
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see jcolibri.cbrcore.CBRCaseBase#getCases()
-	 */
-	@Override
-	public Collection<CBRCase> getCases() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see jcolibri.cbrcore.CBRCaseBase#getCases(jcolibri.cbrcore.CaseBaseFilter)
-	 */
-	@Override
-	public Collection<CBRCase> getCases(CaseBaseFilter filter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see jcolibri.cbrcore.CBRCaseBase#learnCases(java.util.Collection)
-	 */
-	@Override
-	public void learnCases(Collection<CBRCase> cases) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see jcolibri.cbrcore.CBRCaseBase#forgetCases(java.util.Collection)
-	 */
-	@Override
-	public void forgetCases(Collection<CBRCase> cases) {
-		// TODO Auto-generated method stub
-
-	}
+	//@Override
+//	public void close() {
+//		// TODO Auto-generated method stub
+//
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see jcolibri.cbrcore.CBRCaseBase#getCases()
+//	 */
+//	@Override
+//	public Collection<CBRCase> getCases() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see jcolibri.cbrcore.CBRCaseBase#getCases(jcolibri.cbrcore.CaseBaseFilter)
+//	 */
+//	@Override
+//	public Collection<CBRCase> getCases(CaseBaseFilter filter) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see jcolibri.cbrcore.CBRCaseBase#learnCases(java.util.Collection)
+//	 */
+//	@Override
+//	public void learnCases(Collection<CBRCase> cases) {
+//		// TODO Auto-generated method stub
+//
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see jcolibri.cbrcore.CBRCaseBase#forgetCases(java.util.Collection)
+//	 */
+//	@Override
+//	public void forgetCases(Collection<CBRCase> cases) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 
 }
