@@ -4,6 +4,9 @@
 package practica1;
 
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
@@ -14,10 +17,15 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
+import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
+import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
+import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.Interval;
+import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.test16.EmailSolution;
 import jcolibri.test.test6.Test6;
 import jcolibri.test.test8.TravelDescription;
@@ -81,7 +89,25 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
-		double prediccion;
+		
+		// A bit of verbose
+		System.out.println("Query Description:");
+		System.out.println(query.getDescription());
+		System.out.println();
+		
+		// Execute NN
+		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
+		eval = SelectCases.selectTopKRR(eval, 5);
+		Collection<CBRCase> casos = new ArrayList<CBRCase>();
+		System.out.println("Casos Recuperados: ");
+		for(RetrievalResult nse: eval){
+			System.out.println(nse);
+			casos.add(nse.get_case());
+		}
+		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+
+
+/*		double prediccion;
 		CBRCase _case = (CBRCase)query;
 		QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
 		if(!sol.equals(_case.getResult()))
@@ -91,9 +117,8 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
 		QuinielaSolution predict;
 		predict = new QuinielaSolution();//Esto no esta bien inicializado hay que ver como se trata
-		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (predict.getConfidence()));
+		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (predict.getConfidence()));*/
 	}
-
 	/* (non-Javadoc)
 	 * @see jcolibri.cbraplications.StandardCBRApplication#postCycle()
 	 */
@@ -113,13 +138,18 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		try {
 			quiniela.configure();
 			quiniela.preCycle();
-			QuinielaCaso hola = new QuinielaCaso();
-			hola.setDivision(1);
-			hola.setNombreLocal("Deportivo");
-			hola.setNombreVisitante("Sporting");
+//			QuinielaCaso hola = new QuinielaCaso();
+//			hola.setDivision(1);
+//			hola.setNombreLocal("Deportivo");
+//			hola.setNombreVisitante("Sporting");
 			CBRQuery query = new CBRQuery();
-			query.setDescription(hola);
-			quiniela.cycle(query);
+			query.setDescription(new QuinielaCaso());
+			do {
+				ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
+				quiniela.cycle(query);
+			}while (JOptionPane.showConfirmDialog(null, "¿Continuar?") == JOptionPane.OK_OPTION);
+			
+			
 			Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
 			double avg = 0.0;
 			for (Double d: vec)
