@@ -1,0 +1,7 @@
+<DataBaseConfiguration>
+	<HibernateConfigFile>practica0/hibernate.cfg.xml</HibernateConfigFile>
+	<DescriptionMappingFile>practica0/TravelDescprition.hbm.xml</DescriptionMappingFile>
+	<DescriptionClassName>practica0.TravelDescription</DescriptionClassName>
+	<DescriptionMappingFile>practica0/TravelSolution.hbm.xml</DescriptionMappingFile>
+	<DescriptionClassName>practica0.TravelSolution</DescriptionClassName>
+</DataBaseConfiguration>
