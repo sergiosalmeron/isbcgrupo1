@@ -49,7 +49,12 @@ public class QuinielaSolution implements CaseComponent {
 	@Override
 	public Attribute getIdAttribute() {
 		// TODO Auto-generated method stub
-		return new Attribute("Resultado", this.getClass());
+		return new Attribute("resultado", this.getClass());
+	}
+
+	public String getConfidence() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

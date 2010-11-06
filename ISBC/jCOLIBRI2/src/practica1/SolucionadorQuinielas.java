@@ -107,17 +107,16 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
 
 
-/*		double prediccion;
-		CBRCase _case = (CBRCase)query;
-		QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
+		double prediccion;
+			CBRCase _case = (CBRCase)query;
+			QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
 		if(!sol.equals(_case.getResult()))
 			prediccion = 1.0;
 		else prediccion = 0.0;
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
 		QuinielaSolution predict;
-		predict = new QuinielaSolution();//Esto no esta bien inicializado hay que ver como se trata
-		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (predict.getConfidence()));*/
+		predict = new QuinielaSolution();//Esto no esta bien inicializado hay que ver como se trata*/
 	}
 	/* (non-Javadoc)
 	 * @see jcolibri.cbraplications.StandardCBRApplication#postCycle()
