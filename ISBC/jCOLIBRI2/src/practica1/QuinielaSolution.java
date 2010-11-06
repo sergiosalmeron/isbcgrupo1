@@ -7,7 +7,7 @@ import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CaseComponent;
 
 /**
- * @author anicetobacter
+ * @author grupo 1
  *
  */
 public class QuinielaSolution implements CaseComponent {
@@ -16,7 +16,6 @@ public class QuinielaSolution implements CaseComponent {
 	 * 
 	 */
 	String resultado;
-	Double confianza;
 	//String CaseId;
 	public QuinielaSolution() {
 		// TODO Auto-generated constructor stub
@@ -53,9 +52,5 @@ public class QuinielaSolution implements CaseComponent {
 		return new Attribute("Resultado", this.getClass());
 	}
 
-	public Double getConfidence() {
-		// TODO Auto-generated method stub
-		return confianza;
-	}
 
 }
