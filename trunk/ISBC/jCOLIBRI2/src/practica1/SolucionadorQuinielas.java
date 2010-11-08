@@ -81,11 +81,10 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	public void cycle(CBRQuery query) throws ExecutionException {
 		// TODO Auto-generated method stub
 		NNConfig simConfig = new NNConfig();
+		//Aquivienen las funciones de similitud particulares para cada campo
 		simConfig.setDescriptionSimFunction(new Average());
 		simConfig.addMapping(new Attribute("nombreLocal", QuinielaCaso.class), new Equal());
-		Attribute duration = new Attribute("resultLocal", QuinielaCaso.class);
-		simConfig.addMapping(duration, new Interval(31));
-		simConfig.setWeight(duration, 0.5);
+		simConfig.addMapping(new Attribute("resultLocal", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
@@ -95,7 +94,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		System.out.println(query.getDescription());
 		System.out.println();
 		
-		// Execute NN
+		// Ejecutamos el NN
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
 		eval = SelectCases.selectTopKRR(eval, 5);
 		Collection<CBRCase> casos = new ArrayList<CBRCase>();

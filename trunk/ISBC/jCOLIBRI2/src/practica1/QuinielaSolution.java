@@ -5,12 +5,13 @@ package practica1;
 
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CaseComponent;
+import jcolibri.extensions.classification.ClassificationSolution;
 
 /**
  * @author grupo 1
  *
  */
-public class QuinielaSolution implements CaseComponent {
+public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 
 	/**
 	 * 
@@ -53,6 +54,12 @@ public class QuinielaSolution implements CaseComponent {
 	}
 
 	public String getConfidence() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getClassification() {
 		// TODO Auto-generated method stub
 		return null;
 	}
