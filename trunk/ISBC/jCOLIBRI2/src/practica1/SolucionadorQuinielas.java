@@ -18,6 +18,7 @@ import jcolibri.connector.PlainTextConnector;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.extensions.recommendation.navigationByAsking.ObtainQueryWithAttributeQuestionMethod;
 import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
@@ -88,6 +89,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
+		simConfig.addMapping(new Attribute("temporada", QuinielaCaso.class), new Interval(10));
 		
 		// A bit of verbose
 		System.out.println("Query Description:");
@@ -143,7 +145,17 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			CBRQuery query = new CBRQuery();
 			query.setDescription(new QuinielaCaso());
 			do {
-				ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
+				Collection<Attribute> c = new ArrayList<Attribute>();
+				Map<Attribute,String> m = new HashMap<Attribute,String>();
+				m.put((new Attribute("nombreLocal", QuinielaCaso.class)),"nombre Local");
+				c.add(new Attribute("resultLocal", QuinielaCaso.class));
+				c.add(new Attribute("resultVisit", QuinielaCaso.class));
+				m.put((new Attribute("nombreVisitante", QuinielaCaso.class)),"nombre Visitante");
+				c.add(new Attribute("jornada", QuinielaCaso.class));
+				c.add(new Attribute("temporada", QuinielaCaso.class));
+				c.add(new Attribute("division",QuinielaCaso.class));
+				//ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
+				ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query,c , m);
 				quiniela.cycle(query);
 			}while (JOptionPane.showConfirmDialog(null, "¿Continuar?") == JOptionPane.OK_OPTION);
 			
