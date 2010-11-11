@@ -64,6 +64,8 @@ public class AnadeNumero {
                     	transita(0);
                     }
                     else if(buf == -1){
+                    	fichero.close();
+                    	nuevo.close();
                     	System.exit(0);
                     }
                     else transita(1);
@@ -97,7 +99,7 @@ public class AnadeNumero {
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		AnadeNumero prueba = new AnadeNumero("c://BaseCasos.txt","c://BaseCasos2.txt");
+		AnadeNumero prueba = new AnadeNumero("c:/hlocal/BaseCasos.txt","c://hlocal/BaseCasos2.txt");
 		prueba.rellena();
 	}
 
