@@ -31,145 +31,20 @@ public class QuinielaCaso implements CaseComponent {
 	Integer temporada;
 	Integer division;
 	Integer posLocal;
-	Integer puntosLocal;
-	Integer golesFavorLocal;
-	Integer golesContraLocal;
-	Integer puntosCasaLocal;
-	Integer puntosFueraLocal;
+	Double puntosLocal;
+	Double golesFavorLocal;
+	Double golesContraLocal;
+	Double puntosCasaLocal;
+	Double puntosFueraLocal;
 	Integer posVis;
-	Integer puntosVis;
-	Integer golesFavorVis;
-	Integer golesContraVis;
-	Integer puntosCasaVis;
-	Integer puntosFueraVis;
-	Integer difPuntos;
+	Double puntosVis;
+	Double golesFavorVis;
+	Double golesContraVis;
+	Double puntosCasaVis;
+	Double puntosFueraVis;
+	Double difPuntos;
 	Integer difPos;
 
-	public Integer getDifPuntos() {
-		return difPuntos;
-	}
-
-	public void setDifPuntos(Integer difPuntos) {
-		this.difPuntos = difPuntos;
-	}
-
-	public Integer getDifPos() {
-		return difPos;
-	}
-
-	public void setDifPos(Integer difPos) {
-		this.difPos = difPos;
-	}
-
-	public Integer getPosLocal() {
-		return posLocal;
-	}
-
-	public void setPosLocal(Integer posLocal) {
-		this.posLocal = posLocal;
-	}
-
-	public Integer getPuntosLocal() {
-		return puntosLocal;
-	}
-
-	public void setPuntosLocal(Integer puntosLocal) {
-		this.puntosLocal = puntosLocal;
-	}
-
-	public Integer getGolesFavorLocal() {
-		return golesFavorLocal;
-	}
-
-	public void setGolesFavorLocal(Integer golesFavorLocal) {
-		this.golesFavorLocal = golesFavorLocal;
-	}
-
-	public Integer getGolesContraLocal() {
-		return golesContraLocal;
-	}
-
-	public void setGolesContraLocal(Integer golesContraLocal) {
-		this.golesContraLocal = golesContraLocal;
-	}
-
-	public Integer getPuntosCasaLocal() {
-		return puntosCasaLocal;
-	}
-
-	public void setPuntosCasaLocal(Integer puntosCasaLocal) {
-		this.puntosCasaLocal = puntosCasaLocal;
-	}
-
-	public Integer getPuntosFueraLocal() {
-		return puntosFueraLocal;
-	}
-
-	public void setPuntosFueraLocal(Integer puntosFueraLocal) {
-		this.puntosFueraLocal = puntosFueraLocal;
-	}
-
-	public Integer getPosVis() {
-		return posVis;
-	}
-
-	public void setPosVis(Integer posVis) {
-		this.posVis = posVis;
-	}
-
-	public Integer getPuntosVis() {
-		return puntosVis;
-	}
-
-	public void setPuntosVis(Integer puntosVis) {
-		this.puntosVis = puntosVis;
-	}
-
-	public Integer getGolesFavorVis() {
-		return golesFavorVis;
-	}
-
-	public void setGolesFavorVis(Integer golesFavorVis) {
-		this.golesFavorVis = golesFavorVis;
-	}
-
-	public Integer getGolesContraVis() {
-		return golesContraVis;
-	}
-
-	public void setGolesContraVis(Integer golesContraVis) {
-		this.golesContraVis = golesContraVis;
-	}
-
-	public Integer getPuntosCasaVis() {
-		return puntosCasaVis;
-	}
-
-	public void setPuntosCasaVis(Integer puntosCasaVis) {
-		this.puntosCasaVis = puntosCasaVis;
-	}
-
-	public Integer getPuntosFueraVis() {
-		return puntosFueraVis;
-	}
-
-	public void setPuntosFueraVis(Integer puntosFueraVis) {
-		this.puntosFueraVis = puntosFueraVis;
-	}
-
-	/**
-	 * @return the jornada
-	 */
-	public Integer getJornada() {
-		return jornada;
-	}
-
-	/**
-	 * @param jornada the jornada to set
-	 */
-	public void setJornada(Integer jornada) {
-		this.jornada = jornada;
-	}
 
 	/**
 	 * @return the nombreLocal
@@ -178,12 +53,16 @@ public class QuinielaCaso implements CaseComponent {
 		return nombreLocal;
 	}
 
+
+
 	/**
 	 * @param nombreLocal the nombreLocal to set
 	 */
 	public void setNombreLocal(String nombreLocal) {
 		this.nombreLocal = nombreLocal;
 	}
+
+
 
 	/**
 	 * @return the resultLocal
@@ -192,12 +71,16 @@ public class QuinielaCaso implements CaseComponent {
 		return resultLocal;
 	}
 
+
+
 	/**
 	 * @param resultLocal the resultLocal to set
 	 */
 	public void setResultLocal(Integer resultLocal) {
 		this.resultLocal = resultLocal;
 	}
+
+
 
 	/**
 	 * @return the resultVisit
@@ -206,12 +89,16 @@ public class QuinielaCaso implements CaseComponent {
 		return resultVisit;
 	}
 
+
+
 	/**
 	 * @param resultVisit the resultVisit to set
 	 */
 	public void setResultVisit(Integer resultVisit) {
 		this.resultVisit = resultVisit;
 	}
+
+
 
 	/**
 	 * @return the nombreVisitante
@@ -220,12 +107,34 @@ public class QuinielaCaso implements CaseComponent {
 		return nombreVisitante;
 	}
 
+
+
 	/**
 	 * @param nombreVisitante the nombreVisitante to set
 	 */
 	public void setNombreVisitante(String nombreVisitante) {
 		this.nombreVisitante = nombreVisitante;
 	}
+
+
+
+	/**
+	 * @return the jornada
+	 */
+	public Integer getJornada() {
+		return jornada;
+	}
+
+
+
+	/**
+	 * @param jornada the jornada to set
+	 */
+	public void setJornada(Integer jornada) {
+		this.jornada = jornada;
+	}
+
+
 
 	/**
 	 * @return the temporada
@@ -234,12 +143,16 @@ public class QuinielaCaso implements CaseComponent {
 		return temporada;
 	}
 
+
+
 	/**
 	 * @param temporada the temporada to set
 	 */
 	public void setTemporada(Integer temporada) {
 		this.temporada = temporada;
 	}
+
+
 
 	/**
 	 * @return the division
@@ -248,12 +161,268 @@ public class QuinielaCaso implements CaseComponent {
 		return division;
 	}
 
+
+
 	/**
 	 * @param division the division to set
 	 */
 	public void setDivision(Integer division) {
 		this.division = division;
 	}
+
+
+
+	/**
+	 * @return the posLocal
+	 */
+	public Integer getPosLocal() {
+		return posLocal;
+	}
+
+
+
+	/**
+	 * @param posLocal the posLocal to set
+	 */
+	public void setPosLocal(Integer posLocal) {
+		this.posLocal = posLocal;
+	}
+
+
+
+	/**
+	 * @return the puntosLocal
+	 */
+	public Double getPuntosLocal() {
+		return puntosLocal;
+	}
+
+
+
+	/**
+	 * @param puntosLocal the puntosLocal to set
+	 */
+	public void setPuntosLocal(Double puntosLocal) {
+		this.puntosLocal = puntosLocal;
+	}
+
+
+
+	/**
+	 * @return the golesFavorLocal
+	 */
+	public Double getGolesFavorLocal() {
+		return golesFavorLocal;
+	}
+
+
+
+	/**
+	 * @param golesFavorLocal the golesFavorLocal to set
+	 */
+	public void setGolesFavorLocal(Double golesFavorLocal) {
+		this.golesFavorLocal = golesFavorLocal;
+	}
+
+
+
+	/**
+	 * @return the golesContraLocal
+	 */
+	public Double getGolesContraLocal() {
+		return golesContraLocal;
+	}
+
+
+
+	/**
+	 * @param golesContraLocal the golesContraLocal to set
+	 */
+	public void setGolesContraLocal(Double golesContraLocal) {
+		this.golesContraLocal = golesContraLocal;
+	}
+
+
+
+	/**
+	 * @return the puntosCasaLocal
+	 */
+	public Double getPuntosCasaLocal() {
+		return puntosCasaLocal;
+	}
+
+
+
+	/**
+	 * @param puntosCasaLocal the puntosCasaLocal to set
+	 */
+	public void setPuntosCasaLocal(Double puntosCasaLocal) {
+		this.puntosCasaLocal = puntosCasaLocal;
+	}
+
+
+
+	/**
+	 * @return the puntosFueraLocal
+	 */
+	public Double getPuntosFueraLocal() {
+		return puntosFueraLocal;
+	}
+
+
+
+	/**
+	 * @param puntosFueraLocal the puntosFueraLocal to set
+	 */
+	public void setPuntosFueraLocal(Double puntosFueraLocal) {
+		this.puntosFueraLocal = puntosFueraLocal;
+	}
+
+
+
+	/**
+	 * @return the posVis
+	 */
+	public Integer getPosVis() {
+		return posVis;
+	}
+
+
+
+	/**
+	 * @param posVis the posVis to set
+	 */
+	public void setPosVis(Integer posVis) {
+		this.posVis = posVis;
+	}
+
+
+
+	/**
+	 * @return the puntosVis
+	 */
+	public Double getPuntosVis() {
+		return puntosVis;
+	}
+
+
+
+	/**
+	 * @param puntosVis the puntosVis to set
+	 */
+	public void setPuntosVis(Double puntosVis) {
+		this.puntosVis = puntosVis;
+	}
+
+
+
+	/**
+	 * @return the golesFavorVis
+	 */
+	public Double getGolesFavorVis() {
+		return golesFavorVis;
+	}
+
+
+
+	/**
+	 * @param golesFavorVis the golesFavorVis to set
+	 */
+	public void setGolesFavorVis(Double golesFavorVis) {
+		this.golesFavorVis = golesFavorVis;
+	}
+
+
+
+	/**
+	 * @return the golesContraVis
+	 */
+	public Double getGolesContraVis() {
+		return golesContraVis;
+	}
+
+
+
+	/**
+	 * @param golesContraVis the golesContraVis to set
+	 */
+	public void setGolesContraVis(Double golesContraVis) {
+		this.golesContraVis = golesContraVis;
+	}
+
+
+
+	/**
+	 * @return the puntosCasaVis
+	 */
+	public Double getPuntosCasaVis() {
+		return puntosCasaVis;
+	}
+
+
+
+	/**
+	 * @param puntosCasaVis the puntosCasaVis to set
+	 */
+	public void setPuntosCasaVis(Double puntosCasaVis) {
+		this.puntosCasaVis = puntosCasaVis;
+	}
+
+
+
+	/**
+	 * @return the puntosFueraVis
+	 */
+	public Double getPuntosFueraVis() {
+		return puntosFueraVis;
+	}
+
+
+
+	/**
+	 * @param puntosFueraVis the puntosFueraVis to set
+	 */
+	public void setPuntosFueraVis(Double puntosFueraVis) {
+		this.puntosFueraVis = puntosFueraVis;
+	}
+
+
+
+	/**
+	 * @return the difPuntos
+	 */
+	public Double getDifPuntos() {
+		return difPuntos;
+	}
+
+
+
+	/**
+	 * @param difPuntos the difPuntos to set
+	 */
+	public void setDifPuntos(Double difPuntos) {
+		this.difPuntos = difPuntos;
+	}
+
+
+
+	/**
+	 * @return the difPos
+	 */
+	public Integer getDifPos() {
+		return difPos;
+	}
+
+
+
+	/**
+	 * @param difPos the difPos to set
+	 */
+	public void setDifPos(Integer difPos) {
+		this.difPos = difPos;
+	}
+
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -275,7 +444,9 @@ public class QuinielaCaso implements CaseComponent {
 				",goles Favor Visitante="+  golesFavorVis+
 				", goles Contra Visitante=" + golesContraVis+
 				", puntos Casa Visitante=" + puntosCasaVis+
-				", puntos FueraVisitante ="+ puntosFueraVis+"]";
+				", puntos FueraVisitante ="+ puntosFueraVis+
+				", diferencia de puntos= " +difPuntos + 
+				", diferencia de goles= " + "]";
 	}
 
 

@@ -72,8 +72,17 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		java.util.Collection<CBRCase> cases = _caseBase.getCases();
 		for(CBRCase c: cases){
 			QuinielaCaso s = (QuinielaCaso) c.getDescription();
+			
 			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
-			s.setDifPuntos((Integer)(s.getPuntosLocal()-s.getPuntosVis()));
+			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/s.getJornada()));
+			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
+			s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
+			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
+			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/s.getJornada()));
+			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/s.getJornada()));
+			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
+			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
+			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/s.getJornada()));
 			System.out.println(c);
 		}
 		return _caseBase;
@@ -100,6 +109,30 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.addMapping(temporada, new Interval(3));
 		simConfig.setWeight(temporada, 0.1);
 		
+		Attribute puntosCasaLocal = new Attribute("puntosCasaLocal", QuinielaCaso.class);
+		simConfig.addMapping(puntosCasaLocal, new Interval(3));
+		simConfig.setWeight(puntosCasaLocal, 0.3);
+		
+		Attribute puntosFueraVis = new Attribute("puntosFueraVis", QuinielaCaso.class);
+		simConfig.addMapping(puntosFueraVis, new Interval(3));
+		simConfig.setWeight(puntosFueraVis, 0.3);
+		
+		Attribute golesLocal = new Attribute("golesFavorLocal", QuinielaCaso.class);
+		simConfig.addMapping(golesLocal, new Interval(7));
+		simConfig.setWeight(golesLocal, 0.2);
+		
+		Attribute golesVisitante = new Attribute("golesFavorVis", QuinielaCaso.class);
+		simConfig.addMapping(golesVisitante, new Interval(7));
+		simConfig.setWeight(golesVisitante, 0.2);
+		
+		Attribute golesContraLocal = new Attribute("golesContraLocal", QuinielaCaso.class);
+		simConfig.addMapping(golesContraLocal, new Interval(7));
+		simConfig.setWeight(golesLocal, 0.2);
+		
+		Attribute golesContraVisitante = new Attribute("golesContraVis", QuinielaCaso.class);
+		simConfig.addMapping(golesContraVisitante, new Interval(7));
+		simConfig.setWeight(golesVisitante, 0.2);
+		
 		
 		//simConfig.addMapping(new Attribute("resultLocal", QuinielaCaso.class), new Equal());
 		//simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
@@ -110,6 +143,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		// A bit of verbose
 		System.out.println("Query Description:");
 		System.out.println(query.getDescription());
+
 		System.out.println();
 		
 		// Ejecutamos el NN
@@ -122,6 +156,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			casos.add(nse.get_case());
 		}
 		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
 		double prediccion;
@@ -162,6 +197,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 //			hola.setNombreVisitante("Sporting");
 			CBRQuery query = new CBRQuery();
 			query.setDescription(new QuinielaCaso());
+			
 			do {
 				Collection<Attribute> c = new ArrayList<Attribute>();
 				Map<Attribute,String> m = new HashMap<Attribute,String>();
@@ -169,11 +205,22 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 				c.add(new Attribute("resultLocal", QuinielaCaso.class));
 				c.add(new Attribute("resultVisit", QuinielaCaso.class));
 				m.put((new Attribute("nombreVisitante", QuinielaCaso.class)),"nombre Visitante");
-				c.add(new Attribute("jornada", QuinielaCaso.class));
 				c.add(new Attribute("temporada", QuinielaCaso.class));
 				c.add(new Attribute("division",QuinielaCaso.class));
+				c.add(new Attribute("difPos",QuinielaCaso.class));
+				c.add(new Attribute("difPuntos",QuinielaCaso.class));
 				//ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
 				ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query,c , m);
+				//Me preparo la Query despues de obtenerla
+				QuinielaCaso s = (QuinielaCaso)query.getDescription();
+				if(s.getPosLocal()!=null&&s.getPosVis()!=null)	s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
+				if(s.getPuntosLocal()!=null && s.getPuntosVis()!=null)	s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/s.getJornada()));
+				if(s.getGolesContraLocal()!=null)	s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
+				if(s.getGolesContraVis()!=null)	s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
+				if(s.getGolesFavorLocal()!=null)	s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
+				if(s.getGolesFavorVis()!=null)	s.setGolesFavorVis((Double)((s.getGolesFavorVis())/s.getJornada()));
+				if(s.getPuntosCasaLocal()!=null)	s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
+				if(s.getPuntosFueraVis()!=null)s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
 				quiniela.cycle(query);
 			}while (JOptionPane.showConfirmDialog(null, "¿Continuar?") == JOptionPane.OK_OPTION);
 			
