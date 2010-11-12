@@ -4,7 +4,6 @@
 package practica1;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,7 +98,7 @@ public class AnadeNumero {
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		AnadeNumero prueba = new AnadeNumero("c:/hlocal/BaseCasos.txt","c://hlocal/BaseCasos2.txt");
+		AnadeNumero prueba = new AnadeNumero("c:/hlocal/BaseCases.txt","c://hlocal/BaseCasos2.txt");
 		prueba.rellena();
 	}
 

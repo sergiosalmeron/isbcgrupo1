@@ -1,5 +1,5 @@
 <TextFileConfiguration>
-	<FilePath>practica1/casospractica1.txt</FilePath>
+	<FilePath>practica1/BaseCasos2.txt</FilePath>
 	<Delimiters>,</Delimiters>
 	<DescriptionClassName>practica1.QuinielaCaso</DescriptionClassName>
 	<DescriptionMappings>
@@ -9,7 +9,19 @@
 		<Map>nombreVisitante</Map>
 		<Map>jornada</Map>
 		<Map>temporada</Map>
-		<Map>division</Map>		
+		<Map>division</Map>
+		<Map>posLocal</Map>
+		<Map>puntosLocal</Map>
+		<Map>golesFavorLocal</Map>
+		<Map>golesContraLocal</Map>
+		<Map>puntosCasaLocal</Map>
+		<Map>puntosFueraLocal</Map>
+		<Map>posVis</Map>
+		<Map>puntosVis</Map>
+		<Map>golesFavorVis</Map>
+		<Map>golesContraVis</Map>
+		<Map>puntosCasaVis</Map>
+		<Map>puntosFueraVis</Map>
 	</DescriptionMappings>
 	<SolutionClassName>practica1.QuinielaSolution</SolutionClassName>
 	<SolutionMappings>

@@ -90,7 +90,6 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
 		simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
 		simConfig.addMapping(new Attribute("temporada", QuinielaCaso.class), new Interval(10));
-		
 		// A bit of verbose
 		System.out.println("Query Description:");
 		System.out.println(query.getDescription());
@@ -106,8 +105,8 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			casos.add(nse.get_case());
 		}
 		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
-
-
+/*
+//Aqui empieza el codigo del cycle para las evaluaciones
 		double prediccion;
 			CBRCase _case = (CBRCase)query;
 			QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
@@ -117,7 +116,9 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
 		QuinielaSolution predict;
-		predict = new QuinielaSolution();//Esto no esta bien inicializado hay que ver como se trata*/
+		predict = new QuinielaSolution();
+		//Esto no esta bien inicializado hay que ver como se trata*/
+		//aqui acaba el codigo de las evaluaciones del cycle
 	}
 	/* (non-Javadoc)
 	 * @see jcolibri.cbraplications.StandardCBRApplication#postCycle()
@@ -160,6 +161,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			}while (JOptionPane.showConfirmDialog(null, "¿Continuar?") == JOptionPane.OK_OPTION);
 			
 			
+/*			//Aqui empieza el codigo del main para las evaluaciones.
 			Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
 			double avg = 0.0;
 			for (Double d: vec)
@@ -168,6 +170,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			Evaluator.getEvaluationReport().putOtherData("Media", Double.toString(avg));
 			System.out.println(Evaluator.getEvaluationReport());
 			jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluacion Quinielas",false);
+			//Aqui acaba el codigo del main para las evaluaciones.*/
 		} catch (ExecutionException e) {
 			org.apache.commons.logging.LogFactory.getLog(SolucionadorQuinielas.class).error(e);
 		}
