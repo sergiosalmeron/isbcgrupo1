@@ -42,6 +42,24 @@ public class QuinielaCaso implements CaseComponent {
 	Integer golesContraVis;
 	Integer puntosCasaVis;
 	Integer puntosFueraVis;
+	Integer difPuntos;
+	Integer difPos;
+
+	public Integer getDifPuntos() {
+		return difPuntos;
+	}
+
+	public void setDifPuntos(Integer difPuntos) {
+		this.difPuntos = difPuntos;
+	}
+
+	public Integer getDifPos() {
+		return difPos;
+	}
+
+	public void setDifPos(Integer difPos) {
+		this.difPos = difPos;
+	}
 
 	public Integer getPosLocal() {
 		return posLocal;
