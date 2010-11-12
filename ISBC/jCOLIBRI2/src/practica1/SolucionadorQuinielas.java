@@ -149,10 +149,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		// Ejecutamos el NN
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
 		eval = SelectCases.selectTopKRR(eval, 5);
+
 		Collection<CBRCase> casos = new ArrayList<CBRCase>();
 		System.out.println("Casos Recuperados: ");
 		for(RetrievalResult nse: eval){
 			System.out.println(nse);
+			System.out.println(nse.get_case().getSolution());
 			casos.add(nse.get_case());
 		}
 		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
