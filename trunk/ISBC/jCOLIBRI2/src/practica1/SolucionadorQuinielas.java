@@ -70,8 +70,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		// TODO Auto-generated method stub
 		_caseBase.init(_connector);
 		java.util.Collection<CBRCase> cases = _caseBase.getCases();
-		for(CBRCase c: cases)
+		for(CBRCase c: cases){
+			QuinielaCaso s = (QuinielaCaso) c.getDescription();
+			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
+			s.setDifPuntos((Integer)(s.getPuntosLocal()-s.getPuntosVis()));
 			System.out.println(c);
+		}
 		return _caseBase;
 	}
 
@@ -82,14 +86,27 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	public void cycle(CBRQuery query) throws ExecutionException {
 		// TODO Auto-generated method stub
 		NNConfig simConfig = new NNConfig();
-		//Aquivienen las funciones de similitud particulares para cada campo
+		Attribute nombreLocal = new Attribute("nombreLocal", QuinielaCaso.class);
+		//Aqui vienen las funciones de similitud particulares para cada campo
 		simConfig.setDescriptionSimFunction(new Average());
-		simConfig.addMapping(new Attribute("nombreLocal", QuinielaCaso.class), new Equal());
-		simConfig.addMapping(new Attribute("resultLocal", QuinielaCaso.class), new Equal());
-		simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
-		simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
-		simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
-		simConfig.addMapping(new Attribute("temporada", QuinielaCaso.class), new Interval(10));
+		simConfig.addMapping(nombreLocal, new Equal());
+		simConfig.setWeight(nombreLocal, 0.4);
+		
+		Attribute nombreVisitante = new Attribute("nombreVisitante", QuinielaCaso.class);
+		simConfig.addMapping(nombreVisitante, new Equal());
+		simConfig.setWeight(nombreLocal, 0.4);
+		
+		Attribute temporada = new Attribute("temporada", QuinielaCaso.class);
+		simConfig.addMapping(temporada, new Interval(3));
+		simConfig.setWeight(temporada, 0.1);
+		
+		
+		//simConfig.addMapping(new Attribute("resultLocal", QuinielaCaso.class), new Equal());
+		//simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
+		//simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
+		//simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
+		//simConfig.addMapping(new Attribute("temporada", QuinielaCaso.class), new Interval(10));
+		
 		// A bit of verbose
 		System.out.println("Query Description:");
 		System.out.println(query.getDescription());
