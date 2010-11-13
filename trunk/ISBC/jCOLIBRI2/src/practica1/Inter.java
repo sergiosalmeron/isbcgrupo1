@@ -21,8 +21,10 @@ public class Inter extends JFrame{
 	private JPanel panelPrincipal=null;
 	private String equipoLocal;
 	private String equipoVisitante;
+	private Integer jornada;
 	private JComboBox local;
 	private JComboBox visitante;
+	private JComboBox lJornada;
 	private JFrame frameQuiniela=null;
 	
 	public Inter(){
@@ -53,6 +55,52 @@ public class Inter extends JFrame{
 		
 		GridLayout c=new GridLayout(5,5);
 		panelPrincipal.setLayout(c);
+		
+		Integer[] listaJornada = new Integer[44];
+		listaJornada[0] = 1;
+		listaJornada[1] = 2;
+		listaJornada[2] = 3;
+		listaJornada[3] = 4;
+		listaJornada[4] = 5;
+		listaJornada[5] = 6;
+		listaJornada[6] = 7;
+		listaJornada[7] = 8;
+		listaJornada[8] = 9;
+		listaJornada[9] = 10;
+		listaJornada[10] = 11;
+		listaJornada[11] = 12;
+		listaJornada[12] = 13;
+		listaJornada[13] = 14;
+		listaJornada[14] = 15;
+		listaJornada[15] = 16;
+		listaJornada[16] = 17;
+		listaJornada[17] = 18;
+		listaJornada[18] = 19;
+		listaJornada[19] = 20;
+		listaJornada[20] = 21;
+		listaJornada[21] = 22;
+		listaJornada[22] = 23;
+		listaJornada[23] = 24;
+		listaJornada[24] = 25;
+		listaJornada[25] = 26;
+		listaJornada[26] = 27;
+		listaJornada[27] = 28;
+		listaJornada[28] = 29;
+		listaJornada[29] = 30;
+		listaJornada[30] = 31;
+		listaJornada[31] = 32;
+		listaJornada[32] = 33;
+		listaJornada[33] = 34;
+		listaJornada[34] = 35;
+		listaJornada[35] = 36;
+		listaJornada[36] = 37;
+		listaJornada[37] = 38;
+		listaJornada[38] = 39;
+		listaJornada[39] = 40;
+		listaJornada[40] = 41;
+		listaJornada[41] = 42;
+		listaJornada[42] = 43;
+		listaJornada[43] = 44;
 		
 		String[] listaEquipos =new String[42];
 		listaEquipos[0]="Málaga";
@@ -101,6 +149,7 @@ public class Inter extends JFrame{
 		
 		local = new JComboBox(listaEquipos);
 		visitante = new JComboBox(listaEquipos);
+		lJornada = new JComboBox(listaJornada);
 		
 		JLabel lLocal=new JLabel();
 		lLocal.setText("                    Local: ");
@@ -108,8 +157,8 @@ public class Inter extends JFrame{
 		lVisitante.setText("                Visitante: ");
 		JLabel nada1=new JLabel();
 		nada1.setText(" ");
-		JLabel nada2=new JLabel();
-		nada2.setText(" ");
+		JLabel lajornada=new JLabel();
+		lajornada.setText("                    Jornada:  ");
 		JLabel nada3=new JLabel();
 		nada3.setText(" ");
 		JLabel nada4=new JLabel();
@@ -124,13 +173,14 @@ public class Inter extends JFrame{
 		boton1.setText("OK");
 		
 		panelPrincipal.add(nada1);
-		panelPrincipal.add(nada2);
 		panelPrincipal.add(lLocal);
 		panelPrincipal.add(local);
 		panelPrincipal.add(lVisitante);
 		panelPrincipal.add(visitante);
 		panelPrincipal.add(nada3);
 		panelPrincipal.add(nada4);
+		panelPrincipal.add(lajornada);
+		panelPrincipal.add(lJornada);
 		panelPrincipal.add(nada5);
 		panelPrincipal.add(boton1);
 		panelPrincipal.setEnabled(true);
@@ -142,7 +192,7 @@ public class Inter extends JFrame{
 				try {
 					equipoLocal=(String)local.getSelectedItem();
 					equipoVisitante=(String) visitante.getSelectedItem();
-					
+					jornada = (Integer) lJornada.getSelectedItem();
 					frameQuiniela=new JFrame("Quiniela");
 					frameQuiniela.setSize(400, 200);
 					frameQuiniela.setContentPane(getPanelQuiniela());
