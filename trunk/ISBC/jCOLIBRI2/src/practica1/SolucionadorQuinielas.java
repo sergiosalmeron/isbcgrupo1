@@ -134,12 +134,6 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.setWeight(golesVisitante, 0.2);
 		
 		
-		//simConfig.addMapping(new Attribute("resultLocal", QuinielaCaso.class), new Equal());
-		//simConfig.addMapping(new Attribute("resultVisit", QuinielaCaso.class), new Equal());
-		//simConfig.addMapping(new Attribute("nombreVisitante", QuinielaCaso.class), new Equal());
-		//simConfig.addMapping(new Attribute("jornada", QuinielaCaso.class), new Interval(20));
-		//simConfig.addMapping(new Attribute("temporada", QuinielaCaso.class), new Interval(10));
-		
 		// A bit of verbose
 		System.out.println("Query Description:");
 		System.out.println(query.getDescription());
@@ -149,15 +143,25 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		// Ejecutamos el NN
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
 		eval = SelectCases.selectTopKRR(eval, 5);
-
-		Collection<CBRCase> casos = new ArrayList<CBRCase>();
-		System.out.println("Casos Recuperados: ");
-		for(RetrievalResult nse: eval){
-			System.out.println(nse);
-			System.out.println(nse.get_case().getSolution());
-			casos.add(nse.get_case());
-		}
-		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		VotacionSimple voto = new VotacionSimple();
+		//Evaluamos por numero de votos
+		QuinielaSolution solucion = new QuinielaSolution();
+		solucion = (QuinielaSolution)voto.getPredictedSolution(eval);
+		System.out.println("por votacion Simple " +solucion);
+		//Evaluamos por similitud de los casos
+		VotacionPonderada votoP = new VotacionPonderada();
+		QuinielaSolution solucionP = new QuinielaSolution(); 
+		solucionP = (QuinielaSolution)votoP.getPredictedSolution(eval);
+		System.out.println("por votacion ponderada " +solucionP);
+		//CBRCase solucion = jcolibri.method.reuse.classification.AbstractKNNClassificationMethod.class.
+		//Collection<CBRCase> casos = new ArrayList<CBRCase>();
+		//System.out.println("Casos Recuperados: ");
+		//for(RetrievalResult nse: eval){
+		//	System.out.println(nse);
+		//	System.out.println(nse.get_case().getSolution());
+		//	casos.add(nse.get_case());
+		//}
+		//DisplayCasesTableMethod.displayCasesInTableBasic(casos);
 		
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
@@ -216,13 +220,15 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 				//Me preparo la Query despues de obtenerla
 				QuinielaCaso s = (QuinielaCaso)query.getDescription();
 				if(s.getPosLocal()!=null&&s.getPosVis()!=null)	s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
-				if(s.getPuntosLocal()!=null && s.getPuntosVis()!=null)	s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/s.getJornada()));
-				if(s.getGolesContraLocal()!=null)	s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
-				if(s.getGolesContraVis()!=null)	s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
-				if(s.getGolesFavorLocal()!=null)	s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
-				if(s.getGolesFavorVis()!=null)	s.setGolesFavorVis((Double)((s.getGolesFavorVis())/s.getJornada()));
-				if(s.getPuntosCasaLocal()!=null)	s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
-				if(s.getPuntosFueraVis()!=null)s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
+				if (s.getJornada()!=null){
+					if(s.getPuntosLocal()!=null && s.getPuntosVis()!=null)	s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/s.getJornada()));
+					if(s.getGolesContraLocal()!=null)	s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
+					if(s.getGolesContraVis()!=null)	s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
+					if(s.getGolesFavorLocal()!=null)	s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
+					if(s.getGolesFavorVis()!=null)	s.setGolesFavorVis((Double)((s.getGolesFavorVis())/s.getJornada()));
+					if(s.getPuntosCasaLocal()!=null)	s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
+					if(s.getPuntosFueraVis()!=null)s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
+				}
 				quiniela.cycle(query);
 			}while (JOptionPane.showConfirmDialog(null, "¿Continuar?") == JOptionPane.OK_OPTION);
 			
