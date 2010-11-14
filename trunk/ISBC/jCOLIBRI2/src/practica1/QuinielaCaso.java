@@ -446,7 +446,7 @@ public class QuinielaCaso implements CaseComponent {
 				", puntos Casa Visitante=" + puntosCasaVis+
 				", puntos FueraVisitante ="+ puntosFueraVis+
 				", diferencia de puntos= " +difPuntos + 
-				", diferencia de goles= " + "]";
+				"]";
 	}
 
 
