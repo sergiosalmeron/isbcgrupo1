@@ -55,7 +55,7 @@ public class EvaluadorNFold  {
 
 			NFoldEvaluator eval = new NFoldEvaluator();
 			eval.init(new EvaluadorApp());
-			eval.NFoldEvaluation(5, 2);
+			eval.NFoldEvaluation(5, 1);
 			
 		
 			Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
