@@ -63,7 +63,7 @@ public class AnadeNumero {
                     	transita(0);
                     }
                     else if(buf == -1){
-                    	nuevo.write(-1);System.exit(0);
+                    	nuevo.write(-1);
                     	fichero.close();
                     	nuevo.close();
                     	System.exit(0);
@@ -73,7 +73,7 @@ public class AnadeNumero {
                 case 1: {
                 	if ((buf == '\n')||(buf == ' ')){
                       	if (cadena.equals("Case")){
-                    		cadena = cadena+' ' +numero.toString()+",";
+                    		cadena = cadena+' ' + numero.toString()+",";
                     		numero++;
                     		nuevo.write(cadena);
                     		cadena = "";
@@ -100,9 +100,10 @@ public class AnadeNumero {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
-		AnadeNumero prueba = new AnadeNumero("c:/Informatica/Todo3.txt","c:/Informatica/BaseCasos3.txt");
+		AnadeNumero prueba = new AnadeNumero("c:/Informatica/Todo4.txt","c:/Informatica/BaseCasos3.txt");
 
 		prueba.rellena();
+
 	}
 
 }
