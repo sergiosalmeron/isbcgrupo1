@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -25,6 +26,18 @@ public class Inter extends JFrame{
 	private JComboBox local;
 	private JComboBox visitante;
 	private JComboBox lJornada;
+	private JComboBox posicionLocal;
+	private JComboBox posicionVis;
+	private JComboBox puntoslocal;
+	private JComboBox puntosVis;
+	private JComboBox puntosCasaLoc;
+	private JComboBox puntosFueraLoc;
+	private JComboBox puntosCasaVis;
+	private JComboBox puntosFueraVis;
+	private JComboBox golesFavorLoc;
+	private JComboBox golesContraLoc;
+	private JComboBox golesFavorVis;
+	private JComboBox golesContraVis;
 	private JFrame frameQuiniela=null;
 	
 	public Inter(){
@@ -45,16 +58,122 @@ public class Inter extends JFrame{
 	}
 	
 	private void crearInterfaz() {
-		this.setSize(400,200);
+		this.setSize(900,200);
 		this.setContentPane(getPanelPrincipal());
-		this.setTitle("Equipos");
+		this.setTitle("Pronóstico");
 	}
 
 	private JPanel getPanelPrincipal() {
 		panelPrincipal=new JPanel();
 		
-		GridLayout c=new GridLayout(5,5);
+		GridLayout c=new GridLayout(0,15);
+//		c.setColumns(14);
+//		c.setRows(3);
 		panelPrincipal.setLayout(c);
+		
+		Integer[] listaNumerosPuntosGoles = new Integer[100];
+		listaNumerosPuntosGoles[0] = 1;
+		listaNumerosPuntosGoles[1] = 2;
+		listaNumerosPuntosGoles[2] = 3;
+		listaNumerosPuntosGoles[3] = 4;
+		listaNumerosPuntosGoles[4] = 5;
+		listaNumerosPuntosGoles[5] = 6;
+		listaNumerosPuntosGoles[6] = 7;
+		listaNumerosPuntosGoles[7] = 8;
+		listaNumerosPuntosGoles[8] = 9;
+		listaNumerosPuntosGoles[9] = 10;
+		listaNumerosPuntosGoles[10] = 11;
+		listaNumerosPuntosGoles[11] = 12;
+		listaNumerosPuntosGoles[12] = 13;
+		listaNumerosPuntosGoles[13] = 14;
+		listaNumerosPuntosGoles[14] = 15;
+		listaNumerosPuntosGoles[15] = 16;
+		listaNumerosPuntosGoles[16] = 17;
+		listaNumerosPuntosGoles[17] = 18;
+		listaNumerosPuntosGoles[18] = 19;
+		listaNumerosPuntosGoles[19] = 20;
+		listaNumerosPuntosGoles[20] = 21;
+		listaNumerosPuntosGoles[21] = 22;
+		listaNumerosPuntosGoles[22] = 23;
+		listaNumerosPuntosGoles[23] = 24;
+		listaNumerosPuntosGoles[24] = 25;
+		listaNumerosPuntosGoles[25] = 26;
+		listaNumerosPuntosGoles[26] = 27;
+		listaNumerosPuntosGoles[27] = 28;
+		listaNumerosPuntosGoles[28] = 29;
+		listaNumerosPuntosGoles[29] = 30;
+		listaNumerosPuntosGoles[30] = 31;
+		listaNumerosPuntosGoles[31] = 32;
+		listaNumerosPuntosGoles[32] = 33;
+		listaNumerosPuntosGoles[33] = 34;
+		listaNumerosPuntosGoles[34] = 35;
+		listaNumerosPuntosGoles[35] = 36;
+		listaNumerosPuntosGoles[36] = 37;
+		listaNumerosPuntosGoles[37] = 38;
+		listaNumerosPuntosGoles[38] = 39;
+		listaNumerosPuntosGoles[39] = 40;
+		listaNumerosPuntosGoles[40] = 41;
+		listaNumerosPuntosGoles[41] = 42;
+		listaNumerosPuntosGoles[42] = 43;
+		listaNumerosPuntosGoles[43] = 44;
+		listaNumerosPuntosGoles[44] = 45;
+		listaNumerosPuntosGoles[45] = 46;
+		listaNumerosPuntosGoles[46] = 47;
+		listaNumerosPuntosGoles[47] = 48;
+		listaNumerosPuntosGoles[48] = 49;
+		listaNumerosPuntosGoles[49] = 50;
+		listaNumerosPuntosGoles[50] = 51;
+		listaNumerosPuntosGoles[51] = 52;
+		listaNumerosPuntosGoles[52] = 53;
+		listaNumerosPuntosGoles[53] = 54;
+		listaNumerosPuntosGoles[54] = 55;
+		listaNumerosPuntosGoles[55] = 56;
+		listaNumerosPuntosGoles[56] = 57;
+		listaNumerosPuntosGoles[57] = 58;
+		listaNumerosPuntosGoles[58] = 59;
+		listaNumerosPuntosGoles[59] = 60;
+		listaNumerosPuntosGoles[60] = 61;
+		listaNumerosPuntosGoles[61] = 62;
+		listaNumerosPuntosGoles[62] = 63;
+		listaNumerosPuntosGoles[63] = 64;
+		listaNumerosPuntosGoles[64] = 65;
+		listaNumerosPuntosGoles[65] = 66;
+		listaNumerosPuntosGoles[66] = 67;
+		listaNumerosPuntosGoles[67] = 68;
+		listaNumerosPuntosGoles[68] = 69;
+		listaNumerosPuntosGoles[69] = 70;
+		listaNumerosPuntosGoles[70] = 71;
+		listaNumerosPuntosGoles[71] = 72;
+		listaNumerosPuntosGoles[72] = 73;
+		listaNumerosPuntosGoles[73] = 74;
+		listaNumerosPuntosGoles[74] = 75;
+		listaNumerosPuntosGoles[75] = 76;
+		listaNumerosPuntosGoles[76] = 77;
+		listaNumerosPuntosGoles[77] = 78;
+		listaNumerosPuntosGoles[78] = 79;
+		listaNumerosPuntosGoles[79] = 80;
+		listaNumerosPuntosGoles[80] = 81;
+		listaNumerosPuntosGoles[81] = 82;
+		listaNumerosPuntosGoles[82] = 83;
+		listaNumerosPuntosGoles[83] = 84;
+		listaNumerosPuntosGoles[84] = 85;
+		listaNumerosPuntosGoles[85] = 86;
+		listaNumerosPuntosGoles[86] = 87;
+		listaNumerosPuntosGoles[87] = 88;
+		listaNumerosPuntosGoles[88] = 89;
+		listaNumerosPuntosGoles[89] = 90;
+		listaNumerosPuntosGoles[90] = 91;
+		listaNumerosPuntosGoles[91] = 92;
+		listaNumerosPuntosGoles[92] = 93;
+		listaNumerosPuntosGoles[93] = 94;
+		listaNumerosPuntosGoles[94] = 95;
+		listaNumerosPuntosGoles[95] = 96;
+		listaNumerosPuntosGoles[96] = 97;
+		listaNumerosPuntosGoles[97] = 98;
+		listaNumerosPuntosGoles[98] = 99;
+		listaNumerosPuntosGoles[99] = 100;
+
+		
 		
 		Integer[] listaJornada = new Integer[44];
 		listaJornada[0] = 1;
@@ -150,15 +269,53 @@ public class Inter extends JFrame{
 		local = new JComboBox(listaEquipos);
 		visitante = new JComboBox(listaEquipos);
 		lJornada = new JComboBox(listaJornada);
+		posicionLocal = new JComboBox(listaNumerosPuntosGoles);
+		posicionVis = new JComboBox(listaNumerosPuntosGoles);
+		puntoslocal = new JComboBox(listaNumerosPuntosGoles);
+		puntosVis = new JComboBox(listaNumerosPuntosGoles);
+		puntosCasaLoc = new JComboBox(listaNumerosPuntosGoles);
+		puntosFueraLoc = new JComboBox(listaNumerosPuntosGoles);
+		puntosCasaVis = new JComboBox(listaNumerosPuntosGoles);
+		puntosFueraVis = new JComboBox(listaNumerosPuntosGoles);
+		golesFavorLoc = new JComboBox(listaNumerosPuntosGoles);
+		golesContraLoc = new JComboBox(listaNumerosPuntosGoles);
+		golesFavorVis = new JComboBox(listaNumerosPuntosGoles);
+		golesContraVis = new JComboBox(listaNumerosPuntosGoles);
+		
+		
 		
 		JLabel lLocal=new JLabel();
-		lLocal.setText("                    Local: ");
+		lLocal.setText("Local: ");
 		JLabel lVisitante=new JLabel();
-		lVisitante.setText("                Visitante: ");
+		lVisitante.setText("Visitante: ");
 		JLabel nada1=new JLabel();
 		nada1.setText(" ");
 		JLabel lajornada=new JLabel();
-		lajornada.setText("                    Jornada:  ");
+		lajornada.setText("Jornada:  ");
+		JLabel lPosL=new JLabel();
+		lVisitante.setText("Posicion Local: ");
+		JLabel lPosV=new JLabel();
+		lVisitante.setText("Posicion Visitante: ");
+		JLabel lPL=new JLabel();
+		lVisitante.setText("Puntos Local: ");
+		JLabel lPV=new JLabel();
+		lVisitante.setText("Puntos Visitante: ");
+		JLabel lPCL=new JLabel();
+		lVisitante.setText("Puntos Casa Local: ");
+		JLabel lPFL=new JLabel();
+		lVisitante.setText("Puntos Fuera Local: ");
+		JLabel lPCV=new JLabel();
+		lVisitante.setText("Puntos Casa Visitante: ");
+		JLabel lPFV=new JLabel();
+		lVisitante.setText("Puntos Fuera Visitante: ");
+		JLabel lGFL=new JLabel();
+		lVisitante.setText("Goles Favor Local: ");
+		JLabel lGFV=new JLabel();
+		lVisitante.setText("Goles Favor Visitante: ");		
+		JLabel lGCL=new JLabel();
+		lVisitante.setText("Goles Contra Local: ");
+		JLabel lGCV=new JLabel();
+		lVisitante.setText("Goles Contra Visitante: ");
 		JLabel nada3=new JLabel();
 		nada3.setText(" ");
 		JLabel nada4=new JLabel();
@@ -172,16 +329,45 @@ public class Inter extends JFrame{
 		JButton boton1=new JButton();
 		boton1.setText("OK");
 		
-		panelPrincipal.add(nada1);
-		panelPrincipal.add(lLocal);
-		panelPrincipal.add(local);
-		panelPrincipal.add(lVisitante);
-		panelPrincipal.add(visitante);
-		panelPrincipal.add(nada3);
-		panelPrincipal.add(nada4);
-		panelPrincipal.add(lajornada);
-		panelPrincipal.add(lJornada);
-		panelPrincipal.add(nada5);
+	//	panelPrincipal.add(nada1);
+		//primera Fila;
+		panelPrincipal.add(lLocal,0);
+		panelPrincipal.add(lVisitante,1);
+		panelPrincipal.add(lajornada,2);
+		panelPrincipal.add(lPosL,3);
+		panelPrincipal.add(lPosV,4);
+		panelPrincipal.add(lPL,5);
+		panelPrincipal.add(lPV,6);
+		panelPrincipal.add(lPCL,7);
+		panelPrincipal.add(lPFL,8);
+		panelPrincipal.add(lPCV,9);
+		panelPrincipal.add(lPFV,10);
+		panelPrincipal.add(lGFL,11);
+		panelPrincipal.add(lGFV,12);
+		panelPrincipal.add(lGCL,13);
+		panelPrincipal.add(lGCV,14);
+		
+		//segunda fila, los campos
+		panelPrincipal.add(local,15);	
+		panelPrincipal.add(visitante,16);
+		panelPrincipal.add(lJornada,17);
+		panelPrincipal.add(posicionLocal,18);
+		panelPrincipal.add(posicionVis,19);
+		panelPrincipal.add(puntoslocal,20);
+		panelPrincipal.add(puntosVis,21);
+		panelPrincipal.add(puntosCasaLoc,22);
+		panelPrincipal.add(puntosFueraLoc,23);
+		panelPrincipal.add(puntosCasaVis,24);
+		panelPrincipal.add(puntosFueraVis,25);
+		panelPrincipal.add(golesFavorLoc,26);
+		panelPrincipal.add(golesContraLoc,27);
+		panelPrincipal.add(golesFavorVis,28);
+		panelPrincipal.add(golesContraLoc);
+
+		
+		
+		
+//		panelPrincipal.add(nada5);
 		panelPrincipal.add(boton1);
 		panelPrincipal.setEnabled(true);
 		panelPrincipal.setVisible(true);		
