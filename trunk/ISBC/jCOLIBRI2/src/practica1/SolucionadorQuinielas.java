@@ -181,7 +181,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		//}
 		}
 	//	DisplayCasesIfSimilarity.displayCasesWithEditOption(casos);
-		DisplayCasesTableMethod.displayCasesInTableSelectCase(casos);
+		//DisplayCasesTableMethod.displayCasesInTableSelectCase(casos);
 		
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
@@ -217,19 +217,26 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SolucionadorQuinielas quiniela = new SolucionadorQuinielas();
+		int numQuerys;
 		try {
 			quiniela.configure();
 			quiniela.preCycle();
+			numQuerys= 1;
+			try{
+				numQuerys = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca cuantos partidos desea consultar"));
+			}catch (Exception e){};
 //			QuinielaCaso hola = new QuinielaCaso();
 //			hola.setDivision(1);
 //			hola.setNombreLocal("Deportivo");
 //			hola.setNombreVisitante("Sporting");
 			ArrayList<CBRQuery> querys = new ArrayList<CBRQuery>(); 
-			for (int i=1; i<16; i++){
+			for (int i=0; i<numQuerys; i++){
 			CBRQuery query = new CBRQuery();
 			query.setDescription(new QuinielaCaso());
 			InterfazA a = new InterfazA();
+			int z = i+1;
 			a.setVisible(true);
+			a.setTitle("Partido " + z);
 			a.setEnabled(true);
 			
 			//do {
@@ -267,8 +274,13 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 				querys.add(query);
 				a.setQuery();
 				}
-
-				quiniela.cycle(querys);
+				String resultados = "";
+				for (int i = 0; i<numQuerys; i++){
+					quiniela.cycle(querys.get(i));
+					resultados+=quiniela.getResult();
+				}
+				JOptionPane.showMessageDialog(null, resultados);
+				
 			//	a.setQuery();
 			//}while (JOptionPane.showConfirmDialog(null,"¿Continuar?") == JOptionPane.OK_OPTION);
 			
