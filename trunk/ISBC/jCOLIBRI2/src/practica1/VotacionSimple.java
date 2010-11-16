@@ -30,9 +30,9 @@ public class VotacionSimple implements KNNClassificationMethod {
 	@Override
 	public ClassificationSolution getPredictedSolution(
 			Collection<RetrievalResult> cases) {
-		int a = 0;
-		int b = 0;
-		int c = 0;
+		Integer a = 0;
+		Integer b = 0;
+		Integer c = 0;
 		for(RetrievalResult nse: cases){
 			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("1")) a++;
 			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("X")) b++;
@@ -40,12 +40,39 @@ public class VotacionSimple implements KNNClassificationMethod {
 			
 		}
 		QuinielaSolution s  = new QuinielaSolution();
-		if (a>b && a>c) s.setResultado("1");
-		else if (b>a && b>c) s.setResultado("X");
-		else if (c>a && c>b) s.setResultado("2");
-		else if(a==b && a>c) s.setResultado("1");
-		else if(a==c && a>b) s.setResultado("1");
-		else if(c==b && b>a) s.setResultado("X");
+		Double confidence = 0.0;
+		
+		if (a>b && a>c){ 
+			s.setResultado("1"); 
+			Integer division= (a/(a+b+c));
+			confidence =division.doubleValue();
+		}
+		else if (b>a && b>c){
+			s.setResultado("X");
+			Integer division= (b/(a+b+c));
+			confidence =division.doubleValue();
+		}
+		else if (c>a && c>b){
+			s.setResultado("2");
+			Integer division= (c/(a+b+c));
+			confidence =division.doubleValue();
+		}
+		else if(a==b && a>c){
+			s.setResultado("1");
+			Integer division= (a/(a+b+c));
+			confidence =division.doubleValue();
+		}
+		else if(a==c && a>b){
+			s.setResultado("1");
+			Integer division= (a/(a+b+c));
+			confidence =division.doubleValue();
+		}
+		else if(c==b && b>a){
+			s.setResultado("X");
+			Integer division= (b/(a+b+c));
+			confidence =division.doubleValue();
+		}
+		s.setConfidence(confidence);
 		return s;
 	}
 

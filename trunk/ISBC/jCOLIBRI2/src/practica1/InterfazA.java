@@ -18,6 +18,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import jcolibri.cbrcore.CBRQuery;
+
 /**
  *
  * @author Danny
@@ -25,7 +27,8 @@ import javax.swing.JOptionPane;
 public class InterfazA extends javax.swing.JFrame {
 	
 	
-    private javax.swing.JButton jButton1;
+    private CBRQuery q;
+	private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox10;
     private javax.swing.JComboBox jComboBox11;
@@ -81,11 +84,15 @@ public class InterfazA extends javax.swing.JFrame {
     /** Creates new form PronosticoQuiniela */
     public InterfazA() {
         initComponents();
+        q = null;
 		this.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
 				System.exit(0);
 			}
 		});
+    }
+    public CBRQuery getQuery(){
+    	return q;
     }
 
     /** This method is called from within the constructor to
@@ -604,7 +611,40 @@ public class InterfazA extends javax.swing.JFrame {
 
 
         pack();
+		jButton1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				try {
+					q = new CBRQuery();
+					q.setDescription(new QuinielaCaso());
+					((QuinielaCaso)q.getDescription()).setNombreLocal((String)jComboBox1.getSelectedItem());
+					((QuinielaCaso)q.getDescription()).setNombreVisitante((String)jComboBox2.getSelectedItem());
+					((QuinielaCaso)q.getDescription()).setJornada((Integer)jComboBox3.getSelectedItem());
+					((QuinielaCaso)q.getDescription()).setPosLocal((Integer)jComboBox4.getSelectedItem());
+					((QuinielaCaso)q.getDescription()).setPosVis((Integer)jComboBox5.getSelectedItem());
+					((QuinielaCaso)q.getDescription()).setPuntosLocal(((Integer)jComboBox6.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setPuntosVis(((Integer)jComboBox7.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setPuntosCasaLocal(((Integer)jComboBox8.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setPuntosFueraLocal(((Integer)jComboBox9.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setPuntosCasaVis(((Integer)jComboBox10.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setPuntosFueraVis(((Integer)jComboBox11.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setGolesFavorLocal(((Integer)jComboBox12.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setGolesContraLocal(((Integer)jComboBox13.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setGolesFavorVis(((Integer)jComboBox14.getSelectedItem()).doubleValue());
+					((QuinielaCaso)q.getDescription()).setGolesContraVis(((Integer)jComboBox15.getSelectedItem()).doubleValue());
+					//jornada = (Integer) jComboBox3.getSelectedItem();
+					//frameQuiniela=new JFrame("Quiniela");
+					//frameQuiniela.setSize(400, 200);
+					//frameQuiniela.setContentPane(getPanelQuiniela());
+					//frameQuiniela.setEnabled(true);
+					//frameQuiniela.setVisible(true);
+				} 
+				catch (NumberFormatException e1) {
+					e1.getMessage();
+					JOptionPane.showMessageDialog(null, "Algo has liado!!");
+				}
+			}});
     }
+    
     /**
     * @param args the command line arguments
     */
@@ -613,6 +653,10 @@ public class InterfazA extends javax.swing.JFrame {
 		InterfazA c = new InterfazA();
 		c.setEnabled(true);
 		c.setVisible(true);
+	}
+	public void setQuery() {
+		q = null;
+		
 	}
 
 

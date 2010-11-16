@@ -22,13 +22,33 @@ public class VotacionPonderada implements KNNClassificationMethod {
 			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("2")) c = c+(nse.getEval());
 			
 		}
+		Double confidence = 0.0;
 		QuinielaSolution s  = new QuinielaSolution();
-		if (a>b && a>c) s.setResultado("1");
-		else if (b>a && b>c) s.setResultado("X");
-		else if (c>a && c>b) s.setResultado("2");
-		else if(a==b && a>c) s.setResultado("1");
-		else if(a==c && a>b) s.setResultado("1");
-		else if(c==b && b>a) s.setResultado("X");
+		if (a>b && a>c){ 
+			s.setResultado("1"); 
+			confidence = a/(a+b+c);
+		}
+		else if (b>a && b>c){
+			s.setResultado("X");
+			confidence = b/(a+b+c);
+		}
+		else if (c>a && c>b){
+			s.setResultado("2");
+			confidence = c/(a+b+c);
+		}
+		else if(a==b && a>c){
+			s.setResultado("1");
+			confidence = a/(a+b+c);
+		}
+		else if(a==c && a>b){
+			s.setResultado("1");
+			confidence = a/(a+b+c);
+		}
+		else if(c==b && b>a){
+			s.setResultado("X");
+			confidence = c/(a+b+c);
+		}
+		s.setConfidence(confidence);
 		return s;
 	}
 
