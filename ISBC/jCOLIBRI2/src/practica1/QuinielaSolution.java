@@ -17,7 +17,7 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	 * 
 	 */
 	String resultado;
-	Double Confianza;
+	private Double Confianza;
 	//String CaseId;
 	public QuinielaSolution() {
 		// TODO Auto-generated constructor stub
