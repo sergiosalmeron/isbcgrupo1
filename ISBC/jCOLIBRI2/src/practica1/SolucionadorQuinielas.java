@@ -42,6 +42,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	 */
 	Connector _connector;
 	CBRCaseBase _caseBase;
+	String result = " ";
 	public SolucionadorQuinielas() {
 		// TODO Auto-generated constructor stub
 	}
@@ -159,12 +160,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		QuinielaSolution solucion = new QuinielaSolution();
 		solucion = (QuinielaSolution)voto.getPredictedSolution(eval);
 		System.out.println("por votacion Simple " +solucion);
-		JOptionPane.showMessageDialog(null, "El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion simple  es " + solucion.toString());
+		result = "El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion simple  es " + solucion.toString()+'\n';
 		//Evaluamos por similitud de los casos
 		VotacionPonderada votoP = new VotacionPonderada();
 		QuinielaSolution solucionP = new QuinielaSolution(); 
 		solucionP = (QuinielaSolution)votoP.getPredictedSolution(eval);
-		JOptionPane.showMessageDialog(null, "El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion ponderada es " + solucionP.toString());
+		result +="El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion ponderada es " + solucionP.toString() +'\n';
 		//System.out.println("por votacion ponderada " +solucionP);
 		//System.out.println(solucionP.getConfidence());
 		//CBRCase solucion = jcolibri.method.reuse.classification.AbstractKNNClassificationMethod.class.
@@ -201,6 +202,9 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		// TODO Auto-generated method stub
 		_connector.close();
 
+	}
+	public String getResult(){
+		return result;
 	}
 
 	/**
