@@ -74,7 +74,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			QuinielaCaso s = (QuinielaCaso) c.getDescription();
 			
 			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
-			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/s.getJornada()));
+			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/10.0));
 			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
 			s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
 			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
@@ -99,39 +99,39 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		//Aqui vienen las funciones de similitud particulares para cada campo
 		simConfig.setDescriptionSimFunction(new Average());
 		simConfig.addMapping(nombreLocal, new Equal());
-		simConfig.setWeight(nombreLocal, 0.4);
+		simConfig.setWeight(nombreLocal, 3.0);
 		
 		Attribute nombreVisitante = new Attribute("nombreVisitante", QuinielaCaso.class);
 		simConfig.addMapping(nombreVisitante, new Equal());
-		simConfig.setWeight(nombreLocal, 0.4);
+		simConfig.setWeight(nombreLocal, 3.0);
 		
 		Attribute temporada = new Attribute("temporada", QuinielaCaso.class);
 		simConfig.addMapping(temporada, new Interval(3));
 		simConfig.setWeight(temporada, 0.1);
 		
 		Attribute puntosCasaLocal = new Attribute("puntosCasaLocal", QuinielaCaso.class);
-		simConfig.addMapping(puntosCasaLocal, new Interval(3));
-		simConfig.setWeight(puntosCasaLocal, 0.3);
+		simConfig.addMapping(puntosCasaLocal, new Interval(30));
+		simConfig.setWeight(puntosCasaLocal, 1.5);
 		
 		Attribute puntosFueraVis = new Attribute("puntosFueraVis", QuinielaCaso.class);
-		simConfig.addMapping(puntosFueraVis, new Interval(3));
-		simConfig.setWeight(puntosFueraVis, 0.3);
+		simConfig.addMapping(puntosFueraVis, new Interval(30));
+		simConfig.setWeight(puntosFueraVis, 1.5);
 		
 		Attribute golesLocal = new Attribute("golesFavorLocal", QuinielaCaso.class);
 		simConfig.addMapping(golesLocal, new Interval(7));
-		simConfig.setWeight(golesLocal, 0.2);
+		simConfig.setWeight(golesLocal, 0.9);
 		
 		Attribute golesVisitante = new Attribute("golesFavorVis", QuinielaCaso.class);
 		simConfig.addMapping(golesVisitante, new Interval(7));
-		simConfig.setWeight(golesVisitante, 0.2);
+		simConfig.setWeight(golesVisitante, 0.9);
 		
 		Attribute golesContraLocal = new Attribute("golesContraLocal", QuinielaCaso.class);
 		simConfig.addMapping(golesContraLocal, new Interval(7));
-		simConfig.setWeight(golesLocal, 0.2);
+		simConfig.setWeight(golesLocal, 0.9);
 		
 		Attribute golesContraVisitante = new Attribute("golesContraVis", QuinielaCaso.class);
 		simConfig.addMapping(golesContraVisitante, new Interval(7));
-		simConfig.setWeight(golesVisitante, 0.2);
+		simConfig.setWeight(golesVisitante, 0.9);
 		
 		
 		// A bit of verbose

@@ -162,7 +162,7 @@ public class EvaluadorApp implements StandardCBRApplication {
 
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
-		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (1-confianza/cont));
+		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (solucion.getConfidence()/*1-confianza/cont*/));
 	
 	}
 
