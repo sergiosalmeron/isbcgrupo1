@@ -141,9 +141,17 @@ public class EvaluadorApp implements StandardCBRApplication {
 		Attribute golesContraVisitante = new Attribute("golesContraVis", QuinielaCaso.class);
 		simConfig.addMapping(golesContraVisitante, new Interval(30));
 		simConfig.setWeight(golesVisitante, 1.0);
+		
+		Attribute difPuntos = new Attribute("difPuntos", QuinielaCaso.class);
+		simConfig.addMapping(difPuntos, new Interval(30));
+		simConfig.setWeight(difPuntos, 2.0);
+		
+		Attribute difPos = new Attribute("difPos", QuinielaCaso.class);
+		simConfig.addMapping(difPos, new Interval(30));
+		simConfig.setWeight(difPos, 1.0);
 
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
-		eval = SelectCases.selectTopKRR(eval, 5);
+		eval = SelectCases.selectTopKRR(eval, 3);
 		//VotacionSimple voto = new VotacionSimple();	
 		VotacionPonderada voto = new VotacionPonderada();
 		QuinielaSolution solucion = new QuinielaSolution();

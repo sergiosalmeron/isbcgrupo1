@@ -133,6 +133,14 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.addMapping(golesContraVisitante, new Interval(30));
 		simConfig.setWeight(golesVisitante, 1.0);
 		
+		Attribute difPuntos = new Attribute("difPuntos", QuinielaCaso.class);
+		simConfig.addMapping(difPuntos, new Interval(30));
+		simConfig.setWeight(difPuntos, 2.0);
+		
+		Attribute difPos = new Attribute("difPos", QuinielaCaso.class);
+		simConfig.addMapping(difPos, new Interval(30));
+		simConfig.setWeight(difPos, 1.0);
+		
 		
 		// A bit of verbose
 		System.out.println("Query Description:");
@@ -148,12 +156,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		QuinielaSolution solucion = new QuinielaSolution();
 		solucion = (QuinielaSolution)voto.getPredictedSolution(eval);
 		System.out.println("por votacion Simple " +solucion);
-		JOptionPane.showMessageDialog(null, solucion.toString());
+		JOptionPane.showMessageDialog(null, "por votacion simple" +solucion.toString());
 		//Evaluamos por similitud de los casos
 		VotacionPonderada votoP = new VotacionPonderada();
 		QuinielaSolution solucionP = new QuinielaSolution(); 
 		solucionP = (QuinielaSolution)votoP.getPredictedSolution(eval);
-		JOptionPane.showMessageDialog(null, solucionP.toString());
+		JOptionPane.showMessageDialog(null, "por votacion simple ponderada"+solucionP.toString());
 		//System.out.println("por votacion ponderada " +solucionP);
 		//System.out.println(solucionP.getConfidence());
 		//CBRCase solucion = jcolibri.method.reuse.classification.AbstractKNNClassificationMethod.class.
