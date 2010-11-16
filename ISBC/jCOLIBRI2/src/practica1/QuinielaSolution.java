@@ -17,6 +17,7 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	 * 
 	 */
 	String resultado;
+	Double Confianza;
 	//String CaseId;
 	public QuinielaSolution() {
 		// TODO Auto-generated constructor stub
@@ -36,6 +37,9 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	public String getResultado() {
 		return resultado;
 	}
+	public void setConfidence(Double i){
+		this.Confianza=i;
+	}
 
 	/**
 	 * @param resultado the resultado to set
@@ -53,9 +57,9 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 		return new Attribute("resultado", this.getClass());
 	}
 
-	public String getConfidence() {
+	public Double getConfidence() {
 		// TODO Auto-generated method stub
-		return null;
+		return Confianza;
 	}
 
 	@Override

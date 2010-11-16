@@ -148,20 +148,24 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		QuinielaSolution solucion = new QuinielaSolution();
 		solucion = (QuinielaSolution)voto.getPredictedSolution(eval);
 		System.out.println("por votacion Simple " +solucion);
+		JOptionPane.showMessageDialog(null, solucion.toString());
 		//Evaluamos por similitud de los casos
 		VotacionPonderada votoP = new VotacionPonderada();
 		QuinielaSolution solucionP = new QuinielaSolution(); 
 		solucionP = (QuinielaSolution)votoP.getPredictedSolution(eval);
-		System.out.println("por votacion ponderada " +solucionP);
+		JOptionPane.showMessageDialog(null, solucionP.toString());
+		//System.out.println("por votacion ponderada " +solucionP);
+		//System.out.println(solucionP.getConfidence());
 		//CBRCase solucion = jcolibri.method.reuse.classification.AbstractKNNClassificationMethod.class.
-		//Collection<CBRCase> casos = new ArrayList<CBRCase>();
-		//System.out.println("Casos Recuperados: ");
-		//for(RetrievalResult nse: eval){
+		Collection<CBRCase> casos = new ArrayList<CBRCase>();
+		System.out.println("Casos Recuperados: ");
+		for(RetrievalResult nse: eval){
 		//	System.out.println(nse);
 		//	System.out.println(nse.get_case().getSolution());
-		//	casos.add(nse.get_case());
+		casos.add(nse.get_case());
 		//}
-		//DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		}
+		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
 		
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
@@ -203,9 +207,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 //			hola.setNombreVisitante("Sporting");
 			CBRQuery query = new CBRQuery();
 			query.setDescription(new QuinielaCaso());
+			InterfazA a = new InterfazA();
+			a.setVisible(true);
+			a.setEnabled(true);
 			
-			do {
-				Collection<Attribute> c = new ArrayList<Attribute>();
+			//do {
+				/*Collection<Attribute> c = new ArrayList<Attribute>();
 				Map<Attribute,String> m = new HashMap<Attribute,String>();
 				m.put((new Attribute("nombreLocal", QuinielaCaso.class)),"nombre Local");
 				c.add(new Attribute("resultLocal", QuinielaCaso.class));
@@ -214,11 +221,17 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 				c.add(new Attribute("temporada", QuinielaCaso.class));
 				c.add(new Attribute("division",QuinielaCaso.class));
 				c.add(new Attribute("difPos",QuinielaCaso.class));
-				c.add(new Attribute("difPuntos",QuinielaCaso.class));
+				c.add(new Attribute("difPuntos",QuinielaCaso.class));*/
 				//ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
-				ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query,c , m);
+				//ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query,c , m);
+
 				//Me preparo la Query despues de obtenerla
+				a.setVisible(true);
+				a.setEnabled(true);
+				while (a.getQuery() == null || query.getDescription() == null)
+					query = a.getQuery();
 				QuinielaCaso s = (QuinielaCaso)query.getDescription();
+				
 				if(s.getPosLocal()!=null&&s.getPosVis()!=null)	s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
 				if (s.getJornada()!=null){
 					if(s.getPuntosLocal()!=null && s.getPuntosVis()!=null)	s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/s.getJornada()));
@@ -229,8 +242,10 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 					if(s.getPuntosCasaLocal()!=null)	s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
 					if(s.getPuntosFueraVis()!=null)s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
 				}
+				a.setVisible(false);
 				quiniela.cycle(query);
-			}while (JOptionPane.showConfirmDialog(null, "¿Continuar?") == JOptionPane.OK_OPTION);
+				a.setQuery();
+			//}while (JOptionPane.showConfirmDialog(null,"¿Continuar?") == JOptionPane.OK_OPTION);
 			
 			
 /*			//Aqui empieza el codigo del main para las evaluaciones.
