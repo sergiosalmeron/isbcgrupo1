@@ -28,7 +28,7 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	 */
 	@Override
 	public String toString() {
-		return "QuinielaSolution [Resultado=" + resultado + "]";
+		return resultado;
 	}
 
 	/**

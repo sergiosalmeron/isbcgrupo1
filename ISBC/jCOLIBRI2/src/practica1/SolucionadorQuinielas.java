@@ -72,17 +72,20 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		java.util.Collection<CBRCase> cases = _caseBase.getCases();
 		for(CBRCase c: cases){
 			QuinielaCaso s = (QuinielaCaso) c.getDescription();
+			QuinielaSolution z = (QuinielaSolution) c.getSolution();
 			
 			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
 			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/10.0));
-			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
-			s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
-			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
+			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/10.0);
+			s.setGolesContraVis((Double)(s.getGolesContraVis())/10.0);
+			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/10.0));
 			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/10.0));
 			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/10.0));
 			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/10.0));
 			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/10.0));
 			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/10.0));
+			z.setConfidence(1.0);
+			
 			System.out.println(c);
 		}
 		return _caseBase;
@@ -110,35 +113,35 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.setWeight(temporada, 0.5);
 		
 		Attribute puntosCasaLocal = new Attribute("puntosCasaLocal", QuinielaCaso.class);
-		simConfig.addMapping(puntosCasaLocal, new Interval(30));
+		simConfig.addMapping(puntosCasaLocal, new Interval(20));
 		simConfig.setWeight(puntosCasaLocal, 1.5);
 		
 		Attribute puntosFueraVis = new Attribute("puntosFueraVis", QuinielaCaso.class);
-		simConfig.addMapping(puntosFueraVis, new Interval(30));
+		simConfig.addMapping(puntosFueraVis, new Interval(20));
 		simConfig.setWeight(puntosFueraVis, 1.5);
 		
 		Attribute golesLocal = new Attribute("golesFavorLocal", QuinielaCaso.class);
-		simConfig.addMapping(golesLocal, new Interval(30));
+		simConfig.addMapping(golesLocal, new Interval(20));
 		simConfig.setWeight(golesLocal, 1.0);
 		
 		Attribute golesVisitante = new Attribute("golesFavorVis", QuinielaCaso.class);
-		simConfig.addMapping(golesVisitante, new Interval(30));
+		simConfig.addMapping(golesVisitante, new Interval(20));
 		simConfig.setWeight(golesVisitante, 1.0);
 		
 		Attribute golesContraLocal = new Attribute("golesContraLocal", QuinielaCaso.class);
-		simConfig.addMapping(golesContraLocal, new Interval(30));
+		simConfig.addMapping(golesContraLocal, new Interval(20));
 		simConfig.setWeight(golesLocal, 1.0);
 		
 		Attribute golesContraVisitante = new Attribute("golesContraVis", QuinielaCaso.class);
-		simConfig.addMapping(golesContraVisitante, new Interval(30));
+		simConfig.addMapping(golesContraVisitante, new Interval(20));
 		simConfig.setWeight(golesVisitante, 1.0);
 		
 		Attribute difPuntos = new Attribute("difPuntos", QuinielaCaso.class);
-		simConfig.addMapping(difPuntos, new Interval(30));
+		simConfig.addMapping(difPuntos, new Interval(20));
 		simConfig.setWeight(difPuntos, 2.0);
 		
 		Attribute difPos = new Attribute("difPos", QuinielaCaso.class);
-		simConfig.addMapping(difPos, new Interval(30));
+		simConfig.addMapping(difPos, new Interval(20));
 		simConfig.setWeight(difPos, 1.0);
 		
 		
@@ -156,12 +159,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		QuinielaSolution solucion = new QuinielaSolution();
 		solucion = (QuinielaSolution)voto.getPredictedSolution(eval);
 		System.out.println("por votacion Simple " +solucion);
-		JOptionPane.showMessageDialog(null, "por votacion simple" +solucion.toString());
+		JOptionPane.showMessageDialog(null, "El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion simple  es " + solucion.toString());
 		//Evaluamos por similitud de los casos
 		VotacionPonderada votoP = new VotacionPonderada();
 		QuinielaSolution solucionP = new QuinielaSolution(); 
 		solucionP = (QuinielaSolution)votoP.getPredictedSolution(eval);
-		JOptionPane.showMessageDialog(null, "por votacion simple ponderada"+solucionP.toString());
+		JOptionPane.showMessageDialog(null, "El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion ponderada es " + solucionP.toString());
 		//System.out.println("por votacion ponderada " +solucionP);
 		//System.out.println(solucionP.getConfidence());
 		//CBRCase solucion = jcolibri.method.reuse.classification.AbstractKNNClassificationMethod.class.
@@ -169,7 +172,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		System.out.println("Casos Recuperados: ");
 		for(RetrievalResult nse: eval){
 		//	System.out.println(nse);
-		//	System.out.println(nse.get_case().getSolution());
+		((QuinielaSolution)nse.get_case().getSolution()).setConfidence(nse.getEval());
 		casos.add(nse.get_case());
 		//}
 		}
