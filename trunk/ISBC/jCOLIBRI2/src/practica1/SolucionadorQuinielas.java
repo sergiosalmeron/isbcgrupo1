@@ -78,11 +78,11 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
 			s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
 			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
-			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/s.getJornada()));
-			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/s.getJornada()));
-			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
-			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
-			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/s.getJornada()));
+			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/10.0));
+			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/10.0));
+			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/10.0));
+			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/10.0));
+			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/10.0));
 			System.out.println(c);
 		}
 		return _caseBase;
@@ -99,15 +99,15 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		//Aqui vienen las funciones de similitud particulares para cada campo
 		simConfig.setDescriptionSimFunction(new Average());
 		simConfig.addMapping(nombreLocal, new Equal());
-		simConfig.setWeight(nombreLocal, 3.0);
+		simConfig.setWeight(nombreLocal, 2.0);
 		
 		Attribute nombreVisitante = new Attribute("nombreVisitante", QuinielaCaso.class);
 		simConfig.addMapping(nombreVisitante, new Equal());
-		simConfig.setWeight(nombreLocal, 3.0);
+		simConfig.setWeight(nombreLocal, 2.0);
 		
 		Attribute temporada = new Attribute("temporada", QuinielaCaso.class);
 		simConfig.addMapping(temporada, new Interval(3));
-		simConfig.setWeight(temporada, 0.1);
+		simConfig.setWeight(temporada, 0.5);
 		
 		Attribute puntosCasaLocal = new Attribute("puntosCasaLocal", QuinielaCaso.class);
 		simConfig.addMapping(puntosCasaLocal, new Interval(30));
@@ -118,20 +118,20 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		simConfig.setWeight(puntosFueraVis, 1.5);
 		
 		Attribute golesLocal = new Attribute("golesFavorLocal", QuinielaCaso.class);
-		simConfig.addMapping(golesLocal, new Interval(7));
-		simConfig.setWeight(golesLocal, 0.9);
+		simConfig.addMapping(golesLocal, new Interval(30));
+		simConfig.setWeight(golesLocal, 1.0);
 		
 		Attribute golesVisitante = new Attribute("golesFavorVis", QuinielaCaso.class);
-		simConfig.addMapping(golesVisitante, new Interval(7));
-		simConfig.setWeight(golesVisitante, 0.9);
+		simConfig.addMapping(golesVisitante, new Interval(30));
+		simConfig.setWeight(golesVisitante, 1.0);
 		
 		Attribute golesContraLocal = new Attribute("golesContraLocal", QuinielaCaso.class);
-		simConfig.addMapping(golesContraLocal, new Interval(7));
-		simConfig.setWeight(golesLocal, 0.9);
+		simConfig.addMapping(golesContraLocal, new Interval(30));
+		simConfig.setWeight(golesLocal, 1.0);
 		
 		Attribute golesContraVisitante = new Attribute("golesContraVis", QuinielaCaso.class);
-		simConfig.addMapping(golesContraVisitante, new Interval(7));
-		simConfig.setWeight(golesVisitante, 0.9);
+		simConfig.addMapping(golesContraVisitante, new Interval(30));
+		simConfig.setWeight(golesVisitante, 1.0);
 		
 		
 		// A bit of verbose
