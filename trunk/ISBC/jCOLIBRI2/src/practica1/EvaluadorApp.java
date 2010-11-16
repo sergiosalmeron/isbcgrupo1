@@ -81,9 +81,9 @@ public class EvaluadorApp implements StandardCBRApplication {
 			
 			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
 			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/10.0));
-			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/s.getJornada());
-			s.setGolesContraVis((Double)(s.getGolesContraVis())/s.getJornada());
-			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/s.getJornada()));
+			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/10.0);
+			s.setGolesContraVis((Double)(s.getGolesContraVis())/10.0);
+			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/10.0));
 			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/10.0));
 			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/10.0));
 			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/10.0));
