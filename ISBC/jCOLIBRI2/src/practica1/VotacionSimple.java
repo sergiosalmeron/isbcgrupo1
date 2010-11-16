@@ -72,7 +72,7 @@ public class VotacionSimple implements KNNClassificationMethod {
 			Integer division= (b/(a+b+c));
 			confidence =division.doubleValue();
 		}
-		s.setConfidence(confidence);
+		//s.setConfidence(confidence);
 		return s;
 	}
 

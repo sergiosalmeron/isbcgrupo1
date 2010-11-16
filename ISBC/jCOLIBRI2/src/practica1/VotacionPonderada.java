@@ -48,7 +48,7 @@ public class VotacionPonderada implements KNNClassificationMethod {
 			s.setResultado("X");
 			confidence = c/(a+b+c);
 		}
-		s.setConfidence(confidence);
+		//s.setConfidence(confidence);
 		return s;
 	}
 

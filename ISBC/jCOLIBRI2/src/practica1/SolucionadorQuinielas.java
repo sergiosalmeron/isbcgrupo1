@@ -88,7 +88,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/10.0));
 			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/10.0));
 			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/10.0));
-			z.setConfidence(1.0);
+			//z.setConfidence(1.0);
 			
 			System.out.println(c);
 		}
@@ -176,12 +176,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		System.out.println("Casos Recuperados: ");
 		for(RetrievalResult nse: eval){
 		//	System.out.println(nse);
-		((QuinielaSolution)nse.get_case().getSolution()).setConfidence(nse.getEval());
+		//((QuinielaSolution)nse.get_case().getSolution()).setConfidence(nse.getEval());
 		casos.add(nse.get_case());
 		//}
 		}
-	//	DisplayCasesIfSimilarity.displayCasesWithEditOption(casos);
-		//DisplayCasesTableMethod.displayCasesInTableSelectCase(casos);
+	DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		
 		
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
