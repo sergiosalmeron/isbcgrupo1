@@ -17,8 +17,11 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
+import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesMethod;
 import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.extensions.recommendation.conditionals.DisplayCasesIfSimilarity;
 import jcolibri.extensions.recommendation.navigationByAsking.ObtainQueryWithAttributeQuestionMethod;
+import jcolibri.extensions.recommendation.navigationByProposing.DisplayCasesTableWithCritiquesMethod;
 import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
@@ -177,7 +180,8 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		casos.add(nse.get_case());
 		//}
 		}
-		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+	//	DisplayCasesIfSimilarity.displayCasesWithEditOption(casos);
+		DisplayCasesTableMethod.displayCasesInTableSelectCase(casos);
 		
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
@@ -220,6 +224,8 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 //			hola.setDivision(1);
 //			hola.setNombreLocal("Deportivo");
 //			hola.setNombreVisitante("Sporting");
+			ArrayList<CBRQuery> querys = new ArrayList<CBRQuery>(); 
+			for (int i=1; i<16; i++){
 			CBRQuery query = new CBRQuery();
 			query.setDescription(new QuinielaCaso());
 			InterfazA a = new InterfazA();
@@ -258,8 +264,12 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 					if(s.getPuntosFueraVis()!=null)s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
 				}
 				a.setVisible(false);
-				quiniela.cycle(query);
+				querys.add(query);
 				a.setQuery();
+				}
+
+				quiniela.cycle(querys);
+			//	a.setQuery();
 			//}while (JOptionPane.showConfirmDialog(null,"¿Continuar?") == JOptionPane.OK_OPTION);
 			
 			
