@@ -46,6 +46,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	Connector _connector;
 	CBRCaseBase _caseBase;
 	String result = " ";
+	int cuantas = 0;
 	public SolucionadorQuinielas() {
 		// TODO Auto-generated constructor stub
 	}
@@ -180,7 +181,10 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		casos.add(nse.get_case());
 		//}
 		}
-	DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		if (cuantas == 1){
+			DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		}
+
 		
 		
 /*
@@ -229,6 +233,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 //			hola.setDivision(1);
 //			hola.setNombreLocal("Deportivo");
 //			hola.setNombreVisitante("Sporting");
+			quiniela.cuantas = numQuerys;
 			ArrayList<CBRQuery> querys = new ArrayList<CBRQuery>(); 
 			for (int i=0; i<numQuerys; i++){
 			CBRQuery query = new CBRQuery();
