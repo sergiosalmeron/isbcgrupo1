@@ -17,7 +17,7 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	 * 
 	 */
 	String resultado;
-	//private Double Confianza;
+	Double confianza;
 	//String CaseId;
 	public QuinielaSolution() {
 		// TODO Auto-generated constructor stub
@@ -28,7 +28,7 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	 */
 	@Override
 	public String toString() {
-		return resultado;
+		return resultado + " con confianza "+confianza;
 	}
 
 	/**
@@ -66,6 +66,20 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	public Object getClassification() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/**
+	 * @param confianza the confianza to set
+	 */
+	public void setConfianza(Double confianza) {
+		this.confianza = confianza;
+	}
+
+	/**
+	 * @return the confianza
+	 */
+	public Double getConfianza() {
+		return confianza;
 	}
 
 

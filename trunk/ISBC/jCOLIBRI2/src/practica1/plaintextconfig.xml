@@ -21,8 +21,9 @@
 		<Map>golesFavorVis</Map>
 		<Map>golesContraVis</Map>
 		<Map>puntosCasaVis</Map>
-		<Map>difPos</Map>
+		<Map>puntosFueraVis</Map>
 		<Map>difPuntos</Map>
+		<Map>difPos</Map>
 	</DescriptionMappings>
 	<SolutionClassName>practica1.QuinielaSolution</SolutionClassName>
 	<SolutionMappings>

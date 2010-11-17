@@ -80,15 +80,15 @@ public class EvaluadorApp implements StandardCBRApplication {
 			QuinielaCaso s = (QuinielaCaso) c.getDescription();
 			
 			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
-			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/10.0));
-			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/10.0);
-			s.setGolesContraVis((Double)(s.getGolesContraVis())/10.0);
-			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/10.0));
-			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/10.0));
-			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/10.0));
-			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/10.0));
-			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/10.0));
-			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/10.0));
+			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())));
+			s.setGolesContraLocal((Double)(s.getGolesContraLocal()));
+			s.setGolesContraVis((Double)(s.getGolesContraVis()));
+			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())));
+			s.setGolesFavorVis((Double)((s.getGolesFavorVis())));
+			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())));
+			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())));
+			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())));
+			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())));
 			System.out.println(c);
 		}
 		return _caseBase;
@@ -171,7 +171,7 @@ public class EvaluadorApp implements StandardCBRApplication {
 
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
-		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (1.0));//solucion.getConfidence()/*1-confianza/cont*/));
+		Evaluator.getEvaluationReport().addDataToSeries("confianza", new Double (solucion.getConfianza()/*1-confianza/cont*/));
 	
 	}
 
