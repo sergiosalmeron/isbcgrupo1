@@ -638,12 +638,12 @@ public class InterfazA extends javax.swing.JFrame {
     /**
     * @param args the command line arguments
     */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		InterfazA c = new InterfazA();
 		c.setEnabled(true);
 		c.setVisible(true);
-	}
+	}*/
 	public void setQuery() {
 		q = null;
 		
