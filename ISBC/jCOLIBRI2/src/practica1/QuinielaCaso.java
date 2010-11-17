@@ -3,18 +3,13 @@
  */
 package practica1;
 
-import java.util.Collection;
-
 import jcolibri.cbrcore.Attribute;
-import jcolibri.cbrcore.CBRCase;
-import jcolibri.cbrcore.CBRCaseBase;
-import jcolibri.cbrcore.CaseBaseFilter;
 import jcolibri.cbrcore.CaseComponent;
 import jcolibri.cbrcore.Connector;
 import jcolibri.exception.InitializingException;
 
 /**
- * @author anicetobacter
+ * @author grupo 1
  *
  */
 public class QuinielaCaso implements CaseComponent {
