@@ -49,7 +49,7 @@ public class EvaluadorApp implements StandardCBRApplication {
 		// TODO Auto-generated method stub
 		try{
 			_connector = new PlainTextConnector();
-			_connector.initFromXMLfile(jcolibri.util.FileIO.findFile("practica1/plaintextconfig.xml"));
+			_connector.initFromXMLfile(jcolibri.util.FileIO.findFile("practica1/plaintextconfigEva.xml"));
 			_caseBase  = new CachedLinealCaseBase();
 			} catch (Exception e){
 				throw new ExecutionException(e);
