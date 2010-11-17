@@ -19,6 +19,7 @@ import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesMethod;
 import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.extensions.recommendation.casesDisplay.UserChoice;
 import jcolibri.extensions.recommendation.conditionals.DisplayCasesIfSimilarity;
 import jcolibri.extensions.recommendation.navigationByAsking.ObtainQueryWithAttributeQuestionMethod;
 import jcolibri.extensions.recommendation.navigationByProposing.DisplayCasesTableWithCritiquesMethod;
@@ -182,11 +183,14 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		//}
 		}
 		if (cuantas == 1){
-			DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
-		}
+		UserChoice o =DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		Collection<CBRCase> casos2 = new ArrayList<CBRCase>();
+		casos2.add(o.getSelectedCase());
+		_caseBase.learnCases(casos2);
+		}		
 
 		
-		
+
 /*
 //Aqui empieza el codigo del cycle para las evaluaciones
 		double prediccion;
