@@ -34,9 +34,6 @@ public class EvaluadorApp implements StandardCBRApplication {
 	Connector _connector;
 	CBRCaseBase _caseBase;
 	
-	private double confianza=0.0; 
-	private double cont=0.0;
-	
 	public EvaluadorApp() {
 		// TODO Auto-generated constructor stub
 	}
@@ -138,7 +135,7 @@ public class EvaluadorApp implements StandardCBRApplication {
 		
 		
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
-		eval = SelectCases.selectTopKRR(eval, 10);
+		eval = SelectCases.selectTopKRR(eval, 5);
 		//VotacionSimple voto = new VotacionSimple();	
 		VotacionPonderada voto = new VotacionPonderada();
 		QuinielaSolution solucion = new QuinielaSolution();
@@ -146,19 +143,17 @@ public class EvaluadorApp implements StandardCBRApplication {
 		
 
 		double prediccion;
-		cont++;
 		CBRCase _case = (CBRCase)query;
 		QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
 		if(!(solucion.getResultado().equals(sol.getResultado()))){
 			prediccion = 1.0;
-			confianza++;   
 		}
 		else prediccion = 0.0;
 		
 
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
-		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (solucion.getConfianza()/*1-confianza/cont*/));
+		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (solucion.getConfianza()));
 	
 	}
 

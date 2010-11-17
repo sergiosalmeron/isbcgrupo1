@@ -37,9 +37,6 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 	public String getResultado() {
 		return resultado;
 	}
-	//public void setConfidence(Double i){
-		//this.Confianza=i;
-	//}
 
 	/**
 	 * @param resultado the resultado to set
@@ -56,11 +53,6 @@ public class QuinielaSolution implements CaseComponent, ClassificationSolution {
 		// TODO Auto-generated method stub
 		return new Attribute("resultado", this.getClass());
 	}
-
-	//public Double getConfidence() {
-		// TODO Auto-generated method stub
-		//return Confianza;
-	//}
 
 	@Override
 	public Object getClassification() {
