@@ -80,15 +80,15 @@ public class EvaluadorApp implements StandardCBRApplication {
 			QuinielaCaso s = (QuinielaCaso) c.getDescription();
 			
 			s.setDifPos((Integer)(s.getPosLocal()-s.getPosVis()));
-			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())));
-			s.setGolesContraLocal((Double)(s.getGolesContraLocal()));
-			s.setGolesContraVis((Double)(s.getGolesContraVis()));
-			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())));
-			s.setGolesFavorVis((Double)((s.getGolesFavorVis())));
-			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())));
-			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())));
-			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())));
-			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())));
+			s.setDifPuntos((Double)((s.getPuntosLocal()-s.getPuntosVis())/10.0));
+			s.setGolesContraLocal((Double)(s.getGolesContraLocal())/10.0);
+			s.setGolesContraVis((Double)(s.getGolesContraVis())/10.0);
+			s.setGolesFavorLocal((Double)((s.getGolesFavorLocal())/10.0));
+			s.setGolesFavorVis((Double)((s.getGolesFavorVis())/10.0));
+			s.setPuntosCasaVis((Double)((s.getPuntosCasaVis())/10.0));
+			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/10.0));
+			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/10.0));
+			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/10.0));
 			System.out.println(c);
 		}
 		return _caseBase;
@@ -116,42 +116,42 @@ public class EvaluadorApp implements StandardCBRApplication {
 		
 		Attribute temporada = new Attribute("temporada", QuinielaCaso.class);
 		simConfig.addMapping(temporada, new Interval(3));
-		simConfig.setWeight(temporada, 0.5);
+		simConfig.setWeight(temporada, 0.05);
 		
 		Attribute puntosCasaLocal = new Attribute("puntosCasaLocal", QuinielaCaso.class);
 		simConfig.addMapping(puntosCasaLocal, new Interval(30));
 		simConfig.setWeight(puntosCasaLocal, 1.5);
 		
 		Attribute puntosFueraVis = new Attribute("puntosFueraVis", QuinielaCaso.class);
-		simConfig.addMapping(puntosFueraVis, new Interval(30));
+		simConfig.addMapping(puntosFueraVis, new Interval(10));
 		simConfig.setWeight(puntosFueraVis, 1.5);
 		
 		Attribute golesLocal = new Attribute("golesFavorLocal", QuinielaCaso.class);
-		simConfig.addMapping(golesLocal, new Interval(30));
+		simConfig.addMapping(golesLocal, new Interval(10));
 		simConfig.setWeight(golesLocal, 1.0);
 		
 		Attribute golesVisitante = new Attribute("golesFavorVis", QuinielaCaso.class);
-		simConfig.addMapping(golesVisitante, new Interval(30));
+		simConfig.addMapping(golesVisitante, new Interval(10));
 		simConfig.setWeight(golesVisitante, 1.0);
 		
 		Attribute golesContraLocal = new Attribute("golesContraLocal", QuinielaCaso.class);
-		simConfig.addMapping(golesContraLocal, new Interval(30));
+		simConfig.addMapping(golesContraLocal, new Interval(10));
 		simConfig.setWeight(golesLocal, 1.0);
 		
 		Attribute golesContraVisitante = new Attribute("golesContraVis", QuinielaCaso.class);
-		simConfig.addMapping(golesContraVisitante, new Interval(30));
+		simConfig.addMapping(golesContraVisitante, new Interval(10));
 		simConfig.setWeight(golesVisitante, 1.0);
 		
 		Attribute difPuntos = new Attribute("difPuntos", QuinielaCaso.class);
-		simConfig.addMapping(difPuntos, new Interval(30));
+		simConfig.addMapping(difPuntos, new Interval(7));
 		simConfig.setWeight(difPuntos, 2.0);
 		
 		Attribute difPos = new Attribute("difPos", QuinielaCaso.class);
-		simConfig.addMapping(difPos, new Interval(30));
+		simConfig.addMapping(difPos, new Interval(20));
 		simConfig.setWeight(difPos, 1.0);
 
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
-		eval = SelectCases.selectTopKRR(eval, 3);
+		eval = SelectCases.selectTopKRR(eval, 5);
 		//VotacionSimple voto = new VotacionSimple();	
 		VotacionPonderada voto = new VotacionPonderada();
 		QuinielaSolution solucion = new QuinielaSolution();
@@ -171,7 +171,7 @@ public class EvaluadorApp implements StandardCBRApplication {
 
 		
 		Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
-		Evaluator.getEvaluationReport().addDataToSeries("confianza", new Double (solucion.getConfianza()/*1-confianza/cont*/));
+		Evaluator.getEvaluationReport().addDataToSeries("Confianza", new Double (solucion.getConfianza()/*1-confianza/cont*/));
 	
 	}
 
