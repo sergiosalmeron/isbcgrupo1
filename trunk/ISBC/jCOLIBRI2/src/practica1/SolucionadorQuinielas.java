@@ -85,7 +85,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			s.setPuntosCasaLocal((Double)((s.getPuntosCasaLocal())/s.getJornada()));
 			s.setPuntosFueraVis((Double)((s.getPuntosFueraVis())/s.getJornada()));
 			s.setPuntosFueraLocal((Double)((s.getPuntosFueraLocal())/s.getJornada()));
-			//z.setConfidence(1.0);
+
 			
 			System.out.println(c);
 		}
@@ -99,9 +99,10 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	public void cycle(CBRQuery query) throws ExecutionException {
 		// TODO Auto-generated method stub
 		NNConfig simConfig = new NNConfig();
-		Attribute nombreLocal = new Attribute("nombreLocal", QuinielaCaso.class);
-		//Aqui vienen las funciones de similitud particulares para cada campo
 		simConfig.setDescriptionSimFunction(new Average());
+
+		//Aqui vienen las funciones de similitud particulares para cada campo
+		Attribute nombreLocal = new Attribute("nombreLocal", QuinielaCaso.class);
 		simConfig.addMapping(nombreLocal, new Equal());
 		simConfig.setWeight(nombreLocal, 2.0);
 		
@@ -262,21 +263,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 			a.setTitle("Partido " + z);
 			a.setEnabled(true);
 			
-			//do {
-				/*Collection<Attribute> c = new ArrayList<Attribute>();
-				Map<Attribute,String> m = new HashMap<Attribute,String>();
-				m.put((new Attribute("nombreLocal", QuinielaCaso.class)),"nombre Local");
-				c.add(new Attribute("resultLocal", QuinielaCaso.class));
-				c.add(new Attribute("resultVisit", QuinielaCaso.class));
-				m.put((new Attribute("nombreVisitante", QuinielaCaso.class)),"nombre Visitante");
-				c.add(new Attribute("temporada", QuinielaCaso.class));
-				c.add(new Attribute("division",QuinielaCaso.class));
-				c.add(new Attribute("difPos",QuinielaCaso.class));
-				c.add(new Attribute("difPuntos",QuinielaCaso.class));*/
-				//ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
-				//ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query,c , m);
 
-				//Me preparo la Query despues de obtenerla
 				a.setVisible(true);
 				a.setEnabled(true);
 				while (a.getQuery() == null || query.getDescription() == null)
@@ -304,20 +291,6 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 				}
 				JOptionPane.showMessageDialog(null, resultados);
 				
-			//	a.setQuery();
-			//}while (JOptionPane.showConfirmDialog(null,"¿Continuar?") == JOptionPane.OK_OPTION);
-			
-			
-/*			//Aqui empieza el codigo del main para las evaluaciones.
-			Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
-			double avg = 0.0;
-			for (Double d: vec)
-				avg+=d;
-			avg=avg/(double)Evaluator.getEvaluationReport().getNumberOfCycles();
-			Evaluator.getEvaluationReport().putOtherData("Media", Double.toString(avg));
-			System.out.println(Evaluator.getEvaluationReport());
-			jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluacion Quinielas",false);
-			//Aqui acaba el codigo del main para las evaluaciones.*/
 		} catch (ExecutionException e) {
 			org.apache.commons.logging.LogFactory.getLog(SolucionadorQuinielas.class).error(e);
 		}
