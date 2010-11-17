@@ -183,7 +183,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		//}
 		}
 		if (cuantas == 1){
-		UserChoice o =DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		UserChoice o =DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
 		Collection<CBRCase> casos2 = new ArrayList<CBRCase>();
 		casos2.add(o.getSelectedCase());
 		_caseBase.learnCases(casos2);
