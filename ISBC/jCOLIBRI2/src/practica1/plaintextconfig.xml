@@ -21,10 +21,12 @@
 		<Map>golesFavorVis</Map>
 		<Map>golesContraVis</Map>
 		<Map>puntosCasaVis</Map>
-		<Map>puntosFueraVis</Map>
+		<Map>difPos</Map>
+		<Map>difPuntos</Map>
 	</DescriptionMappings>
 	<SolutionClassName>practica1.QuinielaSolution</SolutionClassName>
 	<SolutionMappings>
+		<Map>confianza</Map>
 		<Map>resultado</Map>
 	</SolutionMappings>
 </TextFileConfiguration>
