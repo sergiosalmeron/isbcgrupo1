@@ -30,13 +30,13 @@ public class VotacionSimple implements KNNClassificationMethod {
 	@Override
 	public ClassificationSolution getPredictedSolution(
 			Collection<RetrievalResult> cases) {
-		Integer a = 0;
-		Integer b = 0;
-		Integer c = 0;
+		Double a = 0.0;
+		Double b = 0.0;
+		Double c = 0.0;
 		for(RetrievalResult nse: cases){
-			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("1")) a++;
-			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("X")) b++;
-			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("2")) c++;
+			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("1")) a+=1.0;
+			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("X")) b+=1.0;
+			if(((QuinielaSolution)(nse.get_case().getSolution())).getResultado().equals("2")) c+=1.0;
 			
 		}
 		QuinielaSolution s  = new QuinielaSolution();
@@ -44,35 +44,35 @@ public class VotacionSimple implements KNNClassificationMethod {
 		
 		if (a>b && a>c){ 
 			s.setResultado("1"); 
-			Integer division= (a/(a+b+c));
-			confidence =division.doubleValue();
+			confidence= (a/(a+b+c));
+			
 		}
 		else if (b>a && b>c){
 			s.setResultado("X");
-			Integer division= (b/(a+b+c));
-			confidence =division.doubleValue();
+			confidence= (b/(a+b+c));
+			
 		}
 		else if (c>a && c>b){
 			s.setResultado("2");
-			Integer division= (c/(a+b+c));
-			confidence =division.doubleValue();
+			confidence= (c/(a+b+c));
+			
 		}
 		else if(a==b && a>c){
 			s.setResultado("1");
-			Integer division= (a/(a+b+c));
-			confidence =division.doubleValue();
+			confidence= (a/(a+b+c));
+			
 		}
 		else if(a==c && a>b){
 			s.setResultado("1");
-			Integer division= (a/(a+b+c));
-			confidence =division.doubleValue();
+			confidence= (a/(a+b+c));
+			
 		}
 		else if(c==b && b>a){
 			s.setResultado("X");
-			Integer division= (b/(a+b+c));
-			confidence =division.doubleValue();
+			confidence= (b/(a+b+c));
+			
 		}
-		//s.setConfidence(confidence);
+		s.setConfianza(confidence);
 		return s;
 	}
 

@@ -48,6 +48,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 	CBRCaseBase _caseBase;
 	String result = " ";
 	int cuantas = 0;
+	Integer k=0;
 	public SolucionadorQuinielas() {
 		// TODO Auto-generated constructor stub
 	}
@@ -77,6 +78,7 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		_caseBase.init(_connector);
 		java.util.Collection<CBRCase> cases = _caseBase.getCases();
 		for(CBRCase c: cases){
+			k++;
 			QuinielaCaso s = (QuinielaCaso) c.getDescription();
 			QuinielaSolution z = (QuinielaSolution) c.getSolution();
 			
@@ -171,22 +173,54 @@ public class SolucionadorQuinielas implements StandardCBRApplication {
 		QuinielaSolution solucionP = new QuinielaSolution(); 
 		solucionP = (QuinielaSolution)votoP.getPredictedSolution(eval);
 		result +="El resultado del partido " +((QuinielaCaso)query.getDescription()).getNombreLocal() + " VS "+((QuinielaCaso)query.getDescription()).getNombreVisitante() +" utilizando votacion ponderada es " + solucionP.toString() +'\n';
+		CBRCase nuevo = new CBRCase();
+		nuevo.setDescription(query.getDescription());
+		((QuinielaCaso)nuevo.getDescription()).setCaseId(k.toString());
+		((QuinielaCaso)nuevo.getDescription()).setDivision(1);
+		((QuinielaCaso)nuevo.getDescription()).setDifPuntos(0.0);
+		((QuinielaCaso)nuevo.getDescription()).setDifPos(0);
+		((QuinielaCaso)nuevo.getDescription()).setResultLocal(0);
+		((QuinielaCaso)nuevo.getDescription()).setResultVisit(0);
+		((QuinielaCaso)nuevo.getDescription()).setTemporada(10);
+		nuevo.setSolution(solucionP);
 		//System.out.println("por votacion ponderada " +solucionP);
 		//System.out.println(solucionP.getConfidence());
 		//CBRCase solucion = jcolibri.method.reuse.classification.AbstractKNNClassificationMethod.class.
 		Collection<CBRCase> casos = new ArrayList<CBRCase>();
 		System.out.println("Casos Recuperados: ");
+		CBRCase caso4 = null;
 		for(RetrievalResult nse: eval){
-		//	System.out.println(nse);
+		Double j = 0.0;
+			if (j<nse.getEval() && ((QuinielaSolution)nse.get_case().getSolution()).getResultado().equals(solucionP.getResultado())){
+				caso4 = nse.get_case();
+				j = nse.getEval();
+			}
 		//((QuinielaSolution)nse.get_case().getSolution()).setConfidence(nse.getEval());
 		casos.add(nse.get_case());
 		//}
 		}
+		((QuinielaCaso)nuevo.getDescription()).setDivision(((QuinielaCaso) caso4.getDescription()).getDivision());
+		((QuinielaCaso)nuevo.getDescription()).setDifPuntos(((QuinielaCaso) caso4.getDescription()).getDifPuntos());
+		((QuinielaCaso)nuevo.getDescription()).setDifPos(((QuinielaCaso) caso4.getDescription()).getDifPos());
+		((QuinielaCaso)nuevo.getDescription()).setResultLocal(((QuinielaCaso) caso4.getDescription()).getResultLocal());
+		((QuinielaCaso)nuevo.getDescription()).setResultVisit(((QuinielaCaso) caso4.getDescription()).getResultVisit());
+		((QuinielaCaso)nuevo.getDescription()).setTemporada(11);
+		Collection<CBRCase> casos3 = new ArrayList<CBRCase>();
+		casos3.add(nuevo);
+		
 		if (cuantas == 1){
-		UserChoice o =DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
-		Collection<CBRCase> casos2 = new ArrayList<CBRCase>();
-		casos2.add(o.getSelectedCase());
-		_caseBase.learnCases(casos2);
+			UserChoice t = DisplayCasesMethod.displayCasesWithEditOption(casos3);
+			if(t.isRefineQuery()){
+				String s= (JOptionPane.showInputDialog("Introduce el nuevo Resultado"));
+				if(s.equals("1")||s.equals("2")||s.equals("X"))
+				((QuinielaSolution) ((ArrayList<CBRCase>)casos3).get(0).getSolution()).setResultado(s);
+			}
+			JOptionPane.showMessageDialog(null,"A continuacion le mostramos los casos más similares del partido a modo de justificación");
+			DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+			if (((ArrayList<CBRCase>)casos3).get(0)!=null)
+			_caseBase.learnCases(casos3);
+			
+
 		}		
 
 		
