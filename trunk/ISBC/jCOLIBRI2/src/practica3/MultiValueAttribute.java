@@ -22,7 +22,7 @@ public class MultiValueAttribute implements TypeAdaptor {
 
 	@Override
 	public void fromString(String content) throws Exception {
-		data.add(content);
+
 		// TODO Auto-generated method stub
 
 	}
