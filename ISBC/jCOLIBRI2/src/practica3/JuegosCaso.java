@@ -5,6 +5,8 @@ package practica3;
 
 import java.util.ArrayList;
 
+import practica1.QuinielaCaso;
+
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CaseComponent;
 
@@ -14,6 +16,16 @@ import jcolibri.cbrcore.CaseComponent;
  */
 public class JuegosCaso implements CaseComponent {
 
+	public JuegosCaso() {
+		
+		artists = new MultiValueAttribute();
+		designers = new MultiValueAttribute();
+		publishers = new MultiValueAttribute();
+		subdomains = new MultiValueAttribute();
+		categories = new MultiValueAttribute();
+		mechanics = new MultiValueAttribute();
+		
+	}
 	/**
 	 * 
 	 */
@@ -254,8 +266,7 @@ public class JuegosCaso implements CaseComponent {
 	}
 	@Override
 	public Attribute getIdAttribute() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Attribute("url", JuegosCaso.class);
 	}
 	
 }
