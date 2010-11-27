@@ -8,7 +8,7 @@ import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.exception.ExecutionException;
-
+ 
 
 
 public class RecomendadorJuegos implements StandardCBRApplication{
