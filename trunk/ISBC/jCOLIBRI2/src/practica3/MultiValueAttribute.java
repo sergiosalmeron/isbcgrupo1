@@ -22,7 +22,19 @@ public class MultiValueAttribute implements TypeAdaptor {
 
 	@Override
 	public void fromString(String content) throws Exception {
-
+		String d ="";
+		for (int i=0 ; i<content.length() ; i++){			
+			if ((content.charAt(i)!=';')){
+				if ((content.charAt(i)!='[') && (content.charAt(i)!=']')){
+					d=d+content.charAt(i);
+				}
+			}	
+			else {
+				data.add(d);
+				d="";
+			}			
+		}
+		data.add(d);
 		// TODO Auto-generated method stub
 
 	}
