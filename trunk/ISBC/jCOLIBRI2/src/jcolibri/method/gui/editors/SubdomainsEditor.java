@@ -17,6 +17,9 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
+import practica3.Categories;
+import practica3.Subdomains;
+
 
 /**
  * Parameter Editor for Enum values.
@@ -39,6 +42,7 @@ public class SubdomainsEditor extends JComboBox implements
 	{
 		super();
 	    this.addItem(EMPTY);
+	    this.setAllowedValues(null);
 
 	}
 	
@@ -47,7 +51,8 @@ public class SubdomainsEditor extends JComboBox implements
 	 * Returns an Enum value object
 	 */
 	public Object getEditorValue() {
-		Object value = this.getSelectedItem();
+		Subdomains value = new Subdomains();
+		value.add((String) this.getSelectedItem());
 		if (value.equals(EMPTY))
 			return null;
 		return value;
