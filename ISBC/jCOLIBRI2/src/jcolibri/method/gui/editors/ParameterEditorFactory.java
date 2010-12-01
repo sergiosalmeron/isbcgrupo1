@@ -39,6 +39,7 @@ public class ParameterEditorFactory {
 	ParameterEditorFactory.registerEditor(String.class, StringEditor.class);
 	ParameterEditorFactory.registerEditor(Text.class, TextEditor.class);
 	ParameterEditorFactory.registerEditor(Integer.class, IntegerEditor.class);
+	ParameterEditorFactory.registerEditor(java.util.ArrayList.class, java.util.ArrayList.class);
     }
     
     /**
