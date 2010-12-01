@@ -146,6 +146,7 @@ public class EvaluadorApp implements StandardCBRApplication {
 		CBRCase _case = (CBRCase)query;
 		QuinielaSolution sol = (QuinielaSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
 		if(!(solucion.getResultado().equals(sol.getResultado()))){
+
 			prediccion = 1.0;
 		}
 		else prediccion = 0.0;
