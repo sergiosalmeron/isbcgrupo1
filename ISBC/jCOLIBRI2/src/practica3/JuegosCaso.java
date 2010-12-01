@@ -1,272 +1,174 @@
-/**
- * 
- */
 package practica3;
 
 import java.util.ArrayList;
 
-import practica1.QuinielaCaso;
-
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CaseComponent;
 
-/**
- * @author usuario_local
- *
- */
-public class JuegosCaso implements CaseComponent {
-
-	public JuegosCaso() {
-		
-		artists = new MultiValueAttribute();
-		designers = new MultiValueAttribute();
-		publishers = new MultiValueAttribute();
-		subdomains = new MultiValueAttribute();
-		categories = new MultiValueAttribute();
-		mechanics = new MultiValueAttribute();
-		
+public class JuegosCaso implements CaseComponent{
+	
+	String url;
+	String code;
+	String codeName;
+	String title;
+	String image;
+	ArrayList<String> artists;
+	ArrayList<String> designers;
+	ArrayList<String> publishers;
+	String yearPublished;
+	String numPlayers;
+	String bestNumPlayers;
+	String recNumPlayers;
+	String playingTime;
+	String age;
+	ArrayList<String> subdomains;
+	ArrayList<String> categories;
+	ArrayList<String> mechanics;
+	
+	public String export()
+	{
+		return url+"\n"+
+		code+"\n"+
+		codeName+"\n"+
+		title+"\n"+
+		image+"\n"+
+		artists+"\n"+
+		designers+"\n"+
+		publishers+"\n"+
+		yearPublished+"\n"+
+		numPlayers+"\n"+
+		bestNumPlayers+"\n"+
+		recNumPlayers+"\n"+
+		playingTime+"\n"+
+		age+"\n"+
+		subdomains+"\n"+
+		categories+"\n"+
+		mechanics;
 	}
-	/**
-	 * 
-	 */
-	private String url;
-	private Integer gameId;
-	private String gameCodeName;
-	private String gameName;
-	private String imageUrl;
-	private MultiValueAttribute artists;
-	private MultiValueAttribute designers;
-	private MultiValueAttribute publishers;
-	private Integer yearPublished;
-	private String numPlayers;
-	private String bestNumPlayers;
-	private String recNumPlayers;
-	private Integer playingTime;
-	private String age;
-	private MultiValueAttribute subdomains;
-	private MultiValueAttribute categories;
-	private MultiValueAttribute mechanics;
-	/**
-	 * @return the url
-	 */
+	
+	
+	@Override
 	public String toString() {
-		return "Juego [url=" + url + ", gameId=" + gameId + ", gameCodeName="
-				+ gameCodeName + ", gameName=" + gameName + ", imageUrl="
-				+ imageUrl + ", artist=" + artists + ", designers=" + designers
-				+ ", publishers=" + publishers + ", yearPublished="
-				+ yearPublished + ", numPlayers=" + numPlayers
-				+ ", bestNumPlayers=" + bestNumPlayers + ", recNumPlayers="
-				+ recNumPlayers + ", playingTime=" + playingTime + ", age="
-				+ age + ", subdomains=" + subdomains + ", categories="
-				+ categories + ", mechanics=" + mechanics + "]";
+		return "Game [age=" + age + ", artists=" + artists
+				+ ", bestNumPlayers=" + bestNumPlayers + ", categories="
+				+ categories + ", code=" + code + ", codeName=" + codeName
+				+ ", designers=" + designers + ", image=" + image
+				+ ", mechanics=" + mechanics + ", numPlayers=" + numPlayers
+				+ ", playingTime=" + playingTime + ", publishers=" + publishers
+				+ ", recNumPlayers=" + recNumPlayers + ", subdomains="
+				+ subdomains + ", title=" + title + ", url=" + url
+				+ ", yearPublished=" + yearPublished + "]";
 	}
-	/**
-	 * @return the url
-	 */
+	
+	public ArrayList<String> getArtists() {
+		return artists;
+	}
+	public void setArtists(ArrayList<String> artists) {
+		this.artists = artists;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getUrl() {
 		return url;
 	}
-	/**
-	 * @param url the url to set
-	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	/**
-	 * @return the gameId
-	 */
-	public Integer getGameId() {
-		return gameId;
+	public String getCode() {
+		return code;
 	}
-	/**
-	 * @param gameId the gameId to set
-	 */
-	public void setGameId(Integer gameId) {
-		this.gameId = gameId;
+	public void setCode(String code) {
+		this.code = code;
 	}
-	/**
-	 * @return the gameCodeName
-	 */
-	public String getGameCodeName() {
-		return gameCodeName;
+	public String getTitle() {
+		return title;
 	}
-	/**
-	 * @param gameCodeName the gameCodeName to set
-	 */
-	public void setGameCodeName(String gameCodeName) {
-		this.gameCodeName = gameCodeName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	/**
-	 * @return the gameName
-	 */
-	public String getGameName() {
-		return gameName;
-	}
-	/**
-	 * @param gameName the gameName to set
-	 */
-	public void setGameName(String gameName) {
-		this.gameName = gameName;
-	}
-	/**
-	 * @return the imageUrl
-	 */
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	/**
-	 * @param imageUrl the imageUrl to set
-	 */
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	/**
-	 * @return the artists
-	 */
-	public MultiValueAttribute getArtists() {
-		return artists;
-	}
-	/**
-	 * @param artists the artists to set
-	 */
-	public void setArtists(MultiValueAttribute artists) {
-		this.artists = artists;
-	}
-	/**
-	 * @return the designers
-	 */
-	public MultiValueAttribute getDesigners() {
+	public ArrayList<String> getDesigners() {
 		return designers;
 	}
-	/**
-	 * @param designers the designers to set
-	 */
-	public void setDesigners(MultiValueAttribute designers) {
+	public void setDesigners(ArrayList<String> designers) {
 		this.designers = designers;
 	}
-	/**
-	 * @return the publishers
-	 */
-	public MultiValueAttribute getPublishers() {
+	public ArrayList<String> getPublishers() {
 		return publishers;
 	}
-	/**
-	 * @param publishers the publishers to set
-	 */
-	public void setPublishers(MultiValueAttribute publishers) {
+	public void setPublishers(ArrayList<String> publishers) {
 		this.publishers = publishers;
 	}
-	/**
-	 * @return the yearPublished
-	 */
-	public Integer getYearPublished() {
+	public String getYearPublished() {
 		return yearPublished;
 	}
-	/**
-	 * @param yearPublished the yearPublished to set
-	 */
-	public void setYearPublished(Integer yearPublished) {
+	public void setYearPublished(String yearPublished) {
 		this.yearPublished = yearPublished;
 	}
-	/**
-	 * @return the numPlayers
-	 */
 	public String getNumPlayers() {
 		return numPlayers;
 	}
-	/**
-	 * @param numPlayers the numPlayers to set
-	 */
 	public void setNumPlayers(String numPlayers) {
 		this.numPlayers = numPlayers;
 	}
-	/**
-	 * @return the bestNumPlayers
-	 */
 	public String getBestNumPlayers() {
 		return bestNumPlayers;
 	}
-	/**
-	 * @param bestNumPlayers the bestNumPlayers to set
-	 */
 	public void setBestNumPlayers(String bestNumPlayers) {
 		this.bestNumPlayers = bestNumPlayers;
 	}
-	/**
-	 * @return the recNumPlayers
-	 */
 	public String getRecNumPlayers() {
 		return recNumPlayers;
 	}
-	/**
-	 * @param recNumPlayers the recNumPlayers to set
-	 */
 	public void setRecNumPlayers(String recNumPlayers) {
 		this.recNumPlayers = recNumPlayers;
 	}
-	/**
-	 * @return the playingTime
-	 */
-	public Integer getPlayingTime() {
+	public String getPlayingTime() {
 		return playingTime;
 	}
-	/**
-	 * @param playingTime the playingTime to set
-	 */
-	public void setPlayingTime(Integer playingTime) {
+	public void setPlayingTime(String playingTime) {
 		this.playingTime = playingTime;
 	}
-	/**
-	 * @return the age
-	 */
 	public String getAge() {
 		return age;
 	}
-	/**
-	 * @param age the age to set
-	 */
 	public void setAge(String age) {
 		this.age = age;
 	}
-	/**
-	 * @return the subdomains
-	 */
-	public MultiValueAttribute getSubdomains() {
+	public ArrayList<String> getSubdomains() {
 		return subdomains;
 	}
-	/**
-	 * @param subdomains the subdomains to set
-	 */
-	public void setSubdomains(MultiValueAttribute subdomains) {
+	public void setSubdomains(ArrayList<String> subdomains) {
 		this.subdomains = subdomains;
 	}
-	/**
-	 * @return the categories
-	 */
-	public MultiValueAttribute getCategories() {
+	public ArrayList<String> getCategories() {
 		return categories;
 	}
-	/**
-	 * @param categories the categories to set
-	 */
-	public void setCategories(MultiValueAttribute categories) {
+	public void setCategories(ArrayList<String> categories) {
 		this.categories = categories;
 	}
-	/**
-	 * @return the mechanics
-	 */
-	public MultiValueAttribute getMechanics() {
+	public ArrayList<String> getMechanics() {
 		return mechanics;
 	}
-	/**
-	 * @param mechanics the mechanics to set
-	 */
-	public void setMechanics(MultiValueAttribute mechanics) {
+	public void setMechanics(ArrayList<String> mechanics) {
 		this.mechanics = mechanics;
 	}
+	public String getCodeName() {
+		return codeName;
+	}
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
+	}
+
+
 	@Override
 	public Attribute getIdAttribute() {
-		return new Attribute("url", JuegosCaso.class);
+		return new Attribute("code", this.getClass());
 	}
+
 	
-}
+}	
+	

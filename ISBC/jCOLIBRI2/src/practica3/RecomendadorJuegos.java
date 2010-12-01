@@ -1,5 +1,7 @@
 package practica3;
 
+import java.util.Collection;
+
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.CBRCase;
@@ -13,15 +15,16 @@ import jcolibri.exception.ExecutionException;
 
 public class RecomendadorJuegos implements StandardCBRApplication{
 	
-	Connector _connector;
+	ConnectorJuegos _connector;
 	CBRCaseBase _caseBase;
+	Collection<CBRCase> casos;
 	
 	@Override
 	public void configure() throws ExecutionException {
 		// TODO Auto-generated method stub
 		try{
-			_connector = new PlainTextConnector();
-			_connector.initFromXMLfile(jcolibri.util.FileIO.findFile("practica3/plaintextconfig.xml"));
+			_connector = new ConnectorJuegos();
+			_connector.initFromXMLfile(jcolibri.util.FileIO.findFile("practica3/games"));
 			_caseBase  = new LinealCaseBase();
 			} catch (Exception e){
 				throw new ExecutionException(e);
@@ -44,11 +47,13 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	@Override
 	public CBRCaseBase preCycle() throws ExecutionException {
 		_caseBase.init(_connector);
+		casos=_connector.retrieveAllCases();
 		//java.util.Collection<CBRCase> cases = _caseBase.getCases();
 		return _caseBase;
 	}
 	public static void main(String[] args) {
 		RecomendadorJuegos recomendador = new RecomendadorJuegos();
+		
 		try {
 			recomendador.configure();
 			recomendador.preCycle();
