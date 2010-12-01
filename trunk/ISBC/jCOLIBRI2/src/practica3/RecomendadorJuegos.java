@@ -2,6 +2,7 @@ package practica3;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
@@ -13,6 +14,7 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.extensions.recommendation.navigationByAsking.ObtainQueryWithAttributeQuestionMethod;
 import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
@@ -27,7 +29,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	
 	ConnectorJuegos _connector;
 	CBRCaseBase _caseBase;
-	ArrayList<CBRCase> casos;
+	static ArrayList<CBRCase> casos;
 	
 	@Override
 	public void configure() throws ExecutionException {
@@ -130,9 +132,14 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 					resultados+=quiniela.getResult();
 				}
 				*/
+			ArrayList<String> prueba = new ArrayList<String>();
+			prueba.add("Customizable Games");
+			HashMap<Attribute,String> labels = new HashMap<Attribute,String>();
+			labels.put(new Attribute("categories",JuegosCaso.class), "categories");
 			CBRQuery query=new CBRQuery();
 			query.setDescription(new JuegosCaso());
-			ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query,null,null);
+			((JuegosCaso)query.getDescription()).setCategories(prueba);
+			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
 			recomendador.cycle(query);
 			
 		//		JOptionPane.showMessageDialog(null, resultados);
