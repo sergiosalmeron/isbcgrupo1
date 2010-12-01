@@ -9,6 +9,7 @@
 package jcolibri.method.gui.editors;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class ParameterEditorFactory {
 	ParameterEditorFactory.registerEditor(String.class, StringEditor.class);
 	ParameterEditorFactory.registerEditor(Text.class, TextEditor.class);
 	ParameterEditorFactory.registerEditor(Integer.class, IntegerEditor.class);
-	ParameterEditorFactory.registerEditor(java.util.ArrayList.class, java.util.ArrayList.class);
+	ParameterEditorFactory.registerEditor(ArrayList.class, ArrayListEditor.class);
     }
     
     /**
@@ -50,17 +51,21 @@ public class ParameterEditorFactory {
 	{
 	    
 	    Class editor = table.get(type);
-	    if(editor != null)
+	    if(editor != null){
+		   if(editor.equals(ArrayListEditor.class))
+				return new ArrayListEditor(type); 	
 		return (ParameterEditor)table.get(type).newInstance();
-	    
+	    }
 	    for(Class<?> c : table.keySet())
 		if(c.isAssignableFrom(type))
 		    editor = table.get(c);
 	    
 	    if(editor.equals(EnumEditor.class))
 		return new EnumEditor(type);
+
 	    if(editor != null)
 		return (ParameterEditor)editor.newInstance();
+	    
 	    
 	    throw new Exception("No editor found for type: "+type.getName());
 	    

@@ -138,8 +138,9 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			labels.put(new Attribute("categories",JuegosCaso.class), "categories");
 			CBRQuery query=new CBRQuery();
 			query.setDescription(new JuegosCaso());
-			((JuegosCaso)query.getDescription()).setCategories(prueba);
-			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
+//			((JuegosCaso)query.getDescription()).setCategories(prueba);
+			ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query, null, null);
+//			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
 			recomendador.cycle(query);
 			
 		//		JOptionPane.showMessageDialog(null, resultados);
