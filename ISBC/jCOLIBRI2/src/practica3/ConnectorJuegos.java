@@ -68,13 +68,13 @@ public class ConnectorJuegos implements Connector {
 				game.setAge(reader.readLine());
 				String subDomains=(reader.readLine());
 				subDomains = subDomains.substring(1,subDomains.length()-1);
-				game.setSubdomains(new ArrayList<String>(Arrays.asList(subDomains.split(","))));
+				game.setSubdomains(new Subdomains(Arrays.asList(subDomains.split(","))));
 				String categories=(reader.readLine());
 				categories = categories.substring(1,categories.length()-1);
-				game.setCategories(new ArrayList<String>(Arrays.asList(categories.split(","))));
+				game.setCategories(new Categories(Arrays.asList(categories.split(","))));
 				String mechanics=(reader.readLine());
 				mechanics = mechanics.substring(1, mechanics.length()-1);
-				game.setMechanics(new ArrayList<String>(Arrays.asList(mechanics.split(","))));
+				game.setMechanics(new Mechanics(Arrays.asList(mechanics.split(","))));
 				reader.readLine();
 				
 				if(!reader.readLine().equals("<GAME>"))

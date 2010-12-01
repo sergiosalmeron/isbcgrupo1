@@ -14,6 +14,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
+import practica3.Categories;
+import practica3.Mechanics;
+import practica3.Subdomains;
+
 import jcolibri.datatypes.Instance;
 import jcolibri.datatypes.Text;
 
@@ -40,7 +44,9 @@ public class ParameterEditorFactory {
 	ParameterEditorFactory.registerEditor(String.class, StringEditor.class);
 	ParameterEditorFactory.registerEditor(Text.class, TextEditor.class);
 	ParameterEditorFactory.registerEditor(Integer.class, IntegerEditor.class);
-	ParameterEditorFactory.registerEditor(ArrayList.class, ArrayListEditor.class);
+	ParameterEditorFactory.registerEditor(Categories.class, CategoriesEditor.class);
+	ParameterEditorFactory.registerEditor(Subdomains.class, SubdomainsEditor.class);
+	ParameterEditorFactory.registerEditor(Mechanics.class, MechanicsEditor.class);
     }
     
     /**
@@ -52,8 +58,12 @@ public class ParameterEditorFactory {
 	    
 	    Class editor = table.get(type);
 	    if(editor != null){
-		   if(editor.equals(ArrayListEditor.class))
-				return new ArrayListEditor(type); 	
+		   if(editor.equals(CategoriesEditor.class))
+				return new CategoriesEditor(type); 
+		   if(editor.equals(SubdomainsEditor.class))
+				return new SubdomainsEditor(type); 	
+		   if(editor.equals(MechanicsEditor.class))
+				return new MechanicsEditor(type); 	
 		return (ParameterEditor)table.get(type).newInstance();
 	    }
 	    for(Class<?> c : table.keySet())
