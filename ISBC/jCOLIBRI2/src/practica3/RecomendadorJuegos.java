@@ -133,15 +133,20 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 					resultados+=quiniela.getResult();
 				}
 				*/
-			Categories prueba = new Categories();
-			prueba.add("Customizable Games");
 			HashMap<Attribute,String> labels = new HashMap<Attribute,String>();
-			labels.put(new Attribute("categories",JuegosCaso.class), "categories");
+			labels.put(new Attribute("subdomains",JuegosCaso.class), "Selecciona un Subdominio");
+			labels.put(new Attribute("mechanics",JuegosCaso.class), "Selecciona una Mecanica");
+			labels.put(new Attribute("categories",JuegosCaso.class), "Selecciona una Categoría");
+			Collection<Attribute> oculta = new ArrayList<Attribute>();
+			oculta.add(new Attribute("artists",JuegosCaso.class));
+			oculta.add(new Attribute("publishers",JuegosCaso.class));
+			oculta.add(new Attribute("designers",JuegosCaso.class));
+			
 			CBRQuery query=new CBRQuery();
 			query.setDescription(new JuegosCaso());
-			((JuegosCaso)query.getDescription()).setCategories(prueba);
-//			ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query, null, null);
+//			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query, oculta, labels);
 			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
+			
 			recomendador.cycle(query);
 			
 		//		JOptionPane.showMessageDialog(null, resultados);

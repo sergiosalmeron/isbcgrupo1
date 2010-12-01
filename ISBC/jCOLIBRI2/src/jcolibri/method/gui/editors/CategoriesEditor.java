@@ -9,6 +9,7 @@
 package jcolibri.method.gui.editors;
 
 
+import java.awt.Component;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,8 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+
+import practica3.Categories;
 
 
 /**
@@ -39,6 +42,7 @@ public class CategoriesEditor extends JComboBox implements
 	{
 		super();
 	    this.addItem(EMPTY);
+	    this.setAllowedValues(null);
 
 	}
 	
@@ -47,7 +51,8 @@ public class CategoriesEditor extends JComboBox implements
 	 * Returns an Enum value object
 	 */
 	public Object getEditorValue() {
-		Object value = this.getSelectedItem();
+		Categories value = new Categories();
+		value.add((String) this.getSelectedItem());
 		if (value.equals(EMPTY))
 			return null;
 		return value;
