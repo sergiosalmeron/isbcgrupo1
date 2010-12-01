@@ -83,10 +83,10 @@ public class CategoriesEditor extends JComboBox implements
 	public void setAllowedValues(Collection<Object> allowedValues)
 	{
 	    this.removeAllItems();
-	    this.addItem("Abstract Strategy");
-	    this.addItem("Action/Dexterity");
-	    this.addItem("Adventure");
-	    this.addItem("American Civil War");
+	    this.addItem("abstract strategy");
+	    this.addItem("action/dexterity");
+	    this.addItem("adventure");
+	    this.addItem("american civil war");
 	    this.addItem("American Indian Wars");
 	    this.addItem("American Revolutionary War");
 	    this.addItem("American West");
@@ -104,7 +104,7 @@ public class CategoriesEditor extends JComboBox implements
 	    this.addItem("Comic Book/Strip");
 	    this.addItem("Deduction");
 	    this.addItem("Dice");
-	    this.addItem("Economic");
+	    this.addItem("economic");
 	    this.addItem("Educational");
 	    this.addItem("Electronic");
 	    this.addItem("Environmental");

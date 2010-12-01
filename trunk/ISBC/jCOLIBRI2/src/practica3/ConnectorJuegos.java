@@ -41,7 +41,7 @@ public class ConnectorJuegos implements Connector {
 		ArrayList<CBRCase> cases = new ArrayList<CBRCase>();
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader("z:/games"));
+			BufferedReader reader = new BufferedReader(new FileReader("src/practica3/games"));
 			String line = null;
 			while ((line=reader.readLine())!=null)
 			{

@@ -1,6 +1,7 @@
 package practica3;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -48,10 +49,11 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	@Override
 	public void cycle(CBRQuery query) throws ExecutionException {
 		// TODO Auto-generated method stub
-		NNConfig simConfig = new NNConfig();
+		NuestroNN simConfig = new NuestroNN();
 		//Aquivienen las funciones de similitud particulares para cada campo
-		simConfig.setDescriptionSimFunction(new Average());
-		simConfig.addMapping(new Attribute("yearPublished", JuegosCaso.class), new Equal());
+		simConfig.setDescriptionSimFunction(new Media());
+		//simConfig.addMapping(new Attribute("yearPublished", JuegosCaso.class), new Equal());
+		simConfig.addMapping(new Attribute("categories", JuegosCaso.class), new Contains());
 		
 		// A bit of verbose
 		System.out.println("Query Description:");
@@ -59,7 +61,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		System.out.println();
 		
 		// Ejecutamos el NN
-		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
+		Collection<RetrievalResult> eval = NNScoring.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
 		eval = SelectCases.selectTopKRR(eval, 5);
 		Collection<CBRCase> casos = new ArrayList<CBRCase>();
 		System.out.println("Casos Recuperados: ");
