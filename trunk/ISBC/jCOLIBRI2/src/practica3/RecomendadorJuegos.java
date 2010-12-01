@@ -19,6 +19,7 @@ import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
+import jcolibri.method.retrieve.NNretrieval.similarity.GlobalSimilarityFunction;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
 import jcolibri.method.retrieve.selection.SelectCases;
@@ -132,15 +133,15 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 					resultados+=quiniela.getResult();
 				}
 				*/
-			ArrayList<String> prueba = new ArrayList<String>();
+			Categories prueba = new Categories();
 			prueba.add("Customizable Games");
 			HashMap<Attribute,String> labels = new HashMap<Attribute,String>();
 			labels.put(new Attribute("categories",JuegosCaso.class), "categories");
 			CBRQuery query=new CBRQuery();
 			query.setDescription(new JuegosCaso());
-//			((JuegosCaso)query.getDescription()).setCategories(prueba);
-			ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query, null, null);
-//			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
+			((JuegosCaso)query.getDescription()).setCategories(prueba);
+//			ObtainQueryWithFormMethod.obtainQueryWithoutInitialValues(query, null, null);
+			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
 			recomendador.cycle(query);
 			
 		//		JOptionPane.showMessageDialog(null, resultados);

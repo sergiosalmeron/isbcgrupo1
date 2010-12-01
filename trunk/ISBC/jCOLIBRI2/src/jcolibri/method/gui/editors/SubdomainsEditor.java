@@ -25,7 +25,7 @@ import javax.swing.JComponent;
  * @version 1.0
  * @see jcolibri.method.gui.editors.ParameterEditor
  */
-public class ArrayListEditor extends JComboBox implements
+public class SubdomainsEditor extends JComboBox implements
 		ParameterEditor {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class ArrayListEditor extends JComboBox implements
 	/**
 	 *  Creates a new instance
 	 */
-	public ArrayListEditor(Class<?> type)
+	public SubdomainsEditor(Class type)
 	{
 		super();
 	    this.addItem(EMPTY);
@@ -78,9 +78,15 @@ public class ArrayListEditor extends JComboBox implements
 	public void setAllowedValues(Collection<Object> allowedValues)
 	{
 	    this.removeAllItems();
-	    ArrayList<String> lista = new ArrayList<String>();
-	    lista.add("hola");
-		this.addItem(lista);
+	    this.addItem("Abstract Games");
+	    this.addItem("Children's Games");
+	    this.addItem("Customizable Games");
+	    this.addItem("Family Games");
+	    this.addItem("Party Games");
+	    this.addItem("Strategy Games");
+	    this.addItem("Thematic Games");
+	    this.addItem("Wargames");
+
 	}
 
 }

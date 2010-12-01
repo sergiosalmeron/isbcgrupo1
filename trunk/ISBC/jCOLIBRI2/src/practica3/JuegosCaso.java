@@ -21,9 +21,9 @@ public class JuegosCaso implements CaseComponent{
 	String recNumPlayers;
 	String playingTime;
 	String age;
-	ArrayList<String> subdomains;
-	ArrayList<String> categories;
-	ArrayList<String> mechanics;
+	Subdomains subdomains;
+	Categories categories;
+	Mechanics mechanics;
 	
 	public String export()
 	{
@@ -138,22 +138,22 @@ public class JuegosCaso implements CaseComponent{
 	public void setAge(String age) {
 		this.age = age;
 	}
-	public ArrayList<String> getSubdomains() {
+	public Subdomains getSubdomains() {
 		return subdomains;
 	}
-	public void setSubdomains(ArrayList<String> subdomains) {
+	public void setSubdomains(Subdomains subdomains) {
 		this.subdomains = subdomains;
 	}
-	public ArrayList<String> getCategories() {
+	public Categories getCategories() {
 		return categories;
 	}
-	public void setCategories(ArrayList<String> categories) {
+	public void setCategories(Categories categories) {
 		this.categories = categories;
 	}
-	public ArrayList<String> getMechanics() {
+	public Mechanics getMechanics() {
 		return mechanics;
 	}
-	public void setMechanics(ArrayList<String> mechanics) {
+	public void setMechanics(Mechanics mechanics) {
 		this.mechanics = mechanics;
 	}
 	public String getCodeName() {
