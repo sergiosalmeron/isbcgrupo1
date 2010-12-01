@@ -1,5 +1,6 @@
 package practica3;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jcolibri.casebase.LinealCaseBase;
@@ -17,7 +18,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	
 	ConnectorJuegos _connector;
 	CBRCaseBase _caseBase;
-	Collection<CBRCase> casos;
+	ArrayList<CBRCase> casos;
 	
 	@Override
 	public void configure() throws ExecutionException {
@@ -47,7 +48,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	@Override
 	public CBRCaseBase preCycle() throws ExecutionException {
 		_caseBase.init(_connector);
-		casos=_connector.retrieveAllCases();
+		casos=(ArrayList<CBRCase>)_connector.retrieveAllCases();
 		//java.util.Collection<CBRCase> cases = _caseBase.getCases();
 		return _caseBase;
 	}

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import antlr.collections.List;
+
 import practica3.JuegosCaso;
 
 import jcolibri.cbrcore.CBRCase;
@@ -39,7 +41,7 @@ public class ConnectorJuegos implements Connector {
 		ArrayList<CBRCase> cases = new ArrayList<CBRCase>();
 		try
 		{
-			BufferedReader reader = new BufferedReader(new FileReader("practica3/games"));
+			BufferedReader reader = new BufferedReader(new FileReader("z:/games"));
 			String line = null;
 			while ((line=reader.readLine())!=null)
 			{
@@ -50,9 +52,30 @@ public class ConnectorJuegos implements Connector {
 				game.setTitle(reader.readLine());
 				game.setImage(reader.readLine());
 				String artists = reader.readLine();
-				game.setArtists(new ArrayList<String>(Arrays.asList(artists.split(",[")))); //Sin probar...
-				
-				//...
+				artists = artists.substring(1, artists.length()-1);
+				game.setArtists(new ArrayList<String>(Arrays.asList(artists.split(","))));
+				String designers= reader.readLine();
+				designers = designers.substring(1, designers.length()-1);
+				game.setDesigners(new ArrayList<String>(Arrays.asList(designers.split(","))));
+				String publishers= reader.readLine();
+				publishers = publishers.substring(1, publishers.length()-1);
+				game.setPublishers(new ArrayList<String>(Arrays.asList(publishers.split(","))));
+				game.setYearPublished(reader.readLine());
+				game.setNumPlayers(reader.readLine());
+				game.setBestNumPlayers(reader.readLine());
+				game.setRecNumPlayers(reader.readLine());
+				game.setPlayingTime(reader.readLine());
+				game.setAge(reader.readLine());
+				String subDomains=(reader.readLine());
+				subDomains = subDomains.substring(1,subDomains.length()-1);
+				game.setSubdomains(new ArrayList<String>(Arrays.asList(subDomains.split(","))));
+				String categories=(reader.readLine());
+				categories = categories.substring(1,categories.length()-1);
+				game.setCategories(new ArrayList<String>(Arrays.asList(categories.split(","))));
+				String mechanics=(reader.readLine());
+				mechanics = mechanics.substring(1, mechanics.length()-1);
+				game.setMechanics(new ArrayList<String>(Arrays.asList(mechanics.split(","))));
+				reader.readLine();
 				
 				if(!reader.readLine().equals("<GAME>"))
 					throw new Exception("File format error");
@@ -66,7 +89,7 @@ public class ConnectorJuegos implements Connector {
 
 		}catch (Exception e)
 		{
-			//error...
+			System.out.println(e);
 		}
 		return cases;
 	}
