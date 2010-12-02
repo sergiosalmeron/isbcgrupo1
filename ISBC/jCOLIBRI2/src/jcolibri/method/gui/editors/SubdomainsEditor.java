@@ -83,14 +83,14 @@ public class SubdomainsEditor extends JComboBox implements
 	public void setAllowedValues(Collection<Object> allowedValues)
 	{
 	    this.removeAllItems();
-	    this.addItem("Abstract Games");
-	    this.addItem("Children's Games");
-	    this.addItem("Customizable Games");
-	    this.addItem("Family Games");
-	    this.addItem("Party Games");
-	    this.addItem("Strategy Games");
-	    this.addItem("Thematic Games");
-	    this.addItem("Wargames");
+	    this.addItem("abstract-games");
+	    this.addItem("childrens-games");
+	    this.addItem("customizable-games");
+	    this.addItem("family-games");
+	    this.addItem("party-games");
+	    this.addItem("strategy-games");
+	    this.addItem("thematic-games");
+	    this.addItem("wargames");
 
 	}
 
