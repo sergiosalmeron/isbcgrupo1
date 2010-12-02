@@ -15,6 +15,7 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.extensions.recommendation.casesDisplay.UserChoice;
 import jcolibri.extensions.recommendation.navigationByAsking.ObtainQueryWithAttributeQuestionMethod;
 import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
@@ -52,8 +53,31 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		NuestroNN simConfig = new NuestroNN();
 		//Aquivienen las funciones de similitud particulares para cada campo
 		simConfig.setDescriptionSimFunction(new Media());
-		//simConfig.addMapping(new Attribute("yearPublished", JuegosCaso.class), new Equal());
-		simConfig.addMapping(new Attribute("categories", JuegosCaso.class), new Contains());
+		Attribute ano = new Attribute("yearPublished", JuegosCaso.class);
+		Attribute categorias = new Attribute("categories", JuegosCaso.class);
+		Attribute subdominios = new Attribute("subdomains", JuegosCaso.class);
+		Attribute mecanicas = new Attribute("mechanics", JuegosCaso.class);
+		Attribute edad = new Attribute("age", JuegosCaso.class);
+		Attribute recplayers = new Attribute("recNumPlayers", JuegosCaso.class);
+		Attribute bestplayers = new Attribute("bestNumPlayers", JuegosCaso.class);
+		Attribute numPlayers = new Attribute("numPlayers", JuegosCaso.class);
+		simConfig.addMapping(ano, new Equal());
+		simConfig.addMapping(categorias, new Contains());
+		simConfig.addMapping(subdominios, new Contains());
+		simConfig.addMapping(mecanicas, new Contains());
+		simConfig.addMapping(edad, new Equal());
+		simConfig.addMapping(recplayers, new Equal());
+		simConfig.addMapping(bestplayers, new Equal());
+		simConfig.addMapping(numPlayers, new Equal());
+		simConfig.setWeight(ano, 0.2);
+		simConfig.setWeight(categorias, 1.0);
+		simConfig.setWeight(subdominios, 0.8);
+		simConfig.setWeight(mecanicas, 0.8);
+		simConfig.setWeight(edad, 0.6);
+		simConfig.setWeight(bestplayers, 0.4);
+		simConfig.setWeight(recplayers, 0.4);
+		simConfig.setWeight(numPlayers, 0.4);
+		
 		
 		// A bit of verbose
 		System.out.println("Query Description:");
@@ -69,7 +93,28 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			System.out.println(nse);
 			casos.add(nse.get_case());
 		}
-		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		HashMap<Attribute,String> labels = new HashMap<Attribute,String>();
+		labels.put(new Attribute("subdomains",JuegosCaso.class), "Selecciona un Subdominio");
+		labels.put(new Attribute("mechanics",JuegosCaso.class), "Selecciona una Mecanica");
+		labels.put(new Attribute("categories",JuegosCaso.class), "Selecciona una Categoría");
+		Collection<Attribute> oculta = new ArrayList<Attribute>();
+		oculta.add(new Attribute("artists",JuegosCaso.class));
+		oculta.add(new Attribute("publishers",JuegosCaso.class));
+		oculta.add(new Attribute("designers",JuegosCaso.class));
+		oculta.add(new Attribute("url",JuegosCaso.class));
+		oculta.add(new Attribute("image",JuegosCaso.class));
+		UserChoice choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		while (choice.isRefineQuery()) {			
+			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query, oculta, labels);
+			cycle(query);
+			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		} 
+		if (choice.isBuy()){
+			//hacemos aqui el colaborativo
+		}
+		else {
+			System.exit(0);
+		}
 		
 	}
 
