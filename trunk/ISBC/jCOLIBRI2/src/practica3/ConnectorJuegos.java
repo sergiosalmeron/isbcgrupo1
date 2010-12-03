@@ -47,7 +47,7 @@ public class ConnectorJuegos implements Connector {
 			{
 				JuegosCaso game = new JuegosCaso();
 				game.setUrl(line);
-				game.setCode(reader.readLine());
+				game.setCode(Integer.parseInt(reader.readLine()));
 				game.setCodeName(reader.readLine());
 				game.setTitle(reader.readLine());
 				game.setImage(reader.readLine());

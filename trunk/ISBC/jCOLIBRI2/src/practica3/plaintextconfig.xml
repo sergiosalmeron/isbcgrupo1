@@ -1,24 +1,10 @@
 <TextFileConfiguration>
-	<FilePath>practica3/games</FilePath>
+	<FilePath>practica3/ratings</FilePath>
 	<Delimiters>,</Delimiters>
-	<DescriptionClassName>practica3.JuegosCaso</DescriptionClassName>
+	<DescriptionClassName>practica3.ratingCaso</DescriptionClassName>
 	<DescriptionMappings>
-		<Map>url</Map>
-		<Map>gameId</Map>
-		<Map>gameCodeName</Map>
-		<Map>gameName</Map>
-		<Map>imageUrl</Map>
-		<Map>artists</Map>
-		<Map>designers</Map>
-		<Map>publishers</Map>
-		<Map>yearPublished</Map>
-		<Map>numPlayers</Map>
-		<Map>bestNumPlayers</Map>
-		<Map>recNumPlayers</Map>
-		<Map>playingTime</Map>
-		<Map>age</Map>
-		<Map>subdomains</Map>
-		<Map>categories</Map>
-		<Map>mechanics</Map>
+		<Map>userName</Map>
+		<Map>codigoJuego</Map>
+		<Map>puntuacion</Map>
 	</DescriptionMappings>
 </TextFileConfiguration>
