@@ -77,7 +77,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		simConfig.addMapping(edad, new Equal());
 		simConfig.addMapping(recplayers, new Equal());
 		simConfig.addMapping(bestplayers, new Equal());
-		simConfig.addMapping(numPlayers, new Rango());
+		simConfig.addMapping(numPlayers, new Equal());
 		simConfig.setWeight(ano, 0.2);
 		simConfig.setWeight(categorias, 1.0);
 		simConfig.setWeight(subdominios, 0.8);
@@ -113,8 +113,13 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		oculta.add(new Attribute("url",JuegosCaso.class));
 		oculta.add(new Attribute("image",JuegosCaso.class));
 		UserChoice choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		CBRQuery query2 = new CBRQuery();
+		query2 = choice.getSelectedCaseAsQuery();
 		while (choice.isRefineQuery()) {
-			CBRQuery query2 = choice.getSelectedCaseAsQuery();
+			if (query2== null){
+				query2 = query;
+			}else 
+			query2 = choice.getSelectedCaseAsQuery();
 			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query2, oculta, labels);
 			cycle(query2);
 			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
