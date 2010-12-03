@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Random;
 
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
@@ -76,7 +77,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		simConfig.addMapping(edad, new Equal());
 		simConfig.addMapping(recplayers, new Equal());
 		simConfig.addMapping(bestplayers, new Equal());
-		simConfig.addMapping(numPlayers, new Equal());
+		simConfig.addMapping(numPlayers, new Rango());
 		simConfig.setWeight(ano, 0.2);
 		simConfig.setWeight(categorias, 1.0);
 		simConfig.setWeight(subdominios, 0.8);
@@ -112,9 +113,10 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		oculta.add(new Attribute("url",JuegosCaso.class));
 		oculta.add(new Attribute("image",JuegosCaso.class));
 		UserChoice choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
-		while (choice.isRefineQuery()) {			
-			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query, oculta, labels);
-			cycle(query);
+		while (choice.isRefineQuery()) {
+			CBRQuery query2 = choice.getSelectedCaseAsQuery();
+			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query2, oculta, labels);
+			cycle(query2);
 			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
 		} 
 		if (choice.isBuy()){
@@ -123,6 +125,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			ratingCaso rating = new ratingCaso();
 			rating.setUserName("comprador");
 			rating.setCodigoJuego(new ArrayList<Integer>());
+			rating.setPuntuacion(new ArrayList<Double>());
 			rating.getCodigoJuego().add(((JuegosCaso)caso.getDescription()).getCode());			
 			nueva.setDescription(rating);
 			cycle2(nueva);
@@ -145,13 +148,74 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		System.out.println();
 		
 		// Ejecutamos el NN
-		Collection<RetrievalResult> eval = NNScoring.evaluateSimilarity(_caseBase.getCases(), selectedCase, simConfig2);
+		Collection<RetrievalResult> eval = NNScoring.evaluateSimilarity(_caseBase2.getCases(), selectedCase, simConfig2);
 		eval = SelectCases.selectTopKRR(eval, 10);
 		Collection<CBRCase> casos = new ArrayList<CBRCase>();
 		System.out.println("Casos Recuperados: ");
 		for(RetrievalResult nse: eval){
 			System.out.println(nse);
 			casos.add(nse.get_case());
+		}
+		Random r = new Random();
+		int s = r.nextInt(casos.size()-1);
+		System.out.println(s);
+		CBRCase auxiliar = ((ArrayList<CBRCase>)casos).get(s);
+		ratingCaso este = (ratingCaso)auxiliar.getDescription();
+		NuestroNN simConfig3 = new NuestroNN();
+		simConfig3.setDescriptionSimFunction(new Media());
+		Attribute cod2 = new Attribute("code", JuegosCaso.class);
+		simConfig3.addMapping(cod2, new Equal());
+		JuegosCaso que= new JuegosCaso();
+		Collection<CBRCase> casos2 = new ArrayList<CBRCase>();
+		for(int i= 0; i<este.getCodigoJuego().size();i++){
+			que= new JuegosCaso();
+			que.setCode(este.getCodigoJuego().get(i));
+			CBRQuery nuevaQuery = new CBRQuery();
+			nuevaQuery.setDescription(que);
+			Collection<RetrievalResult> eval2 = NNScoring.evaluateSimilarity(_caseBase.getCases(), nuevaQuery, simConfig3);
+			eval2 = SelectCases.selectTopKRR(eval2, 1);	
+			System.out.println("Casos Recuperados: ");
+			for(RetrievalResult nse: eval2){
+				System.out.println(nse);
+				if(!(((ratingCaso)(selectedCase.getDescription())).getCodigoJuego().get(0).equals(((JuegosCaso)(nse.get_case().getDescription())).getCode())))
+				casos2.add(nse.get_case());
+			}
+		}
+		HashMap<Attribute,String> labels = new HashMap<Attribute,String>();
+		labels.put(new Attribute("subdomains",JuegosCaso.class), "Selecciona un Subdominio");
+		labels.put(new Attribute("mechanics",JuegosCaso.class), "Selecciona una Mecanica");
+		labels.put(new Attribute("categories",JuegosCaso.class), "Selecciona una Categoría");
+		Collection<Attribute> oculta = new ArrayList<Attribute>();
+		oculta.add(new Attribute("artists",JuegosCaso.class));
+		oculta.add(new Attribute("publishers",JuegosCaso.class));
+		oculta.add(new Attribute("designers",JuegosCaso.class));
+		oculta.add(new Attribute("url",JuegosCaso.class));
+		oculta.add(new Attribute("image",JuegosCaso.class));		
+		UserChoice choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos2);
+		while (choice.isRefineQuery()) {
+			CBRQuery query = choice.getSelectedCaseAsQuery();
+			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query, oculta, labels);
+			try {
+				cycle(query);
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		} 
+		if (choice.isBuy()){
+			CBRCase caso = choice.getSelectedCase();
+			CBRQuery nueva = new CBRQuery();
+			ratingCaso rating = new ratingCaso();
+			rating.setUserName("comprador");
+			rating.setCodigoJuego(new ArrayList<Integer>());
+			rating.setPuntuacion(new ArrayList<Double>());
+			rating.getCodigoJuego().add(((JuegosCaso)caso.getDescription()).getCode());			
+			nueva.setDescription(rating);
+			cycle2(nueva);
+		}
+		else {
+			System.exit(0);
 		}
 		
 		

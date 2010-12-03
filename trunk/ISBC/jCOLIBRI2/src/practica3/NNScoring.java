@@ -35,7 +35,9 @@ public class NNScoring extends NNScoringMethod {
 		GlobalSimilarityFunction gsf = simConfig.getDescriptionSimFunction();
 		for(CBRCase _case: cases)
 		{
-			res.add(new RetrieveOur(_case, ((Media)gsf).compute(_case.getDescription(), query.getDescription(), _case, query, simConfig)));
+			RetrieveOur s = new RetrieveOur(_case, ((Media)gsf).compute(_case.getDescription(), query.getDescription(), _case, query, simConfig));
+			if(s.getEval()>0.0)
+				res.add(s);//new RetrieveOur(_case, ((Media)gsf).compute(_case.getDescription(), query.getDescription(), _case, query, simConfig)));
 			ProgressController.step(NNScoring.class);
 		}
 		java.util.Collections.sort(res);
