@@ -75,7 +75,7 @@ public class ConnectorRatings implements Connector {
 						d=d+line.charAt(i);
 						i++;
 					}
-					if(Double.parseDouble(d)>7.5){
+					if(Double.parseDouble(d)>=9.0){
 						rating.getPuntuacion().add(Double.parseDouble(d));
 					}else rating.getCodigoJuego().remove(rating.getCodigoJuego().size()-1);
 				}
