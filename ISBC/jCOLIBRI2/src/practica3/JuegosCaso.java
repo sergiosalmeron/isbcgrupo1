@@ -8,7 +8,7 @@ import jcolibri.cbrcore.CaseComponent;
 public class JuegosCaso implements CaseComponent{
 	
 	String url;
-	String code;
+	Integer code;
 	String codeName;
 	String title;
 	String image;
@@ -78,10 +78,10 @@ public class JuegosCaso implements CaseComponent{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 	public String getTitle() {

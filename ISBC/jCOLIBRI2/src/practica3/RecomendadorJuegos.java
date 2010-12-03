@@ -32,7 +32,11 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	
 	ConnectorJuegos _connector;
 	CBRCaseBase _caseBase;
+//	PlainTextConnector _connector2;
+	ConnectorRatings _connector2;
+	CBRCaseBase _caseBase2;
 	static ArrayList<CBRCase> casos;
+	static ArrayList<CBRCase> votos;
 	
 	@Override
 	public void configure() throws ExecutionException {
@@ -41,6 +45,10 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			_connector = new ConnectorJuegos();
 			_connector.initFromXMLfile(jcolibri.util.FileIO.findFile("practica3/games"));
 			_caseBase  = new LinealCaseBase();
+			_connector2 = new ConnectorRatings();
+			_connector2.initFromXMLfile(jcolibri.util.FileIO.findFile("practica3/plaintextconfig.xml"));
+			_caseBase2  = new LinealCaseBase();
+
 			} catch (Exception e){
 				throw new ExecutionException(e);
 		}
@@ -110,7 +118,14 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
 		} 
 		if (choice.isBuy()){
-			//hacemos aqui el colaborativo
+			CBRCase caso = choice.getSelectedCase();
+			CBRQuery nueva = new CBRQuery();
+			ratingCaso rating = new ratingCaso();
+			rating.setUserName("comprador");
+			rating.setCodigoJuego(new ArrayList<Integer>());
+			rating.getCodigoJuego().add(((JuegosCaso)caso.getDescription()).getCode());			
+			nueva.setDescription(rating);
+			cycle2(nueva);
 		}
 		else {
 			System.exit(0);
@@ -118,25 +133,62 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		
 	}
 
+	private void cycle2(CBRQuery selectedCase) {
+		NuestroNN simConfig2 = new NuestroNN();
+		// TODO Auto-generated method stub
+		simConfig2.setDescriptionSimFunction(new Media());
+		Attribute cod = new Attribute("codigoJuego", ratingCaso.class);
+		simConfig2.addMapping(cod, new Contains());
+		// A bit of verbose
+		System.out.println("Query Description:");
+		System.out.println(selectedCase.getDescription());
+		System.out.println();
+		
+		// Ejecutamos el NN
+		Collection<RetrievalResult> eval = NNScoring.evaluateSimilarity(_caseBase.getCases(), selectedCase, simConfig2);
+		eval = SelectCases.selectTopKRR(eval, 10);
+		Collection<CBRCase> casos = new ArrayList<CBRCase>();
+		System.out.println("Casos Recuperados: ");
+		for(RetrievalResult nse: eval){
+			System.out.println(nse);
+			casos.add(nse.get_case());
+		}
+		
+		
+	}
+
 	@Override
 	public void postCycle() throws ExecutionException {
 		// TODO Auto-generated method stub
 		_connector.close();
+		_connector2.close();
 	}
 
 	@Override
 	public CBRCaseBase preCycle() throws ExecutionException {
 		_caseBase.init(_connector);
 		casos=(ArrayList<CBRCase>)_connector.retrieveAllCases();
+	//	_caseBase2.init(_connector2);
+	//	java.util.Collection<CBRCase> cases = _connector2.retrieveAllCases();
 		//java.util.Collection<CBRCase> cases = _caseBase.getCases();
 		return _caseBase;
 	}
+	
+	public CBRCaseBase preCycle2() throws ExecutionException {
+		_caseBase2.init(_connector2);
+		votos=(ArrayList<CBRCase>)_connector2.retrieveAllCases();
+	//	java.util.Collection<CBRCase> cases = _connector2.retrieveAllCases();
+		//java.util.Collection<CBRCase> cases = _caseBase.getCases();
+		return _caseBase2;
+	}
+	
 	public static void main(String[] args) {
 		RecomendadorJuegos recomendador = new RecomendadorJuegos();
 		int numQuerys;
 		try {
 			recomendador.configure();
 			recomendador.preCycle();
+			recomendador.preCycle2();
 			numQuerys= 1;
 /*			try{
 				numQuerys = Integer.parseInt(JOptionPane.showInputDialog(null, "Cuantos usuarios desean participar"));
