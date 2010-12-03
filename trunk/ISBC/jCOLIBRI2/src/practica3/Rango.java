@@ -1,7 +1,7 @@
 package practica3;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Iterator;
 
 import jcolibri.exception.NoApplicableSimilarityFunctionException;
 import jcolibri.method.retrieve.NNretrieval.similarity.LocalSimilarityFunction;
@@ -29,7 +29,7 @@ public class Rango implements LocalSimilarityFunction {
 	}
 
 	@Override
-	public double compute(Object o1, Object o2)
+	public double compute(Object o2, Object o1)
 			throws NoApplicableSimilarityFunctionException {
     	int s = 0;
     	if ((o1 == null) || (o2 == null))
@@ -41,23 +41,45 @@ public class Rango implements LocalSimilarityFunction {
     	((String)o2).charAt(1)=='8' || ((String)o2).charAt(1)=='9' || ((String)o2).charAt(1)=='0' )
     		primero = primero + ((String)o2).charAt(1);
     	int first = Integer.parseInt(primero);
+    	int last=0;
     	String ultimo="";
-    	if (((String)o2).charAt(((String)o2).length()-2)=='1' || ((String)o2).charAt(((String)o2).length()-2)=='2' ||((String)o2).charAt(((String)o2).length()-2)=='3' ||((String)o2).charAt(((String)o2).length()-2)=='4' ||
-    	    	((String)o2).charAt(((String)o2).length()-2)=='5' || ((String)o2).charAt(((String)o2).length()-2)=='6' ||((String)o2).charAt(((String)o2).length()-2)=='7' ||
-    	    	((String)o2).charAt(((String)o2).length()-2)=='8' || ((String)o2).charAt(((String)o2).length()-2)=='9' || ((String)o2).charAt(((String)o2).length()-2)=='0' )
-    		ultimo = ultimo + ((String)o2).charAt(((String)o2).length()-2);
-    		ultimo = ultimo + ((String)o2).charAt(((String)o2).length()-1);
-    		
-    	int last = Integer.parseInt(ultimo);
-    	
-    	int user = 0;
-    	try {
-    		user = Integer.parseInt((String)o1);
+    	if(((String)o2).length()!=1){
+	    	if (((String)o2).charAt(((String)o2).length()-2)=='1' || ((String)o2).charAt(((String)o2).length()-2)=='2' ||((String)o2).charAt(((String)o2).length()-2)=='3' ||
+					((String)o2).charAt(((String)o2).length()-2)=='4' || ((String)o2).charAt(((String)o2).length()-2)=='5' || ((String)o2).charAt(((String)o2).length()-2)=='6' ||
+					((String)o2).charAt(((String)o2).length()-2)=='7' || ((String)o2).charAt(((String)o2).length()-2)=='8' || ((String)o2).charAt(((String)o2).length()-2)=='9' || 
+					((String)o2).charAt(((String)o2).length()-2)=='0')
+	    		ultimo = ultimo + ((String)o2).charAt(((String)o2).length()-2);
+	    		ultimo = ultimo + ((String)o2).charAt(((String)o2).length()-1);
+	    		
+	    	last = Integer.parseInt(ultimo);
     	}
-    	catch(Exception e){
+    	else{
+    		last = first;
     	}
-    	if (user>=first && user<=last)
-    		s=1;
-        	return s;
-        }
+    	ArrayList<Integer> user = new ArrayList<Integer>();
+    	int i=0;
+    	while (i<((String)o1).length()){
+    		String num="";
+    		while ((((String)o1).charAt(i)=='1' || ((String)o1).charAt(i)=='2' ||((String)o1).charAt(i)=='3' ||
+    				((String)o1).charAt(i)=='4' || ((String)o1).charAt(i)=='5' || ((String)o1).charAt(i)=='6' ||
+    				((String)o1).charAt(i)=='7' || ((String)o1).charAt(i)=='8' || ((String)o1).charAt(i)=='9' || 
+    				((String)o1).charAt(i)=='0') && (i<((String)o1).length())){
+    			
+    			num=num+((String)o1).charAt(i);
+    			i=i+1;
+    		}
+    		if(!num.equals("")){
+    			user.add(Integer.parseInt(num));
+    		}
+    		i=i+1;
+    	}	
+    	Iterator<Integer> it = user.iterator();
+    	while(it.hasNext()){
+    		Integer aux = it.next();
+    		if (aux>=first && aux<=last){
+    	   		s=1;
+    	   	}
+    	}
+        return s;
+	}   
 }
