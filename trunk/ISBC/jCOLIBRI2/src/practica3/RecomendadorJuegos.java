@@ -38,8 +38,14 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	CBRCaseBase _caseBase2;
 	static ArrayList<CBRCase> casos;
 	static ArrayList<CBRCase> votos;
+	private ArrayList<CBRCase> eleccion;
 	
-	@Override
+	public ArrayList<CBRCase> getEleccion(){
+		return eleccion;
+	}
+	public void setEleccion(ArrayList<CBRCase> s){
+		eleccion = s;
+	}
 	public void configure() throws ExecutionException {
 		// TODO Auto-generated method stub
 		try{
@@ -49,6 +55,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			_connector2 = new ConnectorRatings();
 			_connector2.initFromXMLfile(jcolibri.util.FileIO.findFile("practica3/plaintextconfig.xml"));
 			_caseBase2  = new LinealCaseBase();
+			eleccion = new ArrayList<CBRCase>();
 
 			} catch (Exception e){
 				throw new ExecutionException(e);
@@ -126,6 +133,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		} 
 		if (choice.isBuy()){
 			CBRCase caso = choice.getSelectedCase();
+			eleccion.add(caso);
 			CBRQuery nueva = new CBRQuery();
 			ratingCaso rating = new ratingCaso();
 			rating.setUserName("comprador");
@@ -136,7 +144,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			cycle2(nueva);
 		}
 		else {
-			System.exit(0);
+			return;
 		}
 		
 	}
@@ -210,6 +218,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		} 
 		if (choice.isBuy()){
 			CBRCase caso = choice.getSelectedCase();
+			eleccion.add(caso);
 			CBRQuery nueva = new CBRQuery();
 			ratingCaso rating = new ratingCaso();
 			rating.setUserName("comprador");
@@ -220,7 +229,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			cycle2(nueva);
 		}
 		else {
-			System.exit(0);
+			return;
 		}
 		
 		
@@ -316,6 +325,8 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
 			
 			recomendador.cycle(query);
+			recomendador.postCycle();
+			System.exit(0);
 			
 		//		JOptionPane.showMessageDialog(null, resultados);
 				
