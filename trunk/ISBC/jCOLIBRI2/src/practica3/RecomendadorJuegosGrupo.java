@@ -95,7 +95,7 @@ public class RecomendadorJuegosGrupo implements StandardCBRApplication {
 			e.printStackTrace();
 		}
 		
-		DisplayCasesTableMethod.displayCasesInTableBasic(casos);
+		NuestroMuestraCasos.displayCasesInTableBasic(casos);
 		System.exit(0);
 	}
 
