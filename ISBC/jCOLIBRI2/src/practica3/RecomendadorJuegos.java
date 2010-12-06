@@ -119,7 +119,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		oculta.add(new Attribute("designers",JuegosCaso.class));
 		oculta.add(new Attribute("url",JuegosCaso.class));
 		oculta.add(new Attribute("image",JuegosCaso.class));
-		UserChoice choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+		UserChoice choice = NuestroMuestraCasos.displayCasesInTableEditQuery(casos);
 		CBRQuery query2 = new CBRQuery();
 		query2 = choice.getSelectedCaseAsQuery();
 		while (choice.isRefineQuery()) {
@@ -127,9 +127,9 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 				query2 = query;
 			}else 
 			query2 = choice.getSelectedCaseAsQuery();
-			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query2, oculta, labels);
+			NuestroQueryForm.obtainQueryWithInitialValues(query2, oculta, labels);
 			cycle(query2);
-			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+			return;
 		} 
 		if (choice.isBuy()){
 			CBRCase caso = choice.getSelectedCase();
@@ -142,6 +142,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			rating.getCodigoJuego().add(((JuegosCaso)caso.getDescription()).getCode());			
 			nueva.setDescription(rating);
 			cycle2(nueva);
+			return;
 		}
 		else {
 			return;
@@ -204,17 +205,17 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		oculta.add(new Attribute("designers",JuegosCaso.class));
 		oculta.add(new Attribute("url",JuegosCaso.class));
 		oculta.add(new Attribute("image",JuegosCaso.class));		
-		UserChoice choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos2);
+		UserChoice choice = NuestroQueryForm2.displayCasesInTableEditQuery(casos2);
 		while (choice.isRefineQuery()) {
 			CBRQuery query = choice.getSelectedCaseAsQuery();
-			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query, oculta, labels);
+			NuestroQueryForm.obtainQueryWithInitialValues(query, oculta, labels);
 			try {
 				cycle(query);
 			} catch (ExecutionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			choice = DisplayCasesTableMethod.displayCasesInTableEditQuery(casos);
+			choice = NuestroQueryForm2.displayCasesInTableEditQuery(casos);
 		} 
 		if (choice.isBuy()){
 			CBRCase caso = choice.getSelectedCase();
@@ -227,6 +228,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			rating.getCodigoJuego().add(((JuegosCaso)caso.getDescription()).getCode());			
 			nueva.setDescription(rating);
 			cycle2(nueva);
+			return;
 		}
 		else {
 			return;
@@ -262,12 +264,12 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 	
 	public static void main(String[] args) {
 		RecomendadorJuegos recomendador = new RecomendadorJuegos();
-		int numQuerys;
+
 		try {
 			recomendador.configure();
 			recomendador.preCycle();
 			recomendador.preCycle2();
-			numQuerys= 1;
+			//numQuerys= 1;
 /*			try{
 				numQuerys = Integer.parseInt(JOptionPane.showInputDialog(null, "Cuantos usuarios desean participar"));
 		}catch (Exception e){};
@@ -322,7 +324,7 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 			CBRQuery query=new CBRQuery();
 			query.setDescription(new JuegosCaso());
 //			ObtainQueryWithFormMethod.obtainQueryWithInitialValues(query, oculta, labels);
-			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
+			NuestraQueryAttribute.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
 			
 			recomendador.cycle(query);
 			recomendador.postCycle();

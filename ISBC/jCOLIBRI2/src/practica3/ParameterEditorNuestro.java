@@ -1,3 +1,5 @@
+package practica3;
+
 /**
  * CreateProfile.java
  * jCOLIBRI2 framework. 
@@ -6,7 +8,6 @@
  * http://gaia.fdi.ucm.es
  * 02/11/2007
  */
-package jcolibri.method.gui.editors;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import practica3.SubdomainsEditor;
 
 import jcolibri.datatypes.Instance;
 import jcolibri.datatypes.Text;
+import jcolibri.method.gui.editors.*;
 
 /**
  * Factory to obtain the ParameterEditor of a data type.
@@ -30,22 +32,25 @@ import jcolibri.datatypes.Text;
  * @version 1.0
  *
  */
-public class ParameterEditorFactory {
+public class ParameterEditorNuestro {
 
     private static HashMap<Class, Class> table = new HashMap<Class, Class>();
 
     //Code to register editors.
     //TODO search in classpath.
     static{
-	ParameterEditorFactory.registerEditor(Boolean.class, BooleanEditor.class);
-	ParameterEditorFactory.registerEditor(Date.class, DateEditor.class);
-	ParameterEditorFactory.registerEditor(Double.class, DoubleEditor.class);
-	ParameterEditorFactory.registerEditor(Enum.class, EnumEditor.class);
-	ParameterEditorFactory.registerEditor(File.class, FileEditor.class);
-	ParameterEditorFactory.registerEditor(Instance.class, InstanceEditor.class);
-	ParameterEditorFactory.registerEditor(String.class, StringEditor.class);
-	ParameterEditorFactory.registerEditor(Text.class, TextEditor.class);
-	ParameterEditorFactory.registerEditor(Integer.class, IntegerEditor.class);
+	ParameterEditorNuestro.registerEditor(Boolean.class, BooleanEditor.class);
+	ParameterEditorNuestro.registerEditor(Date.class, DateEditor.class);
+	ParameterEditorNuestro.registerEditor(Double.class, DoubleEditor.class);
+	ParameterEditorNuestro.registerEditor(Enum.class, EnumEditor.class);
+	ParameterEditorNuestro.registerEditor(File.class, FileEditor.class);
+	ParameterEditorNuestro.registerEditor(Instance.class, InstanceEditor.class);
+	ParameterEditorNuestro.registerEditor(String.class, StringEditor.class);
+	ParameterEditorNuestro.registerEditor(Text.class, TextEditor.class);
+	ParameterEditorNuestro.registerEditor(Integer.class, IntegerEditor.class);
+	ParameterEditorNuestro.registerEditor(Categories.class, CategoriesEditor.class);
+	ParameterEditorNuestro.registerEditor(Subdomains.class, SubdomainsEditor.class);
+	ParameterEditorNuestro.registerEditor(Mechanics.class, MechanicsEditor.class);
     }
     
     /**
@@ -80,7 +85,7 @@ public class ParameterEditorFactory {
 	    
 	} catch (Exception e)
 	{
-	    org.apache.commons.logging.LogFactory.getLog(ParameterEditorFactory.class).error(e); 
+	    org.apache.commons.logging.LogFactory.getLog(ParameterEditorNuestro.class).error(e); 
 	} 
 	return null;
     }
