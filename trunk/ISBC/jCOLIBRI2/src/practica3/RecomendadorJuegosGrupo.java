@@ -76,7 +76,7 @@ public class RecomendadorJuegosGrupo implements StandardCBRApplication {
 		for(int i=0;i<z; i++){
 			CBRQuery query = new CBRQuery();
 			query.setDescription(new JuegosCaso());
-			ObtainQueryWithAttributeQuestionMethod.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
+			NuestraQueryAttribute.obtainQueryWithAttributeQuestion(query, new Attribute("categories",JuegosCaso.class), labels, casos);
 			try {
 				jugador.cycle(query);
 				casos.addAll(jugador.getEleccion());
