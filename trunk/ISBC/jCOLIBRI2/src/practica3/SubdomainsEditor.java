@@ -6,7 +6,7 @@
  * http://gaia.fdi.ucm.es
  * 02/11/2007
  */
-package jcolibri.method.gui.editors;
+package practica3;
 
 
 import java.lang.reflect.Field;
@@ -17,8 +17,8 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
-import practica3.Categories;
-import practica3.Subdomains;
+import jcolibri.method.gui.editors.ParameterEditor;
+
 
 
 /**
