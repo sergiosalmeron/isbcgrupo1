@@ -58,21 +58,27 @@ public class Rango implements LocalSimilarityFunction {
     	}
     	ArrayList<Integer> user = new ArrayList<Integer>();
     	int i=0;
-    	while (i<((String)o1).length()){
-    		String num="";
-    		while ((((String)o1).charAt(i)=='1' || ((String)o1).charAt(i)=='2' ||((String)o1).charAt(i)=='3' ||
+    	Boolean seguir=true;
+    	String num="";
+    	while (seguir){
+    	    if (i<((String)o1).length()){
+
+    		if ((((String)o1).charAt(i)=='1' || ((String)o1).charAt(i)=='2' ||((String)o1).charAt(i)=='3' ||
     				((String)o1).charAt(i)=='4' || ((String)o1).charAt(i)=='5' || ((String)o1).charAt(i)=='6' ||
     				((String)o1).charAt(i)=='7' || ((String)o1).charAt(i)=='8' || ((String)o1).charAt(i)=='9' || 
     				((String)o1).charAt(i)=='0') && (i<((String)o1).length())){
     			
-    			num=num+((String)o1).charAt(i);
-    			i=i+1;
-    		}
-    		if(!num.equals("")){
-    			user.add(Integer.parseInt(num));
-    		}
-    		i=i+1;
-    	}	
+                num = num + ((String)o1).charAt(i);
+                i=i+1;
+            }
+            else {
+                seguir=false;
+            }
+        }
+        else {
+            seguir=false;
+        }
+    }
     	Iterator<Integer> it = user.iterator();
     	while(it.hasNext()){
     		Integer aux = it.next();
