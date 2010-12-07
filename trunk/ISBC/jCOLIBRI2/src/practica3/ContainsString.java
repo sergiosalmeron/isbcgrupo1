@@ -1,7 +1,6 @@
 package practica3;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 import jcolibri.exception.NoApplicableSimilarityFunctionException;

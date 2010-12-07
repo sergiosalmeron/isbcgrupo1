@@ -244,11 +244,13 @@ public class NuestroQueryForm2
 	res.add(rb);
 	
 	getAttributes(c.getDescription(), res);
-	res.remove(7);
-	res.remove(6);
-	res.remove(5);
-	res.remove(4);
-	res.remove(1);
+	if (res.size()>7){
+		res.remove(7);
+		res.remove(6);
+		res.remove(5);
+		res.remove(4);
+		res.remove(1);
+	}
 	getAttributes(c.getSolution(), res);
 	getAttributes(c.getJustificationOfSolution(), res);
 	getAttributes(c.getResult(), res);
@@ -266,12 +268,13 @@ public class NuestroQueryForm2
 	Collection<Attribute> atts = AttributeUtils.getAttributes(cc);
 	if(atts == null)
 	    return;
-	atts.remove(7);
-	atts.remove(6);
-	atts.remove(5);
-	atts.remove(4);
-	atts.remove(1);
-	
+	if (atts.size()>7){
+		atts.remove(7);
+		atts.remove(6);
+		atts.remove(5);
+		atts.remove(4);
+		atts.remove(1);
+	}
 	Attribute id = cc.getIdAttribute();
 	for(Attribute a: atts)
 	{
@@ -294,11 +297,13 @@ public class NuestroQueryForm2
 	extractColumnNames(c.getSolution(),res);
 	extractColumnNames(c.getJustificationOfSolution(),res);
 	extractColumnNames(c.getResult(),res);
-	res.remove(7);
-	res.remove(6);
-	res.remove(5);
-	res.remove(4);
-	res.remove(1);
+	if (res.size()>7){
+		res.remove(7);
+		res.remove(6);
+		res.remove(5);
+		res.remove(4);
+		res.remove(1);
+	}
 	return res;
    }
    
