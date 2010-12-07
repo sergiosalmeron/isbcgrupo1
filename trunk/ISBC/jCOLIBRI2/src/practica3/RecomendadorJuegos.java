@@ -81,10 +81,10 @@ public class RecomendadorJuegos implements StandardCBRApplication{
 		simConfig.addMapping(categorias, new Contains());
 		simConfig.addMapping(subdominios, new Contains());
 		simConfig.addMapping(mecanicas, new Contains());
-		simConfig.addMapping(edad, new Equal());
-		simConfig.addMapping(recplayers, new Equal());
-		simConfig.addMapping(bestplayers, new Equal());
-		simConfig.addMapping(numPlayers, new Equal());
+		simConfig.addMapping(edad, new ContainsString());
+		simConfig.addMapping(recplayers, new ContainsString());
+		simConfig.addMapping(bestplayers, new ContainsString());
+		simConfig.addMapping(numPlayers, new Rango());
 		simConfig.setWeight(ano, 0.2);
 		simConfig.setWeight(categorias, 1.0);
 		simConfig.setWeight(subdominios, 0.8);
