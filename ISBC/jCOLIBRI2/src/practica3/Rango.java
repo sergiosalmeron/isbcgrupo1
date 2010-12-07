@@ -35,40 +35,43 @@ public class Rango implements LocalSimilarityFunction {
     	if ((o1 == null) || (o2 == null))
             return s;
     	String primero="";
-    	primero = primero + ((String)o2).charAt(0);
-    	if (((String)o2).charAt(1)=='1' || ((String)o2).charAt(1)=='2' ||((String)o2).charAt(1)=='3' ||((String)o2).charAt(1)=='4' ||
-    	((String)o2).charAt(1)=='5' || ((String)o2).charAt(1)=='6' ||((String)o2).charAt(1)=='7' ||
-    	((String)o2).charAt(1)=='8' || ((String)o2).charAt(1)=='9' || ((String)o2).charAt(1)=='0' )
-    		primero = primero + ((String)o2).charAt(1);
-    	int first = Integer.parseInt(primero);
-    	int last=0;
-    	String ultimo="";
-    	if(((String)o2).length()!=1){
-	    	if (((String)o2).charAt(((String)o2).length()-2)=='1' || ((String)o2).charAt(((String)o2).length()-2)=='2' ||((String)o2).charAt(((String)o2).length()-2)=='3' ||
-					((String)o2).charAt(((String)o2).length()-2)=='4' || ((String)o2).charAt(((String)o2).length()-2)=='5' || ((String)o2).charAt(((String)o2).length()-2)=='6' ||
-					((String)o2).charAt(((String)o2).length()-2)=='7' || ((String)o2).charAt(((String)o2).length()-2)=='8' || ((String)o2).charAt(((String)o2).length()-2)=='9' || 
-					((String)o2).charAt(((String)o2).length()-2)=='0')
-	    		ultimo = ultimo + ((String)o2).charAt(((String)o2).length()-2);
-	    		ultimo = ultimo + ((String)o2).charAt(((String)o2).length()-1);
-	    		
-	    	last = Integer.parseInt(ultimo);
+    	primero = primero + ((String)o1).charAt(0);
+    	if (((String)o1).length()>1){
+       	if (((String)o1).charAt(1)=='1' || ((String)o1).charAt(1)=='2' ||((String)o1).charAt(1)=='3' ||((String)o1).charAt(1)=='4' ||
+        	((String)o1).charAt(1)=='5' || ((String)o1).charAt(1)=='6' ||((String)o1).charAt(1)=='7' ||
+        	((String)o1).charAt(1)=='8' || ((String)o1).charAt(1)=='9' || ((String)o1).charAt(1)=='0' )
+        		primero = primero + ((String)o1).charAt(1);
     	}
-    	else{
-    		last = first;
-    	}
+        	int first = Integer.parseInt(primero);
+        	int last=0;
+        	String ultimo="";
+
+        	if(((String)o1).length()!=1){
+    	    	if (((String)o1).charAt(((String)o1).length()-2)=='1' || ((String)o1).charAt(((String)o1).length()-2)=='2' ||((String)o1).charAt(((String)o1).length()-2)=='3' ||
+    					((String)o1).charAt(((String)o1).length()-2)=='4' || ((String)o1).charAt(((String)o1).length()-2)=='5' || ((String)o1).charAt(((String)o1).length()-2)=='6' ||
+    					((String)o1).charAt(((String)o1).length()-2)=='7' || ((String)o1).charAt(((String)o1).length()-2)=='8' || ((String)o1).charAt(((String)o1).length()-2)=='9' || 
+    					((String)o1).charAt(((String)o1).length()-2)=='0')
+    	    		ultimo = ultimo + ((String)o1).charAt(((String)o1).length()-2);
+    	    		ultimo = ultimo + ((String)o1).charAt(((String)o1).length()-1);
+    	    		
+    	    	last = Integer.parseInt(ultimo);
+        	}
+        	else{
+        		last = first;
+        	}
     	ArrayList<Integer> user = new ArrayList<Integer>();
     	int i=0;
     	Boolean seguir=true;
     	String num="";
     	while (seguir){
-    	    if (i<((String)o1).length()){
+    	    if (i<((String)o2).length()){
 
-    		if ((((String)o1).charAt(i)=='1' || ((String)o1).charAt(i)=='2' ||((String)o1).charAt(i)=='3' ||
-    				((String)o1).charAt(i)=='4' || ((String)o1).charAt(i)=='5' || ((String)o1).charAt(i)=='6' ||
-    				((String)o1).charAt(i)=='7' || ((String)o1).charAt(i)=='8' || ((String)o1).charAt(i)=='9' || 
-    				((String)o1).charAt(i)=='0') && (i<((String)o1).length())){
+    		if ((((String)o2).charAt(i)=='1' || ((String)o2).charAt(i)=='2' ||((String)o2).charAt(i)=='3' ||
+    				((String)o2).charAt(i)=='4' || ((String)o2).charAt(i)=='5' || ((String)o2).charAt(i)=='6' ||
+    				((String)o2).charAt(i)=='7' || ((String)o2).charAt(i)=='8' || ((String)o2).charAt(i)=='9' || 
+    				((String)o2).charAt(i)=='0') && (i<((String)o2).length())){
     			
-                num = num + ((String)o1).charAt(i);
+                num = num + ((String)o2).charAt(i);
                 i=i+1;
             }
             else {
@@ -78,7 +81,7 @@ public class Rango implements LocalSimilarityFunction {
         else {
             seguir=false;
         }
-    }
+    }	
     	Iterator<Integer> it = user.iterator();
     	while(it.hasNext()){
     		Integer aux = it.next();
