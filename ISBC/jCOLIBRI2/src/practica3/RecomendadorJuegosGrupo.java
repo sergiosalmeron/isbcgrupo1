@@ -5,16 +5,12 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
-import practica3.*;
-
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.exception.ExecutionException;
-import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
-import jcolibri.extensions.recommendation.navigationByAsking.ObtainQueryWithAttributeQuestionMethod;
 
 public class RecomendadorJuegosGrupo implements StandardCBRApplication {
 	static Collection<CBRCase> casos;
