@@ -117,7 +117,7 @@ public class Practica41 implements StandardCBRApplication
 		CBRCase mostSimilar = ite.next().get_case();
 		NewsDescription rrd = (NewsDescription)mostSimilar.getDescription();
 		NewsSolution sol = (NewsSolution)mostSimilar.getSolution();
-		new ResultFrame(qrd.getText().toString(), rrd.getTitle().toString(),sol.getId(), rrd.getText().toString(), sol.getImgURL());
+		new ResultFrame(qrd.getText().toString(), rrd.getTitle().toString(),sol.getCategory(), rrd.getText().toString(), sol.getImgURL());
 	}
     }
 
