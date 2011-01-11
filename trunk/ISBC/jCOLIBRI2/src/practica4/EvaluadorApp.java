@@ -103,10 +103,10 @@ public class EvaluadorApp implements StandardCBRApplication
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	//nnConfig.setWeight(texto, 0.75);
+	nnConfig.setWeight(texto, 0.25);
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-	//nnConfig.setWeight(titulo, 0.25);
+	nnConfig.setWeight(titulo, 0.75);
 
 	
 	System.out.println("RESULT: ");
