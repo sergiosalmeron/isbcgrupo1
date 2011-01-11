@@ -16,11 +16,13 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.lucene.LuceneIndex;
+import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
+import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
 import practica4.ResultFrame;
@@ -45,7 +47,7 @@ public class Practica41 implements StandardCBRApplication
     Connector _connector;
     CBRCaseBase _caseBase;
 
-    LuceneIndex luceneIndex;
+    LuceneIndexSpanish luceneIndex;
     
     /*
      * (non-Javadoc)
@@ -78,7 +80,7 @@ public class Practica41 implements StandardCBRApplication
 	_caseBase.init(_connector);
 
 	//Here we create the Lucene index
-	luceneIndex = jcolibri.method.precycle.LuceneIndexCreator.createLuceneIndex(_caseBase);
+	luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);
 	
 	return _caseBase;
     }
@@ -98,9 +100,9 @@ public class Practica41 implements StandardCBRApplication
 	
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription.class);
-	nnConfig.addMapping(texto, new LuceneTextSimilarity(luceneIndex,query,texto, true));
+	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
 	Attribute titulo = new Attribute("title", NewsDescription.class);
-	nnConfig.addMapping(titulo, new LuceneTextSimilarity(luceneIndex,query,titulo, true));
+	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
 
 	
 	System.out.println("RESULT: ");
