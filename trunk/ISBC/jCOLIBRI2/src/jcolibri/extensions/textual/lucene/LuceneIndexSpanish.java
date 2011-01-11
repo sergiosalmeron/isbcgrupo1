@@ -1,5 +1,5 @@
 /**
- * LuceneIndex.java
+ * LuceneIndexSpanish.java
  * jCOLIBRI2 framework. 
  * @author Juan A. Recio-García.
  * GAIA - Group for Artificial Intelligence Applications
@@ -13,19 +13,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
+import jcolibri.extensions.textual.lucene.spanish.SpanishAnalyzer;
 import jcolibri.util.ProgressController;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
 
 /**
- * This class wraps the Lucene inverted terms index. 
+ * This class wraps the Lucene inverted terms index for Spanish documents.
+ * It uses an Spanish stemmer and stop words removal.
  * This structure stores in which documents appears a word.
- * <p>
- * IMPORTANT: this version only adds an empty constructor to be able to extend the class.
  * <br>
  * It also mantains a hash table that allows to retrieve a document form the index given its ID.
  * <p>
@@ -36,35 +35,28 @@ import org.apache.lucene.store.RAMDirectory;
  * If you obtain an outOfMemoryException try the -Xms -Xmx VM params.
  * </ul>
  * @author Juan A. Recio-García
- * @version 3.0
+ * @version 2.0
  */
-public class LuceneIndex{
+public class LuceneIndexSpanish extends LuceneIndex{
 	
 	private Directory directory;
 	private java.util.HashMap<String, LuceneDocument> docsMapping;
 
-	
-	public LuceneIndex()
-	{
-		
-	}
-	
-	
 	/**
-	 * Creates a LuceneIndex stored in the File System.
+	 * Creates a LuceneIndexSpanish stored in the File System.
 	 * @param directory to store the index once generated
 	 * @param documents to index
 	 */
-	public LuceneIndex(File directory,  Collection<LuceneDocument> documents)
+	public LuceneIndexSpanish(File directory,  Collection<LuceneDocument> documents)
 	{
 		this.docsMapping = new java.util.HashMap<String, LuceneDocument>();
 
-	    org.apache.commons.logging.LogFactory.getLog(LuceneIndex.class).info("Creating File System Index in: "+directory.getPath());
+	    org.apache.commons.logging.LogFactory.getLog(LuceneIndexSpanish.class).info("Creating File System Index in: "+directory.getPath());
 		
 		try {
 			this.directory = FSDirectory.getDirectory(directory);
 		} catch (IOException e) {
-			org.apache.commons.logging.LogFactory.getLog(LuceneIndex.class).error(e);
+			org.apache.commons.logging.LogFactory.getLog(LuceneIndexSpanish.class).error(e);
 		}
 
 		createIndex(documents);
@@ -75,10 +67,10 @@ public class LuceneIndex{
 	 * Creates an index stored into memory.
 	 * @param documents to index.
 	 */
-	public LuceneIndex(Collection<LuceneDocument> documents)
+	public LuceneIndexSpanish(Collection<LuceneDocument> documents)
 	{
 		this.docsMapping = new java.util.HashMap<String, LuceneDocument>();
-		org.apache.commons.logging.LogFactory.getLog(LuceneIndex.class).info("Creating In-Memory index");
+		org.apache.commons.logging.LogFactory.getLog(LuceneIndexSpanish.class).info("Creating In-Memory index");
 		
 	    this.directory = new RAMDirectory();
 		createIndex(documents);
@@ -88,10 +80,10 @@ public class LuceneIndex{
 	{
 		try {
 			
-			IndexWriter writer = new IndexWriter(directory,  new StandardAnalyzer(), true);
+			IndexWriter writer = new IndexWriter(directory,  new SpanishAnalyzer(), true);
 		    
-			org.apache.commons.logging.LogFactory.getLog(LuceneIndex.class).info("Indexing "+documents.size()+" documents.");
-			ProgressController.init(this.getClass(),"Lucene. Indexing documents", documents.size());
+			org.apache.commons.logging.LogFactory.getLog(LuceneIndexSpanish.class).info("Indexing "+documents.size()+" documents.");
+			ProgressController.init(this.getClass(),"Lucene. Indexing documents in Spanish", documents.size());
 			
 			for(LuceneDocument doc: documents)
 			{
@@ -99,13 +91,13 @@ public class LuceneIndex{
 				docsMapping.put(doc.getDocID(), doc);
 				ProgressController.step(this.getClass());
 			}		    
-			org.apache.commons.logging.LogFactory.getLog(LuceneIndex.class).info("Optimizing index.");
+			org.apache.commons.logging.LogFactory.getLog(LuceneIndexSpanish.class).info("Optimizing index.");
 			
 			writer.optimize();
 		    writer.close();
 		    ProgressController.finish(this.getClass());
 		} catch (Exception e) {
-			org.apache.commons.logging.LogFactory.getLog(LuceneIndex.class).error(e);		
+			org.apache.commons.logging.LogFactory.getLog(LuceneIndexSpanish.class).error(e);		
 		}
 	}
 
