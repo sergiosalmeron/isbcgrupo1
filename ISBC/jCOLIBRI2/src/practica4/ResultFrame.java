@@ -115,7 +115,7 @@ public class ResultFrame extends JDialog {
 		logo.setText("");
 		logo.setBounds(new Rectangle(291, 203, 138, 283));
 		try{
-			logo.setIcon(new javax.swing.ImageIcon(jcolibri.util.FileIO.findFile("practica4/noticias/img/"+img)));
+			logo.setIcon(new javax.swing.ImageIcon(jcolibri.util.FileIO.findFile("practica4/img/"+img)));
 		}
 		catch (Exception e){};
 		jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -130,19 +130,19 @@ public class ResultFrame extends JDialog {
 		jPanel2.setLayout(null);
 		queryTextPane.setEditable(false);
 		queryTextPane.setText("");
-		jLabel2.setText("Restaurant");
+		jLabel2.setText("Noticia");
 		jLabel2.setBounds(new Rectangle(9, 19, 214, 20));
 		restaurant.setText("");
 		restaurant.setBounds(new Rectangle(7, 42, 237, 23));
 		restaurant.setEditable(false);
 		restaurant.setBackground(Color.white);
 		jLabel3.setBounds(new Rectangle(9, 74, 214, 20));
-		jLabel3.setText("Address");
+		jLabel3.setText("Categoria");
 		jScrollPane2
 				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jScrollPane2.setBounds(new Rectangle(7, 98, 234, 40));
 		jLabel4.setBounds(new Rectangle(9, 149, 214, 20));
-		jLabel4.setText("Description");
+		jLabel4.setText("Texto");
 		jScrollPane3
 				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jScrollPane3
