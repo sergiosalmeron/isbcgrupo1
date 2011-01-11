@@ -94,7 +94,7 @@ public class ResultFrame extends JDialog {
 
 	public static void main(String[] args) throws HeadlessException {
 		ResultFrame resultFrame1 = new ResultFrame("query", "Título",
-				"id", "texto","img");
+				"Categoria", "texto","img");
 		resultFrame1.setVisible(true);
 	}
 
