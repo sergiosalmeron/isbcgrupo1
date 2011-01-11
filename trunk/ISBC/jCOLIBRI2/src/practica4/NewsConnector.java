@@ -11,6 +11,7 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
 import jcolibri.exception.InitializingException;
 
+import org.apache.lucene.queryParser.QueryParser;
 import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.HasAttributeFilter;
@@ -131,7 +132,7 @@ public class NewsConnector implements Connector {
 			String img = imgURL.substring(imgURL.lastIndexOf('/')+1);
 			
 			String title = children.elementAt(1).toPlainTextString().trim();
-			
+			title = QueryParser.escape(title);
 			String text = "";
 			
 			boolean good = false;
@@ -153,6 +154,7 @@ public class NewsConnector implements Connector {
 			
 			NewsDescription desc = new NewsDescription();
 			desc.setId(htmlFile.getName());
+			text = QueryParser.escape(text);
 			desc.setText(new Text(text));
 			desc.setTitle(new Text(title));
 			
