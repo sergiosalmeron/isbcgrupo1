@@ -14,6 +14,7 @@ import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
+import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.lucene.LuceneIndex;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
@@ -25,6 +26,7 @@ import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextS
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
+import practica1.QuinielaSolution;
 import practica4.ResultFrame;
 
 /**
@@ -41,11 +43,12 @@ import practica4.ResultFrame;
  * @see jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity
  * @see jcolibri.test.test13.connector.RestaurantsConnector
  */
-public class Practica41 implements StandardCBRApplication
+public class EvaluadorApp implements StandardCBRApplication
 {
 
     Connector _connector;
     CBRCaseBase _caseBase;
+
     LuceneIndexSpanish luceneIndex;
     
     /*
@@ -100,18 +103,29 @@ public class Practica41 implements StandardCBRApplication
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	nnConfig.setWeight(texto, 0.75);
+	//nnConfig.setWeight(texto, 0.75);
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-	nnConfig.setWeight(titulo, 0.25);
+	//nnConfig.setWeight(titulo, 0.25);
 
 	
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);
-	res = SelectCases.selectTopKRR(res, 5);
-	Iterator<RetrievalResult> ite = res.iterator();
-	for(RetrievalResult rr: res){
+	res = SelectCases.selectTopKRR(res, 1);
+	//Iterator<RetrievalResult> ite = res.iterator();
+	NewsSolution solucion = (NewsSolution)res.iterator().next().get_case().getSolution();
+	double prediccion;
+	CBRCase _case = (CBRCase)query;
+	NewsSolution sol = (NewsSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
+	if(!(solucion.getCategory().equals(sol.getCategory()))){
+
+		prediccion = 1.0;
+	}
+	else prediccion = 0.0;
+	
+	Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
+	/*for(RetrievalResult rr: res){
 	    System.out.println(rr);
 	
 	    NewsDescription qrd = (NewsDescription)query.getDescription();
@@ -120,7 +134,7 @@ public class Practica41 implements StandardCBRApplication
 		NewsSolution sol = (NewsSolution)mostSimilar.getSolution();
 		new ResultFrame(qrd.getText().toString(), rrd.getTitle().toString(),sol.getCategory(), rrd.getText().toString(), sol.getImgURL());
 	}
-    }
+*/    }
 
     /*
      * (non-Javadoc)
