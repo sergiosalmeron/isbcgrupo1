@@ -6,6 +6,7 @@ package practica4;
 import java.util.Collection;
 import java.util.Iterator;
 
+import jcolibri.casebase.CachedLinealCaseBase;
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
@@ -61,7 +62,7 @@ public class EvaluadorApp implements StandardCBRApplication
 	try
 	{
 	    _connector = new NewsConnector("src/practica4/noticias",150);
-	    _caseBase = new LinealCaseBase();
+	    _caseBase = new CachedLinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
 	    SwingProgressBar pb = new SwingProgressBar();

@@ -1,6 +1,7 @@
 package practica4;
 
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import jcolibri.casebase.LinealCaseBase;
@@ -34,7 +35,7 @@ public class visualizacionCasos {
 		    	jcolibri.util.ProgressController.register(new jcolibri.test.main.SwingProgressBar(), jcolibri.extensions.visualization.CasesVisualization.class);
 		    
 			//Configure connector and case base
-		    	Connector _connector = new NewsConnector("src/practica4/noticias",150);
+		    	Connector _connector = new NewsConnector("src/practica4/noticias",15);
 		    	CBRCaseBase _caseBase = new LinealCaseBase();
 			    
 			
@@ -45,11 +46,13 @@ public class visualizacionCasos {
 			
 			// Configure NN
 		//	Iterator<CBRCase> i = new Iterator(_caseBase.getCases());
+			Collection<CBRCase> cases = _caseBase.getCases();
 			Iterator<CBRCase> i = _caseBase.getCases().iterator();
 			CBRQuery query= new CBRQuery();
-			while (i.hasNext()){
+	//		while (i.hasNext()){
 				query=(CBRQuery)i.next();
 			NNConfig nnConfig = new NNConfig();
+			nnConfig.setDescriptionSimFunction(new Average());
 			Attribute texto = new Attribute("text", NewsDescription.class);
 			nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
 			nnConfig.setWeight(texto, 0.25);
@@ -57,8 +60,8 @@ public class visualizacionCasos {
 			nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
 			nnConfig.setWeight(titulo, 0.75);	
 			// Visualize the case base
-			jcolibri.extensions.visualization.CasesVisualization.visualize(_caseBase.getCases(), nnConfig);
-			}
+			jcolibri.extensions.visualization.CasesVisualization.visualize(cases, nnConfig);
+	///		}
 		} catch (Exception e) {
 			org.apache.commons.logging.LogFactory.getLog(visualizacionCasos.class).error(e);
 		}
