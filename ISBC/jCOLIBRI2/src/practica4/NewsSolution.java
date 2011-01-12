@@ -2,8 +2,9 @@ package practica4;
 
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CaseComponent;
+import jcolibri.extensions.classification.ClassificationSolution;
 
-public class NewsSolution implements CaseComponent {
+public class NewsSolution implements CaseComponent, ClassificationSolution{
 
 	String id;
 	String category;
@@ -55,6 +56,14 @@ public class NewsSolution implements CaseComponent {
 	@Override
 	public Attribute getIdAttribute() {
 		return new Attribute("id", this.getClass());
+	}
+
+
+
+	@Override
+	public Object getClassification() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

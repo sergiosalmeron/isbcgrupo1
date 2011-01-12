@@ -112,9 +112,10 @@ public class EvaluadorApp implements StandardCBRApplication
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);
-	res = SelectCases.selectTopKRR(res, 1);
+	res = SelectCases.selectTopKRR(res, 5);
+	VotacionPonderada p = new VotacionPonderada();
 	//Iterator<RetrievalResult> ite = res.iterator();
-	NewsSolution solucion = (NewsSolution)res.iterator().next().get_case().getSolution();
+	NewsSolution solucion = (NewsSolution)p.getPredictedSolution(res);
 	double prediccion;
 	CBRCase _case = (CBRCase)query;
 	NewsSolution sol = (NewsSolution)_case.getSolution();//Esto no esta bien inicializado hay que ver como se trata
