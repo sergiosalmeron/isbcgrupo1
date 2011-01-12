@@ -63,7 +63,7 @@ public class NewsSolution implements CaseComponent, ClassificationSolution{
 	@Override
 	public Object getClassification() {
 		// TODO Auto-generated method stub
-		return null;
+		return category;
 	}
 
 }
