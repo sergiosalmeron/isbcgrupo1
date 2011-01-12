@@ -16,6 +16,8 @@ import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
 import jcolibri.exception.ExecutionException;
+import jcolibri.extensions.textual.IE.common.BasicInformationExtractor;
+import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
 import jcolibri.extensions.textual.IE.common.StopWordsDetectorSpanish;
 import jcolibri.extensions.textual.IE.common.TextStemmerSpanish;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
@@ -32,7 +34,7 @@ import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextS
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-import practica4.ResultFrame;
+//import practica4.ResultFrame;
 
 /**
  * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 
@@ -92,10 +94,13 @@ public class Practica42 implements StandardCBRApplication
 	// Extrae las raíces de cada palabra
 	TextStemmerSpanish.stem(cases);
 	// Realiza el etiquetado morfológico
-	OpennlpPOStaggerSpanish.tag(cases);
+//	OpennlpPOStaggerSpanish.tag(cases);
 	// Extraer los nombres y verbos almacenándolos en
 	//los atributos "nombres" y "verbos"
 	extractMainTokens(cases);
+	FeaturesExtractor.loadRules("src/practica42/rules.txt");
+	FeaturesExtractor.extractFeatures(cases);
+
 	//Here we create the Lucene index
 	luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);
 	
@@ -132,8 +137,6 @@ public class Practica42 implements StandardCBRApplication
 	Attribute verbos = new Attribute("verbos", NewsDescription.class);
 	nnConfig.addMapping(verbos, new Contains());
 	nnConfig.setWeight(verbos, 0.25);
-
-	
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);

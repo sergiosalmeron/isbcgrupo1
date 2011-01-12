@@ -24,8 +24,8 @@ import org.htmlparser.util.EncodingChangeException;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 
-import practica4.NewsDescription;
-import practica4.NewsSolution;
+import practica42.NewsDescription;
+import practica42.NewsSolution;
 
 public class NewsConnector implements Connector {
 
