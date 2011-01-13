@@ -1,5 +1,6 @@
 package practica42;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jcolibri.cbrcore.Attribute;
@@ -12,6 +13,25 @@ public class NewsDescription implements CaseComponent {
 	String id;
 	IEText text;
 	Text title;
+	ArrayList<String> Politico = new ArrayList<String>();
+	/**
+	 * @return the politico
+	 */
+	public ArrayList<String> getPolitico() {
+		return Politico;
+	}
+
+
+
+	/**
+	 * @param politico the politico to set
+	 */
+	public void setPolitico(ArrayList<String> politico) {
+		this.Politico = politico;
+	}
+
+
+
 	/**
 	 * @return the nombres
 	 */
