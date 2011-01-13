@@ -100,16 +100,16 @@ public class Practica41 implements StandardCBRApplication
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	nnConfig.setWeight(texto, 0.75);
+	nnConfig.setWeight(texto, 20.75);
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-	nnConfig.setWeight(titulo, 0.25);
+	nnConfig.setWeight(titulo, 2.25);
 
 	
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);
-	res = SelectCases.selectTopKRR(res, 5);
+	res = SelectCases.selectTopKRR(res, 25);
 	Iterator<RetrievalResult> ite = res.iterator();
 	for(RetrievalResult rr: res){
 	    System.out.println(rr);
