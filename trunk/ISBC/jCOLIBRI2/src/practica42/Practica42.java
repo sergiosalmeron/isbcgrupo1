@@ -94,10 +94,10 @@ public class Practica42 implements StandardCBRApplication
 	// Extrae las raíces de cada palabra
 	TextStemmerSpanish.stem(cases);
 	// Realiza el etiquetado morfológico
-//	OpennlpPOStaggerSpanish.tag(cases);
+	OpennlpPOStaggerSpanish.tag(cases);
 	// Extraer los nombres y verbos almacenándolos en
 	//los atributos "nombres" y "verbos"
-	//extractMainTokens(cases);
+	extractMainTokens(cases);
 	FeaturesExtractor.loadRules("src/practica42/rules.txt");
 	FeaturesExtractor.extractFeatures(cases);
 	NuestroExtractor.extractInformation(cases);
