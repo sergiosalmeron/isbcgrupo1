@@ -66,7 +66,7 @@ public class Practica42 implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new NewsConnector("src/practica4/noticias",150);
+	    _connector = new NewsConnector("src/practica4/noticias",1);
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
@@ -97,9 +97,10 @@ public class Practica42 implements StandardCBRApplication
 //	OpennlpPOStaggerSpanish.tag(cases);
 	// Extraer los nombres y verbos almacenándolos en
 	//los atributos "nombres" y "verbos"
-	extractMainTokens(cases);
+	//extractMainTokens(cases);
 	FeaturesExtractor.loadRules("src/practica42/rules.txt");
 	FeaturesExtractor.extractFeatures(cases);
+	NuestroExtractor.extractInformation(cases);
 
 	//Here we create the Lucene index
 	luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);

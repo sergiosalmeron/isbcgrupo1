@@ -1,1 +1,3 @@
-[Politico]{0} ((Zapatero)(Rajoy)(Rubalcaba))
+[Politico]{0} leyes
+[Politico]{0} defensa
+[Politico]{0} americano

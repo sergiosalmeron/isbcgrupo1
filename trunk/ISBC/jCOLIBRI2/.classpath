@@ -2,6 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/maxent-2.5.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/opennlp-tools-1.4.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/filterbuilder.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/htmllexer.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/htmlparser.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/sitecapturer.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/thumbelina.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/textual/SnowBall.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/antlr-2.7.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons/commons-collections-3.2.jar"/>
@@ -112,20 +119,13 @@
 	<classpathentry exported="true" kind="lib" path="lib/textual/IE/OpenNLP/jdom.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/textual/IE/OpenNLP/opennlp.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/textual/IE/OpenNLP/maxent.jar"/>
-	<classpathentry kind="lib" path="lib/textual/IE/OpenNLP/trove.jar"/>
-	<classpathentry kind="lib" path="lib/textual/IE/Gate/gate.jar"/>
-	<classpathentry kind="lib" path="lib/textual/IE/Gate/jasper-compiler-jdt.jar"/>
-	<classpathentry kind="lib" path="lib/databaseconnector/hsqldb.jar"/>
-	<classpathentry kind="lib" path="lib/textual/wordnet/jwnl.jar"/>
-	<classpathentry kind="lib" path="lib/textual/wordnet/wordnetbridge.jar"/>
-	<classpathentry kind="lib" path="lib/textual/spamcorpus/spamcorpus.jar"/>
-	<classpathentry kind="lib" path="lib/filterbuilder.jar"/>
-	<classpathentry kind="lib" path="lib/htmllexer.jar"/>
-	<classpathentry kind="lib" path="lib/htmlparser.jar"/>
-	<classpathentry kind="lib" path="lib/jcolibri2.jar"/>
-	<classpathentry kind="lib" path="lib/maxent-2.5.2.jar"/>
-	<classpathentry kind="lib" path="lib/opennlp-tools-1.4.2.jar"/>
-	<classpathentry kind="lib" path="lib/sitecapturer.jar"/>
-	<classpathentry kind="lib" path="lib/thumbelina.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/textual/IE/OpenNLP/trove.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/textual/IE/Gate/gate.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/textual/IE/Gate/jasper-compiler-jdt.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/databaseconnector/hsqldb.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/textual/wordnet/jwnl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/textual/wordnet/wordnetbridge.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/textual/spamcorpus/spamcorpus.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jcolibri2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
