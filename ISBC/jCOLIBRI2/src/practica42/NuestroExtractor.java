@@ -132,7 +132,7 @@ public class NuestroExtractor
 			}
 		    }
 		}
-		else if (at.getType().equals(ArrayList.class))
+		else if (at.getType().equals(Collection.class))
 		{
 			{
 			    ArrayList<String> value = new ArrayList<String>();

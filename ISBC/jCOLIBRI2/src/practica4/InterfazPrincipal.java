@@ -19,6 +19,7 @@ import jcolibri.evaluation.evaluators.HoldOutEvaluator;
 import jcolibri.evaluation.evaluators.LeaveOneOutEvaluator;
 import jcolibri.evaluation.evaluators.NFoldEvaluator;
 import jcolibri.exception.ExecutionException;
+import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
 import jcolibri.extensions.textual.IE.representation.IEText;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
@@ -363,8 +364,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     	    	boolean propiedades=false;
     	    	CBRQuery query = new CBRQuery();
     	    	practica42.NewsDescription queryDescription = new practica42.NewsDescription();
-    	    	queryDescription.setText(new IEText(queryString));
-    	    	queryDescription.setTitle(new IEText(queryString));
+    	    	queryDescription.setText(new IETextOpenNLP(queryString));
+    	    	queryDescription.setTitle(new IETextOpenNLP(queryString));
+    	    	query.setDescription(queryDescription);
     	    	if (jPropiedades2.isSelected()){
     	    		propiedades=true;
     	    	}

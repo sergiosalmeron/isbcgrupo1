@@ -120,6 +120,9 @@ public class Practica42 implements StandardCBRApplication
     TextStemmerSpanish.stem(query);
     OpennlpPOStaggerSpanish.tag(query);
     extractMainTokens(query);
+  //  FeaturesExtractor.loadRules("src/practica42/rules.txt");
+	FeaturesExtractor.extractFeatures(query);
+	NuestroExtractor.extractInformation(query);
 	Collection<CBRCase> cases = _caseBase.getCases();
 	NNConfig nnConfig = new NNConfig();
 	nnConfig.setDescriptionSimFunction(new Average());
@@ -133,7 +136,10 @@ public class Practica42 implements StandardCBRApplication
 		nnConfig.setWeight(verbos, 0.25);
 	}
 	if (propiedades){
-		
+		Attribute politico = new Attribute("Politico", NewsDescription.class);
+		nnConfig.addMapping(politico, new Contains());
+		nnConfig.setWeight(politico, 0.25);
+
 	}
 	
 	//We only compare the "description" attribute using Lucene
