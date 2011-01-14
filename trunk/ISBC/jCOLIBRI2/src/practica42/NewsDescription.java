@@ -13,11 +13,11 @@ public class NewsDescription implements CaseComponent {
 	String id;
 	IEText text;
 	Text title;
-	ArrayList<String> Politico = new ArrayList<String>();
+	Collection<String> Politico = new ArrayList<String>();
 	/**
 	 * @return the politico
 	 */
-	public ArrayList<String> getPolitico() {
+	public Collection<String> getPolitico() {
 		return Politico;
 	}
 
@@ -26,7 +26,7 @@ public class NewsDescription implements CaseComponent {
 	/**
 	 * @param politico the politico to set
 	 */
-	public void setPolitico(ArrayList<String> politico) {
+	public void setPolitico(Collection<String> politico) {
 		this.Politico = politico;
 	}
 
