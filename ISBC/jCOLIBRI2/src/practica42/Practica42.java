@@ -113,7 +113,7 @@ public class Practica42 implements StandardCBRApplication
      * 
      * @see jcolibri.cbraplications.StandardCBRApplication#cycle(jcolibri.cbrcore.CBRQuery)
      */
-    public void cycle(CBRQuery query) throws ExecutionException
+    public void cycle(CBRQuery query,String tipo, boolean propiedades) throws ExecutionException
     {
     OpennlpSplitterSpanish.split(query);
     StopWordsDetectorSpanish.detectStopWords(query);
@@ -124,20 +124,27 @@ public class Practica42 implements StandardCBRApplication
 	NNConfig nnConfig = new NNConfig();
 	nnConfig.setDescriptionSimFunction(new Average());
 	
+	if (tipo=="acciones y objetos"){
+		Attribute nombres = new Attribute("nombres", NewsDescription.class);
+		nnConfig.addMapping(nombres, new Contains());
+		nnConfig.setWeight(nombres, 0.25);
+		Attribute verbos = new Attribute("verbos", NewsDescription.class);
+		nnConfig.addMapping(verbos, new Contains());
+		nnConfig.setWeight(verbos, 0.25);
+	}
+	if (propiedades){
+		
+	}
 	
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	nnConfig.setWeight(texto, 0.75);
+	nnConfig.setWeight(texto, 0.25);
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
 	nnConfig.setWeight(titulo, 0.25);
-	Attribute nombres = new Attribute("nombres", NewsDescription.class);
-	nnConfig.addMapping(nombres, new Contains());
-	nnConfig.setWeight(nombres, 0.75);
-	Attribute verbos = new Attribute("verbos", NewsDescription.class);
-	nnConfig.addMapping(verbos, new Contains());
-	nnConfig.setWeight(verbos, 0.25);
+
+	
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);
@@ -242,4 +249,10 @@ public class Practica42 implements StandardCBRApplication
 	// Extraer los tokens
 	
     }
+
+	@Override
+	public void cycle(CBRQuery query) throws ExecutionException {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -34,18 +34,20 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     /** Creates new form IR */
     public InterfazPrincipal() {
+    	
         initComponents();
+        this.setSize(500, 300);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
+        
         jTextField1 = new javax.swing.JTextField();
         jAcciones2 = new javax.swing.JCheckBox();
         jPropiedades2 = new javax.swing.JCheckBox();
         jConsulta2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jRecuperar2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jParteI = new javax.swing.JMenu();
         jRT1 = new javax.swing.JMenuItem();
@@ -58,6 +60,34 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextField1.setEnabled(false);
+        jTextField1.setVisible(false);
+/*        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });*/
+
+        jAcciones2.setText("Comparar Acciones y Objetos");
+        jAcciones2.setEnabled(false);
+        jAcciones2.setVisible(false);
+
+        jPropiedades2.setText("Comparar Propiedades del Texto");
+        jPropiedades2.setEnabled(false);
+        jPropiedades2.setVisible(false);
+
+        jConsulta2.setText("Consulta");
+        jConsulta2.setEnabled(false);
+        jConsulta2.setVisible(false);
+        
+        jRecuperar2.setText("Recuperar");
+        jRecuperar2.setEnabled(false);
+        jRecuperar2.setVisible(false);
+        jRecuperar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jRecuperar2MousePressed(evt);
+            }
+        });
         jParteI.setText("ParteI");
 
         jRT1.setText("Recuperacion de texto");
@@ -103,13 +133,19 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jParteI);
 
         jParteII.setText("ParteII");
-        jParteII.addMouseListener(new java.awt.event.MouseAdapter() {
+/*        jParteII.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jParteIIMousePressed(evt);
             }
-        });
+        })*/;
 
         jAIG2.setText("Ampliacion de la Interfaz");
+        jAIG2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jAIG2MousePressed(evt);
+            }
+        });
+        
         jParteII.add(jAIG2);
 
         jMenuBar1.add(jParteII);
@@ -127,7 +163,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addComponent(jAcciones2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addComponent(jConsulta2)
-                    .addComponent(jButton1))
+                    .addComponent(jRecuperar2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,16 +178,18 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPropiedades2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jRecuperar2)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
+        
 
         pack();
     }// </editor-fold>
 
 
     private void jRT1MousePressed(java.awt.event.MouseEvent evt) {
-    	Practica42 test = new Practica42();
+    	
+    	Practica41 test = new Practica41();
     	try
     	{
     	    test.configure();
@@ -173,8 +211,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             	    else
             	    {	
                     	    CBRQuery query = new CBRQuery();
-                    	    NewsDescription queryDescription = new NewsDescription();
-                    	    queryDescription.setText(new IEText(queryString));
+                    	    practica4.NewsDescription queryDescription = new practica4.NewsDescription();
+                    	    queryDescription.setText(new Text(queryString));
                     	    queryDescription.setTitle(new Text(queryString));
                     	    query.setDescription(queryDescription);
                     	    
@@ -266,7 +304,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 		
 		// Configure NN
 	//	Iterator<CBRCase> i = new Iterator(_caseBase.getCases());
-		Collection<CBRCase> cases = _caseBase.getCases();
+	//	Collection<CBRCase> cases = _caseBase.getCases();
 		Iterator<CBRCase> i = _caseBase.getCases().iterator();
 		CBRQuery query= new CBRQuery();
 //		while (i.hasNext()){
@@ -290,15 +328,64 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
 }
 
-    private void jParteIIMousePressed(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    private void jAIG2MousePressed(java.awt.event.MouseEvent evt) {
+        this.jAcciones2.setEnabled(true);
+        this.jAcciones2.setVisible(true);
+        this.jConsulta2.setEnabled(true);
+        this.jConsulta2.setVisible(true);
+        this.jPropiedades2.setEnabled(true);
+        this.jPropiedades2.setVisible(true);
+        this.jRecuperar2.setEnabled(true);
+        this.jRecuperar2.setVisible(true);
+        this.jTextField1.setEnabled(true);
+        this.jTextField1.setVisible(true);
     }
     
     
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-    }
+    private void jRecuperar2MousePressed(java.awt.event.MouseEvent evt) {
+    	setVisible(false);
+    	String queryString =jTextField1.getText();
+    	Practica42 test = new Practica42();
+    	try
+    	{
+    	    test.configure();
+    	    
+    	    CBRCaseBase caseBase = test.preCycle();
+    	   
+    	    System.out.println("CASE BASE: ");
+    	    for(CBRCase c: caseBase.getCases())
+    		System.out.println(c);
+    	    System.out.println("Total: "+caseBase.getCases().size()+" cases");
+    	    
+    	    if(queryString != null){
+    	
+    	    	String tipo="";
+    	    	boolean propiedades=false;
+    	    	CBRQuery query = new CBRQuery();
+    	    	practica42.NewsDescription queryDescription = new practica42.NewsDescription();
+    	    	queryDescription.setText(new IEText(queryString));
+    	    	queryDescription.setTitle(new IEText(queryString));
+    	    	if (jPropiedades2.isSelected()){
+    	    		propiedades=true;
+    	    	}
+    	    	if (jAcciones2.isSelected()){
+    	    		tipo="acciones y objetos";
+    	    	}
+    	    	test.cycle(query,tipo,propiedades);
+    	    }
+    	
+    	
+	  test.postCycle();
+      
+	} 
+    catch (ExecutionException e)
+	{
+	    org.apache.commons.logging.LogFactory.getLog(Practica42.class).error(e);
+	}
+	
+	// Extraer los tokens	
     
+}
     
 
     /**
@@ -317,7 +404,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JMenuItem jAIG2;
     private javax.swing.JCheckBox jAcciones2;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jRecuperar2;
     private javax.swing.JLabel jConsulta2;
     private javax.swing.JMenuItem jHoldOut1;
     private javax.swing.JMenuItem jLeaveOneOut1;
