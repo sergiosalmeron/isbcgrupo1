@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
+import practica42.EvaluadorAppAccionesPropiedades;
 import practica42.NewsDescription;
 import practica42.Practica42;
 
@@ -49,6 +50,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jPropiedades2 = new javax.swing.JCheckBox();
         jConsulta2 = new javax.swing.JLabel();
         jRecuperar2 = new javax.swing.JButton();
+        jEvaluar2 = new javax.swing.JButton();
+  //      jEvaluarNFold2 = new javax.swing.JButton();
+    //    jEvaluarHoldOut2 = new javax.swing.JButton();
+      //  jEvaluarLeaveOneOut2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jParteI = new javax.swing.JMenu();
         jRT1 = new javax.swing.JMenuItem();
@@ -58,7 +63,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jVisualizacion1 = new javax.swing.JMenuItem();
         jParteII = new javax.swing.JMenu();
         jAIG2 = new javax.swing.JMenuItem();
-
+        jEvaluacionNFold2 = new javax.swing.JMenuItem();
+        jEvaluacionHoldOut2 = new javax.swing.JMenuItem();
+        jEvaluacionLeaveOneOut2 = new javax.swing.JMenuItem();
+        eva=0;
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextField1.setEnabled(false);
@@ -89,6 +98,16 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             	jRecuperar2MousePressed(evt);
             }
         });
+        
+        jEvaluar2.setText("Evaluar");
+        jEvaluar2.setEnabled(false);
+        jEvaluar2.setVisible(false);
+        jEvaluar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jEvaluar2MousePressed(evt);
+            }
+        });
+        
         jParteI.setText("ParteI");
 
         jRT1.setText("Recuperacion de texto");
@@ -148,6 +167,36 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         
         jParteII.add(jAIG2);
+        
+        jEvaluacionNFold2.setText("Evaluaciones A-O-P NFold");
+        jEvaluacionNFold2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	eva=0;
+            	jEvaluacion2MousePressed(evt);
+            }
+        });
+        
+        jParteII.add(jEvaluacionNFold2);
+        
+        jEvaluacionHoldOut2.setText("Evaluaciones A-O-P HoldOut");
+        jEvaluacionHoldOut2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	eva=1;
+            	jEvaluacion2MousePressed(evt);
+            }
+        });
+        
+        jParteII.add(jEvaluacionHoldOut2);
+        
+        jEvaluacionLeaveOneOut2.setText("Evaluaciones A-O-P LeaveOneOut");
+        jEvaluacionLeaveOneOut2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	eva=2;
+            	jEvaluacion2MousePressed(evt);
+            }
+        });
+        
+        jParteII.add(jEvaluacionLeaveOneOut2);
 
         jMenuBar1.add(jParteII);
 
@@ -164,7 +213,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addComponent(jAcciones2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addComponent(jConsulta2)
-                    .addComponent(jRecuperar2))
+                    .addComponent(jRecuperar2)
+                    .addComponent(jEvaluar2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,6 +230,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addComponent(jPropiedades2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRecuperar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jEvaluar2)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         
@@ -342,6 +394,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         this.jTextField1.setVisible(true);
     }
     
+    private void jEvaluacion2MousePressed(java.awt.event.MouseEvent evt) {
+        this.jAcciones2.setEnabled(true);
+        this.jAcciones2.setVisible(true);
+        this.jPropiedades2.setEnabled(true);
+        this.jPropiedades2.setVisible(true);
+        this.jEvaluar2.setEnabled(true);
+        this.jEvaluar2.setVisible(true);
+    }
     
     private void jRecuperar2MousePressed(java.awt.event.MouseEvent evt) {
     	setVisible(false);
@@ -385,9 +445,39 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 	    org.apache.commons.logging.LogFactory.getLog(Practica42.class).error(e);
 	}
 	
+ }   
 	// Extraer los tokens	
-    
-}
+    private void jEvaluar2MousePressed(java.awt.event.MouseEvent evt) {
+    	setVisible(false);
+    	//if (eva==1){
+    	HoldOutEvaluator eval = new HoldOutEvaluator();
+    	eval.init(new EvaluadorApp/*AccionesPropiedades*/());
+    	eval.HoldOut(15, 1);
+    //	}
+	/*    	if (eva==1)
+    		;
+    	if (eva==0)
+    		NFoldEvaluator eval = new NFoldEvaluator();
+    	if (eva==0)
+    		LeaveOneOutEvaluator eval = new LeaveOneOutEvaluator();
+    		if (jPropiedades2.isSelected() && jAcciones2.isSelected())
+    			eval.init(new EvaluadorAppAccionesPropiedades());
+    		else if (jPropiedades2.isSelected())
+    			eval.init(new EvaluadorAppAccionesPropiedades());
+    		eval.HoldOut(15, 1);
+	*/
+		Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
+		double avg = 0.0;
+		for (Double d: vec)
+			avg+=d;
+		avg=avg/(double)Evaluator.getEvaluationReport().getNumberOfCycles();
+		Evaluator.getEvaluationReport().putOtherData("Media", Double.toString(avg));
+		System.out.println(Evaluator.getEvaluationReport());
+		jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluador buscador Noticias",false);
+
+      
+	} 
+
     
 
     /**
@@ -405,8 +495,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JMenuItem jAIG2;
+    private javax.swing.JMenuItem jEvaluacionNFold2;
+    private javax.swing.JMenuItem jEvaluacionHoldOut2;
+    private javax.swing.JMenuItem jEvaluacionLeaveOneOut2;
     private javax.swing.JCheckBox jAcciones2;
     private javax.swing.JButton jRecuperar2;
+    private javax.swing.JButton jEvaluar2;
     private javax.swing.JLabel jConsulta2;
     private javax.swing.JMenuItem jHoldOut1;
     private javax.swing.JMenuItem jLeaveOneOut1;
@@ -418,6 +512,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jRT1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem jVisualizacion1;
+    private int eva;
+ //   private javax.swing.JButton jEvaluarNFold2;
+ //   private javax.swing.JButton jEvaluarHoldOut2;
+ //   private javax.swing.JButton jEvaluarLeaveOneOut2;
     // End of variables declaration
 
 }
