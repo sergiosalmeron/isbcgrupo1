@@ -450,9 +450,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void jEvaluar2MousePressed(java.awt.event.MouseEvent evt) {
     	setVisible(false);
     	//if (eva==1){
-    	HoldOutEvaluator eval = new HoldOutEvaluator();
-    	eval.init(new EvaluadorApp/*AccionesPropiedades*/());
-    	eval.HoldOut(15, 1);
+    	LeaveOneOutEvaluator eval = new LeaveOneOutEvaluator();
+    	eval.init(new EvaluadorAppAccionesPropiedades());
+    	eval.LeaveOneOut();
     //	}
 	/*    	if (eva==1)
     		;

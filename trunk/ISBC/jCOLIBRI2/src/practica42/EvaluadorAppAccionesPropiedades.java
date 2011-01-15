@@ -69,7 +69,7 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new NewsConnector("src/practica4/noticias",150);
+	    _connector = new NewsConnector("src/practica4/noticias",1);
 	    _caseBase = new CachedLinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
@@ -118,7 +118,7 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
      */
     public void cycle(CBRQuery query) throws ExecutionException
     {
-	Collection<CBRCase> cases = _caseBase.getCases();
+	/*Collection<CBRCase> cases = _caseBase.getCases();
     OpennlpSplitterSpanish.split(query);
     StopWordsDetectorSpanish.detectStopWords(query);
     TextStemmerSpanish.stem(query);
@@ -126,8 +126,9 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
     extractMainTokens(query);
 
 	FeaturesExtractor.extractFeatures(query);
-	NuestroExtractor.extractInformation(query);
+	NuestroExtractor.extractInformation(query);*/
 	
+    Collection<CBRCase> cases = _caseBase.getCases();
 	NNConfig nnConfig = new NNConfig();
 	nnConfig.setDescriptionSimFunction(new Average());
 	
