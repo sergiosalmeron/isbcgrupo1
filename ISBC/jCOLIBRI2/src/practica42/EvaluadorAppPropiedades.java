@@ -3,9 +3,11 @@ package practica42;
 
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import jcolibri.casebase.CachedLinealCaseBase;
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
@@ -16,7 +18,13 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
+import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
+import jcolibri.extensions.textual.IE.common.StopWordsDetectorSpanish;
+import jcolibri.extensions.textual.IE.common.TextStemmerSpanish;
+import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
+import jcolibri.extensions.textual.IE.opennlp.OpennlpSplitterSpanish;
 import jcolibri.extensions.textual.IE.representation.IEText;
+import jcolibri.extensions.textual.IE.representation.Token;
 import jcolibri.extensions.textual.lucene.LuceneIndex;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.RetrievalResult;
@@ -44,7 +52,7 @@ import practica4.ResultFrame;
  * @see jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity
  * @see jcolibri.test.test13.connector.RestaurantsConnector
  */
-public class EvaluadorApp implements StandardCBRApplication
+public class EvaluadorAppPropiedades implements StandardCBRApplication
 {
 
     Connector _connector;
@@ -62,7 +70,7 @@ public class EvaluadorApp implements StandardCBRApplication
 	try
 	{
 	    _connector = new NewsConnector("src/practica4/noticias",150);
-	    _caseBase = new LinealCaseBase();
+	    _caseBase = new CachedLinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
 	    SwingProgressBar pb = new SwingProgressBar();
@@ -81,6 +89,21 @@ public class EvaluadorApp implements StandardCBRApplication
     public CBRCaseBase preCycle() throws ExecutionException
     {
 	_caseBase.init(_connector);
+	Collection<CBRCase> cases = _caseBase.getCases();
+	// Divide el texto en párrafos, frases y palabras
+	OpennlpSplitterSpanish.split(cases);
+	// Borra las palabras vacías
+	StopWordsDetectorSpanish.detectStopWords(cases);
+	// Extrae las raíces de cada palabra
+	TextStemmerSpanish.stem(cases);
+	// Realiza el etiquetado morfológico
+	OpennlpPOStaggerSpanish.tag(cases);
+	// Extraer los nombres y verbos almacenándolos en
+	//los atributos "nombres" y "verbos"
+	extractMainTokens(cases);
+	FeaturesExtractor.loadRules("src/practica42/rules.txt");
+	FeaturesExtractor.extractFeatures(cases);
+	NuestroExtractor.extractInformation(cases);
 
 	//Here we create the Lucene index
 	luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);
@@ -96,7 +119,15 @@ public class EvaluadorApp implements StandardCBRApplication
     public void cycle(CBRQuery query) throws ExecutionException
     {
 	Collection<CBRCase> cases = _caseBase.getCases();
-	
+    OpennlpSplitterSpanish.split(query);
+    StopWordsDetectorSpanish.detectStopWords(query);
+    TextStemmerSpanish.stem(query);
+    OpennlpPOStaggerSpanish.tag(query);
+    extractMainTokens(query);
+
+	FeaturesExtractor.extractFeatures(query);
+	NuestroExtractor.extractInformation(query);
+    
 	NNConfig nnConfig = new NNConfig();
 	nnConfig.setDescriptionSimFunction(new Average());
 	
@@ -107,8 +138,14 @@ public class EvaluadorApp implements StandardCBRApplication
 	nnConfig.setWeight(texto, 0.25);
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-	nnConfig.setWeight(titulo, 0.75);
-
+	nnConfig.setWeight(titulo, 0.25);
+	Attribute nombres = new Attribute("nombres", NewsDescription.class);
+	nnConfig.addMapping(nombres, new Contains());
+	nnConfig.setWeight(nombres, 0.25);
+	Attribute verbos = new Attribute("verbos", NewsDescription.class);
+	nnConfig.addMapping(verbos, new Contains());
+	nnConfig.setWeight(verbos, 0.25);
+	System.out.println("RESULT: ");
 	
 	System.out.println("RESULT: ");
 	
@@ -127,16 +164,8 @@ public class EvaluadorApp implements StandardCBRApplication
 	else prediccion = 0.0;
 	
 	Evaluator.getEvaluationReport().addDataToSeries("Errores", new Double (prediccion));
-	/*for(RetrievalResult rr: res){
-	    System.out.println(rr);
-	
-	    NewsDescription qrd = (NewsDescription)query.getDescription();
-		CBRCase mostSimilar = ite.next().get_case();
-		NewsDescription rrd = (NewsDescription)mostSimilar.getDescription();
-		NewsSolution sol = (NewsSolution)mostSimilar.getSolution();
-		new ResultFrame(qrd.getText().toString(), rrd.getTitle().toString(),sol.getCategory(), rrd.getText().toString(), sol.getImgURL());
-	}
-*/    }
+
+   }
 
     /*
      * (non-Javadoc)
@@ -148,7 +177,39 @@ public class EvaluadorApp implements StandardCBRApplication
 	_connector.close();
 
     }
+	public void extractMainTokens(Collection<CBRCase> cases)
+	{
+		for(CBRCase c: cases)
+			extractMainTokens((NewsDescription)c.getDescription());
+	}
+	
+	public void extractMainTokens(CBRQuery query)
+	{
+			extractMainTokens((NewsDescription)query.getDescription());
+	}
+	
+	public void extractMainTokens(NewsDescription desc)
+	{
+		ArrayList<String> nombres = new ArrayList<String>();
+		ArrayList<String> verbos = new ArrayList<String>();
+		
+		getMainTokens((IEText)desc.getText(),nombres, verbos);
+		desc.setNombres(nombres);
+		desc.setVerbos(verbos);
+	}
 
+	void getMainTokens(IEText text, Collection<String> names, Collection<String> verbs)
+	{
+		for(Token t: text.getAllTokens())
+		{
+			if(t.getPostag().startsWith("N"))
+				if(t.getStem()!=null)
+					names.add(t.getStem());
+			if(t.getPostag().startsWith("V"))
+				if(t.getStem()!=null)
+					verbs.add(t.getStem());
+		}
+	}
     
     public static void main(String[] args)
     {
@@ -189,4 +250,6 @@ public class EvaluadorApp implements StandardCBRApplication
 	    org.apache.commons.logging.LogFactory.getLog(Practica42.class).error(e);
 	}
     }
+
+
 }
