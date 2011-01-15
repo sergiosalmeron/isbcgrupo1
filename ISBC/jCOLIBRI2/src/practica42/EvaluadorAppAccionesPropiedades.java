@@ -38,20 +38,7 @@ import jcolibri.test.main.SwingProgressBar;
 import practica1.QuinielaSolution;
 import practica4.ResultFrame;
 
-/**
- * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 
- * <br>
- * It uses a custum connector (RestaurantConnector) that loads cases from a normal txt file.
- * <br>
- * To compare the texts it uses the Lucene similarity function implemented in jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity
- * <br>
- * Test13a shows whot tu use other textual similarity function from the jcolibri.method.retrieve.NNretrieval.similarity.local.textual package.
- * 
- * @author Juan A. Recio-Garcia
- * @version 1.0
- * @see jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity
- * @see jcolibri.test.test13.connector.RestaurantsConnector
- */
+
 public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
 {
 
@@ -69,7 +56,7 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new NewsConnector("src/practica4/noticias",1);
+	    _connector = new NewsConnector("src/practica4/noticias",15);
 	    _caseBase = new CachedLinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();

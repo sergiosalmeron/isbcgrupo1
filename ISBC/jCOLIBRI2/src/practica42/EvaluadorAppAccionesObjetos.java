@@ -229,7 +229,7 @@ public class EvaluadorAppAccionesObjetos implements StandardCBRApplication
 	    boolean _continue = true;
 	    while(_continue)
 	    {
-	    		//String titulo = javax.swing.JOptionPane.showInputDialog("Realiza la busqueda de las noticias");
+
         	    String queryString = javax.swing.JOptionPane.showInputDialog("Realiza la busqueda de las noticias");
         	    if(queryString == null)
         		_continue = false;
