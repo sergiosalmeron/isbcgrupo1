@@ -14,6 +14,10 @@ public class NewsDescription implements CaseComponent {
 	IEText text;
 	Text title;
 	Collection<String> Politico = new ArrayList<String>();
+	Collection<String> Deporte = new ArrayList<String>();
+	Collection<String> Deportista = new ArrayList<String>();
+	Collection<String> Economia = new ArrayList<String>();
+	Collection<String> Tecnologia = new ArrayList<String>();
 	/**
 	 * @return the politico
 	 */
@@ -28,6 +32,78 @@ public class NewsDescription implements CaseComponent {
 	 */
 	public void setPolitico(Collection<String> politico) {
 		this.Politico = politico;
+	}
+
+
+
+	/**
+	 * @return the deporte
+	 */
+	public Collection<String> getDeporte() {
+		return Deporte;
+	}
+
+
+
+	/**
+	 * @param deporte the deporte to set
+	 */
+	public void setDeporte(Collection<String> deporte) {
+		Deporte = deporte;
+	}
+
+
+
+	/**
+	 * @return the deportista
+	 */
+	public Collection<String> getDeportista() {
+		return Deportista;
+	}
+
+
+
+	/**
+	 * @param deportista the deportista to set
+	 */
+	public void setDeportista(Collection<String> deportista) {
+		Deportista = deportista;
+	}
+
+
+
+	/**
+	 * @return the economia
+	 */
+	public Collection<String> getEconomia() {
+		return Economia;
+	}
+
+
+
+	/**
+	 * @param economia the economia to set
+	 */
+	public void setEconomia(Collection<String> economia) {
+		Economia = economia;
+	}
+
+
+
+	/**
+	 * @return the tecnologia
+	 */
+	public Collection<String> getTecnologia() {
+		return Tecnologia;
+	}
+
+
+
+	/**
+	 * @param tecnologia the tecnologia to set
+	 */
+	public void setTecnologia(Collection<String> tecnologia) {
+		Tecnologia = tecnologia;
 	}
 
 
