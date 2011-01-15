@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
+import practica42.EvaluadorAppAccionesObjetos;
 import practica42.EvaluadorAppAccionesPropiedades;
+import practica42.EvaluadorAppPropiedades;
 import practica42.NewsDescription;
 import practica42.Practica42;
 
@@ -449,23 +451,63 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 	// Extraer los tokens	
     private void jEvaluar2MousePressed(java.awt.event.MouseEvent evt) {
     	setVisible(false);
-    	//if (eva==1){
+    	if (eva==0){
+        	NFoldEvaluator eval = new NFoldEvaluator();
+        		if (jPropiedades2.isSelected() && jAcciones2.isSelected()){
+        			eval.init(new EvaluadorAppAccionesPropiedades());
+        			eval.NFoldEvaluation(5,1);
+        		}
+        		else if (jPropiedades2.isSelected()){
+        			eval.init(new EvaluadorAppPropiedades());
+        			eval.NFoldEvaluation(5,1);
+        		}
+        		else if (jAcciones2.isSelected()){
+        			eval.init(new EvaluadorAppAccionesObjetos());
+        			eval.NFoldEvaluation(5,1);    			}
+        		else {
+        			eval.init(new EvaluadorApp());
+    				eval.NFoldEvaluation(5,1);
+        		}
+        	}
+    	if (eva==1){
+        	HoldOutEvaluator eval = new HoldOutEvaluator();
+        		if (jPropiedades2.isSelected() && jAcciones2.isSelected()){
+        			eval.init(new EvaluadorAppAccionesPropiedades());
+        			eval.HoldOut(15,1);
+        		}
+        		else if (jPropiedades2.isSelected()){
+        			eval.init(new EvaluadorAppPropiedades());
+        			eval.HoldOut(15,1);
+        		}
+        		else if (jAcciones2.isSelected()){
+        			eval.init(new EvaluadorAppAccionesObjetos());
+        			eval.HoldOut(15,1);
+    			}
+        		else {
+        			eval.init(new EvaluadorApp());
+        			eval.HoldOut(15,1);
+        		}
+        	}
+    	if (eva==2){
     	LeaveOneOutEvaluator eval = new LeaveOneOutEvaluator();
-    	eval.init(new EvaluadorAppAccionesPropiedades());
-    	eval.LeaveOneOut();
-    //	}
-	/*    	if (eva==1)
-    		;
-    	if (eva==0)
-    		NFoldEvaluator eval = new NFoldEvaluator();
-    	if (eva==0)
-    		LeaveOneOutEvaluator eval = new LeaveOneOutEvaluator();
-    		if (jPropiedades2.isSelected() && jAcciones2.isSelected())
+    		if (jPropiedades2.isSelected() && jAcciones2.isSelected()){
     			eval.init(new EvaluadorAppAccionesPropiedades());
-    		else if (jPropiedades2.isSelected())
-    			eval.init(new EvaluadorAppAccionesPropiedades());
-    		eval.HoldOut(15, 1);
-	*/
+    			eval.LeaveOneOut();
+    		}
+    		else if (jPropiedades2.isSelected()){
+    			eval.init(new EvaluadorAppPropiedades());
+    			eval.LeaveOneOut();
+    		}
+    		else if (jAcciones2.isSelected()){
+    			eval.init(new EvaluadorAppAccionesObjetos());
+    			eval.LeaveOneOut();
+			}
+    		else {
+    			eval.init(new EvaluadorApp());
+				eval.LeaveOneOut();
+    		}
+    	}	
+
 		Vector<Double> vec = Evaluator.getEvaluationReport().getSeries("Errores");
 		double avg = 0.0;
 		for (Double d: vec)
