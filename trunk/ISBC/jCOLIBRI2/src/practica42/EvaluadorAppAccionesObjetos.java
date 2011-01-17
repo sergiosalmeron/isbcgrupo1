@@ -21,6 +21,7 @@ import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
 import jcolibri.extensions.textual.IE.common.StopWordsDetectorSpanish;
 import jcolibri.extensions.textual.IE.common.TextStemmerSpanish;
+import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpSplitterSpanish;
 import jcolibri.extensions.textual.IE.representation.IEText;
@@ -147,8 +148,6 @@ public class EvaluadorAppAccionesObjetos implements StandardCBRApplication
 	nnConfig.setWeight(verbos, 0.25);
 	System.out.println("RESULT: ");
 	
-	System.out.println("RESULT: ");
-	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);
 	res = SelectCases.selectTopKRR(res, 5);
 	VotacionPonderada p = new VotacionPonderada();
@@ -237,7 +236,7 @@ public class EvaluadorAppAccionesObjetos implements StandardCBRApplication
         	    {	
                 	    CBRQuery query = new CBRQuery();
                 	    NewsDescription queryDescription = new NewsDescription();
-                	    queryDescription.setText(new IEText(queryString));
+                	    queryDescription.setText(new IETextOpenNLP(queryString));
                 	    queryDescription.setTitle(new Text(queryString));
                 	    query.setDescription(queryDescription);
                 	    

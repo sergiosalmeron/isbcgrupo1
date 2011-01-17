@@ -66,7 +66,7 @@ public class Practica42 implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new NewsConnector("src/practica4/noticias",1);
+	    _connector = new NewsConnector("src/practica4/noticias",150);
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
@@ -139,6 +139,18 @@ public class Practica42 implements StandardCBRApplication
 		Attribute politico = new Attribute("Politico", NewsDescription.class);
 		nnConfig.addMapping(politico, new Contains());
 		nnConfig.setWeight(politico, 0.25);
+		Attribute deporte = new Attribute("Deporte", NewsDescription.class);
+		nnConfig.addMapping(deporte, new Contains());
+		nnConfig.setWeight(deporte, 0.25);
+		Attribute deportistas = new Attribute("Deportista", NewsDescription.class);
+		nnConfig.addMapping(deportistas, new Contains());
+		nnConfig.setWeight(deportistas, 0.25);
+		Attribute tecnologia = new Attribute("Tecnologia", NewsDescription.class);
+		nnConfig.addMapping(tecnologia, new Contains());
+		nnConfig.setWeight(tecnologia, 0.25);
+		Attribute economia = new Attribute("Economia", NewsDescription.class);
+		nnConfig.addMapping(economia, new Contains());
+		nnConfig.setWeight(economia, 0.25);
 
 	}
 	

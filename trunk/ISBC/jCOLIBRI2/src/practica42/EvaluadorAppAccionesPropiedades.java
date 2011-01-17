@@ -105,7 +105,7 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
      */
     public void cycle(CBRQuery query) throws ExecutionException
     {
-	/*Collection<CBRCase> cases = _caseBase.getCases();
+	Collection<CBRCase> cases = _caseBase.getCases();
     OpennlpSplitterSpanish.split(query);
     StopWordsDetectorSpanish.detectStopWords(query);
     TextStemmerSpanish.stem(query);
@@ -113,9 +113,9 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
     extractMainTokens(query);
 
 	FeaturesExtractor.extractFeatures(query);
-	NuestroExtractor.extractInformation(query);*/
+	NuestroExtractor.extractInformation(query);
 	
-    Collection<CBRCase> cases = _caseBase.getCases();
+ 
 	NNConfig nnConfig = new NNConfig();
 	nnConfig.setDescriptionSimFunction(new Average());
 	
@@ -136,6 +136,18 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
 	Attribute politico = new Attribute("Politico", NewsDescription.class);
 	nnConfig.addMapping(politico, new Contains());
 	nnConfig.setWeight(politico, 0.25);
+	Attribute deporte = new Attribute("Deporte", NewsDescription.class);
+	nnConfig.addMapping(deporte, new Contains());
+	nnConfig.setWeight(deporte, 0.25);
+	Attribute deportistas = new Attribute("Deportista", NewsDescription.class);
+	nnConfig.addMapping(deportistas, new Contains());
+	nnConfig.setWeight(deportistas, 0.25);
+	Attribute tecnologia = new Attribute("Tecnologia", NewsDescription.class);
+	nnConfig.addMapping(tecnologia, new Contains());
+	nnConfig.setWeight(tecnologia, 0.25);
+	Attribute economia = new Attribute("Economia", NewsDescription.class);
+	nnConfig.addMapping(economia, new Contains());
+	nnConfig.setWeight(economia, 0.25);
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);

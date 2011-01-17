@@ -136,6 +136,7 @@ public class NewsConnector implements Connector {
 			String title = children.elementAt(1).toPlainTextString().trim();
 			title = QueryParser.escape(title);
 			IETextOpenNLP text = new IETextOpenNLP();
+			String texto="";
 			
 			boolean good = false;
 			for(int i=2; i<children.size(); i++)
@@ -150,14 +151,17 @@ public class NewsConnector implements Connector {
 					if((att!=null) && att.equals("ads_standard"))
 						good = false;
 				}
-				if(good)
-					text = new IETextOpenNLP(node.toPlainTextString().trim());
+				if(good){
+					texto = (node.toPlainTextString().trim());
+					texto =QueryParser.escape(texto);
+					text = new IETextOpenNLP(texto);
+				}
 			}
 			
 			NewsDescription desc = new NewsDescription();
 			desc.setId(htmlFile.getName());
 			desc.setText(text);
-			desc.setTitle(new Text(title));
+			desc.setTitle(new IETextOpenNLP(title));
 			
 			NewsSolution sol = new NewsSolution();
 			sol.setId(htmlFile.getName());
