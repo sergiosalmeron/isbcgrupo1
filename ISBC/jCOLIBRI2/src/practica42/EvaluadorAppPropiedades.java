@@ -21,6 +21,7 @@ import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
 import jcolibri.extensions.textual.IE.common.StopWordsDetectorSpanish;
 import jcolibri.extensions.textual.IE.common.TextStemmerSpanish;
+import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpSplitterSpanish;
 import jcolibri.extensions.textual.IE.representation.IEText;
@@ -139,13 +140,21 @@ public class EvaluadorAppPropiedades implements StandardCBRApplication
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
 	nnConfig.setWeight(titulo, 0.25);
-	Attribute nombres = new Attribute("nombres", NewsDescription.class);
-	nnConfig.addMapping(nombres, new Contains());
-	nnConfig.setWeight(nombres, 0.25);
-	Attribute verbos = new Attribute("verbos", NewsDescription.class);
-	nnConfig.addMapping(verbos, new Contains());
-	nnConfig.setWeight(verbos, 0.25);
-	System.out.println("RESULT: ");
+	Attribute politico = new Attribute("Politico", NewsDescription.class);
+	nnConfig.addMapping(politico, new Contains());
+	nnConfig.setWeight(politico, 0.25);
+	Attribute deporte = new Attribute("Deporte", NewsDescription.class);
+	nnConfig.addMapping(deporte, new Contains());
+	nnConfig.setWeight(deporte, 0.25);
+	Attribute deportistas = new Attribute("Deportista", NewsDescription.class);
+	nnConfig.addMapping(deportistas, new Contains());
+	nnConfig.setWeight(deportistas, 0.25);
+	Attribute tecnologia = new Attribute("Tecnologia", NewsDescription.class);
+	nnConfig.addMapping(tecnologia, new Contains());
+	nnConfig.setWeight(tecnologia, 0.25);
+	Attribute economia = new Attribute("Economia", NewsDescription.class);
+	nnConfig.addMapping(economia, new Contains());
+	nnConfig.setWeight(economia, 0.25);
 	
 	System.out.println("RESULT: ");
 	
@@ -236,7 +245,7 @@ public class EvaluadorAppPropiedades implements StandardCBRApplication
         	    {	
                 	    CBRQuery query = new CBRQuery();
                 	    NewsDescription queryDescription = new NewsDescription();
-                	    queryDescription.setText(new IEText(queryString));
+                	    queryDescription.setText(new IETextOpenNLP(queryString));
                 	    queryDescription.setTitle(new Text(queryString));
                 	    query.setDescription(queryDescription);
                 	    
