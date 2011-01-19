@@ -1,0 +1,240 @@
+/**
+ * RestaurantsConnector.java
+ * jCOLIBRI2 framework. 
+ * @author Juan A. Recio-García.
+ * GAIA - Group for Artificial Intelligence Applications
+ * http://gaia.fdi.ucm.es
+ * 23/06/2007
+ */
+package practica4;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.HeadlessException;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+/**
+ * Swing dialog to show the result of the recommendation.
+ * @author Juan Antonio Recio García
+ * @version 1.0
+ */
+
+public class ResultFrame2 extends JDialog {
+
+    private static final long serialVersionUID = 1L;
+
+    JLabel jLabel1 = new JLabel();
+
+	JLabel logo = new JLabel();
+
+	JScrollPane jScrollPane1 = new JScrollPane();
+
+	JPanel jPanel1 = new JPanel();
+
+	Border border1;
+
+	TitledBorder titledBorder1;
+
+	JPanel jPanel2 = new JPanel();
+
+	Border border2;
+
+	TitledBorder titledBorder2;
+	String img = new String();
+
+	JEditorPane queryTextPane = new JEditorPane();
+
+	JLabel jLabel2 = new JLabel();
+
+	JTextField restaurant = new JTextField();
+
+	JLabel jLabel3 = new JLabel();
+
+	JScrollPane jScrollPane2 = new JScrollPane();
+
+	JEditorPane AddressTextPane = new JEditorPane();
+
+	JLabel jLabel4 = new JLabel();
+
+	JScrollPane jScrollPane3 = new JScrollPane();
+
+	JEditorPane descriptionTextPane = new JEditorPane();
+	
+	JLabel deporte = new JLabel();
+	JLabel deportista = new JLabel();
+	JLabel economia = new JLabel();
+	JLabel politica = new JLabel();
+	JLabel tecnologia = new JLabel();
+	JLabel nombres = new JLabel();
+	JLabel verbos = new JLabel();
+	
+	JTextField d = new JTextField();
+	JTextField da = new JTextField();
+	JTextField eco = new JTextField();
+	JTextField pol = new JTextField();
+	JTextField tec = new JTextField();
+	JTextField nomb = new JTextField();
+	JTextField verb = new JTextField();
+
+	public ResultFrame2(String query, String restaurant, String address,
+			String description,String img,String nombres,String verbos,
+			String deporte,String deportista,String economia,String politico,String tecnologia) throws HeadlessException {
+		try {
+			this.img = img;
+			jbInit();
+			java.awt.Dimension screenSize = java.awt.Toolkit
+					.getDefaultToolkit().getScreenSize();
+			setBounds((screenSize.width - this.getWidth()) / 2,
+					(screenSize.height - this.getHeight()) / 2, getWidth(),
+					getHeight());
+			this.queryTextPane.setText(query);
+			this.restaurant.setText(restaurant);
+			this.AddressTextPane.setText(address);
+			this.descriptionTextPane.setText(description);
+			this.d.setText(deporte);
+			this.da.setText(deportista);
+			this.eco.setText(economia);
+			this.pol.setText(politico);
+			this.tec.setText(tecnologia);
+			this.nomb.setText(nombres);
+			this.verb.setText(verbos);
+			this.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) throws HeadlessException {
+		ResultFrame2 resultFrame1 = new ResultFrame2("query", "Título",
+				"Categoria", "texto","img","a","b","c","d","e","f","g");
+		resultFrame1.setVisible(true);
+	}
+
+	private void jbInit() throws Exception {
+		border1 = BorderFactory.createBevelBorder(BevelBorder.LOWERED,
+				Color.white, Color.white, new Color(124, 124, 124), new Color(
+						178, 178, 178));
+		titledBorder1 = new TitledBorder(BorderFactory.createLineBorder(
+				Color.black, 1), "Result");
+		border2 = BorderFactory.createLineBorder(SystemColor.controlText, 1);
+		titledBorder2 = new TitledBorder(border2, "Query");
+		jLabel1.setFont(new java.awt.Font("Dialog", 1, 16));
+		jLabel1.setForeground(Color.blue);
+		jLabel1.setText("Buscador de Noticias");
+		jLabel1.setBounds(new Rectangle(100, 11, 271, 29));
+		this.getContentPane().setBackground(Color.white);
+		this.getContentPane().setLayout(null);
+		logo.setText("");
+		logo.setBounds(new Rectangle(291, 203, 138, 283));
+		try{
+			logo.setIcon(new javax.swing.ImageIcon(jcolibri.util.FileIO.findFile("practica4/img/"+img)));
+		}
+		catch (Exception e){};
+		jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		jScrollPane1.setBounds(new Rectangle(9, 21, 404, 41));
+		jPanel1.setBackground(Color.white);
+		jPanel1.setBorder(titledBorder1);
+		jPanel1.setBounds(new Rectangle(15, 132, 256, 645));
+		jPanel1.setLayout(null);
+		jPanel2.setBackground(Color.white);
+		jPanel2.setBorder(titledBorder2);
+		jPanel2.setBounds(new Rectangle(14, 44, 423, 76));
+		jPanel2.setLayout(null);
+		queryTextPane.setEditable(false);
+		queryTextPane.setText("");
+		jLabel2.setText("Noticia");
+		jLabel2.setBounds(new Rectangle(9, 19, 214, 20));
+		restaurant.setText("");
+		restaurant.setBounds(new Rectangle(7, 42, 237, 23));
+		restaurant.setEditable(false);
+		restaurant.setBackground(Color.white);
+		jLabel3.setBounds(new Rectangle(9, 74, 214, 20));
+		jLabel3.setText("Categoria");
+		jScrollPane2
+				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		jScrollPane2.setBounds(new Rectangle(7, 98, 234, 40));
+		jLabel4.setBounds(new Rectangle(9, 149, 214, 20));
+		jLabel4.setText("Texto");
+		jScrollPane3
+				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		jScrollPane3
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jScrollPane3.setVerifyInputWhenFocusTarget(true);
+		jScrollPane3.setBounds(new Rectangle(8, 173, 233, 163));
+		AddressTextPane.setText("");
+		AddressTextPane.setEditable(false);
+		descriptionTextPane.setText("");
+		descriptionTextPane.setEditable(false);
+		this.getContentPane().add(jPanel1, null);
+		this.getContentPane().add(logo, null);
+		this.getContentPane().add(jPanel2, null);
+		jPanel2.add(jScrollPane1, null);
+		this.getContentPane().add(jLabel1, null);
+		jScrollPane1.getViewport().add(queryTextPane, null);
+		jPanel1.add(restaurant, null);
+		jPanel1.add(jLabel2, null);
+		jPanel1.add(jLabel3, null);
+		jPanel1.add(jScrollPane2, null);
+		jScrollPane2.getViewport().add(AddressTextPane, null);
+		jPanel1.add(jScrollPane3, null);
+		jPanel1.add(jLabel4, null);
+		jScrollPane3.getViewport().add(descriptionTextPane, null);
+		deporte.setBounds(new Rectangle(9, 350, 214, 20));
+		deporte.setText("Deportes");
+		jPanel1.add(deporte);
+		d.setEditable(false);
+		d.setBounds(new Rectangle(7, 370, 237, 23));
+		jPanel1.add(d);
+		deportista.setText("Deportista");
+		deportista.setBounds(new Rectangle(9, 390, 214, 20));
+		jPanel1.add(deportista);
+		da.setBounds(new Rectangle(7, 410, 237, 23));
+		da.setEditable(false);
+		jPanel1.add(da);
+		economia.setText("Economia");
+		economia.setBounds(new Rectangle(9, 430, 214, 20));
+		jPanel1.add(economia);
+		eco.setBounds(new Rectangle(7, 450, 237, 23));
+		eco.setEditable(false);
+		jPanel1.add(eco);
+		politica.setText("Politica");
+		politica.setBounds(new Rectangle(9, 470, 214, 20));
+		jPanel1.add(politica);
+		pol.setBounds(new Rectangle(7, 490, 237, 23));
+		pol.setEditable(false);
+		jPanel1.add(pol);
+		tecnologia.setText("Teconologia");
+		tecnologia.setBounds(new Rectangle(9, 510, 214, 20));
+		jPanel1.add(tecnologia);
+		tec.setBounds(new Rectangle(7, 530, 237, 23));
+		tec.setEditable(false);
+		jPanel1.add(tec);
+		nombres.setText("Nombres");
+		nombres.setBounds(new Rectangle(9, 550, 214, 20));
+		jPanel1.add(nombres);
+		nomb.setBounds(new Rectangle(7, 570, 237, 23));
+		nomb.setEditable(false);
+		jPanel1.add(nomb);
+		verbos.setText("Verbos");
+		verbos.setBounds(new Rectangle(9, 590, 214, 20));
+		jPanel1.add(verbos);
+		verb.setBounds(new Rectangle(7, 610, 237, 23));
+		verb.setEditable(false);
+		jPanel1.add(verb);
+		
+		this.setSize(new Dimension(465, 835));
+	}
+
+}

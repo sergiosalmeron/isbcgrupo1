@@ -4,12 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
-import practica42.EvaluadorAppAccionesObjetos;
-import practica42.EvaluadorAppAccionesPropiedades;
-import practica42.EvaluadorAppPropiedades;
-import practica42.NewsDescription;
-import practica42.Practica42;
-
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
@@ -28,6 +22,7 @@ import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
+import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanishVis;
 
 
 /**
@@ -53,7 +48,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jConsulta2 = new javax.swing.JLabel();
         jRecuperar2 = new javax.swing.JButton();
         jEvaluar2 = new javax.swing.JButton();
-  //      jEvaluarNFold2 = new javax.swing.JButton();
+        jVisualizar2 = new javax.swing.JButton();
     //    jEvaluarHoldOut2 = new javax.swing.JButton();
       //  jEvaluarLeaveOneOut2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -68,6 +63,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jEvaluacionNFold2 = new javax.swing.JMenuItem();
         jEvaluacionHoldOut2 = new javax.swing.JMenuItem();
         jEvaluacionLeaveOneOut2 = new javax.swing.JMenuItem();
+        jVisualizacion2 = new javax.swing.JMenuItem();
         eva=0;
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,6 +103,15 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jEvaluar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
             	jEvaluar2MousePressed(evt);
+            }
+        });
+        
+        jVisualizar2.setText("Visualizar");
+        jVisualizar2.setEnabled(false);
+        jVisualizar2.setVisible(false);
+        jVisualizar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jVisualizar2MousePressed(evt);
             }
         });
         
@@ -199,6 +204,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         
         jParteII.add(jEvaluacionLeaveOneOut2);
+        
+        jVisualizacion2.setText("Visualizacion");
+        jVisualizacion2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jVisualizacion2MousePressed(evt);
+            }
+        });
+        jParteII.add(jVisualizacion2);  
 
         jMenuBar1.add(jParteII);
 
@@ -216,7 +229,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addComponent(jConsulta2)
                     .addComponent(jRecuperar2)
-                    .addComponent(jEvaluar2))
+                    .addComponent(jEvaluar2)
+                    .addComponent(jVisualizar2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -234,6 +248,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addComponent(jRecuperar2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEvaluar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jVisualizar2)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         
@@ -302,7 +318,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 		Evaluator.getEvaluationReport().putOtherData("Media", Double.toString(avg));
 		System.out.println(Evaluator.getEvaluationReport());
 		jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluacion Quinielas",false);
-
+		setVisible(true);
     }
 
     private void jNFold1MousePressed(java.awt.event.MouseEvent evt) {
@@ -321,6 +337,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 		System.out.println(Evaluator.getEvaluationReport());
 		jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluacion Quinielas",false);
 
+		setVisible(true);
     }
 
     private void jHoldOut1MousePressed(java.awt.event.MouseEvent evt) {
@@ -339,6 +356,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 		System.out.println(Evaluator.getEvaluationReport());
 		jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluador buscador Noticias",false);
 
+		setVisible(true);
     }
     
     private void jVisualizacion1MousePressed(java.awt.event.MouseEvent evt) {
@@ -348,7 +366,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 	    	jcolibri.util.ProgressController.register(new jcolibri.test.main.SwingProgressBar(), jcolibri.extensions.visualization.CasesVisualization.class);
 	    
 		//Configure connector and case base
-	    	Connector _connector = new NewsConnector("src/practica4/noticias",2);
+	    	Connector _connector = new NewsConnector("src/practica4/noticias",10);
 	    	CBRCaseBase _caseBase = new LinealCaseBase();
 		    
 		
@@ -368,22 +386,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 		nnConfig.setDescriptionSimFunction(new Average());
 //		nnConfig.addMapping(new Attribute("id",NewsDescription.class), new Equal());
 		Attribute texto = new Attribute("text", NewsDescription.class);
-		nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-		nnConfig.setWeight(texto, 0.01);
+		nnConfig.addMapping(texto, new LuceneTextSimilaritySpanishVis(luceneIndex,query,texto, true));
+		nnConfig.setWeight(texto, 0.50);
 		Attribute titulo = new Attribute("title", NewsDescription.class);
-		nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-		nnConfig.setWeight(titulo, 01.0);	
+		nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanishVis(luceneIndex,query,titulo, true));
+		nnConfig.setWeight(titulo, 0.50);	
 		// Visualize the case base
 		jcolibri.extensions.visualization.CasesVisualization.visualize(_caseBase.getCases(), nnConfig);
 ///		}
 	} catch (Exception e) {
-		org.apache.commons.logging.LogFactory.getLog(visualizacionCasos.class).error(e);
+		org.apache.commons.logging.LogFactory.getLog(InterfazPrincipal.class).error(e);
 	}
 
-
+	setVisible(true);
 }
 
     private void jAIG2MousePressed(java.awt.event.MouseEvent evt) {
+    	ocultar();
         this.jAcciones2.setEnabled(true);
         this.jAcciones2.setVisible(true);
         this.jConsulta2.setEnabled(true);
@@ -397,12 +416,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }
     
     private void jEvaluacion2MousePressed(java.awt.event.MouseEvent evt) {
+    	ocultar();
         this.jAcciones2.setEnabled(true);
         this.jAcciones2.setVisible(true);
         this.jPropiedades2.setEnabled(true);
         this.jPropiedades2.setVisible(true);
         this.jEvaluar2.setEnabled(true);
         this.jEvaluar2.setVisible(true);
+    }
+    
+    private void jVisualizacion2MousePressed(java.awt.event.MouseEvent evt) {
+    	ocultar();
+        this.jAcciones2.setEnabled(true);
+        this.jAcciones2.setVisible(true);
+        this.jPropiedades2.setEnabled(true);
+        this.jPropiedades2.setVisible(true);
+        this.jVisualizar2.setEnabled(true);
+        this.jVisualizar2.setVisible(true);
     }
     
     private void jRecuperar2MousePressed(java.awt.event.MouseEvent evt) {
@@ -425,7 +455,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     	    	String tipo="";
     	    	boolean propiedades=false;
     	    	CBRQuery query = new CBRQuery();
-    	    	practica42.NewsDescription queryDescription = new practica42.NewsDescription();
+    	    	NewsDescription2 queryDescription = new NewsDescription2();
     	    	queryDescription.setText(new IETextOpenNLP(queryString));
     	    	queryDescription.setTitle(new IETextOpenNLP(queryString));
     	    	query.setDescription(queryDescription);
@@ -446,7 +476,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 	{
 	    org.apache.commons.logging.LogFactory.getLog(Practica42.class).error(e);
 	}
-	
+    ocultar();
+    setVisible(true);
  }   
 	// Extraer los tokens	
     private void jEvaluar2MousePressed(java.awt.event.MouseEvent evt) {
@@ -517,12 +548,103 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 		System.out.println(Evaluator.getEvaluationReport());
 		jcolibri.evaluation.tools.EvaluationResultGUI.show(Evaluator.getEvaluationReport(), "Evaluador buscador Noticias",false);
 
-      
+		ocultar();
+		setVisible(true);
 	} 
+    
+    private void jVisualizar2MousePressed(java.awt.event.MouseEvent evt) {
+    	setVisible(false);
+		try {
+	    	jcolibri.util.ProgressController.clear();
+	    	jcolibri.util.ProgressController.register(new jcolibri.test.main.SwingProgressBar(), jcolibri.extensions.visualization.CasesVisualization.class);
+	    
+		//Configure connector and case base
+	    	Connector _connector = new NewsConnector2("src/practica4/noticias",10);
+	    	CBRCaseBase _caseBase = new LinealCaseBase();
+		    
+		
+		// Load cases
+		_caseBase.init(_connector);
+		
+		LuceneIndexSpanish luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);
+		
+	
+
+		Iterator<CBRCase> i = _caseBase.getCases().iterator();
+		CBRQuery query= new CBRQuery();
+
+			query=(CBRQuery)i.next();
+		NNConfig nnConfig = new NNConfig();
+		nnConfig.setDescriptionSimFunction(new Average());
+		
+	   	if (jAcciones2.isSelected()){
+    		Attribute nombres = new Attribute("nombres", NewsDescription2.class);
+    		nnConfig.addMapping(nombres, new Contains());
+    		nnConfig.setWeight(nombres, 0.25);
+    		Attribute verbos = new Attribute("verbos", NewsDescription2.class);
+    		nnConfig.addMapping(verbos, new Contains());
+    		nnConfig.setWeight(verbos, 0.25);
+    	}
+    	if ((jPropiedades2.isSelected())){
+    		Attribute politico = new Attribute("Politico", NewsDescription2.class);
+    		nnConfig.addMapping(politico, new Contains());
+    		nnConfig.setWeight(politico, 0.25);
+    		Attribute Tecnologia = new Attribute("Tecnologia", NewsDescription2.class);
+    		nnConfig.addMapping(Tecnologia, new Contains());
+    		nnConfig.setWeight(Tecnologia, 0.25);
+    		Attribute Economia = new Attribute("Economia", NewsDescription2.class);
+    		nnConfig.addMapping(Economia, new Contains());
+    		nnConfig.setWeight(Economia, 0.25);
+    		Attribute Deporte = new Attribute("Deporte", NewsDescription2.class);
+    		nnConfig.addMapping(Deporte, new Contains());
+    		nnConfig.setWeight(Deporte, 0.25);
+    		Attribute Deportista = new Attribute("Deportista", NewsDescription2.class);
+    		nnConfig.addMapping(Deportista, new Contains());
+    		nnConfig.setWeight(Deportista, 0.25);
+
+    	}
+//		nnConfig.addMapping(new Attribute("id",NewsDescription.class), new Equal());
+		Attribute texto = new Attribute("text", NewsDescription.class);
+		nnConfig.addMapping(texto, new LuceneTextSimilaritySpanishVis(luceneIndex,query,texto, true));
+		nnConfig.setWeight(texto, 0.25);
+		Attribute titulo = new Attribute("title", NewsDescription.class);
+		nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanishVis(luceneIndex,query,titulo, true));
+		nnConfig.setWeight(titulo, 0.25);	
+		// Visualize the case base
+		jcolibri.extensions.visualization.CasesVisualization.visualize(_caseBase.getCases(), nnConfig);
+///		}
+	} catch (Exception e) {
+		org.apache.commons.logging.LogFactory.getLog(InterfazPrincipal.class).error(e);
+	}
+	ocultar();
+	setVisible(true);
+
+}
+
+ 
+        	
+ 
 
     
 
-    /**
+    private void ocultar() {
+        this.jAcciones2.setEnabled(false);
+        this.jAcciones2.setVisible(false);
+        this.jConsulta2.setEnabled(false);
+        this.jConsulta2.setVisible(false);
+        this.jPropiedades2.setEnabled(false);
+        this.jPropiedades2.setVisible(false);
+        this.jRecuperar2.setEnabled(false);
+        this.jRecuperar2.setVisible(false);
+        this.jTextField1.setEnabled(false);
+        this.jTextField1.setVisible(false);
+        this.jEvaluar2.setEnabled(false);
+        this.jEvaluar2.setVisible(false);
+        this.jVisualizar2.setEnabled(false);
+        this.jVisualizar2.setVisible(false);
+	}
+
+	/**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
@@ -530,7 +652,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             public void run() {
                 InterfazPrincipal a = new InterfazPrincipal();
                 a.setVisible(true);
-                a.setEnabled(true);
+                a.setEnabled(true);               
             }
         });
     }
@@ -543,6 +665,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox jAcciones2;
     private javax.swing.JButton jRecuperar2;
     private javax.swing.JButton jEvaluar2;
+    private javax.swing.JButton jVisualizar2;
     private javax.swing.JLabel jConsulta2;
     private javax.swing.JMenuItem jHoldOut1;
     private javax.swing.JMenuItem jLeaveOneOut1;
@@ -554,6 +677,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jRT1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem jVisualizacion1;
+    private javax.swing.JMenuItem jVisualizacion2;
+    
     private int eva;
  //   private javax.swing.JButton jEvaluarNFold2;
  //   private javax.swing.JButton jEvaluarHoldOut2;

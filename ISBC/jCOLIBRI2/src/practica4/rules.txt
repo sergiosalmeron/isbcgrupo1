@@ -1,0 +1,89 @@
+[Politico]{0}Zapatero
+[Politico]{0}Rajoy
+[Politico]{0}Rubalcaba
+[Politico]{0}Montilla
+[Politico]{0}Masinicia
+[Politico]{0}Aguilar
+[Politico]{0}Cameron
+[Politico]{0}Herrera
+[Politico]{0}Arenas
+[Politico]{0}Puigcercós
+[Politico]{0}Palin
+[Politico]{0}Préval
+[Politico]{0}Martelly
+[Politico]{0}Lambert
+[Politico]{0}Celestin
+[Politico]{0}Fernández
+[Politico]{0}Álvarez
+[Deporte]{0}fútbol
+[Deporte]{0}tenis
+[Deporte]{0}Fútbol
+[Deporte]{0}Tenis
+[Deporte]{0}F-1
+[Deporte]{0}Fórmula Uno
+[Deporte]{0}fórmula uno
+[Deporte]{0}Rugby
+[Deporte]{0}rugby
+[Deporte]{0}Baloncesto
+[Deporte]{0}baloncesto
+[Deporte]{0}Balonmano
+[Deporte]{0}balonmano
+[Deportista]{0}Fernando Alonso
+[Deportista]{0}Federer
+[Deportista]{0}Nadal
+[Deportista]{0}Ramos
+[Deportista]{0}Ferrer
+[Deportista]{0}Schumacher
+[Deportista]{0}Vettel
+[Deportista]{0}Cristiano Ronaldo
+[Deportista]{0}Ronaldo
+[Deportista]{0}Messi
+[Deportista]{0}Xavi
+[Deportista]{0}Iniesta
+[Deportista]{0}Xabi Alonso
+[Deportista]{0}Albiol
+[Deportista]{0}Arbeloa
+[Deportista]{0}Murray
+[Deportista]{0}Puyol
+[Deportista]{0}Carlos Sainz
+[Deportista]{0}Mark Webber
+[Deportista]{0}Agüero
+[Deportista]{0}Forlán
+[Deportista]{0}Albelda
+[Deportista]{0}Mourinho
+[Deportista]{0}Massa
+[Deportista]{0}Raúl
+[Deportista]{0}Raúl González Blanco
+[Economia]{0}IBEX
+[Economia]{0}stock option
+[Economia]{0}FMI
+[Economia]{0}banco
+[Economia]{0}BCE
+[Economia]{0}tesoro
+[Economia]{0}banca
+[Economia]{0}banco central
+[Economia]{0}acciones
+[Economia]{0}divisa
+[Economia]{0}empresa
+[Economia]{0}economía
+[Economia]{0}moneda
+[Economia]{0}euro
+[Economia]{0}dólar
+[Economia]{0}eurozona
+[Economia]{0}inflación
+[Economia]{0}devaluar
+[Economia]{0}IPC
+[Economia]{0}hipoteca
+[Economia]{0}impuestos
+[Economia]{0}IVA
+[Economia]{0}TAE
+[Tecnologia]{0}ordenador
+[Tecnologia]{0}youtube
+[Tecnologia]{0}red
+[Tecnologia]{0}google
+[Tecnologia]{0}virus
+[Tecnologia]{0}facebook
+[Tecnologia]{0}movil
+[Tecnologia]{0}canon
+[Tecnologia]{0}windows
+[Tecnologia]{0}wikileaks
