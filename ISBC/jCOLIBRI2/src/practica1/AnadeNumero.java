@@ -32,7 +32,7 @@ public class AnadeNumero {
 	public AnadeNumero(String ruta,String ruta2) throws IOException {
 		// TODO Auto-generated constructor stub
 		cadena = "";
-		numero = 1685;
+		numero = 1;
         try {
             fichero = new BufferedReader(new FileReader(ruta));
             buf = sigCar();
@@ -63,7 +63,7 @@ public class AnadeNumero {
                     	transita(0);
                     }
                     else if(buf == -1){
-                    	nuevo.write(-1);
+                    	//nuevo.write(-1);
                     	fichero.close();
                     	nuevo.close();
                     	System.exit(0);
@@ -100,7 +100,7 @@ public class AnadeNumero {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
-		AnadeNumero prueba = new AnadeNumero("c:/hlocal/Todo3.txt","c:/hlocal/BaseCasos3.txt");
+		AnadeNumero prueba = new AnadeNumero("src/practica1/Todo3.txt","src/practica1/BaseCasos3.txt");
 
 		prueba.rellena();
 
