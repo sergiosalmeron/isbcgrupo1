@@ -26,7 +26,6 @@ public class VotacionPonderada implements KNNClassificationMethod {
 			if(((NewsSolution)(nse.get_case().getSolution())).getCategory().equals("tecnologia")) e = e+(nse.getEval());
 			
 		}
-		Double confidence = 0.0;
 		NewsSolution s  = new NewsSolution();
 		double maximo = a;
 		s.setCategory("deportes");

@@ -1,6 +1,5 @@
 package practica4;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -17,11 +16,9 @@ import jcolibri.evaluation.evaluators.LeaveOneOutEvaluator;
 import jcolibri.evaluation.evaluators.NFoldEvaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
-import jcolibri.extensions.textual.IE.representation.IEText;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanishVis;
 
 
@@ -38,8 +35,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         this.setSize(500, 300);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
         
         jTextField1 = new javax.swing.JTextField();

@@ -11,8 +11,6 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
 import jcolibri.exception.InitializingException;
 import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
-import jcolibri.extensions.textual.IE.representation.IEText;
-
 import org.apache.lucene.queryParser.QueryParser;
 import org.htmlparser.Node;
 import org.htmlparser.Parser;

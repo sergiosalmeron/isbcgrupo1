@@ -4,10 +4,7 @@ package practica4;
 
 
 import java.util.Collection;
-import java.util.Iterator;
-
 import jcolibri.casebase.CachedLinealCaseBase;
-import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
@@ -17,18 +14,14 @@ import jcolibri.cbrcore.Connector;
 import jcolibri.datatypes.Text;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
-import jcolibri.extensions.textual.lucene.LuceneIndex;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-import practica1.QuinielaSolution;
-import practica4.ResultFrame;
 
 /**
  * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 
@@ -104,10 +97,10 @@ public class EvaluadorApp implements StandardCBRApplication
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	nnConfig.setWeight(texto, 0.25);
+	nnConfig.setWeight(texto, 0.75);
 	Attribute titulo = new Attribute("title", NewsDescription.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-	nnConfig.setWeight(titulo, 0.75);
+	nnConfig.setWeight(titulo,0.25);
 
 	
 	System.out.println("RESULT: ");

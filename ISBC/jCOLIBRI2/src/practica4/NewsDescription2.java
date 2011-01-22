@@ -18,6 +18,8 @@ public class NewsDescription2 implements CaseComponent {
 	Collection<String> Deportista = new ArrayList<String>();
 	Collection<String> Economia = new ArrayList<String>();
 	Collection<String> Tecnologia = new ArrayList<String>();
+	Collection<String> nombres;
+	Collection<String> verbos;
 	/**
 	 * @return the politico
 	 */
@@ -144,8 +146,6 @@ public class NewsDescription2 implements CaseComponent {
 
 
 
-	Collection<String> nombres;
-	Collection<String> verbos;
 	
 	
 	
