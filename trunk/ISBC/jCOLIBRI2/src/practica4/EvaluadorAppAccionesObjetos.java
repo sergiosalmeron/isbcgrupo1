@@ -5,17 +5,13 @@ package practica4;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-
 import jcolibri.casebase.CachedLinealCaseBase;
-import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
-import jcolibri.datatypes.Text;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
@@ -25,18 +21,14 @@ import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpSplitterSpanish;
 import jcolibri.extensions.textual.IE.representation.IEText;
 import jcolibri.extensions.textual.IE.representation.Token;
-import jcolibri.extensions.textual.lucene.LuceneIndex;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-import practica1.QuinielaSolution;
-import practica4.ResultFrame;
 
 /**
  * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 

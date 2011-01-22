@@ -5,41 +5,30 @@ package practica4;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-
-import org.apache.lucene.queryParser.QueryParser;
-
 import jcolibri.casebase.CachedLinealCaseBase;
-import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
-import jcolibri.datatypes.Text;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
 import jcolibri.extensions.textual.IE.common.StopWordsDetectorSpanish;
 import jcolibri.extensions.textual.IE.common.TextStemmerSpanish;
-import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpSplitterSpanish;
 import jcolibri.extensions.textual.IE.representation.IEText;
 import jcolibri.extensions.textual.IE.representation.Token;
-import jcolibri.extensions.textual.lucene.LuceneIndex;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-import practica1.QuinielaSolution;
-import practica4.ResultFrame;
 
 
 public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
@@ -117,16 +106,16 @@ public class EvaluadorAppAccionesPropiedades implements StandardCBRApplication
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription2.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	nnConfig.setWeight(texto, 0.25);
+	nnConfig.setWeight(texto, 0.7);
 	Attribute titulo = new Attribute("title", NewsDescription2.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
 	nnConfig.setWeight(titulo, 0.25);
 	Attribute nombres = new Attribute("nombres", NewsDescription2.class);
 	nnConfig.addMapping(nombres, new Contains());
-	nnConfig.setWeight(nombres, 0.25);
+	nnConfig.setWeight(nombres, 0.30);
 	Attribute verbos = new Attribute("verbos", NewsDescription2.class);
 	nnConfig.addMapping(verbos, new Contains());
-	nnConfig.setWeight(verbos, 0.25);
+	nnConfig.setWeight(verbos, 0.30);
 	Attribute politico = new Attribute("Politico", NewsDescription2.class);
 	nnConfig.addMapping(politico, new Contains());
 	nnConfig.setWeight(politico, 0.25);

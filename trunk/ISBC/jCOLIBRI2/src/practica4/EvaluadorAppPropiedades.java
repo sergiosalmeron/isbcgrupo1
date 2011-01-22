@@ -5,17 +5,13 @@ package practica4;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-
 import jcolibri.casebase.CachedLinealCaseBase;
-import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
-import jcolibri.datatypes.Text;
 import jcolibri.evaluation.Evaluator;
 import jcolibri.exception.ExecutionException;
 import jcolibri.extensions.textual.IE.common.FeaturesExtractor;
@@ -25,18 +21,14 @@ import jcolibri.extensions.textual.IE.opennlp.OpennlpPOStaggerSpanish;
 import jcolibri.extensions.textual.IE.opennlp.OpennlpSplitterSpanish;
 import jcolibri.extensions.textual.IE.representation.IEText;
 import jcolibri.extensions.textual.IE.representation.Token;
-import jcolibri.extensions.textual.lucene.LuceneIndex;
 import jcolibri.extensions.textual.lucene.LuceneIndexSpanish;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
 import jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
-import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilaritySpanish;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-import practica1.QuinielaSolution;
-import practica4.ResultFrame;
 
 /**
  * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 
@@ -135,25 +127,25 @@ public class EvaluadorAppPropiedades implements StandardCBRApplication
 	//We only compare the "description" attribute using Lucene
 	Attribute texto = new Attribute("text", NewsDescription2.class);
 	nnConfig.addMapping(texto, new LuceneTextSimilaritySpanish(luceneIndex,query,texto, true));
-	nnConfig.setWeight(texto, 0.25);
+	nnConfig.setWeight(texto, 0.7);
 	Attribute titulo = new Attribute("title", NewsDescription2.class);
 	nnConfig.addMapping(titulo, new LuceneTextSimilaritySpanish(luceneIndex,query,titulo, true));
-	nnConfig.setWeight(titulo, 0.25);
+	nnConfig.setWeight(titulo, 0.1);
 	Attribute politico = new Attribute("Politico", NewsDescription2.class);
 	nnConfig.addMapping(politico, new Contains());
-	nnConfig.setWeight(politico, 0.25);
+	nnConfig.setWeight(politico, 0.1);
 	Attribute Tecnologia = new Attribute("Tecnologia", NewsDescription2.class);
 	nnConfig.addMapping(Tecnologia, new Contains());
-	nnConfig.setWeight(Tecnologia, 0.25);
+	nnConfig.setWeight(Tecnologia, 0.1);
 	Attribute Economia = new Attribute("Economia", NewsDescription2.class);
 	nnConfig.addMapping(Economia, new Contains());
-	nnConfig.setWeight(Economia, 0.25);
+	nnConfig.setWeight(Economia, 0.1);
 	Attribute Deporte = new Attribute("Deporte", NewsDescription2.class);
 	nnConfig.addMapping(Deporte, new Contains());
-	nnConfig.setWeight(Deporte, 0.25);
+	nnConfig.setWeight(Deporte, 0.1);
 	Attribute Deportista = new Attribute("Deportista", NewsDescription2.class);
 	nnConfig.addMapping(Deportista, new Contains());
-	nnConfig.setWeight(Deportista, 0.25);
+	nnConfig.setWeight(Deportista, 0.1);
 
 	
 	System.out.println("RESULT: ");
