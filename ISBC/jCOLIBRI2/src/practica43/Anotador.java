@@ -49,7 +49,7 @@ public class Anotador {
 	public void anadirNuevoIndividuo(OntoBridge ob, String nombreInstancia, String conceptoPrimitivo) {
 		// Si estamos aquí, es porque el individuo no existe ya en el concepto primitivo
 		ob.createInstance(conceptoPrimitivo, nombreInstancia);
-		ob.save("ontologias/fotoOnto.owl");
+		ob.save("src/practica43/P4.owl");
 	}
 	
 
