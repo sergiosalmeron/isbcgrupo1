@@ -69,10 +69,17 @@ public class GUI_marcador extends JFrame{
 					"file:src/practica43/P4.owl");
 			ob.loadOntology(ontoPrincipal, subOntologias, false);
 			Iterator<String> it = ob.listSubClasses("Noticias", false);
+			Iterator<String> it2 = ob.listSubClasses("Persona", false);
+			Iterator<String> it3 = ob.listSubClasses("Temas", false);
 
 			ArrayList<String> ar = new ArrayList<String>();
 			while (it.hasNext())
 				ar.add(it.next());
+			while (it2.hasNext())
+				ar.add(it2.next());
+			while (it3.hasNext())
+				ar.add(it3.next());
+			
 
 			listaConceptos = new String[ar.size()];
 			for (int i = 0; i < listaConceptos.length; i++) {
