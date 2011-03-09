@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://gaial.fdi.ucm.es/ontologias/Practica4.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://gaial.fdi.ucm.es/ontologias/Practica4.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Monedas">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Temas"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Deporte">
+    <rdfs:subClassOf rdf:resource="#Temas"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Politicas">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Politicos"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="se_cataloga"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Partidos_Politicos"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Noticias"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Tecnologias">
+    <rdfs:subClassOf rdf:resource="#Temas"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Bolsa">
+    <rdfs:subClassOf rdf:resource="#Temas"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Economicas">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Bolsa"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Monedas"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Bancos"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Deportista">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Persona"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Deporte"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="practica"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Bancos">
+    <rdfs:subClassOf rdf:resource="#Temas"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Deportivas">
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Deportista"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Deporte"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Tecnoligicas">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#se_cataloga"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Tecnologias"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Politicos">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="pertenece_a"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Partidos_Politicos"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Persona"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Partidos_Politicos">
+    <rdfs:subClassOf rdf:resource="#Temas"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#se_cataloga">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Persona"/>
+          <owl:Class rdf:about="#Temas"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Noticias"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#practica">
+    <rdfs:domain rdf:resource="#Persona"/>
+    <rdfs:range rdf:resource="#Temas"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#pertenece_a">
+    <rdfs:range rdf:resource="#Temas"/>
+    <rdfs:domain rdf:resource="#Persona"/>
+  </owl:ObjectProperty>
+  <Tecnologias rdf:ID="youtube">
+    <se_cataloga>
+      <Noticias rdf:ID="Noticias_tecnológicas"/>
+    </se_cataloga>
+  </Tecnologias>
+  <Tecnologias rdf:ID="google">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Deporte rdf:ID="Fútbol">
+    <se_cataloga>
+      <Noticias rdf:ID="Noticias_de_futbol"/>
+    </se_cataloga>
+  </Deporte>
+  <Persona rdf:ID="Schumacher">
+    <practica>
+      <Deporte rdf:ID="Fórmula_Uno">
+        <se_cataloga>
+          <Noticias rdf:ID="Noticias_de_Formula_Uno"/>
+        </se_cataloga>
+      </Deporte>
+    </practica>
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+  </Persona>
+  <Persona rdf:ID="Préval">
+    <se_cataloga>
+      <Noticias rdf:ID="Noticias_politicas"/>
+    </se_cataloga>
+    <pertenece_a>
+      <Partidos_Politicos rdf:ID="Partidos_Extranjeros">
+        <se_cataloga rdf:resource="#Noticias_politicas"/>
+      </Partidos_Politicos>
+    </pertenece_a>
+  </Persona>
+  <Persona rdf:ID="Lambert">
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Persona>
+  <Persona rdf:ID="Raúl">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Persona rdf:ID="Ferrer">
+    <se_cataloga>
+      <Noticias rdf:ID="Noticias_de_tenis"/>
+    </se_cataloga>
+    <practica>
+      <Deporte rdf:ID="Tenis">
+        <se_cataloga rdf:resource="#Noticias_de_tenis"/>
+      </Deporte>
+    </practica>
+  </Persona>
+  <Deporte rdf:ID="Balonmano"/>
+  <Bolsa rdf:ID="economía">
+    <se_cataloga>
+      <Noticias rdf:ID="Noticias_economicas"/>
+    </se_cataloga>
+  </Bolsa>
+  <Bancos rdf:ID="BCE">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Carlos_Sainz">
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+    <practica rdf:resource="#Fórmula_Uno"/>
+  </Persona>
+  <Tecnologias rdf:ID="facebook">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Bancos rdf:ID="banco">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Puyol">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Bolsa rdf:ID="stock_option">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Persona rdf:ID="Puigcercós">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a>
+      <Partidos_Politicos rdf:ID="ERC">
+        <se_cataloga rdf:resource="#Noticias_politicas"/>
+      </Partidos_Politicos>
+    </pertenece_a>
+  </Persona>
+  <Persona rdf:ID="Vettel">
+    <practica rdf:resource="#Fórmula_Uno"/>
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+  </Persona>
+  <Monedas rdf:ID="euro">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Monedas>
+  <Bolsa rdf:ID="acciones">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Bancos rdf:ID="tesoro">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Murray">
+    <se_cataloga rdf:resource="#Noticias_de_tenis"/>
+    <practica rdf:resource="#Tenis"/>
+  </Persona>
+  <Deporte rdf:ID="Rugby"/>
+  <Bolsa rdf:ID="empresa">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Bancos rdf:ID="TAE">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Zapatero">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a>
+      <Partidos_Politicos rdf:ID="PSOE">
+        <se_cataloga rdf:resource="#Noticias_politicas"/>
+      </Partidos_Politicos>
+    </pertenece_a>
+  </Persona>
+  <Tecnologias rdf:ID="movil">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Persona rdf:ID="Xabi_Alonso">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Persona rdf:ID="Nadal">
+    <practica rdf:resource="#Tenis"/>
+    <se_cataloga rdf:resource="#Noticias_de_tenis"/>
+  </Persona>
+  <Bancos rdf:ID="hipoteca">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Bancos rdf:ID="IPC">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Agüero">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Bolsa rdf:ID="divisa">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Persona rdf:ID="Albiol">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Persona rdf:ID="Herrera">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+  </Persona>
+  <Persona rdf:ID="Aguilar">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#PSOE"/>
+  </Persona>
+  <Persona rdf:ID="Fernández">
+    <pertenece_a rdf:resource="#PSOE"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Persona>
+  <Persona rdf:ID="Forlán">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Bolsa rdf:ID="IBEX">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Bolsa rdf:ID="IVA">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Partidos_Politicos rdf:ID="PP">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Partidos_Politicos>
+  <Tecnologias rdf:ID="ordenador">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Monedas rdf:ID="moneda">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Monedas>
+  <Persona rdf:ID="Arbeloa">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Persona rdf:ID="Albelda">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Persona rdf:ID="Messi">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Persona rdf:ID="Cameron">
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Persona>
+  <Monedas rdf:ID="eurozona">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Monedas>
+  <Persona rdf:ID="Federer">
+    <practica rdf:resource="#Tenis"/>
+    <se_cataloga rdf:resource="#Noticias_de_tenis"/>
+  </Persona>
+  <Persona rdf:ID="Raúl_González_Blanco">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Persona rdf:ID="Iniesta">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Persona rdf:ID="Martelly">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+  </Persona>
+  <Tecnologias rdf:ID="canon">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Persona rdf:ID="Massa">
+    <practica rdf:resource="#Fórmula_Uno"/>
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+  </Persona>
+  <Persona rdf:ID="Montilla">
+    <pertenece_a rdf:resource="#PSOE"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Persona>
+  <Persona rdf:ID="Arenas">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#PP"/>
+  </Persona>
+  <Bancos rdf:ID="inflación">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Fernando_Alonso">
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+    <practica rdf:resource="#Fórmula_Uno"/>
+  </Persona>
+  <Persona rdf:ID="Celestin">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+  </Persona>
+  <Tecnologias rdf:ID="wikileaks">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Persona rdf:ID="Mark_Webber">
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+    <practica rdf:resource="#Fórmula_Uno"/>
+  </Persona>
+  <Tecnologias rdf:ID="virus">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Tecnologias rdf:ID="red">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Partidos_Politicos rdf:ID="CIU">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Partidos_Politicos>
+  <Persona rdf:ID="Palin">
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Persona>
+  <Persona rdf:ID="Ronaldo">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Persona rdf:ID="Rubalcaba">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#PSOE"/>
+  </Persona>
+  <Persona rdf:ID="Ramos">
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
+  </Persona>
+  <Persona rdf:ID="Rajoy">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#PP"/>
+  </Persona>
+  <Tecnologias rdf:ID="windows">
+    <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
+  </Tecnologias>
+  <Persona rdf:ID="Álvarez">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#PP"/>
+  </Persona>
+  <Deporte rdf:ID="Baloncesto"/>
+  <Persona rdf:ID="Artur_Mas">
+    <pertenece_a rdf:resource="#CIU"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
+  </Persona>
+  <Bancos rdf:ID="banca">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Cristiano_Ronaldo">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Bancos rdf:ID="impuestos">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Monedas rdf:ID="dólar">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Monedas>
+  <Bancos rdf:ID="banco_central">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bancos>
+  <Persona rdf:ID="Mourinho">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+  </Persona>
+  <Bolsa rdf:ID="devaluar">
+    <se_cataloga rdf:resource="#Noticias_economicas"/>
+  </Bolsa>
+  <Persona rdf:ID="Xavi">
+    <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+  </Persona>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->
