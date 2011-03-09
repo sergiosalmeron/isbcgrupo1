@@ -1,0 +1,65 @@
+package practica43;
+
+import es.ucm.fdi.gaia.ontobridge.OntoBridge;
+import es.ucm.fdi.gaia.ontobridge.test.gui.PnlSelectInstance;
+
+public class Anotador {
+
+	// /**
+	// * Este método crea instancias de la forma "Foto_i", donde i es un número
+	// entre 1
+	// * y el total de fotos disponibles. Dentro de cada foto habrá una
+	// propiedad
+	// * "urlFoto" que apunte a su ubicación
+	// *
+	// * @param arrayFotos Array con todas las fotos disponibles
+	// */
+	// public static void crearInstanciasDeFotos(OntoBridge ob,
+	// ArrayList<String> arrayFotos) {
+	// Iterator it = arrayFotos.iterator();
+	// // Contador de fotos
+	// int numFoto = 1;
+	//		
+	// while (it.hasNext()) {
+	// //String nombreFoto = String.format("Foto_", numFoto);
+	// String nombreFoto = it.next().toString();
+	// ob.createInstance("Fotos", nombreFoto);
+	// //ob.createDataTypeProperty(nombreFoto, "urlFoto", "noticias/" +
+	// nombreFoto);
+	// numFoto++;
+	// }
+	// }
+
+	public void anotarFotografiaApareceEn(OntoBridge ob,
+			PnlSelectInstance tree, String urlFotografia) {
+		// Creamos la instancia correspondiente a esta foto que vamos a
+		// etiquetar
+		int pos = urlFotografia.indexOf('.');
+		String indStr = urlFotografia.substring(0, pos);
+		int indiceFoto = Integer.parseInt(indStr);
+		
+		String nombreFoto = "Foto_" + indiceFoto;
+		String urlFoto = /*/*"file:noticias/" +*/ /*indiceFoto + ".jpg";*/ urlFotografia;
+		ob.createInstance("Fotos", nombreFoto);
+		ob.createOntProperty(nombreFoto, "aparece", tree.getSelectedInstance());
+		ob.createDataTypeProperty(nombreFoto, "url_foto", urlFoto);
+		ob.save("ontologias/fotoOnto.owl");
+	}
+	
+	public void anadirNuevoIndividuo(OntoBridge ob, String nombreInstancia, String conceptoPrimitivo) {
+		// Si estamos aquí, es porque el individuo no existe ya en el concepto primitivo
+		ob.createInstance(conceptoPrimitivo, nombreInstancia);
+		ob.save("ontologias/fotoOnto.owl");
+	}
+	
+
+//	public void anotarFotografiaEsUn(OntoBridge ob, String nombreConceptoPrimitivo, int indiceFoto) {
+//		// Creamos la instancia correspondiente a esta foto que vamos a
+//		// etiquetar
+//		String nombreFoto = "Foto_" + indiceFoto;
+//		String urlFoto = "file:noticias/" + indiceFoto + ".jpg";
+//		ob.createInstance(nombreConceptoPrimitivo, nombreFoto);
+//		ob.createDataTypeProperty(nombreFoto, "url_foto", urlFoto);
+//		ob.save("ontologias/fotoOnto.owl");
+//	}
+}
