@@ -82,7 +82,7 @@ public class GUI_marcador extends JFrame{
 		
 		private void initialize() {
 			this.setSize(729, 584);
-			
+			setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 			
 			
 			
@@ -107,6 +107,7 @@ public class GUI_marcador extends JFrame{
 			ob = new OntoBridge();
 			ob.initWithPelletReasoner();
 			ob.createClass("Fotos_Noticia");		
+		//	ob.createOntProperty("Fotos_Noticia", "URLFoto", "Fotos_Noticia");
 			Collection<CBRCase> c= _caseBase.getCases();
 			Iterator<CBRCase> itFoto =c.iterator();
 			int j=0;
@@ -114,6 +115,8 @@ public class GUI_marcador extends JFrame{
 				practica4.NewsSolution a = (practica4.NewsSolution) itFoto.next().getSolution();
 				arrayFotosNoticias.add(a.getImgURL());
 				ob.createInstance("Fotos_Noticia", /*a.getImgURL()*/ "Foto" + "_"+ String.valueOf(j));
+			//	ob.createOntProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", "Foto" + "_"+ String.valueOf(j));
+			//	ob.createDataTypeProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", a.getImgURL());
 				j++;
 				
 			}
@@ -224,13 +227,18 @@ public class GUI_marcador extends JFrame{
 		}
 
 		protected void botonAtrasActionPerformed(ActionEvent evt) {
+			if (indiceImagen>1)
 			this.indiceImagen--;
 
 			// Mostramos la siguiente imagen
+			try{
 			imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
-					"/isbc/practica4/noticias/"
+					"/practica4/img/"
 							+ arrayFotosNoticias.get(indiceImagen - 1))));
-
+			}
+			catch (Exception e){
+				imgEtiquetar.setIcon(new ImageIcon());
+			}
 			// Activamos el botón Adelante, si no lo estuviera ya
 			botonAdelante.setEnabled(true);
 			// Si es la última imagen, desactivamos el botón Atrás
@@ -265,10 +273,14 @@ public class GUI_marcador extends JFrame{
 			this.indiceImagen++;
 
 			// Mostramos la siguiente imagen
+			try{
 			imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
-					"/isbc/practica4/noticias/"
-							+ arrayFotosNoticias.get(indiceImagen - 1))));
+					"/practica4/img/" + arrayFotosNoticias.get(indiceImagen - 1))));
 
+			}
+			catch (Exception e){
+				imgEtiquetar.setIcon(new ImageIcon());
+			}
 			// Activamos el botón Atrás, si no lo estuviera ya
 			botonAtras.setEnabled(true);
 			// Si es la última imagen, desactivamos el botón Siguiente
@@ -406,7 +418,7 @@ public class GUI_marcador extends JFrame{
 		private JButton getBotonAgregarInstancia() {
 			if (botonAgregarInstancia == null) {
 				botonAgregarInstancia = new JButton();
-				botonAgregarInstancia.setText("Agregar individuo");
+				botonAgregarInstancia.setText("Agregar Instancia");
 				botonAgregarInstancia.setBounds(new Rectangle(95, 35, 152, 27));
 				botonAgregarInstancia
 						.addActionListener(new java.awt.event.ActionListener() {
@@ -435,6 +447,8 @@ public class GUI_marcador extends JFrame{
 													null,
 													"El individuo ha sido agregado correctamente.",
 													"Información", 1);
+									tree.updateUI();
+									
 								}
 							}
 						});
