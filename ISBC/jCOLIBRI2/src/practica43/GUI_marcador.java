@@ -88,6 +88,7 @@ public class GUI_marcador extends JFrame{
 			
 			arrayFotosNoticias = new ArrayList<String>();
 			
+			//Cargamos las noticias anteriores para extraer sus fotos
 			try
 			{
 			    _connector = new NewsConnector("src/practica4/noticias",5);
@@ -102,12 +103,19 @@ public class GUI_marcador extends JFrame{
 				preCycle();			    
 			} catch (Exception e){}
 			
+			// Creamos el objeto Ontobridge
+			ob = new OntoBridge();
+			ob.initWithPelletReasoner();
+			ob.createClass("Fotos_Noticia");		
 			Collection<CBRCase> c= _caseBase.getCases();
 			Iterator<CBRCase> itFoto =c.iterator();
+			int j=0;
 			while (itFoto.hasNext()){
 				practica4.NewsSolution a = (practica4.NewsSolution) itFoto.next().getSolution();
-				if (a.getImgURL()!=null);
 				arrayFotosNoticias.add(a.getImgURL());
+				ob.createInstance("Fotos_Noticia", /*a.getImgURL()*/ "Foto" + "_"+ String.valueOf(j));
+				j++;
+				
 			}
 			
 			
@@ -116,8 +124,7 @@ public class GUI_marcador extends JFrame{
 
 			
 			// Creamos el objeto Ontobridge
-			ob = new OntoBridge();
-			ob.initWithPelletReasoner();
+
 			ArrayList<OntologyDocument> subOntologias = new ArrayList<OntologyDocument>();
 			OntologyDocument ontoPrincipal = new OntologyDocument(null,
 					"file:src/practica43/P4.owl");
@@ -125,7 +132,6 @@ public class GUI_marcador extends JFrame{
 			Iterator<String> it = ob.listSubClasses("Noticias", false);
 			Iterator<String> it2 = ob.listSubClasses("Persona", false);
 			Iterator<String> it3 = ob.listSubClasses("Temas", false);
-
 			ArrayList<String> ar = new ArrayList<String>();
 			while (it.hasNext())
 				ar.add(it.next());
