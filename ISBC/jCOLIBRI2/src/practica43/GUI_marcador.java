@@ -4,12 +4,22 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+import practica4.NewsConnector;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+
+import jcolibri.casebase.LinealCaseBase;
+import jcolibri.cbrcore.CBRCase;
+import jcolibri.cbrcore.CBRCaseBase;
+import jcolibri.cbrcore.Connector;
+import jcolibri.exception.ExecutionException;
+import jcolibri.test.main.SwingProgressBar;
 import es.ucm.fdi.gaia.ontobridge.OntoBridge;
 import es.ucm.fdi.gaia.ontobridge.OntologyDocument;
 import es.ucm.fdi.gaia.ontobridge.test.gui.PnlConceptsAndInstancesTree;
@@ -40,6 +50,9 @@ public class GUI_marcador extends JFrame{
 		private int numeroAnotadas = 0;
 		private JButton botonAgregarInstancia = null;
 		private JLabel labelAlConcepto = null;
+		
+		Connector _connector;
+	    CBRCaseBase _caseBase;
 
 		// ontología
 
@@ -56,11 +69,42 @@ public class GUI_marcador extends JFrame{
 		 * 
 		 * @return void
 		 */
+		
+		   public CBRCaseBase preCycle() throws ExecutionException
+		    {
+			_caseBase.init(_connector);
+
+			//Here we create the Lucene index
+		//	luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);
+			
+			return _caseBase;
+		    }
+		
 		private void initialize() {
 			this.setSize(729, 584);
 			this.setContentPane(getJContentPane());
 			this.setTitle("Marcado de noticias");
 
+			try
+			{
+			    _connector = new NewsConnector("src/practica4/noticias",5);
+			    _caseBase = new LinealCaseBase();
+			    
+			} catch (Exception e){}
+			
+		//	_caseBase.init(_connector);
+			
+			try
+			{
+				preCycle();			    
+			} catch (Exception e){}
+			
+			Collection<CBRCase> c= _caseBase.getCases();
+			Iterator<CBRCase> itFoto =c.iterator();
+			while (itFoto.hasNext()){
+				practica4.NewsSolution a = (practica4.NewsSolution) itFoto.next().getSolution();
+			arrayFotosNoticias.add(a.getImgURL());
+			}
 			// Creamos el objeto Ontobridge
 			ob = new OntoBridge();
 			ob.initWithPelletReasoner();
