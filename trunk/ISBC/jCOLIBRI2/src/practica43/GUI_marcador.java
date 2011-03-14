@@ -82,9 +82,12 @@ public class GUI_marcador extends JFrame{
 		
 		private void initialize() {
 			this.setSize(729, 584);
-			this.setContentPane(getJContentPane());
-			this.setTitle("Marcado de noticias");
-
+			
+			
+			
+			
+			arrayFotosNoticias = new ArrayList<String>();
+			
 			try
 			{
 			    _connector = new NewsConnector("src/practica4/noticias",5);
@@ -103,8 +106,15 @@ public class GUI_marcador extends JFrame{
 			Iterator<CBRCase> itFoto =c.iterator();
 			while (itFoto.hasNext()){
 				practica4.NewsSolution a = (practica4.NewsSolution) itFoto.next().getSolution();
-			arrayFotosNoticias.add(a.getImgURL());
+				if (a.getImgURL()!=null);
+				arrayFotosNoticias.add(a.getImgURL());
 			}
+			
+			
+			this.setContentPane(getJContentPane());
+			this.setTitle("Marcado de noticias");
+
+			
 			// Creamos el objeto Ontobridge
 			ob = new OntoBridge();
 			ob.initWithPelletReasoner();
@@ -157,17 +167,18 @@ public class GUI_marcador extends JFrame{
 				labelTituloFoto.setHorizontalAlignment(SwingConstants.CENTER);
 				labelTituloFoto.setText("Fotografía:");
 				//FiltroExtensiones filtro = new FiltroExtensiones("jpg");
-				File carpeta = new File("src/practica4/img/");
-				File[] listaDeArchivos = carpeta.listFiles();
+		//		File carpeta = new File("src/practica4/img/");
+		//		File[] listaDeArchivos = carpeta.listFiles();
+		//		arrayFotosNoticias = new ArrayList<String>();
 
-				if (listaDeArchivos.length > 0) {
+			/*	if (listaDeArchivos.length > 0) {
 					arrayFotosNoticias = new ArrayList<String>();
 					for (int i = 0; i < listaDeArchivos.length; i++) {
 						if (listaDeArchivos[i].isFile()) {
 							arrayFotosNoticias.add(listaDeArchivos[i].getName());
 						}
 					}
-				}
+				}*/
 				imgEtiquetar = new JLabel();
 				imgEtiquetar.setBounds(new Rectangle(201, 56, 418, 254));
 				// Cargamos inicialmente la primera imagen del ArrayList
