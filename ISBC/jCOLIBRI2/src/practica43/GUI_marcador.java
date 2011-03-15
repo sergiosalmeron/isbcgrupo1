@@ -113,10 +113,14 @@ public class GUI_marcador extends JFrame{
 			int j=0;
 			while (itFoto.hasNext()){
 				practica4.NewsSolution a = (practica4.NewsSolution) itFoto.next().getSolution();
-				arrayFotosNoticias.add(a.getImgURL());
-				ob.createInstance("Fotos_Noticia", /*a.getImgURL()*/ "Foto" + "_"+ String.valueOf(j));
+				String s=a.getImgURL();
+				arrayFotosNoticias.add(s);
+				String nombreFoto="Foto" + "_"+ String.valueOf(j);
+				ob.createInstance("Fotos_Noticia", nombreFoto);
+			//	ob.createDataTypeProperty(nombreFoto, "urlfoto", s);
 			//	ob.createOntProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", "Foto" + "_"+ String.valueOf(j));
-			//	ob.createDataTypeProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", a.getImgURL());
+		//		ob.createDataTypeProperty("Foto" + "_"+ String.valueOf(j), "urlfoto", a.getImgURL());
+			
 				j++;
 				
 			}
@@ -330,7 +334,7 @@ public class GUI_marcador extends JFrame{
 									Anotador anotador = new Anotador();
 									anotador.anotarFotografiaApareceEn(ob, tree,
 											arrayFotosNoticias
-													.get(indiceImagen - 1));
+													.get(indiceImagen - 1),(indiceImagen - 1));
 									// Incrementamos el contador de etiquetadas
 									numeroAnotadas++;
 									labelContadorEtiquetadas

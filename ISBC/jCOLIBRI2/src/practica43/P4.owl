@@ -16,9 +16,6 @@
     <rdfs:subClassOf rdf:resource="#Temas"/>
   </owl:Class>
   <owl:Class rdf:ID="Politicas">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Noticias"/>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -31,16 +28,19 @@
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#se_cataloga"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:ID="Partidos_Politicos"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Noticias"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Tecnologias">
     <rdfs:subClassOf rdf:resource="#Temas"/>
@@ -54,10 +54,10 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Bolsa"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#se_cataloga"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Bolsa"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
@@ -66,43 +66,42 @@
             <owl:someValuesFrom rdf:resource="#Monedas"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#se_cataloga"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:ID="Bancos"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#se_cataloga"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:ID="Deportista">
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Deporte"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="practica"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="Persona"/>
     </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="practica"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Deporte"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="#Bancos">
     <rdfs:subClassOf rdf:resource="#Temas"/>
   </owl:Class>
   <owl:Class rdf:ID="Deportivas">
-    <rdfs:subClassOf rdf:resource="#Noticias"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Deportista"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#se_cataloga"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Deportista"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#Deporte"/>
@@ -113,27 +112,28 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
   </owl:Class>
   <owl:Class rdf:ID="Tecnoligicas">
     <rdfs:subClassOf rdf:resource="#Noticias"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Tecnologias"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="#se_cataloga"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Tecnologias"/>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="#Politicos">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="pertenece_a"/>
-        </owl:onProperty>
         <owl:someValuesFrom>
           <owl:Class rdf:about="#Partidos_Politicos"/>
         </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="pertenece_a"/>
+        </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Persona"/>
@@ -153,14 +153,17 @@
     <rdfs:range rdf:resource="#Noticias"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#practica">
-    <rdfs:domain rdf:resource="#Persona"/>
     <rdfs:range rdf:resource="#Temas"/>
+    <rdfs:domain rdf:resource="#Persona"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="aparece"/>
   <owl:ObjectProperty rdf:about="#pertenece_a">
-    <rdfs:range rdf:resource="#Temas"/>
     <rdfs:domain rdf:resource="#Persona"/>
+    <rdfs:range rdf:resource="#Temas"/>
   </owl:ObjectProperty>
-  <owl:DatatypeProperty rdf:ID="urlfoto"/>
+  <owl:DatatypeProperty rdf:ID="urlfoto">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
   <Tecnologias rdf:ID="youtube">
     <se_cataloga>
       <Noticias rdf:ID="Noticias_tecnológicas"/>
@@ -228,8 +231,8 @@
     <se_cataloga rdf:resource="#Noticias_economicas"/>
   </Bancos>
   <Persona rdf:ID="Carlos_Sainz">
-    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
     <practica rdf:resource="#Fórmula_Uno"/>
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
   </Persona>
   <Persona rdf:ID="Puyol">
     <practica rdf:resource="#Fútbol"/>
@@ -271,19 +274,19 @@
     <se_cataloga rdf:resource="#Noticias_economicas"/>
   </Bancos>
   <Persona rdf:ID="Zapatero">
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
     <pertenece_a>
       <Partidos_Politicos rdf:ID="PSOE">
         <se_cataloga rdf:resource="#Noticias_politicas"/>
       </Partidos_Politicos>
     </pertenece_a>
-    <se_cataloga rdf:resource="#Noticias_politicas"/>
   </Persona>
   <Tecnologias rdf:ID="movil">
     <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
   </Tecnologias>
   <Persona rdf:ID="Xabi_Alonso">
-    <practica rdf:resource="#Fútbol"/>
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Nadal">
     <se_cataloga rdf:resource="#Noticias_de_tenis"/>
@@ -296,27 +299,27 @@
     <se_cataloga rdf:resource="#Noticias_economicas"/>
   </Bancos>
   <Persona rdf:ID="Agüero">
-    <practica rdf:resource="#Fútbol"/>
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Bolsa rdf:ID="divisa">
     <se_cataloga rdf:resource="#Noticias_economicas"/>
   </Bolsa>
   <Persona rdf:ID="Albiol">
-    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
     <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
   </Persona>
   <Persona rdf:ID="Herrera">
     <se_cataloga rdf:resource="#Noticias_politicas"/>
     <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
   </Persona>
   <Persona rdf:ID="Aguilar">
-    <pertenece_a rdf:resource="#PSOE"/>
     <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#PSOE"/>
   </Persona>
   <Persona rdf:ID="Fernández">
-    <se_cataloga rdf:resource="#Noticias_politicas"/>
     <pertenece_a rdf:resource="#PSOE"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
   </Persona>
   <Persona rdf:ID="Forlán">
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
@@ -342,16 +345,16 @@
     <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Arbeloa">
-    <practica rdf:resource="#Fútbol"/>
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Messi">
-    <practica rdf:resource="#Fútbol"/>
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Cameron">
-    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
     <se_cataloga rdf:resource="#Noticias_politicas"/>
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
   </Persona>
   <Monedas rdf:ID="eurozona">
     <se_cataloga rdf:resource="#Noticias_economicas"/>
@@ -361,23 +364,23 @@
     <practica rdf:resource="#Tenis"/>
   </Persona>
   <Persona rdf:ID="Raúl_González_Blanco">
-    <practica rdf:resource="#Fútbol"/>
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Iniesta">
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
     <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Martelly">
-    <se_cataloga rdf:resource="#Noticias_politicas"/>
     <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
   </Persona>
   <Tecnologias rdf:ID="canon">
     <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
   </Tecnologias>
   <Persona rdf:ID="Massa">
-    <practica rdf:resource="#Fórmula_Uno"/>
     <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+    <practica rdf:resource="#Fórmula_Uno"/>
   </Persona>
   <Persona rdf:ID="Montilla">
     <pertenece_a rdf:resource="#PSOE"/>
@@ -391,19 +394,19 @@
     <se_cataloga rdf:resource="#Noticias_economicas"/>
   </Bancos>
   <Persona rdf:ID="Fernando_Alonso">
-    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
     <practica rdf:resource="#Fórmula_Uno"/>
+    <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
   </Persona>
   <Persona rdf:ID="Celestin">
-    <se_cataloga rdf:resource="#Noticias_politicas"/>
     <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
   </Persona>
   <Tecnologias rdf:ID="wikileaks">
     <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
   </Tecnologias>
   <Persona rdf:ID="Mark_Webber">
-    <practica rdf:resource="#Fórmula_Uno"/>
     <se_cataloga rdf:resource="#Noticias_de_Formula_Uno"/>
+    <practica rdf:resource="#Fórmula_Uno"/>
   </Persona>
   <Tecnologias rdf:ID="virus">
     <se_cataloga rdf:resource="#Noticias_tecnológicas"/>
@@ -419,12 +422,12 @@
     <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
   </Persona>
   <Persona rdf:ID="Ronaldo">
-    <practica rdf:resource="#Fútbol"/>
     <se_cataloga rdf:resource="#Noticias_de_futbol"/>
+    <practica rdf:resource="#Fútbol"/>
   </Persona>
   <Persona rdf:ID="Rubalcaba">
-    <se_cataloga rdf:resource="#Noticias_politicas"/>
     <pertenece_a rdf:resource="#PSOE"/>
+    <se_cataloga rdf:resource="#Noticias_politicas"/>
   </Persona>
   <Persona rdf:ID="Ramos">
     <practica rdf:resource="#Fútbol"/>
@@ -450,8 +453,8 @@
     <se_cataloga rdf:resource="#Noticias_economicas"/>
   </Bancos>
   <Persona rdf:ID="Cristiano_Ronaldo">
-    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
     <practica rdf:resource="#Fútbol"/>
+    <se_cataloga rdf:resource="#Noticias_de_futbol"/>
   </Persona>
   <Bancos rdf:ID="impuestos">
     <se_cataloga rdf:resource="#Noticias_economicas"/>
