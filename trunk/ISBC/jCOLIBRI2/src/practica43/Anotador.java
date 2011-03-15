@@ -31,19 +31,20 @@ public class Anotador {
 	// }
 
 	public void anotarFotografiaApareceEn(OntoBridge ob,
-			PnlSelectInstance tree, String urlFotografia) {
+			PnlSelectInstance tree, String urlFotografia,int indice) {
 		// Creamos la instancia correspondiente a esta foto que vamos a
 		// etiquetar
 		int pos = urlFotografia.indexOf('.');
-		String indStr = urlFotografia.substring(0, pos);
-		int indiceFoto = Integer.parseInt(indStr);
+	//	String indStr = urlFotografia.substring(0, pos);
+	//	int indiceFoto = Integer.parseInt(indStr);
 		
-		String nombreFoto = "Foto_" + indiceFoto;
-		String urlFoto = /*/*"file:noticias/" +*/ /*indiceFoto + ".jpg";*/ urlFotografia;
-		ob.createInstance("Fotos", nombreFoto);
+		String nombreFoto = "Foto_" + indice;
+		String urlfoto = /*/*"file:noticias/" +*/ /*indiceFoto + ".jpg";*/ urlFotografia;
+		//ob.createInstance("Fotos", nombreFoto);
+		
 		ob.createOntProperty(nombreFoto, "aparece", tree.getSelectedInstance());
-		ob.createDataTypeProperty(nombreFoto, "url_foto", urlFoto);
-		ob.save("ontologias/fotoOnto.owl");
+		ob.createDataTypeProperty(nombreFoto, "urlfoto", urlfoto);
+		//ob.save("ontologias/fotoOnto.owl");
 	}
 	
 	public void anadirNuevoIndividuo(OntoBridge ob, String nombreInstancia, String conceptoPrimitivo) {
