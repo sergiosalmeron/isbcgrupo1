@@ -34,16 +34,16 @@ public class Anotador {
 			PnlSelectInstance tree, String urlFotografia,int indice) {
 		// Creamos la instancia correspondiente a esta foto que vamos a
 		// etiquetar
-		int pos = urlFotografia.indexOf('.');
+	//	int pos = urlFotografia.indexOf('.');
 	//	String indStr = urlFotografia.substring(0, pos);
 	//	int indiceFoto = Integer.parseInt(indStr);
 		
 		String nombreFoto = "Foto_" + indice;
-		String urlfoto = /*/*"file:noticias/" +*/ /*indiceFoto + ".jpg";*/ urlFotografia;
+	//	String urlfoto = /*/*"file:noticias/" +*/ /*indiceFoto + ".jpg";*/ urlFotografia;
 		//ob.createInstance("Fotos", nombreFoto);
 		
 		ob.createOntProperty(nombreFoto, "aparece", tree.getSelectedInstance());
-		ob.createDataTypeProperty(nombreFoto, "urlfoto", urlfoto);
+//		ob.createDataTypeProperty(nombreFoto, "urlfoto", urlfoto);
 		//ob.save("ontologias/fotoOnto.owl");
 	}
 	
@@ -53,7 +53,11 @@ public class Anotador {
 		ob.save("src/practica43/P4.owl");
 	}
 	
-
+	public void anotarFotografiaEsUn(OntoBridge ob,
+			String Clase, String urlFotografia,int indice) {
+			String nombreFoto = "Foto_" +indice;
+			ob.createOntProperty(nombreFoto,"aparece",Clase);
+	}
 //	public void anotarFotografiaEsUn(OntoBridge ob, String nombreConceptoPrimitivo, int indiceFoto) {
 //		// Creamos la instancia correspondiente a esta foto que vamos a
 //		// etiquetar
