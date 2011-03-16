@@ -410,8 +410,11 @@ public class GUI_marcador extends JFrame{
 				comboTodasInstancias.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
 						Iterator<String> it = ob.listInstanceProperties(comboTodasInstancias.getSelectedItem().toString());
-						while(it.hasNext())
-						comboPropiedades
+						ArrayList<String> listaProp = new ArrayList<String>();
+						while(it.hasNext()){
+							listaProp.add(it.next());
+						}
+						
 					}
 				});
 				comboTodasInstancias.setBounds(new Rectangle(351, 33, 100, 26));
