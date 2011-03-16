@@ -58,6 +58,11 @@ public class Anotador {
 			String nombreFoto = "Foto_" +indice;
 			ob.createOntProperty(nombreFoto,"aparece",Clase);
 	}
+	
+	public void anadirRelacionInstancias(OntoBridge ob,
+			String origen, String destino,String relacion) {
+			ob.createOntProperty(origen,relacion,destino);
+	}
 //	public void anotarFotografiaEsUn(OntoBridge ob, String nombreConceptoPrimitivo, int indiceFoto) {
 //		// Creamos la instancia correspondiente a esta foto que vamos a
 //		// etiquetar

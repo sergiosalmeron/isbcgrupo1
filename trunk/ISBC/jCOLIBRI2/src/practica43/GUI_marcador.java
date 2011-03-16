@@ -58,6 +58,7 @@ public class GUI_marcador extends JFrame{
 		private int numeroAnotadas = 0;
 		private JButton botonAgregarInstancia = null;
 		private JLabel labelAlConcepto = null;
+		private String[] listaInstancias = null;
 		
 		Connector _connector;
 	    CBRCaseBase _caseBase;
@@ -131,6 +132,9 @@ public class GUI_marcador extends JFrame{
 			Iterator<String> erl = ob.listProperties("Noticias");
 			Iterator<String> erl2 = ob.listProperties("Persona");
 			Iterator<String> erl3 = ob.listProperties("Temas");
+			Iterator<String> irl = ob.listInstances("Noticias");
+			Iterator<String> irl2 = ob.listInstances("Persona");
+			Iterator<String> irl3 = ob.listInstances("Temas");
 			Iterator<String> it = ob.listSubClasses("Noticias", false);
 			Iterator<String> it2 = ob.listSubClasses("Persona", false);
 			Iterator<String> it3 = ob.listSubClasses("Temas", false);
@@ -151,12 +155,28 @@ public class GUI_marcador extends JFrame{
 			while (it3.hasNext())
 				ar.add(it3.next());
 			
-
 			listaConceptos = new String[ar.size()];
 			for (int i = 0; i < listaConceptos.length; i++) {
 				String aux = ar.get(i);
 				listaConceptos[i] = ob.getShortName(aux);
 			}
+			
+			ArrayList<String> ar2 = new ArrayList<String>();
+			
+			while (irl.hasNext())
+				ar2.add(irl.next());
+			while (irl2.hasNext())
+				ar2.add(irl2.next());
+			while (irl3.hasNext())
+				ar2.add(irl3.next());
+
+			listaInstancias = new String[ar2.size()];
+			for (int i = 0; i < listaInstancias.length; i++) {
+				String aux = ar2.get(i);
+				listaInstancias[i] = ob.getShortName(aux);
+			}
+
+			
 			
 			Collection<CBRCase> c= _caseBase.getCases();
 			Iterator<CBRCase> itFoto =c.iterator();
@@ -182,6 +202,8 @@ public class GUI_marcador extends JFrame{
 					new javax.swing.DefaultComboBoxModel(listaConceptos));
 			this.getComboNoticias().setModel(
 					new javax.swing.DefaultComboBoxModel(listaNoticias));
+			this.getComboTodasInstancias().setModel(
+					new javax.swing.DefaultComboBoxModel(listaInstancias));
 			tree = new PnlSelectInstance(ob, false);
 			this.getPanelOntologia().add(tree);
 			tree.setSize(189, 400);
@@ -414,14 +436,88 @@ public class GUI_marcador extends JFrame{
 						while(it.hasNext()){
 							listaProp.add(it.next());
 						}
-						
+						if (listaProp.size()!=0){
+							String[] propiedades = new String[listaProp.size()];
+							for (int i = 0; i<listaProp.size(); i++){
+								propiedades[i] = listaProp.get(i);
+							}
+							/*this.*/getComboPropiedades().setModel(
+									new javax.swing.DefaultComboBoxModel(propiedades));
+							comboTodasInstancias.getParent().add(comboPropiedades);
+						}
 					}
 				});
-				comboTodasInstancias.setBounds(new Rectangle(351, 33, 100, 26));
+				
+				comboTodasInstancias.setBounds(new Rectangle(10, 33, 100, 26));
 			}
 			return comboTodasInstancias;
 		}
-
+		
+		private JComboBox getComboPropiedades() {
+			if (comboPropiedades == null) {
+				comboPropiedades = new JComboBox();
+				comboPropiedades.addActionListener(new java.awt.event.ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						Iterator<String> it = ob.listPropertyRange(comboPropiedades.getSelectedItem().toString());
+						ArrayList<String> listaInst = new ArrayList<String>();
+						while(it.hasNext()){
+							listaInst.add(it.next());
+						}
+						if (listaInst.size()!=0){
+							String[] instancias = new String[listaInst.size()];
+							for (int i = 0; i<listaInst.size(); i++){
+								instancias[i] = listaInst.get(i);
+							}
+							/*this.*/getComboAlgunasInstancias().setModel(
+									new javax.swing.DefaultComboBoxModel(instancias));
+								comboPropiedades.getParent().add(comboAlgunasInstancias);
+						}
+					}
+				});
+				
+				comboPropiedades.setBounds(new Rectangle(115, 33, 100, 26));
+			}
+			return comboPropiedades;
+		}
+		
+		private JComboBox getComboAlgunasInstancias() {
+			if (comboAlgunasInstancias == null) {
+				comboAlgunasInstancias = new JComboBox();
+				comboAlgunasInstancias.addActionListener(new java.awt.event.ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						/*this.*/comboAlgunasInstancias.getParent().add(getBotonRelacionar());
+						
+					}
+				});
+				
+				comboAlgunasInstancias.setBounds(new Rectangle(220, 33, 100, 26));
+			}
+			return comboAlgunasInstancias;
+		}
+		
+		private JButton getBotonRelacionar() {
+			if (botonRelacionar == null) {
+				botonRelacionar = new JButton();
+				botonRelacionar.setText("Relacionar");
+				botonRelacionar.setBounds(new Rectangle(330, 35, 152, 27));
+				botonRelacionar
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Mostramos una ventana para que el usuario dé un
+								// nombre
+								// a esta nueva instancia
+								String instanciaOrigen=comboTodasInstancias.getSelectedItem().toString();
+								String instanciadestino=comboPropiedades.getSelectedItem().toString();
+								String relacion=comboAlgunasInstancias.getSelectedItem().toString();
+								Anotador etiq=new Anotador();
+								etiq.anadirRelacionInstancias(ob,instanciaOrigen,
+										instanciadestino,relacion);
+								}
+						});
+			}
+			return botonRelacionar;
+		}
+	    
 		/**
 		 * This method initializes panelConceptoPrimitivo
 		 * 
@@ -472,14 +568,14 @@ public class GUI_marcador extends JFrame{
 			if (panelRelacionPropiedad == null) {
 				panelRelacionPropiedad = new JPanel();
 				panelRelacionPropiedad.setLayout(null);
-				panelRelacionPropiedad.setBounds(new Rectangle(213, 545, 490, 72));
+				panelRelacionPropiedad.setBounds(new Rectangle(213, 620, 490, 72));
 				panelRelacionPropiedad.setBorder(BorderFactory.createTitledBorder(
 						null, "Relacionar instancias mediante propiedades",
 						TitledBorder.DEFAULT_JUSTIFICATION,
 						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
 								Font.BOLD, 12), new Color(51, 51, 51)));
 				panelRelacionPropiedad.add(getComboTodasInstancias(), null);
-				panelRelacionPropiedad.add(getComboNoticias(), null);
+			
 			}
 			return panelRelacionPropiedad;
 		}
