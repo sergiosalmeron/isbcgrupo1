@@ -44,15 +44,15 @@ public class GUI_marcador extends JFrame{
 		private OntoBridge ob = null; // Referencia a OntoBridge
 		private JComboBox comboConceptos = null;
 		private JComboBox comboNoticias = null;
-		private JComboBox comboRelaciones = null;
-		private JButton botonInstancias = null;
-		private JComboBox comboInstancias = null;
-		private String[] listaInstancias = null;
-		private String[] listaConceptos = null; 
-		private String[] listaRelaciones = null;// Lista de conceptos de nuestra
+		private JComboBox comboTodasInstancias = null;
+		private JComboBox comboPropiedades = null;
+		private JComboBox comboAlgunasInstancias = null;
+		private JButton botonRelacionar = null;
+		private String[] listaConceptos = null; // Lista de conceptos de nuestra
 		private JPanel panelConceptoPrimitivo = null;
 		private JPanel panelRelacionIndividuo = null;
 		private JPanel panelEsUn = null;
+		private JPanel panelRelacionPropiedad = null;
 		private JLabel labelInstancia = null;
 		private JLabel labelContadorEtiquetadas = null;
 		private int numeroAnotadas = 0;
@@ -233,6 +233,7 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelConceptoPrimitivo(), null);
 				jContentPane.add(getPanelRelacionIndividuo(), null);
 				jContentPane.add(getPanelEsUn(), null);
+				jContentPane.add(getPanelRelacionPropiedades(), null);
 				jContentPane.add(labelContadorEtiquetadas, null);
 			}
 			return jContentPane;
@@ -402,6 +403,21 @@ public class GUI_marcador extends JFrame{
 			}
 			return comboNoticias;
 		}
+		
+		private JComboBox getComboTodasInstancias() {
+			if (comboTodasInstancias == null) {
+				comboTodasInstancias = new JComboBox();
+				comboTodasInstancias.addActionListener(new java.awt.event.ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						Iterator<String> it = ob.listInstanceProperties(comboTodasInstancias.getSelectedItem().toString());
+						while(it.hasNext())
+						comboPropiedades
+					}
+				});
+				comboTodasInstancias.setBounds(new Rectangle(351, 33, 100, 26));
+			}
+			return comboTodasInstancias;
+		}
 
 		/**
 		 * This method initializes panelConceptoPrimitivo
@@ -449,6 +465,22 @@ public class GUI_marcador extends JFrame{
 			return panelRelacionIndividuo;
 		}
 
+		private JPanel getPanelRelacionPropiedades() {
+			if (panelRelacionPropiedad == null) {
+				panelRelacionPropiedad = new JPanel();
+				panelRelacionPropiedad.setLayout(null);
+				panelRelacionPropiedad.setBounds(new Rectangle(213, 545, 490, 72));
+				panelRelacionPropiedad.setBorder(BorderFactory.createTitledBorder(
+						null, "Relacionar instancias mediante propiedades",
+						TitledBorder.DEFAULT_JUSTIFICATION,
+						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
+								Font.BOLD, 12), new Color(51, 51, 51)));
+				panelRelacionPropiedad.add(getComboTodasInstancias(), null);
+				panelRelacionPropiedad.add(getComboNoticias(), null);
+			}
+			return panelRelacionPropiedad;
+		}
+		
 		private JPanel getPanelEsUn() {
 			if (panelEsUn == null) {
 				panelEsUn = new JPanel();
