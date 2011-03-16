@@ -56,7 +56,10 @@ public class Anotador {
 	public void anotarFotografiaEsUn(OntoBridge ob,
 			String Clase, String urlFotografia,int indice) {
 			String nombreFoto = "Foto_" +indice;
-			ob.createOntProperty(nombreFoto,"aparece",Clase);
+			//ob.delete(nombreFoto);
+			//ob.createInstance(Clase, nombreFoto);
+			//ob.mmodifyOntProperty(sourceInstance, propertyName, destInstance)("Fotos", propertyName, destInstance)
+			ob.createOntProperty(nombreFoto,"esUn",Clase);
 	}
 	
 	public void anadirRelacionInstancias(OntoBridge ob,

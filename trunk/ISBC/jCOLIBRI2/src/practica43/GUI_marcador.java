@@ -115,7 +115,7 @@ public class GUI_marcador extends JFrame{
 			// Creamos el objeto Ontobridge
 			ob = new OntoBridge();
 			ob.initWithPelletReasoner();
-			ob.createClass("Fotos_Noticia");		
+		//	ob.createClass("Fotos_Noticia");		
 		//	ob.createOntProperty("Fotos_Noticia", "URLFoto", "Fotos_Noticia");
 
 			
@@ -186,7 +186,7 @@ public class GUI_marcador extends JFrame{
 				String s=a.getImgURL();
 				arrayFotosNoticias.add(s);
 				String nombreFoto="Foto" + "_"+ String.valueOf(j);
-				ob.createInstance("Fotos_Noticia", nombreFoto);
+				ob.createInstance("Noticias", nombreFoto);
 			//	ob.createDataTypeProperty(nombreFoto, "urlfoto", s);
 			//	ob.createOntProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", "Foto" + "_"+ String.valueOf(j));
 		//		ob.createDataTypeProperty("Foto" + "_"+ String.valueOf(j), "urlfoto", a.getImgURL());
