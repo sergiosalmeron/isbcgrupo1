@@ -33,6 +33,7 @@ public class GUI_marcador extends JFrame{
 		private JLabel imgEtiquetar = null;
 		private JButton botonAtras = null;
 		private JButton botonAdelante = null;
+		private JButton botonEsUn = null;
 
 		private ArrayList<String> arrayFotosNoticias = null; // @jve:decl-index=0:
 		private int indiceImagen = 1;
@@ -42,9 +43,16 @@ public class GUI_marcador extends JFrame{
 		private PnlSelectInstance tree = null; // Árbol de la ontología
 		private OntoBridge ob = null; // Referencia a OntoBridge
 		private JComboBox comboConceptos = null;
-		private String[] listaConceptos = null; // Lista de conceptos de nuestra
+		private JComboBox comboNoticias = null;
+		private JComboBox comboRelaciones = null;
+		private JButton botonInstancias = null;
+		private JComboBox comboInstancias = null;
+		private String[] listaInstancias = null;
+		private String[] listaConceptos = null; 
+		private String[] listaRelaciones = null;// Lista de conceptos de nuestra
 		private JPanel panelConceptoPrimitivo = null;
 		private JPanel panelRelacionIndividuo = null;
+		private JPanel panelEsUn = null;
 		private JLabel labelInstancia = null;
 		private JLabel labelContadorEtiquetadas = null;
 		private int numeroAnotadas = 0;
@@ -81,7 +89,7 @@ public class GUI_marcador extends JFrame{
 		    }
 		
 		private void initialize() {
-			this.setSize(729, 584);
+			this.setSize(729, 784);
 			setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 			
 			
@@ -108,6 +116,48 @@ public class GUI_marcador extends JFrame{
 			ob.initWithPelletReasoner();
 			ob.createClass("Fotos_Noticia");		
 		//	ob.createOntProperty("Fotos_Noticia", "URLFoto", "Fotos_Noticia");
+
+			
+			
+			
+
+			
+			// Creamos el objeto Ontobridge
+
+			ArrayList<OntologyDocument> subOntologias = new ArrayList<OntologyDocument>();
+			OntologyDocument ontoPrincipal = new OntologyDocument(null,
+					"file:src/practica43/P4.owl");
+			ob.loadOntology(ontoPrincipal, subOntologias, false);
+			Iterator<String> erl = ob.listProperties("Noticias");
+			Iterator<String> erl2 = ob.listProperties("Persona");
+			Iterator<String> erl3 = ob.listProperties("Temas");
+			Iterator<String> it = ob.listSubClasses("Noticias", false);
+			Iterator<String> it2 = ob.listSubClasses("Persona", false);
+			Iterator<String> it3 = ob.listSubClasses("Temas", false);
+			ArrayList<String> ar = new ArrayList<String>();
+			Iterator<String> inst = ob.listInstances("Noticias");
+			
+			while (it.hasNext())
+				ar.add(it.next());
+			
+			String[] listaNoticias = new String[ar.size()];
+			for (int i = 0; i < listaNoticias.length; i++) {
+				String aux = ar.get(i);
+				listaNoticias[i] = ob.getShortName(aux);
+			}
+			
+			while (it2.hasNext())
+				ar.add(it2.next());
+			while (it3.hasNext())
+				ar.add(it3.next());
+			
+
+			listaConceptos = new String[ar.size()];
+			for (int i = 0; i < listaConceptos.length; i++) {
+				String aux = ar.get(i);
+				listaConceptos[i] = ob.getShortName(aux);
+			}
+			
 			Collection<CBRCase> c= _caseBase.getCases();
 			Iterator<CBRCase> itFoto =c.iterator();
 			int j=0;
@@ -125,37 +175,13 @@ public class GUI_marcador extends JFrame{
 				
 			}
 			
-			
 			this.setContentPane(getJContentPane());
 			this.setTitle("Marcado de noticias");
-
-			
-			// Creamos el objeto Ontobridge
-
-			ArrayList<OntologyDocument> subOntologias = new ArrayList<OntologyDocument>();
-			OntologyDocument ontoPrincipal = new OntologyDocument(null,
-					"file:src/practica43/P4.owl");
-			ob.loadOntology(ontoPrincipal, subOntologias, false);
-			Iterator<String> it = ob.listSubClasses("Noticias", false);
-			Iterator<String> it2 = ob.listSubClasses("Persona", false);
-			Iterator<String> it3 = ob.listSubClasses("Temas", false);
-			ArrayList<String> ar = new ArrayList<String>();
-			while (it.hasNext())
-				ar.add(it.next());
-			while (it2.hasNext())
-				ar.add(it2.next());
-			while (it3.hasNext())
-				ar.add(it3.next());
-			
-
-			listaConceptos = new String[ar.size()];
-			for (int i = 0; i < listaConceptos.length; i++) {
-				String aux = ar.get(i);
-				listaConceptos[i] = ob.getShortName(aux);
-			}
 			// Rellenamos con conceptos de nuestra ontología
 			this.getComboConceptos().setModel(
 					new javax.swing.DefaultComboBoxModel(listaConceptos));
+			this.getComboNoticias().setModel(
+					new javax.swing.DefaultComboBoxModel(listaNoticias));
 			tree = new PnlSelectInstance(ob, false);
 			this.getPanelOntologia().add(tree);
 			tree.setSize(189, 400);
@@ -206,6 +232,7 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelOntologia(), null);
 				jContentPane.add(getPanelConceptoPrimitivo(), null);
 				jContentPane.add(getPanelRelacionIndividuo(), null);
+				jContentPane.add(getPanelEsUn(), null);
 				jContentPane.add(labelContadorEtiquetadas, null);
 			}
 			return jContentPane;
@@ -363,9 +390,17 @@ public class GUI_marcador extends JFrame{
 		private JComboBox getComboConceptos() {
 			if (comboConceptos == null) {
 				comboConceptos = new JComboBox();
+				
 				comboConceptos.setBounds(new Rectangle(351, 33, 100, 26));
 			}
 			return comboConceptos;
+		}
+		private JComboBox getComboNoticias() {
+			if (comboNoticias == null) {
+				comboNoticias = new JComboBox();
+				comboNoticias.setBounds(new Rectangle(351, 33, 100, 26));
+			}
+			return comboNoticias;
 		}
 
 		/**
@@ -381,7 +416,7 @@ public class GUI_marcador extends JFrame{
 				panelConceptoPrimitivo = new JPanel();
 				panelConceptoPrimitivo.setLayout(null);
 				panelConceptoPrimitivo.setBounds(new Rectangle(213, 370, 489, 78));
-				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar nuevo individuo", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
+				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar nuevo individuo o Asignarle concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 				panelConceptoPrimitivo.add(getComboConceptos(), null);
 				panelConceptoPrimitivo.add(getBotonAgregarInstancia(), null);
 				panelConceptoPrimitivo.add(labelAlConcepto, null);
@@ -413,6 +448,57 @@ public class GUI_marcador extends JFrame{
 			}
 			return panelRelacionIndividuo;
 		}
+
+		private JPanel getPanelEsUn() {
+			if (panelEsUn == null) {
+				panelEsUn = new JPanel();
+				panelEsUn.setLayout(null);
+				panelEsUn.setBounds(new Rectangle(213, 545, 490, 72));
+				panelEsUn.setBorder(BorderFactory.createTitledBorder(
+						null, "Asertar Foto-Noticia",
+						TitledBorder.DEFAULT_JUSTIFICATION,
+						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
+								Font.BOLD, 12), new Color(51, 51, 51)));
+				panelEsUn.add(getBotonEsUn(), null);
+				panelEsUn.add(getComboNoticias(), null);
+			}
+			return panelEsUn;
+		}
+		private JButton getBotonEsUn() {
+			if (botonEsUn == null) {
+				botonEsUn = new JButton();
+				botonEsUn.setText("La Foto es un");
+				botonEsUn.setBounds(new Rectangle(95, 33, 153, 23));
+				botonEsUn
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Comprobamos que haya una instancia seleccionada
+								// en el árbol
+								String s = comboNoticias.getSelectedItem().toString();
+								if (s== null) {
+									JOptionPane
+											.showMessageDialog(
+													null,
+													"Debe seleccionar un tipo de noticia",
+													"Error", 1);
+								} else {
+									Anotador anotador = new Anotador();
+									anotador.anotarFotografiaEsUn(ob, s,null,indiceImagen);
+									// Informamos al usuario de que ha etiquetado
+									// con éxito
+									JOptionPane
+											.showMessageDialog(
+													null,
+													"La fotografía ha sido agregada correctamente.",
+													"Información", 1);
+									tree.updateUI();
+								}
+							}
+						});
+			}
+			return botonEsUn;
+		}
+
 
 		/**
 		 * This method initializes botonAgregarInstancia
