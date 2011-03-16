@@ -60,7 +60,7 @@ public class Anotador {
 	}
 	
 	public void anadirRelacionInstancias(OntoBridge ob,
-			String origen, String destino,String relacion) {
+			String origen, String relacion,String destino) {
 			ob.createOntProperty(origen,relacion,destino);
 	}
 //	public void anotarFotografiaEsUn(OntoBridge ob, String nombreConceptoPrimitivo, int indiceFoto) {
