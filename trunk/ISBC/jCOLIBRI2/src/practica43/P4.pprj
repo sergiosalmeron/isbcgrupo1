@@ -1,4 +1,4 @@
-; Wed Mar 16 19:23:38 CET 2011
+; Wed Mar 16 19:42:43 CET 2011
 ; 
 ;+ (version "3.3.1")
 ;+ (build "Build 430")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[P4_ProjectKB_Instance_16448]
-		[P4_ProjectKB_Instance_16449]
-		[P4_ProjectKB_Instance_16450]
-		[P4_ProjectKB_Instance_16451]
-		[P4_ProjectKB_Instance_16452]))
+		[P4_ProjectKB_Instance_16727]
+		[P4_ProjectKB_Instance_16728]
+		[P4_ProjectKB_Instance_16729]
+		[P4_ProjectKB_Instance_16730]
+		[P4_ProjectKB_Instance_16731]))
 
 ([CLSES_TAB] of  Widget
 
@@ -6956,27 +6956,27 @@
 	(property_list [P4_ProjectKB_Instance_17])
 	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
 
-([P4_ProjectKB_Instance_16448] of  String
+([P4_ProjectKB_Instance_16727] of  String
 
 	(name "owl:Thing")
 	(string_value "%3ANAME"))
 
-([P4_ProjectKB_Instance_16449] of  String
+([P4_ProjectKB_Instance_16728] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([P4_ProjectKB_Instance_16450] of  String
+([P4_ProjectKB_Instance_16729] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([P4_ProjectKB_Instance_16451] of  String
+([P4_ProjectKB_Instance_16730] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([P4_ProjectKB_Instance_16452] of  String
+([P4_ProjectKB_Instance_16731] of  String
 
 	(name "owl:Class")
 	(string_value "%3ANAME"))
