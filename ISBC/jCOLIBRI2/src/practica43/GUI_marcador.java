@@ -431,15 +431,18 @@ public class GUI_marcador extends JFrame{
 				comboTodasInstancias = new JComboBox();
 				comboTodasInstancias.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						Iterator<String> it = ob.listInstanceProperties(comboTodasInstancias.getSelectedItem().toString());
+						Iterator<String> it1 = ob.listDeclaredBelongingClasses(comboTodasInstancias.getSelectedItem().toString());
 						ArrayList<String> listaProp = new ArrayList<String>();
-						while(it.hasNext()){
-							String auxiliar=it.next();
-							if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
-								auxiliar=auxiliar.substring(49);
-								listaProp.add(auxiliar);
-							}
-							//listaProp.add(it.next());
+						while(it1.hasNext()){
+							Iterator<String> it = ob.listProperties(it1.next());
+							while(it.hasNext()){
+								String auxiliar=it.next();
+								if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+									auxiliar=auxiliar.substring(49);
+									listaProp.add(auxiliar);
+								}
+								//listaProp.add(it.next());
+								}
 						}
 						if (listaProp.size()!=0){
 							String[] propiedades = new String[listaProp.size()];
