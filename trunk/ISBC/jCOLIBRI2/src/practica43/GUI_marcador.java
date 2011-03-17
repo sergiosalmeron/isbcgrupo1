@@ -36,7 +36,7 @@ public class GUI_marcador extends JFrame{
 		private JButton botonEsUn = null;
 
 		private ArrayList<String> arrayFotosNoticias = null; // @jve:decl-index=0:
-		private int indiceImagen = 1;
+		private int indiceImagen = 0;
 		private JLabel labelTituloFoto = null;
 		private JPanel panelOntologia = null;
 		private JButton botonApareceEn = null;
@@ -57,8 +57,10 @@ public class GUI_marcador extends JFrame{
 		private JLabel labelContadorEtiquetadas = null;
 		private int numeroAnotadas = 0;
 		private JButton botonAgregarInstancia = null;
+		private JButton botonAgregarConcepto = null;
 		private JLabel labelAlConcepto = null;
 		private String[] listaInstancias = null;
+		private JCheckBox checkConcepto = null; 
 		
 		Connector _connector;
 	    CBRCaseBase _caseBase;
@@ -90,7 +92,7 @@ public class GUI_marcador extends JFrame{
 		    }
 		
 		private void initialize() {
-			this.setSize(729, 784);
+			this.setSize(1000, 730);
 			setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 			
 			
@@ -129,18 +131,11 @@ public class GUI_marcador extends JFrame{
 			OntologyDocument ontoPrincipal = new OntologyDocument(null,
 					"file:src/practica43/P4.owl");
 			ob.loadOntology(ontoPrincipal, subOntologias, false);
-			Iterator<String> erl = ob.listProperties("Noticias");
-			Iterator<String> erl2 = ob.listProperties("Persona");
-			Iterator<String> erl3 = ob.listProperties("Temas");
 			Iterator<String> irl = ob.listInstances("Noticias");
 			Iterator<String> irl2 = ob.listInstances("Persona");
 			Iterator<String> irl3 = ob.listInstances("Temas");
-			Iterator<String> it = ob.listSubClasses("Noticias", false);
-			Iterator<String> it2 = ob.listSubClasses("Persona", false);
-			Iterator<String> it3 = ob.listSubClasses("Temas", false);
+			Iterator<String> it = ob.listSubClasses("Noticias", true);
 			ArrayList<String> ar = new ArrayList<String>();
-			Iterator<String> inst = ob.listInstances("Noticias");
-			
 			while (it.hasNext())
 				ar.add(it.next());
 			
@@ -150,16 +145,10 @@ public class GUI_marcador extends JFrame{
 				listaNoticias[i] = ob.getShortName(aux);
 			}
 			
-			while (it2.hasNext())
-				ar.add(it2.next());
-			while (it3.hasNext())
-				ar.add(it3.next());
+
 			
-			listaConceptos = new String[ar.size()];
-			for (int i = 0; i < listaConceptos.length; i++) {
-				String aux = ar.get(i);
-				listaConceptos[i] = ob.getShortName(aux);
-			}
+			listaConceptos = listaTodasClases();
+
 			
 			ArrayList<String> ar2 = new ArrayList<String>();
 			
@@ -226,7 +215,7 @@ public class GUI_marcador extends JFrame{
 				labelTituloFoto = new JLabel();
 				labelTituloFoto.setBounds(new Rectangle(208, 5, 392, 34));
 				labelTituloFoto.setHorizontalAlignment(SwingConstants.CENTER);
-				labelTituloFoto.setText("Fotografía:");
+				labelTituloFoto.setText("Fotografía: Foto_0");
 				//FiltroExtensiones filtro = new FiltroExtensiones("jpg");
 		//		File carpeta = new File("src/practica4/img/");
 		//		File[] listaDeArchivos = carpeta.listFiles();
@@ -281,22 +270,25 @@ public class GUI_marcador extends JFrame{
 		}
 
 		protected void botonAtrasActionPerformed(ActionEvent evt) {
-			if (indiceImagen>1)
-			this.indiceImagen--;
-
-			// Mostramos la siguiente imagen
-			try{
-			imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
-					"/practica4/img/"
-							+ arrayFotosNoticias.get(indiceImagen - 1))));
-			}
-			catch (Exception e){
-				imgEtiquetar.setIcon(new ImageIcon());
+			if (indiceImagen>0){
+				
+				this.indiceImagen--;
+				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+	
+				// Mostramos la siguiente imagen
+				try{
+				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
+						"/practica4/img/"
+								+ arrayFotosNoticias.get(indiceImagen))));
+				}
+				catch (Exception e){
+					imgEtiquetar.setIcon(new ImageIcon());
+				}
 			}
 			// Activamos el botón Adelante, si no lo estuviera ya
 			botonAdelante.setEnabled(true);
 			// Si es la última imagen, desactivamos el botón Atrás
-			if (indiceImagen == 1) {
+			if (indiceImagen == 0) {
 				botonAtras.setEnabled(false);
 			}
 		}
@@ -324,12 +316,16 @@ public class GUI_marcador extends JFrame{
 		}
 
 		protected void botonAdelanteActionPerformed(ActionEvent evt) {
+			
+		//	labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 			this.indiceImagen++;
+			labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+			
 
 			// Mostramos la siguiente imagen
 			try{
 			imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
-					"/practica4/img/" + arrayFotosNoticias.get(indiceImagen - 1))));
+					"/practica4/img/" + arrayFotosNoticias.get(indiceImagen))));
 
 			}
 			catch (Exception e){
@@ -338,7 +334,7 @@ public class GUI_marcador extends JFrame{
 			// Activamos el botón Atrás, si no lo estuviera ya
 			botonAtras.setEnabled(true);
 			// Si es la última imagen, desactivamos el botón Siguiente
-			if (indiceImagen == arrayFotosNoticias.size()) {
+			if (indiceImagen == arrayFotosNoticias.size()-1) {
 				botonAdelante.setEnabled(false);
 			}
 		}
@@ -368,7 +364,7 @@ public class GUI_marcador extends JFrame{
 			if (botonApareceEn == null) {
 				botonApareceEn = new JButton();
 				botonApareceEn.setText("Aparece en la foto");
-				botonApareceEn.setBounds(new Rectangle(322, 26, 153, 23));
+				botonApareceEn.setBounds(new Rectangle(300, 25, 153, 23));
 				botonApareceEn
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -384,7 +380,7 @@ public class GUI_marcador extends JFrame{
 									Anotador anotador = new Anotador();
 									anotador.anotarFotografiaApareceEn(ob, tree,
 											arrayFotosNoticias
-													.get(indiceImagen - 1),(indiceImagen - 1));
+													.get(indiceImagen),(indiceImagen));
 									// Incrementamos el contador de etiquetadas
 									numeroAnotadas++;
 									labelContadorEtiquetadas
@@ -414,14 +410,14 @@ public class GUI_marcador extends JFrame{
 			if (comboConceptos == null) {
 				comboConceptos = new JComboBox();
 				
-				comboConceptos.setBounds(new Rectangle(351, 33, 100, 26));
+				comboConceptos.setBounds(new Rectangle(50,160 , 190, 26));
 			}
 			return comboConceptos;
 		}
 		private JComboBox getComboNoticias() {
 			if (comboNoticias == null) {
 				comboNoticias = new JComboBox();
-				comboNoticias.setBounds(new Rectangle(351, 33, 100, 26));
+				comboNoticias.setBounds(new Rectangle(300, 25, 130, 26));
 			}
 			return comboNoticias;
 		}
@@ -538,13 +534,18 @@ public class GUI_marcador extends JFrame{
 		private JPanel getPanelConceptoPrimitivo() {
 			if (panelConceptoPrimitivo == null) {
 				labelAlConcepto = new JLabel();
-				labelAlConcepto.setBounds(new Rectangle(255, 35, 88, 24));
+				labelAlConcepto.setBounds(new Rectangle(40, 120, 90, 30));
 				labelAlConcepto.setText("al concepto");
+				checkConcepto = new JCheckBox();
+				checkConcepto.setBounds(new Rectangle(130, 120, 150, 30));
+				checkConcepto.setText("es SubClase de");
 				panelConceptoPrimitivo = new JPanel();
 				panelConceptoPrimitivo.setLayout(null);
-				panelConceptoPrimitivo.setBounds(new Rectangle(213, 370, 489, 78));
-				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar nuevo individuo o Asignarle concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
+				panelConceptoPrimitivo.setBounds(new Rectangle(700, 3, 290, 200));
+				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar nuevo individuo o concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 				panelConceptoPrimitivo.add(getComboConceptos(), null);
+				panelConceptoPrimitivo.add(checkConcepto);
+				panelConceptoPrimitivo.add(getBotonAgregarConcepto(),null);
 				panelConceptoPrimitivo.add(getBotonAgregarInstancia(), null);
 				panelConceptoPrimitivo.add(labelAlConcepto, null);
 			}
@@ -559,12 +560,12 @@ public class GUI_marcador extends JFrame{
 		private JPanel getPanelRelacionIndividuo() {
 			if (panelRelacionIndividuo == null) {
 				labelInstancia = new JLabel();
-				labelInstancia.setBounds(new Rectangle(18, 30, 286, 19));
+				labelInstancia.setBounds(new Rectangle(8, 25, 286, 19));
 				labelInstancia
 						.setText("Seleccione una instancia en el árbol de la izqda.");
 				panelRelacionIndividuo = new JPanel();
 				panelRelacionIndividuo.setLayout(null);
-				panelRelacionIndividuo.setBounds(new Rectangle(213, 463, 490, 72));
+				panelRelacionIndividuo.setBounds(new Rectangle(213, 428, 470, 60));
 				panelRelacionIndividuo.setBorder(BorderFactory.createTitledBorder(
 						null, "Relación-individuo",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -580,7 +581,7 @@ public class GUI_marcador extends JFrame{
 			if (panelRelacionPropiedad == null) {
 				panelRelacionPropiedad = new JPanel();
 				panelRelacionPropiedad.setLayout(null);
-				panelRelacionPropiedad.setBounds(new Rectangle(213, 620, 490, 72));
+				panelRelacionPropiedad.setBounds(new Rectangle(213, 545, 470, 60));
 				panelRelacionPropiedad.setBorder(BorderFactory.createTitledBorder(
 						null, "Relacionar instancias mediante propiedades",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -596,7 +597,7 @@ public class GUI_marcador extends JFrame{
 			if (panelEsUn == null) {
 				panelEsUn = new JPanel();
 				panelEsUn.setLayout(null);
-				panelEsUn.setBounds(new Rectangle(213, 545, 490, 72));
+				panelEsUn.setBounds(new Rectangle(213, 370, 470, 60));
 				panelEsUn.setBorder(BorderFactory.createTitledBorder(
 						null, "Asertar Foto-Noticia",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -610,8 +611,8 @@ public class GUI_marcador extends JFrame{
 		private JButton getBotonEsUn() {
 			if (botonEsUn == null) {
 				botonEsUn = new JButton();
-				botonEsUn.setText("La Foto es un");
-				botonEsUn.setBounds(new Rectangle(95, 33, 153, 23));
+				botonEsUn.setText("La Foto es de una noticia");
+				botonEsUn.setBounds(new Rectangle(45, 25, 181, 23));
 				botonEsUn
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -652,7 +653,7 @@ public class GUI_marcador extends JFrame{
 			if (botonAgregarInstancia == null) {
 				botonAgregarInstancia = new JButton();
 				botonAgregarInstancia.setText("Agregar Instancia");
-				botonAgregarInstancia.setBounds(new Rectangle(95, 35, 152, 27));
+				botonAgregarInstancia.setBounds(new Rectangle(70, 35, 152, 27));
 				botonAgregarInstancia
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -687,6 +688,66 @@ public class GUI_marcador extends JFrame{
 						});
 			}
 			return botonAgregarInstancia;
+		}
+		
+		private JButton getBotonAgregarConcepto() {
+			if (botonAgregarConcepto == null) {
+				botonAgregarConcepto = new JButton();
+				botonAgregarConcepto.setText("Agregar Concepto");
+				botonAgregarConcepto.setBounds(new Rectangle(70, 70, 152, 27));
+				botonAgregarConcepto
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Mostramos una ventana para que el usuario dé un
+								// nombre
+								// a esta nueva instancia
+								String nombreConcepto = (String) JOptionPane
+										.showInputDialog(
+												null,
+												"Introduzca un nombre para el nuevo concepto:\n",
+												"Introduzca nombre",
+												JOptionPane.PLAIN_MESSAGE, null,
+												null, "Concepto");
+
+								if ((nombreConcepto != null)
+										&& (nombreConcepto.length() > 0)) {
+									// Llamamos al método para agregar una nueva
+									// instancia
+									Anotador etiq = new Anotador();
+									boolean check = checkConcepto.isSelected();
+									etiq.anadirNuevoConcepto(ob, nombreConcepto,
+											comboConceptos.getSelectedItem()
+													.toString(),check);
+									JOptionPane
+											.showMessageDialog(
+													null,
+													"El concepto ha sido agregado correctamente.",
+													"Información", 1);
+									tree.updateUI();
+									
+								}
+							}
+						});
+			}
+			return botonAgregarConcepto;
+		}
+		
+		
+		public String[] listaTodasClases (){
+			Iterator<String> clases = ob.listAllClasses();
+			ArrayList<String> listac = new ArrayList<String>();
+			while (clases.hasNext()){
+				String auxiliar=clases.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+					listac.add(auxiliar);
+				}
+			}
+			String[] listaClases = new String[listac.size()];
+			for (int i = 0; i<listac.size();i++){
+				listaClases[i] = listac.get(i);
+			}
+			return listaClases;
 		}
 	    
 	    public static void main(String[] args)
