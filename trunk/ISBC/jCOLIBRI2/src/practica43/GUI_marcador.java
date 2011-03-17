@@ -60,6 +60,10 @@ public class GUI_marcador extends JFrame{
 		private String[] listaInstancias = null;
 		private JCheckBox checkConcepto = null; 
 		
+		private JTextField campoConsulta = null;
+		private JButton botonConsultar = null;
+		private JPanel panelConsulta = null;
+		
 		Connector _connector;
 	    CBRCaseBase _caseBase;
 
@@ -149,6 +153,7 @@ public class GUI_marcador extends JFrame{
 
 			
 			ArrayList<String> ar2 = new ArrayList<String>();
+			ar2.add("-");
 			
 			while (irl.hasNext())
 				ar2.add(irl.next());
@@ -240,6 +245,7 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelRelacionIndividuo(), null);
 				jContentPane.add(getPanelEsUn(), null);
 				jContentPane.add(getPanelRelacionPropiedades(), null);
+				jContentPane.add(getPanelConsulta(),null);
 			}
 			return jContentPane;
 		}
@@ -415,29 +421,35 @@ public class GUI_marcador extends JFrame{
 		private JComboBox getComboTodasInstancias() {
 			if (comboTodasInstancias == null) {
 				comboTodasInstancias = new JComboBox();
+				
 				comboTodasInstancias.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						Iterator<String> it1 = ob.listDeclaredBelongingClasses(comboTodasInstancias.getSelectedItem().toString());
-						ArrayList<String> listaProp = new ArrayList<String>();
-						while(it1.hasNext()){
-							Iterator<String> it = ob.listProperties(it1.next());
-							while(it.hasNext()){
-								String auxiliar=it.next();
-								if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
-									auxiliar=auxiliar.substring(49);
-									listaProp.add(auxiliar);
-								}
+						if (!(comboTodasInstancias.getSelectedItem().toString().equals("-"))){
+							Iterator<String> it1 = ob.listDeclaredBelongingClasses(comboTodasInstancias.getSelectedItem().toString());
+							ArrayList<String> listaProp = new ArrayList<String>();
+							listaProp.add("-");
+							while(it1.hasNext()){
+								Iterator<String> it = ob.listProperties(it1.next());
+								while(it.hasNext()){
+									String auxiliar=it.next();
+									if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+										auxiliar=auxiliar.substring(49);
+										listaProp.add(auxiliar);
+									}
 								//listaProp.add(it.next());
-								}
-						}
-						if (listaProp.size()!=0){
-							String[] propiedades = new String[listaProp.size()];
-							for (int i = 0; i<listaProp.size(); i++){
-								propiedades[i] = listaProp.get(i);
+									}
 							}
-							/*this.*/getComboPropiedades().setModel(
-									new javax.swing.DefaultComboBoxModel(propiedades));
-							comboTodasInstancias.getParent().add(comboPropiedades);
+							if (listaProp.size()!=0){
+								String[] propiedades = new String[listaProp.size()];
+								for (int i = 0; i<listaProp.size(); i++){
+									propiedades[i] = listaProp.get(i);
+								}
+								/*this.*/getComboPropiedades().setModel(
+										new javax.swing.DefaultComboBoxModel(propiedades));
+								comboPropiedades.setVisible(true);
+								comboAlgunasInstancias.setVisible(false);
+								botonRelacionar.setEnabled(false);
+							}
 						}
 					}
 				});
@@ -450,25 +462,31 @@ public class GUI_marcador extends JFrame{
 		private JComboBox getComboPropiedades() {
 			if (comboPropiedades == null) {
 				comboPropiedades = new JComboBox();
+		//		comboPropiedades.getParent().add(getComboAlgunasInstancias());
 				comboPropiedades.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						Iterator<String> it = ob.listPropertyRange(comboPropiedades.getSelectedItem().toString());
-						ArrayList<String> listaInst = new ArrayList<String>();
-						while (it.hasNext()){
-							String auxiliar=it.next();
-							if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
-								auxiliar=auxiliar.substring(49);
-								listaInst.add(auxiliar);
+						if (!(comboPropiedades.getSelectedItem().toString().equals("-"))){
+							Iterator<String> it = ob.listPropertyRange(comboPropiedades.getSelectedItem().toString());
+							ArrayList<String> listaInst = new ArrayList<String>();
+							listaInst.add("-");
+							while (it.hasNext()){
+								String auxiliar=it.next();
+								if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+									auxiliar=auxiliar.substring(49);
+									listaInst.add(auxiliar);
+								}
 							}
-						}
-						if (listaInst.size()!=0){
-							String[] instancias = new String[listaInst.size()];
-							for (int i = 0; i<listaInst.size(); i++){
-								instancias[i] = listaInst.get(i);
+							if (listaInst.size()!=0){
+								String[] instancias = new String[listaInst.size()];
+								for (int i = 0; i<listaInst.size(); i++){
+									instancias[i] = listaInst.get(i);
+								}
+								/*this.*/getComboAlgunasInstancias().setModel(
+										new javax.swing.DefaultComboBoxModel(instancias));
+								comboAlgunasInstancias.setVisible(true);
+								botonRelacionar.setEnabled(false);
 							}
-							/*this.*/getComboAlgunasInstancias().setModel(
-									new javax.swing.DefaultComboBoxModel(listaInstancias));
-								comboPropiedades.getParent().add(comboAlgunasInstancias);
+								
 						}
 					}
 				});
@@ -481,9 +499,10 @@ public class GUI_marcador extends JFrame{
 		private JComboBox getComboAlgunasInstancias() {
 			if (comboAlgunasInstancias == null) {
 				comboAlgunasInstancias = new JComboBox();
+		//		comboAlgunasInstancias.getParent().add(getBotonRelacionar());
 				comboAlgunasInstancias.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						/*this.*/comboAlgunasInstancias.getParent().add(getBotonRelacionar());
+						/*this.*/botonRelacionar.setEnabled(true);
 						
 					}
 				});
@@ -498,19 +517,24 @@ public class GUI_marcador extends JFrame{
 				botonRelacionar = new JButton();
 				botonRelacionar.setText("Relacionar");
 				botonRelacionar.setBounds(new Rectangle(330, 25, 102, 27));
+				botonRelacionar.setEnabled(false);
 				botonRelacionar
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Mostramos una ventana para que el usuario dé un
-								// nombre
-								// a esta nueva instancia
 								String instanciaOrigen=comboTodasInstancias.getSelectedItem().toString();
 								String instanciadestino=comboPropiedades.getSelectedItem().toString();
 								String relacion=comboAlgunasInstancias.getSelectedItem().toString();
-								Anotador etiq=new Anotador();
-								etiq.anadirRelacionInstancias(ob,instanciaOrigen,
-										instanciadestino,relacion);
+								if (instanciaOrigen.equals("-"))
+									JOptionPane.showMessageDialog(null,"Falta algun campo por definir");
+								else{
+									Anotador etiq=new Anotador();
+									etiq.anadirRelacionInstancias(ob,instanciaOrigen,
+											instanciadestino,relacion);
+									comboAlgunasInstancias.setVisible(false);
+									comboPropiedades.setVisible(false);
+									botonRelacionar.setEnabled(false);
 								}
+							}
 						});
 			}
 			return botonRelacionar;
@@ -577,7 +601,15 @@ public class GUI_marcador extends JFrame{
 						TitledBorder.DEFAULT_JUSTIFICATION,
 						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
 								Font.BOLD, 12), new Color(51, 51, 51)));
+				panelRelacionPropiedad.add(getBotonRelacionar());
+				panelRelacionPropiedad.add(getComboAlgunasInstancias());
+				panelRelacionPropiedad.add(getComboPropiedades());
 				panelRelacionPropiedad.add(getComboTodasInstancias(), null);
+				
+				comboPropiedades.setVisible(false);
+				comboAlgunasInstancias.setVisible(false);
+				botonRelacionar.setEnabled(false);
+				
 			
 			}
 			return panelRelacionPropiedad;
@@ -720,6 +752,48 @@ public class GUI_marcador extends JFrame{
 						});
 			}
 			return botonAgregarConcepto;
+		}
+		
+		
+		private JPanel getPanelConsulta() {
+			if (panelConsulta == null) {
+				panelConsulta = new JPanel();
+				panelConsulta.setLayout(null);
+				panelConsulta.setBounds(new Rectangle(213, 550, 470, 100));
+				panelConsulta.setBorder(BorderFactory.createTitledBorder(
+						null, "Consultar relaciones existentes",
+						TitledBorder.DEFAULT_JUSTIFICATION,
+						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
+								Font.BOLD, 12), new Color(51, 51, 51)));
+				panelConsulta.add(getBotonConsultar(), null);
+				campoConsulta=new JTextField();
+				campoConsulta.setEditable(true);
+				campoConsulta.setEnabled(true);
+				campoConsulta.setVisible(true);
+				campoConsulta.setBounds(new Rectangle(30, 25, 250, 70));
+				panelConsulta.add(campoConsulta);
+			}
+			return panelConsulta;
+		}
+		
+		
+		private JButton getBotonConsultar() {
+			if (botonConsultar == null) {
+				botonConsultar = new JButton();
+				botonConsultar.setText("Consultar");
+				botonConsultar.setBounds(new Rectangle(300, 105, 60, 26));
+				botonConsultar
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Comprobamos que haya una instancia seleccionada
+								// en el árbol
+								String consulta= campoConsulta.getText();
+								Anotador etiq = new Anotador();
+								etiq.consultarOntologia(ob,consulta);
+							}
+						});
+			}
+			return botonConsultar;
 		}
 		
 		
