@@ -54,8 +54,6 @@ public class GUI_marcador extends JFrame{
 		private JPanel panelEsUn = null;
 		private JPanel panelRelacionPropiedad = null;
 		private JLabel labelInstancia = null;
-		private JLabel labelContadorEtiquetadas = null;
-		private int numeroAnotadas = 0;
 		private JButton botonAgregarInstancia = null;
 		private JButton botonAgregarConcepto = null;
 		private JLabel labelAlConcepto = null;
@@ -208,10 +206,7 @@ public class GUI_marcador extends JFrame{
 			if (jContentPane == null) {
 				// Obtenemos las fotografías de la carpeta Noticias y almacenamos su
 				// ruta en un ArrayList
-				labelContadorEtiquetadas = new JLabel();
-				labelContadorEtiquetadas.setBounds(new Rectangle(27, 503, 153, 28));
-				labelContadorEtiquetadas.setText("Lleva etiquetadas: "
-						+ numeroAnotadas);
+
 				labelTituloFoto = new JLabel();
 				labelTituloFoto.setBounds(new Rectangle(208, 5, 392, 34));
 				labelTituloFoto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -245,7 +240,6 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelRelacionIndividuo(), null);
 				jContentPane.add(getPanelEsUn(), null);
 				jContentPane.add(getPanelRelacionPropiedades(), null);
-				jContentPane.add(labelContadorEtiquetadas, null);
 			}
 			return jContentPane;
 		}
@@ -382,10 +376,6 @@ public class GUI_marcador extends JFrame{
 											arrayFotosNoticias
 													.get(indiceImagen),(indiceImagen));
 									// Incrementamos el contador de etiquetadas
-									numeroAnotadas++;
-									labelContadorEtiquetadas
-											.setText("Lleva etiquetadas: "
-													+ numeroAnotadas);
 									// Informamos al usuario de que ha etiquetado
 									// con éxito
 									JOptionPane
@@ -581,7 +571,7 @@ public class GUI_marcador extends JFrame{
 			if (panelRelacionPropiedad == null) {
 				panelRelacionPropiedad = new JPanel();
 				panelRelacionPropiedad.setLayout(null);
-				panelRelacionPropiedad.setBounds(new Rectangle(213, 545, 470, 60));
+				panelRelacionPropiedad.setBounds(new Rectangle(213, 486, 470, 60));
 				panelRelacionPropiedad.setBorder(BorderFactory.createTitledBorder(
 						null, "Relacionar instancias mediante propiedades",
 						TitledBorder.DEFAULT_JUSTIFICATION,
