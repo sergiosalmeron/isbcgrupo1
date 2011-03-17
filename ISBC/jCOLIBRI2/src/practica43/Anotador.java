@@ -53,6 +53,15 @@ public class Anotador {
 		ob.save("src/practica43/P4.owl");
 	}
 	
+	public void anadirNuevoConcepto(OntoBridge ob, String nombreConcepto, String conceptoPrimitivo, boolean check) {
+		// Si estamos aquí, es porque el individuo no existe ya en el concepto primitivo
+		ob.createClass(nombreConcepto);
+		if (check) 
+		ob.setSubClass(nombreConcepto, conceptoPrimitivo);
+		ob.save("src/practica43/P4.owl");
+	}
+	
+	
 	public void anotarFotografiaEsUn(OntoBridge ob,
 			String Clase, String urlFotografia,int indice) {
 			String nombreFoto = "Foto_" +indice;
