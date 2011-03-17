@@ -442,7 +442,7 @@ public class GUI_marcador extends JFrame{
 					}
 				});
 				
-				comboTodasInstancias.setBounds(new Rectangle(10, 33, 100, 26));
+				comboTodasInstancias.setBounds(new Rectangle(10, 25, 100, 26));
 			}
 			return comboTodasInstancias;
 		}
@@ -473,7 +473,7 @@ public class GUI_marcador extends JFrame{
 					}
 				});
 				
-				comboPropiedades.setBounds(new Rectangle(115, 33, 100, 26));
+				comboPropiedades.setBounds(new Rectangle(115, 25, 100, 26));
 			}
 			return comboPropiedades;
 		}
@@ -488,7 +488,7 @@ public class GUI_marcador extends JFrame{
 					}
 				});
 				
-				comboAlgunasInstancias.setBounds(new Rectangle(220, 33, 100, 26));
+				comboAlgunasInstancias.setBounds(new Rectangle(220, 25, 100, 26));
 			}
 			return comboAlgunasInstancias;
 		}
@@ -497,7 +497,7 @@ public class GUI_marcador extends JFrame{
 			if (botonRelacionar == null) {
 				botonRelacionar = new JButton();
 				botonRelacionar.setText("Relacionar");
-				botonRelacionar.setBounds(new Rectangle(330, 35, 152, 27));
+				botonRelacionar.setBounds(new Rectangle(330, 25, 102, 27));
 				botonRelacionar
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
