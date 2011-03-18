@@ -31,7 +31,7 @@ public class Anotador {
 	// }
 
 	public void anotarFotografiaApareceEn(OntoBridge ob,
-			PnlSelectInstance tree, String urlFotografia,int indice) {
+			PnlSelectInstance tree, String urlFotografia,int indice,String relacion) {
 		// Creamos la instancia correspondiente a esta foto que vamos a
 		// etiquetar
 	//	int pos = urlFotografia.indexOf('.');
@@ -42,7 +42,7 @@ public class Anotador {
 	//	String urlfoto = /*/*"file:noticias/" +*/ /*indiceFoto + ".jpg";*/ urlFotografia;
 		//ob.createInstance("Fotos", nombreFoto);
 		
-		ob.createOntProperty(nombreFoto, "aparece", tree.getSelectedInstance());
+		ob.createOntProperty(nombreFoto, relacion, tree.getSelectedInstance());
 //		ob.createDataTypeProperty(nombreFoto, "urlfoto", urlfoto);
 		//ob.save("ontologias/fotoOnto.owl");
 	}

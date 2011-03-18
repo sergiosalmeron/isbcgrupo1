@@ -1,4 +1,4 @@
-; Wed Mar 16 19:42:43 CET 2011
+; Fri Mar 18 14:53:50 CET 2011
 ; 
 ;+ (version "3.3.1")
 ;+ (build "Build 430")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[P4_ProjectKB_Instance_16727]
-		[P4_ProjectKB_Instance_16728]
-		[P4_ProjectKB_Instance_16729]
-		[P4_ProjectKB_Instance_16730]
-		[P4_ProjectKB_Instance_16731]))
+		[P4_ProjectKB_Instance_95]
+		[P4_ProjectKB_Instance_96]
+		[P4_ProjectKB_Instance_97]
+		[P4_ProjectKB_Instance_98]
+		[P4_ProjectKB_Instance_99]))
 
 ([CLSES_TAB] of  Widget
 
@@ -6956,31 +6956,6 @@
 	(property_list [P4_ProjectKB_Instance_17])
 	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
 
-([P4_ProjectKB_Instance_16727] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
-
-([P4_ProjectKB_Instance_16728] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([P4_ProjectKB_Instance_16729] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([P4_ProjectKB_Instance_16730] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([P4_ProjectKB_Instance_16731] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
 ([P4_ProjectKB_Instance_17] of  Property_List
 )
 
@@ -7163,6 +7138,31 @@
 
 ([P4_ProjectKB_Instance_9] of  Property_List
 )
+
+([P4_ProjectKB_Instance_95] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
+
+([P4_ProjectKB_Instance_96] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([P4_ProjectKB_Instance_97] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([P4_ProjectKB_Instance_98] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([P4_ProjectKB_Instance_99] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
 
 ([PAL_FORM_WIDGET] of  Widget
 
