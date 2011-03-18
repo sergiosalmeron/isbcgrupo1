@@ -52,7 +52,10 @@ public class GUI_marcador extends JFrame{
 		private JCheckBox checkConcepto = null; 
 		
 		private JTextField campoConsulta = null;
-		private JButton botonConsultar = null;
+		private JButton botonConsultarDeportivas = null;
+		private JButton botonConsultarPoliticas = null;
+		private JButton botonConsultarEconomicas = null;
+		private JButton botonConsultarTecnologicas = null;
 		private JPanel panelConsulta = null;
 		
 		private JLabel LabelPersonas=null;
@@ -144,12 +147,12 @@ public class GUI_marcador extends JFrame{
 			ArrayList<String> ar2 = new ArrayList<String>();
 			ar2.add("-");
 			
-			while (irl.hasNext())
-				ar2.add(irl.next());
+		/*	while (irl.hasNext())
+				ar2.add(irl.next());*/
 			while (irl2.hasNext())
 				ar2.add(irl2.next());
-			while (irl3.hasNext())
-				ar2.add(irl3.next());
+/*			while (irl3.hasNext())
+				ar2.add(irl3.next());*/
 
 			listaInstancias = new String[ar2.size()];
 			for (int i = 0; i < listaInstancias.length; i++) {
@@ -428,6 +431,7 @@ public class GUI_marcador extends JFrame{
 		 * This method initializes panelOntologia
 		 * 
 		 * @return javax.swing.JPanel
+		 * 
 		 */
 		private JPanel getPanelOntologia() {
 			if (panelOntologia == null) {
@@ -449,7 +453,7 @@ public class GUI_marcador extends JFrame{
 			if (botonApareceEn == null) {
 				botonApareceEn = new JButton();
 				botonApareceEn.setText("Relaciona foto");
-				botonApareceEn.setBounds(new Rectangle(300, 25, 153, 23));
+				botonApareceEn.setBounds(new Rectangle(140, 20, 123, 26));
 				botonApareceEn
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -532,7 +536,7 @@ public class GUI_marcador extends JFrame{
 			if (comboConceptos == null) {
 				comboConceptos = new JComboBox();
 				
-				comboConceptos.setBounds(new Rectangle(40,160 , 120, 26));
+				comboConceptos.setBounds(new Rectangle(10,160 , 120, 26));
 			}
 			return comboConceptos;
 		}
@@ -645,8 +649,8 @@ public class GUI_marcador extends JFrame{
 		private JButton getBotonRelacionar() {
 			if (botonRelacionar == null) {
 				botonRelacionar = new JButton();
-				botonRelacionar.setText("Relacionar");
-				botonRelacionar.setBounds(new Rectangle(330, 25, 102, 27));
+				botonRelacionar.setText("Ok");
+				botonRelacionar.setBounds(new Rectangle(325, 25, 50, 26));
 				botonRelacionar.setEnabled(false);
 				botonRelacionar
 						.addActionListener(new java.awt.event.ActionListener() {
@@ -685,7 +689,7 @@ public class GUI_marcador extends JFrame{
 				checkConcepto.setText("es SubClase de");
 				panelConceptoPrimitivo = new JPanel();
 				panelConceptoPrimitivo.setLayout(null);
-				panelConceptoPrimitivo.setBounds(new Rectangle(5, 500, 200, 200));
+				panelConceptoPrimitivo.setBounds(new Rectangle(5, 480, 200, 200));
 				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar individuo o concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 				panelConceptoPrimitivo.add(getComboConceptos(), null);
 				panelConceptoPrimitivo.add(checkConcepto);
@@ -722,8 +726,8 @@ public class GUI_marcador extends JFrame{
 //						.setText("Seleccione una instancia en el árbol de la izqda.");
 				panelRelacionIndividuo = new JPanel();
 				panelRelacionIndividuo.setLayout(null);
-				comboFoto.setBounds(new Rectangle(25,20,150,30));
-				panelRelacionIndividuo.setBounds(new Rectangle(213, 428, 470, 60));
+				comboFoto.setBounds(new Rectangle(25,20,100,26));
+				panelRelacionIndividuo.setBounds(new Rectangle(213, 428, 380, 60));
 				panelRelacionIndividuo.setBorder(BorderFactory.createTitledBorder(
 						null, "Marcador de fotos",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -739,7 +743,7 @@ public class GUI_marcador extends JFrame{
 			if (panelRelacionPropiedad == null) {
 				panelRelacionPropiedad = new JPanel();
 				panelRelacionPropiedad.setLayout(null);
-				panelRelacionPropiedad.setBounds(new Rectangle(213, 486, 470, 60));
+				panelRelacionPropiedad.setBounds(new Rectangle(213, 486, 380, 60));
 				panelRelacionPropiedad.setBorder(BorderFactory.createTitledBorder(
 						null, "Relacionar instancias mediante propiedades",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -779,7 +783,7 @@ public class GUI_marcador extends JFrame{
 			if (panelEsUn == null) {
 				panelEsUn = new JPanel();
 				panelEsUn.setLayout(null);
-				panelEsUn.setBounds(new Rectangle(213, 370, 470, 60));
+				panelEsUn.setBounds(new Rectangle(213, 370, 380, 60));
 				panelEsUn.setBorder(BorderFactory.createTitledBorder(
 						null, "Aparecen en la foto:",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -929,30 +933,34 @@ public class GUI_marcador extends JFrame{
 			if (panelConsulta == null) {
 				panelConsulta = new JPanel();
 				panelConsulta.setLayout(null);
-				panelConsulta.setBounds(new Rectangle(213, 550, 470, 100));
+				panelConsulta.setBounds(new Rectangle(213, 550, 380, 100));
 				panelConsulta.setBorder(BorderFactory.createTitledBorder(
-						null, "Consultar relaciones existentes",
+						null, "Consultar Noticias inferidas",
 						TitledBorder.DEFAULT_JUSTIFICATION,
 						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
 								Font.BOLD, 12), new Color(51, 51, 51)));
-				panelConsulta.add(getBotonConsultar(), null);
-				campoConsulta=new JTextField();
-				campoConsulta.setEditable(true);
-				campoConsulta.setEnabled(true);
-				campoConsulta.setVisible(true);
-				campoConsulta.setBounds(new Rectangle(30, 40, 250, 26));
-				panelConsulta.add(campoConsulta);
+				panelConsulta.add(getBotonConsultarDeportivas(), null);
+				panelConsulta.add(getBotonConsultarPoliticas(), null);
+				panelConsulta.add(getBotonConsultarEconomicas(), null);
+				panelConsulta.add(getBotonConsultarTecnologicas(), null);
+				
+		//		campoConsulta=new JTextField();
+		//		campoConsulta.setEditable(true);
+		//		campoConsulta.setEnabled(true);
+		//		campoConsulta.setVisible(true);
+		//		campoConsulta.setBounds(new Rectangle(30, 40, 250, 26));
+		//		panelConsulta.add(campoConsulta);
 			}
 			return panelConsulta;
 		}
 		
 		
-		private JButton getBotonConsultar() {
-			if (botonConsultar == null) {
-				botonConsultar = new JButton();
-				botonConsultar.setText("Consultar");
-				botonConsultar.setBounds(new Rectangle(300, 40, 100, 26));
-				botonConsultar
+		private JButton getBotonConsultarDeportivas() {
+			if (botonConsultarDeportivas == null) {
+				botonConsultarDeportivas = new JButton();
+				botonConsultarDeportivas.setText("Consultar Deportivas");
+				botonConsultarDeportivas.setBounds(new Rectangle(195, 60, 180, 26));
+				botonConsultarDeportivas
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
 								// Comprobamos que haya una instancia seleccionada
@@ -963,7 +971,62 @@ public class GUI_marcador extends JFrame{
 							}
 						});
 			}
-			return botonConsultar;
+			return botonConsultarDeportivas;
+		}
+		
+		private JButton getBotonConsultarPoliticas() {
+			if (botonConsultarPoliticas == null) {
+				botonConsultarPoliticas = new JButton();
+				botonConsultarPoliticas.setText("Consultar Politicas");
+				botonConsultarPoliticas.setBounds(new Rectangle(10, 60, 180, 26));
+				botonConsultarPoliticas
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Comprobamos que haya una instancia seleccionada
+								// en el árbol
+								String consulta= campoConsulta.getText();
+								RecuperadorSemantico etiq = new RecuperadorSemantico();
+								etiq.consultarOntologia(ob,consulta);
+							}
+						});
+			}
+			return botonConsultarPoliticas;
+		}
+		private JButton getBotonConsultarEconomicas() {
+			if (botonConsultarEconomicas == null) {
+				botonConsultarEconomicas = new JButton();
+				botonConsultarEconomicas.setText("Consultar Economicas");
+				botonConsultarEconomicas.setBounds(new Rectangle(195, 25, 180, 26));
+				botonConsultarEconomicas
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Comprobamos que haya una instancia seleccionada
+								// en el árbol
+								String consulta= campoConsulta.getText();
+								RecuperadorSemantico etiq = new RecuperadorSemantico();
+								etiq.consultarOntologia(ob,consulta);
+							}
+						});
+			}
+			return botonConsultarEconomicas;
+		}
+		private JButton getBotonConsultarTecnologicas() {
+			if (botonConsultarTecnologicas == null) {
+				botonConsultarTecnologicas = new JButton();
+				botonConsultarTecnologicas.setText("Consultar Tecnologicas");
+				botonConsultarTecnologicas.setBounds(new Rectangle(10, 25, 180, 26));
+				botonConsultarTecnologicas
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(java.awt.event.ActionEvent e) {
+								// Comprobamos que haya una instancia seleccionada
+								// en el árbol
+								String consulta= campoConsulta.getText();
+								RecuperadorSemantico etiq = new RecuperadorSemantico();
+								etiq.consultarOntologia(ob,consulta);
+							}
+						});
+			}
+			return botonConsultarTecnologicas;
 		}
 		
 		
