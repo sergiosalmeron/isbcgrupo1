@@ -475,7 +475,7 @@ public class GUI_marcador extends JFrame{
 									auxiliar=auxiliar.substring(49);
 									Iterator<String> it2 = ob.listInstances(auxiliar);
 									while(it2.hasNext()){
-										listaInst.add(it2.next());
+										listaInst.add(ob.getShortName(it2.next()));
 									}
 								}
 							}
@@ -784,14 +784,14 @@ public class GUI_marcador extends JFrame{
 			if (botonConsultar == null) {
 				botonConsultar = new JButton();
 				botonConsultar.setText("Consultar");
-				botonConsultar.setBounds(new Rectangle(300, 105, 60, 26));
+				botonConsultar.setBounds(new Rectangle(300, 40, 100, 26));
 				botonConsultar
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
 								// Comprobamos que haya una instancia seleccionada
 								// en el árbol
 								String consulta= campoConsulta.getText();
-								Anotador etiq = new Anotador();
+								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								etiq.consultarOntologia(ob,consulta);
 							}
 						});
