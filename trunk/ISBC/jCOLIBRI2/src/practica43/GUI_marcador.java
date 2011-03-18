@@ -473,7 +473,10 @@ public class GUI_marcador extends JFrame{
 								String auxiliar=it.next();
 								if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
 									auxiliar=auxiliar.substring(49);
-									listaInst.add(auxiliar);
+									Iterator<String> it2 = ob.listInstances(auxiliar);
+									while(it2.hasNext()){
+										listaInst.add(it2.next());
+									}
 								}
 							}
 							if (listaInst.size()!=0){
