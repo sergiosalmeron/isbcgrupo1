@@ -1,29 +1,20 @@
 package practica43;
 
-import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
 import practica4.NewsConnector;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
 import jcolibri.cbrcore.Connector;
 import jcolibri.exception.ExecutionException;
-import jcolibri.test.main.SwingProgressBar;
 import es.ucm.fdi.gaia.ontobridge.OntoBridge;
 import es.ucm.fdi.gaia.ontobridge.OntologyDocument;
-import es.ucm.fdi.gaia.ontobridge.test.gui.PnlConceptsAndInstancesTree;
-import es.ucm.fdi.gaia.ontobridge.test.gui.PnlConceptsTree;
 import es.ucm.fdi.gaia.ontobridge.test.gui.PnlSelectInstance;
 
 public class GUI_marcador extends JFrame{
@@ -63,6 +54,12 @@ public class GUI_marcador extends JFrame{
 		private JTextField campoConsulta = null;
 		private JButton botonConsultar = null;
 		private JPanel panelConsulta = null;
+		
+		private JLabel LabelPersonas=null;
+		private JLabel labelmgConsultadas = null;
+		private JLabel imgConsultadas = null;
+		private JButton botonAtras2 = null;
+		private JButton botonAdelante2 = null;
 		
 		Connector _connector;
 	    CBRCaseBase _caseBase;
@@ -121,11 +118,6 @@ public class GUI_marcador extends JFrame{
 			ob.initWithPelletReasoner();
 		//	ob.createClass("Fotos_Noticia");		
 		//	ob.createOntProperty("Fotos_Noticia", "URLFoto", "Fotos_Noticia");
-
-			
-			
-			
-
 			
 			// Creamos el objeto Ontobridge
 
@@ -146,12 +138,9 @@ public class GUI_marcador extends JFrame{
 				String aux = ar.get(i);
 				listaNoticias[i] = ob.getShortName(aux);
 			}
-			
 
-			
 			listaConceptos = listaTodasClases();
 
-			
 			ArrayList<String> ar2 = new ArrayList<String>();
 			ar2.add("-");
 			
@@ -168,8 +157,7 @@ public class GUI_marcador extends JFrame{
 				listaInstancias[i] = ob.getShortName(aux);
 			}
 
-			
-			
+
 			Collection<CBRCase> c= _caseBase.getCases();
 			Iterator<CBRCase> itFoto =c.iterator();
 			int j=0;
@@ -216,6 +204,12 @@ public class GUI_marcador extends JFrame{
 				labelTituloFoto.setBounds(new Rectangle(208, 5, 392, 34));
 				labelTituloFoto.setHorizontalAlignment(SwingConstants.CENTER);
 				labelTituloFoto.setText("Fotografía: Foto_0");
+				
+				labelmgConsultadas = new JLabel();
+				labelmgConsultadas.setBounds(new Rectangle(680, 5, 392, 34));
+				labelmgConsultadas.setText("Imagenes Consultadas");
+				
+				
 				//FiltroExtensiones filtro = new FiltroExtensiones("jpg");
 		//		File carpeta = new File("src/practica4/img/");
 		//		File[] listaDeArchivos = carpeta.listFiles();
@@ -234,6 +228,14 @@ public class GUI_marcador extends JFrame{
 				// Cargamos inicialmente la primera imagen del ArrayList
 				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
 						"/practica4/img/" + arrayFotosNoticias.get(0))));
+
+				imgConsultadas = new JLabel();
+				imgConsultadas.setBounds(new Rectangle(630, 56, 350, 254));
+				// Cargamos inicialmente la primera imagen del ArrayList
+				imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+						"/practica4/img/" + arrayFotosNoticias.get(0))));
+				
+				// Cargamos inicialmente la primera imagen del ArrayList
 				jContentPane = new JPanel();
 				jContentPane.setLayout(null);
 				jContentPane.add(imgEtiquetar, null);
@@ -246,6 +248,12 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelEsUn(), null);
 				jContentPane.add(getPanelRelacionPropiedades(), null);
 				jContentPane.add(getPanelConsulta(),null);
+				
+				jContentPane.add(labelmgConsultadas, null);
+				jContentPane.add(imgConsultadas, null);
+				jContentPane.add(getBotonAtras2(), null);
+				jContentPane.add(getBotonAdelante2(), null);
+				
 			}
 			return jContentPane;
 		}
@@ -268,10 +276,47 @@ public class GUI_marcador extends JFrame{
 			}
 			return botonAtras;
 		}
+		
+		private JButton getBotonAtras2() {
+			if (botonAtras2 == null) {
+				botonAtras2 = new JButton();
+				botonAtras2.setBounds(new Rectangle(652, 323, 132, 26));
+				botonAtras2.setText("< Anterior");
+				botonAtras2.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						botonAtrasActionPerformed2(evt);
+					}
+				});
+			}
+			return botonAtras2;
+		}
 
 		protected void botonAtrasActionPerformed(ActionEvent evt) {
 			if (indiceImagen>0){
 				
+				this.indiceImagen--;
+				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+	
+				// Mostramos la siguiente imagen
+				try{
+				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
+						"/practica4/img/"
+								+ arrayFotosNoticias.get(indiceImagen))));
+				}
+				catch (Exception e){
+					imgEtiquetar.setIcon(new ImageIcon());
+				}
+			}
+			// Activamos el botón Adelante, si no lo estuviera ya
+			botonAdelante.setEnabled(true);
+			// Si es la última imagen, desactivamos el botón Atrás
+			if (indiceImagen == 0) {
+				botonAtras.setEnabled(false);
+			}
+		}
+		
+		protected void botonAtrasActionPerformed2(ActionEvent evt) {
+			if (indiceImagen>0){
 				this.indiceImagen--;
 				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 	
@@ -314,6 +359,23 @@ public class GUI_marcador extends JFrame{
 			}
 			return botonAdelante;
 		}
+		
+		private JButton getBotonAdelante2() {
+			if (botonAdelante2 == null) {
+				botonAdelante2 = new JButton();
+				botonAdelante2.setBounds(new Rectangle(782, 323, 132, 26));
+				botonAdelante2.setText("Siguiente >");
+				botonAdelante2
+						.addActionListener(new java.awt.event.ActionListener() {
+							public void actionPerformed(
+									java.awt.event.ActionEvent evt) {
+								botonAdelanteActionPerformed2(evt);
+							}
+						});
+
+			}
+			return botonAdelante2;
+		}
 
 		protected void botonAdelanteActionPerformed(ActionEvent evt) {
 			
@@ -338,6 +400,29 @@ public class GUI_marcador extends JFrame{
 				botonAdelante.setEnabled(false);
 			}
 		}
+		
+		protected void botonAdelanteActionPerformed2(ActionEvent evt) {
+			//	labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+				this.indiceImagen++;
+				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+				
+
+				// Mostramos la siguiente imagen
+				try{
+				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
+						"/practica4/img/" + arrayFotosNoticias.get(indiceImagen))));
+
+				}
+				catch (Exception e){
+					imgEtiquetar.setIcon(new ImageIcon());
+				}
+				// Activamos el botón Atrás, si no lo estuviera ya
+				botonAtras.setEnabled(true);
+				// Si es la última imagen, desactivamos el botón Siguiente
+				if (indiceImagen == arrayFotosNoticias.size()-1) {
+					botonAdelante.setEnabled(false);
+				}
+			}
 
 		/**
 		 * This method initializes panelOntologia
@@ -390,6 +475,24 @@ public class GUI_marcador extends JFrame{
 													"La fotografía ha sido etiquetada correctamente.",
 													"Información", 1);
 									tree.updateUI();
+								}
+								
+								String fotoActual = "Foto_" + indiceImagen;
+								String gente="";
+								Iterator<String> itProp =ob.listPropertyValue(fotoActual, ob.getURI("aparece"));
+								while(itProp.hasNext()){
+									String auxiliar=itProp.next();
+									if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+										auxiliar=auxiliar.substring(49);
+									}
+									System.out.println(auxiliar);
+									if(gente==""){
+										gente = auxiliar;
+									}
+									else{
+										gente = gente + ", " + auxiliar;
+									}
+									LabelPersonas.setText(gente);
 								}
 							}
 						});
@@ -471,7 +574,8 @@ public class GUI_marcador extends JFrame{
 							listaInst.add("-");
 							while (it.hasNext()){
 								String auxiliar=it.next();
-								if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+								if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias" +
+										"/Practica4.owl#")){
 									auxiliar=auxiliar.substring(49);
 									Iterator<String> it2 = ob.listInstances(auxiliar);
 									while(it2.hasNext()){
@@ -558,7 +662,7 @@ public class GUI_marcador extends JFrame{
 				checkConcepto.setText("es SubClase de");
 				panelConceptoPrimitivo = new JPanel();
 				panelConceptoPrimitivo.setLayout(null);
-				panelConceptoPrimitivo.setBounds(new Rectangle(700, 3, 290, 200));
+				panelConceptoPrimitivo.setBounds(new Rectangle(700, 370, 290, 200));
 				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar nuevo individuo o concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 				panelConceptoPrimitivo.add(getComboConceptos(), null);
 				panelConceptoPrimitivo.add(checkConcepto);
@@ -618,7 +722,7 @@ public class GUI_marcador extends JFrame{
 			return panelRelacionPropiedad;
 		}
 		
-		private JPanel getPanelEsUn() {
+	/*	private JPanel getPanelEsUn() {
 			if (panelEsUn == null) {
 				panelEsUn = new JPanel();
 				panelEsUn.setLayout(null);
@@ -633,6 +737,32 @@ public class GUI_marcador extends JFrame{
 			}
 			return panelEsUn;
 		}
+	*/	
+		private JPanel getPanelEsUn() {
+			if (panelEsUn == null) {
+				panelEsUn = new JPanel();
+				panelEsUn.setLayout(null);
+				panelEsUn.setBounds(new Rectangle(213, 370, 470, 60));
+				panelEsUn.setBorder(BorderFactory.createTitledBorder(
+						null, "Aparecen en la foto:",
+						TitledBorder.DEFAULT_JUSTIFICATION,
+						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
+								Font.BOLD, 12), new Color(51, 51, 51)));
+				panelEsUn.add(getLabel());
+			}
+			return panelEsUn;
+		}
+		
+		private JLabel getLabel() {
+			LabelPersonas = new JLabel();
+			LabelPersonas.setBounds(new Rectangle(10, 15, 392, 34));
+			LabelPersonas.setHorizontalAlignment(SwingConstants.CENTER);
+			LabelPersonas.setText("");
+			
+			return LabelPersonas;
+		}
+		
+		
 		private JButton getBotonEsUn() {
 			if (botonEsUn == null) {
 				botonEsUn = new JButton();
@@ -773,7 +903,7 @@ public class GUI_marcador extends JFrame{
 				campoConsulta.setEditable(true);
 				campoConsulta.setEnabled(true);
 				campoConsulta.setVisible(true);
-				campoConsulta.setBounds(new Rectangle(30, 25, 250, 70));
+				campoConsulta.setBounds(new Rectangle(30, 40, 250, 26));
 				panelConsulta.add(campoConsulta);
 			}
 			return panelConsulta;
