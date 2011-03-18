@@ -8,6 +8,9 @@
   xml:base="http://gaial.fdi.ucm.es/ontologias/Practica4.owl">
   <owl:Ontology rdf:about=""/>
   <owl:Class rdf:ID="Cientifico">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Persona"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
@@ -18,9 +21,6 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Persona"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Monedas">
     <rdfs:subClassOf>
@@ -28,7 +28,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Economistas">
-    <rdfs:subClassOf rdf:resource="#Persona"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -41,12 +40,12 @@
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="#Bolsa"/>
-            </owl:someValuesFrom>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#maneja"/>
             </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Bolsa"/>
+            </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
@@ -57,6 +56,7 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Persona"/>
   </owl:Class>
   <owl:Class rdf:ID="Deporte">
     <rdfs:subClassOf>
@@ -64,9 +64,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Politicas">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Noticias"/>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -79,16 +76,19 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#aparece"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:ID="Partidos_Politicos"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="trataSobre"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Noticias"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Tecnologias">
     <rdfs:subClassOf rdf:resource="#Temas"/>
@@ -104,12 +104,12 @@
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#Bolsa"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#aparece"/>
+              <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#aparece"/>
+              <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:about="#Bancos"/>
@@ -118,7 +118,7 @@
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#Monedas"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#aparece"/>
+              <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
@@ -153,7 +153,6 @@
     <rdfs:subClassOf rdf:resource="#Lugar"/>
   </owl:Class>
   <owl:Class rdf:ID="Deportivas">
-    <rdfs:subClassOf rdf:resource="#Noticias"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -165,16 +164,16 @@
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="trataSobre"/>
+              <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
             <owl:someValuesFrom rdf:resource="#Deporte"/>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
   </owl:Class>
   <owl:Class rdf:about="#Politicos">
-    <rdfs:subClassOf rdf:resource="#Persona"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -185,16 +184,18 @@
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#Persona"/>
   </owl:Class>
   <owl:Class rdf:ID="Tecnologicas">
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="#Tecnologias"/>
             <owl:onProperty>
-              <owl:ObjectProperty rdf:about="#aparece"/>
+              <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Tecnologias"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
@@ -205,16 +206,16 @@
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Noticias"/>
   </owl:Class>
   <owl:Class rdf:about="#Partidos_Politicos">
     <rdfs:subClassOf rdf:resource="#Temas"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="tieneLugar">
-    <rdfs:domain rdf:resource="#Noticias"/>
     <rdfs:range rdf:resource="#Lugar"/>
+    <rdfs:domain rdf:resource="#Noticias"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="esUn">
+    <rdfs:domain rdf:resource="#Noticias"/>
     <rdfs:range>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -225,13 +226,13 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
-    <rdfs:domain rdf:resource="#Noticias"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#maneja">
-    <rdfs:domain rdf:resource="#Persona"/>
     <rdfs:range rdf:resource="#Bolsa"/>
+    <rdfs:domain rdf:resource="#Persona"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="es_de">
+    <rdfs:domain rdf:resource="#Temas"/>
     <rdfs:range>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -244,43 +245,42 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
-    <rdfs:domain rdf:resource="#Temas"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#trataSobre">
-    <rdfs:range rdf:resource="#Temas"/>
     <rdfs:domain rdf:resource="#Noticias"/>
+    <rdfs:range rdf:resource="#Temas"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="esNacional">
-    <rdfs:domain rdf:resource="#Lugar"/>
     <rdfs:range rdf:resource="#Nacional"/>
+    <rdfs:domain rdf:resource="#Lugar"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#practica">
     <rdfs:domain rdf:resource="#Persona"/>
     <rdfs:range rdf:resource="#Deporte"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#aparece">
-    <rdfs:domain rdf:resource="#Noticias"/>
     <rdfs:range rdf:resource="#Persona"/>
+    <rdfs:domain rdf:resource="#Noticias"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#estudia">
     <rdfs:domain rdf:resource="#Persona"/>
     <rdfs:range rdf:resource="#Tecnologias"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="esInternacional">
-    <rdfs:domain rdf:resource="#Lugar"/>
     <rdfs:range rdf:resource="#Internacional"/>
+    <rdfs:domain rdf:resource="#Lugar"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#pertenece_a">
-    <rdfs:domain rdf:resource="#Persona"/>
     <rdfs:range rdf:resource="#Partidos_Politicos"/>
+    <rdfs:domain rdf:resource="#Persona"/>
   </owl:ObjectProperty>
   <owl:DatatypeProperty rdf:ID="urlfoto">
     <rdfs:domain rdf:resource="#Noticias"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="urltext">
-    <rdfs:domain rdf:resource="#Noticias"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Noticias"/>
   </owl:DatatypeProperty>
   <Partidos_Politicos rdf:ID="PP"/>
   <Deporte rdf:ID="Fútbol"/>
