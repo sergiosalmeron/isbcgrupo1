@@ -532,7 +532,7 @@ public class GUI_marcador extends JFrame{
 			if (comboConceptos == null) {
 				comboConceptos = new JComboBox();
 				
-				comboConceptos.setBounds(new Rectangle(50,160 , 190, 26));
+				comboConceptos.setBounds(new Rectangle(40,160 , 120, 26));
 			}
 			return comboConceptos;
 		}
@@ -678,15 +678,15 @@ public class GUI_marcador extends JFrame{
 		private JPanel getPanelConceptoPrimitivo() {
 			if (panelConceptoPrimitivo == null) {
 				labelAlConcepto = new JLabel();
-				labelAlConcepto.setBounds(new Rectangle(40, 120, 90, 30));
+				labelAlConcepto.setBounds(new Rectangle(5, 120, 70, 30));
 				labelAlConcepto.setText("al concepto");
 				checkConcepto = new JCheckBox();
-				checkConcepto.setBounds(new Rectangle(130, 120, 150, 30));
+				checkConcepto.setBounds(new Rectangle(80, 120, 115, 30));
 				checkConcepto.setText("es SubClase de");
 				panelConceptoPrimitivo = new JPanel();
 				panelConceptoPrimitivo.setLayout(null);
-				panelConceptoPrimitivo.setBounds(new Rectangle(700, 370, 290, 200));
-				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar nuevo individuo o concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
+				panelConceptoPrimitivo.setBounds(new Rectangle(5, 500, 200, 200));
+				panelConceptoPrimitivo.setBorder(BorderFactory.createTitledBorder(null, "Agregar individuo o concepto", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Dialog", Font.BOLD, 12), new Color(51, 51, 51)));
 				panelConceptoPrimitivo.add(getComboConceptos(), null);
 				panelConceptoPrimitivo.add(checkConcepto);
 				panelConceptoPrimitivo.add(getBotonAgregarConcepto(),null);
@@ -845,7 +845,7 @@ public class GUI_marcador extends JFrame{
 			if (botonAgregarInstancia == null) {
 				botonAgregarInstancia = new JButton();
 				botonAgregarInstancia.setText("Agregar Instancia");
-				botonAgregarInstancia.setBounds(new Rectangle(70, 35, 152, 27));
+				botonAgregarInstancia.setBounds(new Rectangle(25, 35, 150, 27));
 				botonAgregarInstancia
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -886,7 +886,7 @@ public class GUI_marcador extends JFrame{
 			if (botonAgregarConcepto == null) {
 				botonAgregarConcepto = new JButton();
 				botonAgregarConcepto.setText("Agregar Concepto");
-				botonAgregarConcepto.setBounds(new Rectangle(70, 70, 152, 27));
+				botonAgregarConcepto.setBounds(new Rectangle(25, 70, 150, 27));
 				botonAgregarConcepto
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
