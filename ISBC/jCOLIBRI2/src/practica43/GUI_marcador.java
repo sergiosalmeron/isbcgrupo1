@@ -25,7 +25,7 @@ public class GUI_marcador extends JFrame{
 		private JButton botonAtras = null;
 		private JButton botonAdelante = null;
 		private JButton botonEsUn = null;
-
+		private JComboBox comboFoto = null;
 		private ArrayList<String> arrayFotosNoticias = null; // @jve:decl-index=0:
 		private int indiceImagen = 0;
 		private JLabel labelTituloFoto = null;
@@ -448,7 +448,7 @@ public class GUI_marcador extends JFrame{
 		private JButton getBotonApareceEn() {
 			if (botonApareceEn == null) {
 				botonApareceEn = new JButton();
-				botonApareceEn.setText("Aparece en la foto");
+				botonApareceEn.setText("Relaciona foto");
 				botonApareceEn.setBounds(new Rectangle(300, 25, 153, 23));
 				botonApareceEn
 						.addActionListener(new java.awt.event.ActionListener() {
@@ -459,22 +459,45 @@ public class GUI_marcador extends JFrame{
 									JOptionPane
 											.showMessageDialog(
 													null,
-													"Debe seleccionar una instancia en el árbol de la izquierda y volver a hacer clic sobre este botón.",
+													"Debe seleccionar una instancia en el árbol (tieneLugar-Lugar, aparece-Persona,trataSobre-Temas)",
 													"Error", 1);
 								} else {
-									Anotador anotador = new Anotador();
-									anotador.anotarFotografiaApareceEn(ob, tree,
-											arrayFotosNoticias
-													.get(indiceImagen),(indiceImagen));
-									// Incrementamos el contador de etiquetadas
-									// Informamos al usuario de que ha etiquetado
-									// con éxito
-									JOptionPane
-											.showMessageDialog(
-													null,
-													"La fotografía ha sido etiquetada correctamente.",
-													"Información", 1);
-									tree.updateUI();
+									Iterator<String> it = ob.listPropertyRange(comboFoto.getSelectedItem().toString());
+									ArrayList<String> ars = new ArrayList<String>();
+									while (it.hasNext()){
+										ars.add(ob.getShortName(it.next()));
+									}
+									Iterator<String> it2 = ob.listBelongingClasses(tree.getSelectedInstance());
+									ArrayList<String> ar2 = new ArrayList<String>();
+									while (it2.hasNext()){
+										ar2.add(ob.getShortName(it2.next()));
+									}
+									boolean contiene = false;
+									for (int j =0; (j<ar2.size() && !contiene);j++){
+										contiene = ars.contains(ar2.get(j));
+									}
+									if(!contiene){
+										JOptionPane
+										.showMessageDialog(
+												null,
+												"Debe seleccionar una instancia en el árbol (tieneLugar-Lugar, aparece-Persona,trataSobre-Temas)",
+												"Error", 1);
+									}
+									else{
+										Anotador anotador = new Anotador();
+										anotador.anotarFotografiaApareceEn(ob, tree,
+												arrayFotosNoticias
+														.get(indiceImagen),(indiceImagen), comboFoto.getSelectedItem().toString());
+										// Incrementamos el contador de etiquetadas
+										// Informamos al usuario de que ha etiquetado
+										// con éxito
+										JOptionPane
+												.showMessageDialog(
+														null,
+														"La fotografía ha sido etiquetada correctamente.",
+														"Información", 1);
+										tree.updateUI();
+									}
 								}
 								
 								String fotoActual = "Foto_" + indiceImagen;
@@ -680,20 +703,34 @@ public class GUI_marcador extends JFrame{
 		 */
 		private JPanel getPanelRelacionIndividuo() {
 			if (panelRelacionIndividuo == null) {
-				labelInstancia = new JLabel();
-				labelInstancia.setBounds(new Rectangle(8, 25, 286, 19));
-				labelInstancia
-						.setText("Seleccione una instancia en el árbol de la izqda.");
+				comboFoto = new JComboBox();
+				Iterator<String> it = ob.listProperties("Noticias");
+				ArrayList<String> aux = new ArrayList<String>();
+				while(it.hasNext()){
+					String auxiliar = ob.getShortName(it.next());
+					if(!auxiliar.equals("urlfoto") && !auxiliar.equals("urltext") && !auxiliar.equals("esUn"))
+						aux.add(auxiliar);
+				}
+				String[] lista = new String[aux.size()];
+				for(int i = 0; i<aux.size(); i++){
+					lista[i] = aux.get(i);
+				}
+				comboFoto.setModel(new javax.swing.DefaultComboBoxModel(lista));
+//				labelInstancia = new JLabel();
+//				labelInstancia.setBounds(new Rectangle(8, 25, 286, 19));
+//				labelInstancia
+//						.setText("Seleccione una instancia en el árbol de la izqda.");
 				panelRelacionIndividuo = new JPanel();
 				panelRelacionIndividuo.setLayout(null);
+				comboFoto.setBounds(new Rectangle(25,20,150,30));
 				panelRelacionIndividuo.setBounds(new Rectangle(213, 428, 470, 60));
 				panelRelacionIndividuo.setBorder(BorderFactory.createTitledBorder(
-						null, "Relación-individuo",
+						null, "Marcador de fotos",
 						TitledBorder.DEFAULT_JUSTIFICATION,
 						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
 								Font.BOLD, 12), new Color(51, 51, 51)));
 				panelRelacionIndividuo.add(getBotonApareceEn(), null);
-				panelRelacionIndividuo.add(labelInstancia, null);
+				panelRelacionIndividuo.add(comboFoto, null);
 			}
 			return panelRelacionIndividuo;
 		}
