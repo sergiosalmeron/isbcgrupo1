@@ -76,10 +76,7 @@ public class Anotador {
 			ob.createOntProperty(origen,relacion,destino);
 	}
 	
-	public void consultarOntologia(OntoBridge ob,
-			String consulta) {
-			// Por definir
-	}
+
 //	public void anotarFotografiaEsUn(OntoBridge ob, String nombreConceptoPrimitivo, int indiceFoto) {
 //		// Creamos la instancia correspondiente a esta foto que vamos a
 //		// etiquetar
