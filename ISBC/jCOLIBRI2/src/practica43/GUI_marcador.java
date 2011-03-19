@@ -50,14 +50,14 @@ public class GUI_marcador extends JFrame{
 		private JLabel labelAlConcepto = null;
 		private String[] listaInstancias = null;
 		private JCheckBox checkConcepto = null; 
-		
+		private String[] listaNoticias = null;
 		private JTextField campoConsulta = null;
 		private JButton botonConsultarDeportivas = null;
 		private JButton botonConsultarPoliticas = null;
 		private JButton botonConsultarEconomicas = null;
 		private JButton botonConsultarTecnologicas = null;
 		private JPanel panelConsulta = null;
-		
+		private ArrayList<String> fotosRecuperadas = null;
 		private JLabel LabelPersonas=null;
 		private JLabel labelmgConsultadas = null;
 		private JLabel imgConsultadas = null;
@@ -128,37 +128,7 @@ public class GUI_marcador extends JFrame{
 			OntologyDocument ontoPrincipal = new OntologyDocument(null,
 					"file:src/practica43/P4.owl");
 			ob.loadOntology(ontoPrincipal, subOntologias, false);
-			Iterator<String> irl = ob.listInstances("Noticias");
-			Iterator<String> irl2 = ob.listInstances("Persona");
-			Iterator<String> irl3 = ob.listInstances("Temas");
-			Iterator<String> it = ob.listSubClasses("Noticias", true);
-			ArrayList<String> ar = new ArrayList<String>();
-			while (it.hasNext())
-				ar.add(it.next());
-			
-			String[] listaNoticias = new String[ar.size()];
-			for (int i = 0; i < listaNoticias.length; i++) {
-				String aux = ar.get(i);
-				listaNoticias[i] = ob.getShortName(aux);
-			}
-
-			listaConceptos = listaTodasClases();
-
-			ArrayList<String> ar2 = new ArrayList<String>();
-			ar2.add("-");
-			
-		/*	while (irl.hasNext())
-				ar2.add(irl.next());*/
-			while (irl2.hasNext())
-				ar2.add(irl2.next());
-/*			while (irl3.hasNext())
-				ar2.add(irl3.next());*/
-
-			listaInstancias = new String[ar2.size()];
-			for (int i = 0; i < listaInstancias.length; i++) {
-				String aux = ar2.get(i);
-				listaInstancias[i] = ob.getShortName(aux);
-			}
+			actualizaListas();
 
 
 			Collection<CBRCase> c= _caseBase.getCases();
@@ -877,6 +847,10 @@ public class GUI_marcador extends JFrame{
 													null,
 													"El individuo ha sido agregado correctamente.",
 													"Información", 1);
+									ob.save("src/practica43/P4.owl");
+									actualizaListas();
+									getComboTodasInstancias().setModel(
+											new javax.swing.DefaultComboBoxModel(listaInstancias));
 									tree.updateUI();
 									
 								}
@@ -919,6 +893,9 @@ public class GUI_marcador extends JFrame{
 													null,
 													"El concepto ha sido agregado correctamente.",
 													"Información", 1);
+									actualizaListas();
+									getComboTodasInstancias().setModel(
+											new javax.swing.DefaultComboBoxModel(listaInstancias));
 									tree.updateUI();
 									
 								}
@@ -963,11 +940,10 @@ public class GUI_marcador extends JFrame{
 				botonConsultarDeportivas
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Comprobamos que haya una instancia seleccionada
-								// en el árbol
-								String consulta= campoConsulta.getText();
+								String consulta= "Deportivas";
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
-								etiq.consultarOntologia(ob,consulta);
+								fotosRecuperadas = new ArrayList<String>();
+								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
 							}
 						});
 			}
@@ -982,11 +958,10 @@ public class GUI_marcador extends JFrame{
 				botonConsultarPoliticas
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Comprobamos que haya una instancia seleccionada
-								// en el árbol
-								String consulta= campoConsulta.getText();
+								String consulta= "Politicas";
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
-								etiq.consultarOntologia(ob,consulta);
+								fotosRecuperadas = new ArrayList<String>();
+								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
 							}
 						});
 			}
@@ -1000,11 +975,10 @@ public class GUI_marcador extends JFrame{
 				botonConsultarEconomicas
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Comprobamos que haya una instancia seleccionada
-								// en el árbol
-								String consulta= campoConsulta.getText();
+								String consulta= "Economicas";
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
-								etiq.consultarOntologia(ob,consulta);
+								fotosRecuperadas = new ArrayList<String>();
+								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
 							}
 						});
 			}
@@ -1018,11 +992,10 @@ public class GUI_marcador extends JFrame{
 				botonConsultarTecnologicas
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Comprobamos que haya una instancia seleccionada
-								// en el árbol
-								String consulta= campoConsulta.getText();
+								String consulta= "Tecnologicas";
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
-								etiq.consultarOntologia(ob,consulta);
+								fotosRecuperadas = new ArrayList<String>();
+								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
 							}
 						});
 			}
@@ -1045,6 +1018,39 @@ public class GUI_marcador extends JFrame{
 				listaClases[i] = listac.get(i);
 			}
 			return listaClases;
+		}
+		private void actualizaListas(){
+			Iterator<String> irl = ob.listInstances("Noticias");
+			Iterator<String> irl2 = ob.listInstances("Persona");
+			Iterator<String> irl3 = ob.listInstances("Temas");
+			Iterator<String> it = ob.listSubClasses("Noticias", true);
+			ArrayList<String> ar = new ArrayList<String>();
+			while (it.hasNext())
+				ar.add(it.next());
+			
+			listaNoticias = new String[ar.size()];
+			for (int i = 0; i < listaNoticias.length; i++) {
+				String aux = ar.get(i);
+				listaNoticias[i] = ob.getShortName(aux);
+			}
+
+			listaConceptos = listaTodasClases();
+
+			ArrayList<String> ar2 = new ArrayList<String>();
+			ar2.add("-");
+			
+		/*	while (irl.hasNext())
+				ar2.add(irl.next());*/
+			while (irl2.hasNext())
+				ar2.add(irl2.next());
+/*			while (irl3.hasNext())
+				ar2.add(irl3.next());*/
+
+			listaInstancias = new String[ar2.size()];
+			for (int i = 0; i < listaInstancias.length; i++) {
+				String aux = ar2.get(i);
+				listaInstancias[i] = ob.getShortName(aux);
+			}
 		}
 	    
 	    public static void main(String[] args)
