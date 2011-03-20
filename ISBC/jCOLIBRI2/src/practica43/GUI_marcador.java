@@ -63,6 +63,7 @@ public class GUI_marcador extends JFrame{
 		private JLabel imgConsultadas = null;
 		private JButton botonAtras2 = null;
 		private JButton botonAdelante2 = null;
+		private int indiceRec = 0;
 		
 		Connector _connector;
 	    CBRCaseBase _caseBase;
@@ -268,11 +269,11 @@ public class GUI_marcador extends JFrame{
 			if (indiceImagen>0){
 				
 				this.indiceImagen--;
-				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+				labelmgConsultadas.setText("Fotografía: Foto_" + indiceImagen);
 	
 				// Mostramos la siguiente imagen
 				try{
-				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
+				imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 						"/practica4/img/"
 								+ arrayFotosNoticias.get(indiceImagen))));
 				}
@@ -289,25 +290,25 @@ public class GUI_marcador extends JFrame{
 		}
 		
 		protected void botonAtrasActionPerformed2(ActionEvent evt) {
-			if (indiceImagen>0){
-				this.indiceImagen--;
-				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+			if (indiceRec>0){
+				this.indiceRec--;
+				labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 	
 				// Mostramos la siguiente imagen
 				try{
-				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
-						"/practica4/img/"
-								+ arrayFotosNoticias.get(indiceImagen))));
+					imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+						"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+
 				}
 				catch (Exception e){
-					imgEtiquetar.setIcon(new ImageIcon());
+					imgConsultadas.setIcon(new ImageIcon());
 				}
 			}
 			// Activamos el botón Adelante, si no lo estuviera ya
-			botonAdelante.setEnabled(true);
+			botonAdelante2.setEnabled(true);
 			// Si es la última imagen, desactivamos el botón Atrás
-			if (indiceImagen == 0) {
-				botonAtras.setEnabled(false);
+			if (indiceRec == 0) {
+				botonAtras2.setEnabled(false);
 			}
 		}
 
@@ -356,6 +357,7 @@ public class GUI_marcador extends JFrame{
 			this.indiceImagen++;
 			labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 			
+			
 
 			// Mostramos la siguiente imagen
 			try{
@@ -376,24 +378,36 @@ public class GUI_marcador extends JFrame{
 		
 		protected void botonAdelanteActionPerformed2(ActionEvent evt) {
 			//	labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
-				this.indiceImagen++;
-				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
-				
-
-				// Mostramos la siguiente imagen
-				try{
-				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
-						"/practica4/img/" + arrayFotosNoticias.get(indiceImagen))));
-
+			if (fotosRecuperadas == null) {
+					botonAdelante2.setEnabled(false);
+					botonAtras2.setEnabled(false);
 				}
-				catch (Exception e){
-					imgEtiquetar.setIcon(new ImageIcon());
-				}
-				// Activamos el botón Atrás, si no lo estuviera ya
-				botonAtras.setEnabled(true);
-				// Si es la última imagen, desactivamos el botón Siguiente
-				if (indiceImagen == arrayFotosNoticias.size()-1) {
-					botonAdelante.setEnabled(false);
+				else{
+					if (fotosRecuperadas.size()!=1 && fotosRecuperadas.size()!=0){
+						this.indiceRec++;
+						labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+						
+		
+						// Mostramos la siguiente imagen
+						try{
+							imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+								"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+		
+						}
+						catch (Exception e){
+							imgConsultadas.setIcon(new ImageIcon());
+						}
+						// Activamos el botón Atrás, si no lo estuviera ya
+						botonAtras2.setEnabled(true);
+						// Si es la última imagen, desactivamos el botón Siguiente
+						if (indiceRec == fotosRecuperadas.size()-1) {
+							botonAdelante2.setEnabled(false);
+						}
+					}
+					else{
+						botonAdelante2.setEnabled(false);
+						botonAtras2.setEnabled(false);
+					}
 				}
 			}
 
@@ -944,6 +958,17 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
+								indiceRec = 0;
+								botonAdelante2.setEnabled(true);
+								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+								try{
+									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+				
+								}
+								catch (Exception e1){
+									imgConsultadas.setIcon(new ImageIcon());
+								}
 							}
 						});
 			}
@@ -962,6 +987,17 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
+								indiceRec = 0;
+								botonAdelante2.setEnabled(true);
+								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+								try{
+									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+				
+								}
+								catch (Exception e1){
+									imgConsultadas.setIcon(new ImageIcon());
+								}
 							}
 						});
 			}
@@ -979,6 +1015,17 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
+								indiceRec = 0;
+								botonAdelante2.setEnabled(true);
+								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+								try{
+									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+				
+								}
+								catch (Exception e1){
+									imgConsultadas.setIcon(new ImageIcon());
+								}
 							}
 						});
 			}
@@ -996,6 +1043,17 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
+								indiceRec = 0;
+								botonAdelante2.setEnabled(true);
+								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+								try{
+									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+				
+								}
+								catch (Exception e1){
+									imgConsultadas.setIcon(new ImageIcon());
+								}
 							}
 						});
 			}
