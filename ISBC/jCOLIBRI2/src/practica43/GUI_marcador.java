@@ -269,11 +269,28 @@ public class GUI_marcador extends JFrame{
 			if (indiceImagen>0){
 				
 				this.indiceImagen--;
-				labelmgConsultadas.setText("Fotografía: Foto_" + indiceImagen);
+				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+				String gente="";
+				Iterator<String> itProp =ob.listPropertyValue("Foto_" + indiceImagen, ob.getURI("aparece"));
+				while(itProp.hasNext()){
+					String auxiliar=itProp.next();
+					if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+						auxiliar=auxiliar.substring(49);
+					}
+					System.out.println(auxiliar);
+					if(gente==""){
+						gente = auxiliar;
+					}
+					else{
+						gente = gente + ", " + auxiliar;
+					}
+					LabelPersonas.setText(gente);
+					getPanelEsUn();
+				}
 	
 				// Mostramos la siguiente imagen
 				try{
-				imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
 						"/practica4/img/"
 								+ arrayFotosNoticias.get(indiceImagen))));
 				}
@@ -356,7 +373,23 @@ public class GUI_marcador extends JFrame{
 		//	labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 			this.indiceImagen++;
 			labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
-			
+			String gente="";
+			Iterator<String> itProp =ob.listPropertyValue("Foto_" + indiceImagen, ob.getURI("aparece"));
+			while(itProp.hasNext()){
+				String auxiliar=itProp.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+				}
+				System.out.println(auxiliar);
+				if(gente==""){
+					gente = auxiliar;
+				}
+				else{
+					gente = gente + ", " + auxiliar;
+				}
+				LabelPersonas.setText(gente);
+				getPanelEsUn();
+			}
 			
 
 			// Mostramos la siguiente imagen
