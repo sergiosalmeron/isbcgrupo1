@@ -65,6 +65,20 @@ public class GUI_marcador extends JFrame{
 		private JButton botonAdelante2 = null;
 		private int indiceRec = 0;
 		
+		private JPanel panelRecuperacionConsulta = null;
+		private JLabel consultaUrlFoto = null;
+		private JLabel consultaUrltext = null;
+		private JLabel consultaTemas = null;
+		private JLabel consultaLugar = null;
+		private JLabel consultaPersonas = null;
+		private JTextField LabelUrlFotoConsulta =null;
+		private JTextField LabelTemasConsulta = null;
+		private JTextField LabelLugarConsulta = null;
+		private JTextField LabelPersonasConsulta = null;
+		private JTextArea areaUrlTextConsulta = null;
+		
+		
+		
 		Connector _connector;
 	    CBRCaseBase _caseBase;
 
@@ -136,12 +150,16 @@ public class GUI_marcador extends JFrame{
 			Iterator<CBRCase> itFoto =c.iterator();
 			int j=0;
 			while (itFoto.hasNext()){
-				practica4.NewsSolution a = (practica4.NewsSolution) itFoto.next().getSolution();
+				CBRCase aux = itFoto.next();
+				practica4.NewsSolution a = (practica4.NewsSolution) aux.getSolution();
+				practica4.NewsDescription b = (practica4.NewsDescription) aux.getDescription();
 				String s=a.getImgURL();
+				String text= b.getText().toString();
 				arrayFotosNoticias.add(s);
 				String nombreFoto="Foto" + "_"+ String.valueOf(j);
 				ob.createInstance("Noticias", nombreFoto);
-			//	ob.createDataTypeProperty(nombreFoto, "urlfoto", s);
+				ob.createDataTypeProperty(nombreFoto, "urlfoto", s);
+				ob.createDataTypeProperty(nombreFoto, "urltext", text);
 			//	ob.createOntProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", "Foto" + "_"+ String.valueOf(j));
 		//		ob.createDataTypeProperty("Foto" + "_"+ String.valueOf(j), "urlfoto", a.getImgURL());
 			
@@ -181,8 +199,8 @@ public class GUI_marcador extends JFrame{
 				
 				labelmgConsultadas = new JLabel();
 				labelmgConsultadas.setBounds(new Rectangle(680, 5, 392, 34));
-				labelmgConsultadas.setText("Imagenes Consultadas");
-				
+				labelmgConsultadas.setText("Noticias Consultadas");
+				labelmgConsultadas.setVisible(false);
 				
 				//FiltroExtensiones filtro = new FiltroExtensiones("jpg");
 		//		File carpeta = new File("src/practica4/img/");
@@ -206,8 +224,8 @@ public class GUI_marcador extends JFrame{
 				imgConsultadas = new JLabel();
 				imgConsultadas.setBounds(new Rectangle(630, 56, 350, 254));
 				// Cargamos inicialmente la primera imagen del ArrayList
-				imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
-						"/practica4/img/" + arrayFotosNoticias.get(0))));
+			/*	imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+						"/practica4/img/" + arrayFotosNoticias.get(0))));*/
 				
 				// Cargamos inicialmente la primera imagen del ArrayList
 				jContentPane = new JPanel();
@@ -222,11 +240,15 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelEsUn(), null);
 				jContentPane.add(getPanelRelacionPropiedades(), null);
 				jContentPane.add(getPanelConsulta(),null);
+				jContentPane.add(getPanelRecuperacionConsulta(),null);
+				panelRecuperacionConsulta.setVisible(false);
 				
 				jContentPane.add(labelmgConsultadas, null);
 				jContentPane.add(imgConsultadas, null);
 				jContentPane.add(getBotonAtras2(), null);
 				jContentPane.add(getBotonAdelante2(), null);
+				botonAtras2.setVisible(false);
+				botonAdelante2.setVisible(false);
 				
 			}
 			return jContentPane;
@@ -312,6 +334,7 @@ public class GUI_marcador extends JFrame{
 			if (indiceRec>0){
 				this.indiceRec--;
 				labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+				mostrarInfoNoticia();
 	
 				// Mostramos la siguiente imagen
 				try{
@@ -423,7 +446,7 @@ public class GUI_marcador extends JFrame{
 					if (fotosRecuperadas.size()!=1 && fotosRecuperadas.size()!=0){
 						this.indiceRec++;
 						labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
-						
+						mostrarInfoNoticia();
 		
 						// Mostramos la siguiente imagen
 						try{
@@ -957,6 +980,63 @@ public class GUI_marcador extends JFrame{
 		}
 		
 		
+		private JPanel getPanelRecuperacionConsulta() {
+			if (panelRecuperacionConsulta == null) {
+				panelRecuperacionConsulta = new JPanel();
+				panelRecuperacionConsulta.setLayout(null);
+				panelRecuperacionConsulta.setBounds(new Rectangle(630, 310, 340, 380));
+				panelRecuperacionConsulta.setBorder(BorderFactory.createTitledBorder(
+						null, "Informacion Noticias Consultadas",
+						TitledBorder.DEFAULT_JUSTIFICATION,
+						TitledBorder.DEFAULT_POSITION, new Font("Dialog",
+								Font.BOLD, 12), new Color(51, 51, 51)));
+				 
+				
+				consultaUrlFoto = new JLabel();
+				consultaUrlFoto.setText("NombreFoto");
+				consultaUrlFoto.setBounds(new Rectangle(20,15,100,20));
+				panelRecuperacionConsulta.add(consultaUrlFoto);
+				consultaPersonas = new JLabel();
+				consultaPersonas.setText("Personas");
+				consultaPersonas.setBounds(new Rectangle(20,65,100,20));
+				panelRecuperacionConsulta.add(consultaPersonas);
+				consultaLugar = new JLabel();
+				consultaLugar.setText("Lugares");
+				consultaLugar.setBounds(new Rectangle(20,120,100,20));
+				panelRecuperacionConsulta.add(consultaLugar);
+				consultaTemas = new JLabel();
+				consultaTemas.setText("Temas");
+				consultaTemas.setBounds(new Rectangle(20,175,100,20));	
+				panelRecuperacionConsulta.add(consultaTemas);
+				consultaUrltext = new JLabel();
+				consultaUrltext.setText("Texto");
+				consultaUrltext.setBounds(new Rectangle(20,230,100,20));	
+				panelRecuperacionConsulta.add(consultaUrltext);
+				
+				
+				
+				
+				
+				
+				
+				LabelUrlFotoConsulta = new JTextField();
+				LabelUrlFotoConsulta.setBounds(new Rectangle(25,35,300,26));
+				LabelLugarConsulta = new JTextField();
+				LabelLugarConsulta.setBounds(new Rectangle(25,90,300,26));	
+				LabelPersonasConsulta = new JTextField();
+				LabelPersonasConsulta.setBounds(new Rectangle(25,145,300,26));	
+				LabelTemasConsulta = new JTextField();
+				LabelTemasConsulta.setBounds(new Rectangle(25,200,300,26));	
+				areaUrlTextConsulta = new JTextArea();
+				areaUrlTextConsulta.setEditable(false);
+				//areaUrlTextConsulta.setAutoscrolls(true);
+				//areaUrlTextConsulta.setWrapStyleWord(true);
+				areaUrlTextConsulta.setBounds(new Rectangle(25,255,300,110));	
+				
+			}
+			return panelRecuperacionConsulta;
+		}
+		
 		private JPanel getPanelConsulta() {
 			if (panelConsulta == null) {
 				panelConsulta = new JPanel();
@@ -995,17 +1075,21 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
-								indiceRec = 0;
-								botonAdelante2.setEnabled(true);
-								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
-								try{
-									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
-										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-				
+								if (fotosRecuperadas.size()!=0){
+									indiceRec = 0;
+									botonAdelante2.setEnabled(true);
+									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+									mostrarInfoNoticia();
+									try{
+										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+					
+									}
+									catch (Exception e1){
+										imgConsultadas.setIcon(new ImageIcon());
+									}
 								}
-								catch (Exception e1){
-									imgConsultadas.setIcon(new ImageIcon());
-								}
+								else  JOptionPane.showMessageDialog(null, "Ninguna Noticia Obtenida");
 							}
 						});
 			}
@@ -1024,17 +1108,21 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
-								indiceRec = 0;
-								botonAdelante2.setEnabled(true);
-								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
-								try{
-									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
-										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-				
+								if (fotosRecuperadas.size()!=0){
+									indiceRec = 0;
+									botonAdelante2.setEnabled(true);
+									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+									mostrarInfoNoticia();
+									try{
+										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+					
+									}
+									catch (Exception e1){
+										imgConsultadas.setIcon(new ImageIcon());
+									}
 								}
-								catch (Exception e1){
-									imgConsultadas.setIcon(new ImageIcon());
-								}
+								else  JOptionPane.showMessageDialog(null, "Ninguna Noticia Obtenida");
 							}
 						});
 			}
@@ -1052,17 +1140,21 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
-								indiceRec = 0;
-								botonAdelante2.setEnabled(true);
-								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
-								try{
-									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
-										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-				
+								if (fotosRecuperadas.size()!=0){
+									indiceRec = 0;
+									botonAdelante2.setEnabled(true);
+									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+									mostrarInfoNoticia();
+									try{
+										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+					
+									}
+									catch (Exception e1){
+										imgConsultadas.setIcon(new ImageIcon());
+									}
 								}
-								catch (Exception e1){
-									imgConsultadas.setIcon(new ImageIcon());
-								}
+								else  JOptionPane.showMessageDialog(null, "Ninguna Noticia Obtenida");
 							}
 						});
 			}
@@ -1080,17 +1172,21 @@ public class GUI_marcador extends JFrame{
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
-								indiceRec = 0;
-								botonAdelante2.setEnabled(true);
-								labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
-								try{
-									imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
-										"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-				
+								if (fotosRecuperadas.size()!=0){
+									indiceRec = 0;
+									botonAdelante2.setEnabled(true);
+									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+									mostrarInfoNoticia();
+									try{
+										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
+											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
+					
+									}
+									catch (Exception e1){
+										imgConsultadas.setIcon(new ImageIcon());
+									}
 								}
-								catch (Exception e1){
-									imgConsultadas.setIcon(new ImageIcon());
-								}
+								else  JOptionPane.showMessageDialog(null, "Ninguna Noticia Obtenida");
 							}
 						});
 			}
@@ -1147,7 +1243,134 @@ public class GUI_marcador extends JFrame{
 				listaInstancias[i] = ob.getShortName(aux);
 			}
 		}
+		
+		
+		public void mostrarInfoNoticia(){
+			panelRecuperacionConsulta.setVisible(true);
+			mostrarInfoAparece();
+			mostrarInfoTrataSobre();
+			mostrarInfoTieneLugar();
+			mostrarUrlFoto();
+			mostrarUrlText();
+		}
+		
+		public void mostrarUrlFoto(){
+			String gente="";
+			Iterator<String> itProp =ob.listPropertyValue("Foto_" + fotosRecuperadas.get(indiceRec), ob.getURI("urlfoto"));
+			while(itProp.hasNext()){
+				String auxiliar=itProp.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+				}
+				System.out.println(auxiliar);
+				if(gente==""){
+					gente = auxiliar;
+				}
+				else{
+					gente = gente + ", " + auxiliar;
+				}
+				LabelUrlFotoConsulta.setText(gente);
+				panelRecuperacionConsulta.add(LabelUrlFotoConsulta);
+			}
+		}
+		
+		public void mostrarUrlText(){
+			String gente="";
+			Iterator<String> itProp =ob.listPropertyValue("Foto_" + fotosRecuperadas.get(indiceRec), ob.getURI("urltext"));
+			while(itProp.hasNext()){
+				String auxiliar=itProp.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+				}
+				System.out.println(auxiliar);
+				if(gente==""){
+					gente = auxiliar;
+				}
+				else{
+					gente = gente + ", " + auxiliar;
+				}
+				
+				areaUrlTextConsulta.setWrapStyleWord(true);
+				areaUrlTextConsulta.setLineWrap(true);
+				areaUrlTextConsulta.setAutoscrolls(true);
+				areaUrlTextConsulta.setText(gente);
+				
+				areaUrlTextConsulta.setSize(300, 110);
+				
+				
+		
+		//		areaUrlTextConsulta.add(new JScrollBar());
+				
+			//	panelRecuperacionConsulta.add(new JScrollPane(areaUrlTextConsulta));
+				panelRecuperacionConsulta.add(areaUrlTextConsulta);
+			}
+		}
+			
+				
+		public void mostrarInfoAparece(){
+			String gente="";
+			Iterator<String> itProp =ob.listPropertyValue("Foto_" + fotosRecuperadas.get(indiceRec), ob.getURI("aparece"));
+			while(itProp.hasNext()){
+				String auxiliar=itProp.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+				}
+				System.out.println(auxiliar);
+				if(gente==""){
+					gente = auxiliar;
+				}
+				else{
+					gente = gente + ", " + auxiliar;
+				}
+				LabelPersonasConsulta.setText(gente);
+				panelRecuperacionConsulta.add(LabelPersonasConsulta);
+			}
+		}
+		
 	    
+		public void mostrarInfoTrataSobre(){
+			String gente="";
+			Iterator<String> itProp =ob.listPropertyValue("Foto_" + fotosRecuperadas.get(indiceRec), ob.getURI("trataSobre"));
+			while(itProp.hasNext()){
+				String auxiliar=itProp.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+				}
+				System.out.println(auxiliar);
+				if(gente==""){
+					gente = auxiliar;
+				}
+				else{
+					gente = gente + ", " + auxiliar;
+				}
+				LabelTemasConsulta.setText(gente);
+				panelRecuperacionConsulta.add(LabelTemasConsulta);
+			}
+		}
+		
+		public void mostrarInfoTieneLugar(){
+			String gente="";
+			Iterator<String> itProp =ob.listPropertyValue("Foto_" + fotosRecuperadas.get(indiceRec), ob.getURI("tieneLugar"));
+			while(itProp.hasNext()){
+				String auxiliar=itProp.next();
+				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
+					auxiliar=auxiliar.substring(49);
+				}
+				System.out.println(auxiliar);
+				if(gente==""){
+					gente = auxiliar;
+				}
+				else{
+					gente = gente + ", " + auxiliar;
+				}
+				LabelLugarConsulta.setText(gente);
+				panelRecuperacionConsulta.add(LabelLugarConsulta);
+			}
+		}
+		
+		
+		
+		
 	    public static void main(String[] args)
 	    {
 	    	GUI_marcador este = new GUI_marcador();
