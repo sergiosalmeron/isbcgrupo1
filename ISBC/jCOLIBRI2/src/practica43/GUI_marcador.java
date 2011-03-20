@@ -271,6 +271,8 @@ public class GUI_marcador extends JFrame{
 				this.indiceImagen--;
 				labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 				String gente="";
+				LabelPersonas.setText(gente);
+				panelEsUn.add(LabelPersonas);
 				Iterator<String> itProp =ob.listPropertyValue("Foto_" + indiceImagen, ob.getURI("aparece"));
 				while(itProp.hasNext()){
 					String auxiliar=itProp.next();
@@ -285,7 +287,7 @@ public class GUI_marcador extends JFrame{
 						gente = gente + ", " + auxiliar;
 					}
 					LabelPersonas.setText(gente);
-					getPanelEsUn();
+					panelEsUn.add(LabelPersonas);
 				}
 	
 				// Mostramos la siguiente imagen
@@ -375,6 +377,8 @@ public class GUI_marcador extends JFrame{
 			labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 			String gente="";
 			Iterator<String> itProp =ob.listPropertyValue("Foto_" + indiceImagen, ob.getURI("aparece"));
+			LabelPersonas.setText(gente);
+			panelEsUn.add(LabelPersonas);
 			while(itProp.hasNext()){
 				String auxiliar=itProp.next();
 				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
@@ -388,7 +392,7 @@ public class GUI_marcador extends JFrame{
 					gente = gente + ", " + auxiliar;
 				}
 				LabelPersonas.setText(gente);
-				getPanelEsUn();
+				panelEsUn.add(LabelPersonas);
 			}
 			
 
