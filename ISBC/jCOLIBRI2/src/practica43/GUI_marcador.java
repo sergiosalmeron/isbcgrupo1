@@ -101,9 +101,6 @@ public class GUI_marcador extends JFrame{
 		    {
 			_caseBase.init(_connector);
 
-			//Here we create the Lucene index
-		//	luceneIndex = jcolibri.method.precycle.LuceneIndexCreatorSpanish.createLuceneIndex(_caseBase);
-			
 			return _caseBase;
 		    }
 		
@@ -123,7 +120,6 @@ public class GUI_marcador extends JFrame{
 			    
 			} catch (Exception e){}
 			
-		//	_caseBase.init(_connector);
 			
 			try
 			{
@@ -133,10 +129,6 @@ public class GUI_marcador extends JFrame{
 			// Creamos el objeto Ontobridge
 			ob = new OntoBridge();
 			ob.initWithPelletReasoner();
-		//	ob.createClass("Fotos_Noticia");		
-		//	ob.createOntProperty("Fotos_Noticia", "URLFoto", "Fotos_Noticia");
-			
-			// Creamos el objeto Ontobridge
 
 			ArrayList<OntologyDocument> subOntologias = new ArrayList<OntologyDocument>();
 			OntologyDocument ontoPrincipal = new OntologyDocument(null,
@@ -159,9 +151,6 @@ public class GUI_marcador extends JFrame{
 				ob.createInstance("Noticias", nombreFoto);
 				ob.createDataTypeProperty(nombreFoto, "urlfoto", s);
 				ob.createDataTypeProperty(nombreFoto, "urltext", text);
-			//	ob.createOntProperty("Foto" + "_"+ String.valueOf(j), "URLFoto", "Foto" + "_"+ String.valueOf(j));
-		//		ob.createDataTypeProperty("Foto" + "_"+ String.valueOf(j), "urlfoto", a.getImgURL());
-			
 				j++;
 				
 			}
@@ -201,32 +190,16 @@ public class GUI_marcador extends JFrame{
 				labelmgConsultadas.setText("Noticias Consultadas");
 				labelmgConsultadas.setVisible(false);
 				
-				//FiltroExtensiones filtro = new FiltroExtensiones("jpg");
-		//		File carpeta = new File("src/practica4/img/");
-		//		File[] listaDeArchivos = carpeta.listFiles();
-		//		arrayFotosNoticias = new ArrayList<String>();
 
-			/*	if (listaDeArchivos.length > 0) {
-					arrayFotosNoticias = new ArrayList<String>();
-					for (int i = 0; i < listaDeArchivos.length; i++) {
-						if (listaDeArchivos[i].isFile()) {
-							arrayFotosNoticias.add(listaDeArchivos[i].getName());
-						}
-					}
-				}*/
 				imgEtiquetar = new JLabel();
 				imgEtiquetar.setBounds(new Rectangle(201, 56, 418, 254));
-				// Cargamos inicialmente la primera imagen del ArrayList
+
 				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
 						"/practica4/img/" + arrayFotosNoticias.get(0))));
 
 				imgConsultadas = new JLabel();
 				imgConsultadas.setBounds(new Rectangle(630, 56, 350, 254));
-				// Cargamos inicialmente la primera imagen del ArrayList
-			/*	imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
-						"/practica4/img/" + arrayFotosNoticias.get(0))));*/
-				
-				// Cargamos inicialmente la primera imagen del ArrayList
+
 				jContentPane = new JPanel();
 				jContentPane.setLayout(null);
 				jContentPane.add(imgEtiquetar, null);
@@ -312,7 +285,7 @@ public class GUI_marcador extends JFrame{
 					panelEsUn.add(LabelPersonas);
 				}
 	
-				// Mostramos la siguiente imagen
+		
 				try{
 				imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
 						"/practica4/img/"
@@ -322,9 +295,9 @@ public class GUI_marcador extends JFrame{
 					imgEtiquetar.setIcon(new ImageIcon());
 				}
 			}
-			// Activamos el botón Adelante, si no lo estuviera ya
+			
 			botonAdelante.setEnabled(true);
-			// Si es la última imagen, desactivamos el botón Atrás
+
 			if (indiceImagen == 0) {
 				botonAtras.setEnabled(false);
 			}
@@ -336,7 +309,7 @@ public class GUI_marcador extends JFrame{
 				labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 				mostrarInfoNoticia();
 	
-				// Mostramos la siguiente imagen
+		
 				try{
 					imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 						"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -346,9 +319,9 @@ public class GUI_marcador extends JFrame{
 					imgConsultadas.setIcon(new ImageIcon());
 				}
 			}
-			// Activamos el botón Adelante, si no lo estuviera ya
+			
 			botonAdelante2.setEnabled(true);
-			// Si es la última imagen, desactivamos el botón Atrás
+			
 			if (indiceRec == 0) {
 				botonAtras2.setEnabled(false);
 			}
@@ -395,7 +368,7 @@ public class GUI_marcador extends JFrame{
 
 		protected void botonAdelanteActionPerformed(ActionEvent evt) {
 			
-		//	labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+	
 			this.indiceImagen++;
 			labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
 			String gente="";
@@ -419,7 +392,7 @@ public class GUI_marcador extends JFrame{
 			}
 			
 
-			// Mostramos la siguiente imagen
+		
 			try{
 			imgEtiquetar.setIcon(new ImageIcon(getClass().getResource(
 					"/practica4/img/" + arrayFotosNoticias.get(indiceImagen))));
@@ -428,16 +401,16 @@ public class GUI_marcador extends JFrame{
 			catch (Exception e){
 				imgEtiquetar.setIcon(new ImageIcon());
 			}
-			// Activamos el botón Atrás, si no lo estuviera ya
+		
 			botonAtras.setEnabled(true);
-			// Si es la última imagen, desactivamos el botón Siguiente
+		
 			if (indiceImagen == arrayFotosNoticias.size()-1) {
 				botonAdelante.setEnabled(false);
 			}
 		}
 		
 		protected void botonAdelanteActionPerformed2(ActionEvent evt) {
-			//	labelTituloFoto.setText("Fotografía: Foto_" + indiceImagen);
+		
 			if (fotosRecuperadas == null) {
 					botonAdelante2.setEnabled(false);
 					botonAtras2.setEnabled(false);
@@ -448,7 +421,7 @@ public class GUI_marcador extends JFrame{
 						labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 						mostrarInfoNoticia();
 		
-						// Mostramos la siguiente imagen
+			
 						try{
 							imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 								"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -457,9 +430,8 @@ public class GUI_marcador extends JFrame{
 						catch (Exception e){
 							imgConsultadas.setIcon(new ImageIcon());
 						}
-						// Activamos el botón Atrás, si no lo estuviera ya
+					
 						botonAtras2.setEnabled(true);
-						// Si es la última imagen, desactivamos el botón Siguiente
 						if (indiceRec == fotosRecuperadas.size()-1) {
 							botonAdelante2.setEnabled(false);
 						}
@@ -481,7 +453,6 @@ public class GUI_marcador extends JFrame{
 			if (panelOntologia == null) {
 				panelOntologia = new JPanel();
 				panelOntologia.setLayout(null);
-				// panelOntologia.setBounds(new Rectangle(15, 48, 171, 424));
 				panelOntologia.setSize(189, 400);
 				panelOntologia.setLocation(new Point(3, 46));
 			}
@@ -501,8 +472,7 @@ public class GUI_marcador extends JFrame{
 				botonApareceEn
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Comprobamos que haya una instancia seleccionada
-								// en el árbol
+								
 								if (tree.getSelectedInstance() == null) {
 									JOptionPane
 											.showMessageDialog(
@@ -536,9 +506,7 @@ public class GUI_marcador extends JFrame{
 										anotador.anotarFotografiaApareceEn(ob, tree,
 												arrayFotosNoticias
 														.get(indiceImagen),(indiceImagen), comboFoto.getSelectedItem().toString());
-										// Incrementamos el contador de etiquetadas
-										// Informamos al usuario de que ha etiquetado
-										// con éxito
+										
 										JOptionPane
 												.showMessageDialog(
 														null,
@@ -571,11 +539,7 @@ public class GUI_marcador extends JFrame{
 			return botonApareceEn;
 		}
 
-		/**
-		 * This method initializes comboConceptos
-		 * 
-		 * @return javax.swing.JComboBox
-		 */
+
 		private JComboBox getComboConceptos() {
 			if (comboConceptos == null) {
 				comboConceptos = new JComboBox();
@@ -610,7 +574,7 @@ public class GUI_marcador extends JFrame{
 										auxiliar=auxiliar.substring(49);
 										listaProp.add(auxiliar);
 									}
-								//listaProp.add(it.next());
+							
 									}
 							}
 							if (listaProp.size()!=0){
@@ -618,7 +582,7 @@ public class GUI_marcador extends JFrame{
 								for (int i = 0; i<listaProp.size(); i++){
 									propiedades[i] = listaProp.get(i);
 								}
-								/*this.*/getComboPropiedades().setModel(
+								getComboPropiedades().setModel(
 										new javax.swing.DefaultComboBoxModel(propiedades));
 								comboPropiedades.setVisible(true);
 								comboAlgunasInstancias.setVisible(false);
@@ -636,7 +600,7 @@ public class GUI_marcador extends JFrame{
 		private JComboBox getComboPropiedades() {
 			if (comboPropiedades == null) {
 				comboPropiedades = new JComboBox();
-		//		comboPropiedades.getParent().add(getComboAlgunasInstancias());
+		
 				comboPropiedades.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
 						if (!(comboPropiedades.getSelectedItem().toString().equals("-"))){
@@ -659,7 +623,7 @@ public class GUI_marcador extends JFrame{
 								for (int i = 0; i<listaInst.size(); i++){
 									instancias[i] = listaInst.get(i);
 								}
-								/*this.*/getComboAlgunasInstancias().setModel(
+								getComboAlgunasInstancias().setModel(
 										new javax.swing.DefaultComboBoxModel(instancias));
 								comboAlgunasInstancias.setVisible(true);
 								botonRelacionar.setEnabled(false);
@@ -677,10 +641,9 @@ public class GUI_marcador extends JFrame{
 		private JComboBox getComboAlgunasInstancias() {
 			if (comboAlgunasInstancias == null) {
 				comboAlgunasInstancias = new JComboBox();
-		//		comboAlgunasInstancias.getParent().add(getBotonRelacionar());
 				comboAlgunasInstancias.addActionListener(new java.awt.event.ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						/*this.*/botonRelacionar.setEnabled(true);
+						botonRelacionar.setEnabled(true);
 						
 					}
 				});
@@ -765,10 +728,6 @@ public class GUI_marcador extends JFrame{
 					lista[i] = aux.get(i);
 				}
 				comboFoto.setModel(new javax.swing.DefaultComboBoxModel(lista));
-//				labelInstancia = new JLabel();
-//				labelInstancia.setBounds(new Rectangle(8, 25, 286, 19));
-//				labelInstancia
-//						.setText("Seleccione una instancia en el árbol de la izqda.");
 				panelRelacionIndividuo = new JPanel();
 				panelRelacionIndividuo.setLayout(null);
 				comboFoto.setBounds(new Rectangle(25,20,100,26));
@@ -857,8 +816,7 @@ public class GUI_marcador extends JFrame{
 				botonEsUn
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Comprobamos que haya una instancia seleccionada
-								// en el árbol
+								
 								String s = comboNoticias.getSelectedItem().toString();
 								if (s== null) {
 									JOptionPane
@@ -869,8 +827,7 @@ public class GUI_marcador extends JFrame{
 								} else {
 									Anotador anotador = new Anotador();
 									anotador.anotarFotografiaEsUn(ob, s,null,indiceImagen);
-									// Informamos al usuario de que ha etiquetado
-									// con éxito
+									
 									JOptionPane
 											.showMessageDialog(
 													null,
@@ -898,9 +855,7 @@ public class GUI_marcador extends JFrame{
 				botonAgregarInstancia
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Mostramos una ventana para que el usuario dé un
-								// nombre
-								// a esta nueva instancia
+								
 								String nombreInstancia = (String) JOptionPane
 										.showInputDialog(
 												null,
@@ -911,8 +866,7 @@ public class GUI_marcador extends JFrame{
 
 								if ((nombreInstancia != null)
 										&& (nombreInstancia.length() > 0)) {
-									// Llamamos al método para agregar una nueva
-									// instancia
+									
 									Anotador etiq = new Anotador();
 									etiq.anadirNuevoIndividuo(ob, nombreInstancia,
 											comboConceptos.getSelectedItem()
@@ -943,9 +897,7 @@ public class GUI_marcador extends JFrame{
 				botonAgregarConcepto
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
-								// Mostramos una ventana para que el usuario dé un
-								// nombre
-								// a esta nueva instancia
+								
 								String nombreConcepto = (String) JOptionPane
 										.showInputDialog(
 												null,
@@ -956,8 +908,7 @@ public class GUI_marcador extends JFrame{
 
 								if ((nombreConcepto != null)
 										&& (nombreConcepto.length() > 0)) {
-									// Llamamos al método para agregar una nueva
-									// instancia
+									
 									Anotador etiq = new Anotador();
 									boolean check = checkConcepto.isSelected();
 									etiq.anadirNuevoConcepto(ob, nombreConcepto,
@@ -1031,14 +982,7 @@ public class GUI_marcador extends JFrame{
 				scroll = new JScrollPane();
 				areaUrlTextConsulta = new JTextArea();
 				areaUrlTextConsulta.setEditable(false);
-				
-			//	scroll.setBounds(new Rectangle(25,255,300,110));
-				//areaUrlTextConsulta.setAutoscrolls(true);
-				//areaUrlTextConsulta.setWrapStyleWord(true);
-				//areaUrlTextConsulta.setBounds(new Rectangle(0,0,300,1000));
-			//	scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-				//scroll.add(areaUrlTextConsulta);
-				
+					
 				
 				
 			}
@@ -1060,12 +1004,6 @@ public class GUI_marcador extends JFrame{
 				panelConsulta.add(getBotonConsultarEconomicas(), null);
 				panelConsulta.add(getBotonConsultarTecnologicas(), null);
 				
-		//		campoConsulta=new JTextField();
-		//		campoConsulta.setEditable(true);
-		//		campoConsulta.setEnabled(true);
-		//		campoConsulta.setVisible(true);
-		//		campoConsulta.setBounds(new Rectangle(30, 40, 250, 26));
-		//		panelConsulta.add(campoConsulta);
 			}
 			return panelConsulta;
 		}
@@ -1274,13 +1212,10 @@ public class GUI_marcador extends JFrame{
 
 			ArrayList<String> ar2 = new ArrayList<String>();
 			ar2.add("-");
-			
-		/*	while (irl.hasNext())
-				ar2.add(irl.next());*/
+
 			while (irl2.hasNext())
 				ar2.add(irl2.next());
-/*			while (irl3.hasNext())
-				ar2.add(irl3.next());*/
+
 
 			listaInstancias = new String[ar2.size()];
 			for (int i = 0; i < listaInstancias.length; i++) {
@@ -1338,7 +1273,7 @@ public class GUI_marcador extends JFrame{
 				}
 				
 				
-			//	scroll = new JScrollPane();
+
 				areaUrlTextConsulta = null;
 				areaUrlTextConsulta = new JTextArea();
 				areaUrlTextConsulta.setEditable(false);
@@ -1352,12 +1287,11 @@ public class GUI_marcador extends JFrame{
 				scroll.setViewportView(areaUrlTextConsulta);
 				
 				
-				//scroll =new JScrollPane(areaUrlTextConsulta);
+
 				scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		//		areaUrlTextConsulta.add(new JScrollBar());
+
 				scroll.setBounds(25, 255, 310, 60);
-			//	panelRecuperacionConsulta.add(new JScrollPane(areaUrlTextConsulta));
-				//scroll.add(areaUrlTextConsulta);
+
 				panelRecuperacionConsulta.add(scroll);
 				;
 			}

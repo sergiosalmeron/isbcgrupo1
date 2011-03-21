@@ -3,6 +3,8 @@ package practica4;
 import java.util.Iterator;
 import java.util.Vector;
 
+import practica43.GUI_marcador;
+
 import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbrcore.Attribute;
 import jcolibri.cbrcore.CBRCase;
@@ -60,6 +62,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jEvaluacionLeaveOneOut2 = new javax.swing.JMenuItem();
         jVisualizacion2 = new javax.swing.JMenuItem();
         eva=0;
+        
+        jParteIII = new javax.swing.JMenu();
+        jGUI_marcador = new javax.swing.JMenuItem();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,6 +215,19 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jParteII);
 
+        jParteIII.setText("ParteIII");
+
+
+        jGUI_marcador.setText("Recuperación por Imagenes");
+        jGUI_marcador.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mousePressed(java.awt.event.MouseEvent evt) {
+                        jGUI_marcadorMousePressed(evt);
+                    }
+                });
+                jParteIII.add(jGUI_marcador); 
+                
+        jMenuBar1.add(jParteIII);
+                
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -618,7 +636,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
  
         	
- 
+    private void jGUI_marcadorMousePressed(java.awt.event.MouseEvent evt) {
+    	ocultar();
+        practica43.GUI_marcador interfazMarcador = new practica43.GUI_marcador();
+        interfazMarcador.setVisible(true);
+    }
 
     
 
@@ -668,6 +690,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jNFold1;
     private javax.swing.JMenu jParteI;
     private javax.swing.JMenu jParteII;
+    private javax.swing.JMenu jParteIII;
+    private javax.swing.JMenuItem jGUI_marcador;
     private javax.swing.JCheckBox jPropiedades2;
     private javax.swing.JMenuItem jRT1;
     private javax.swing.JTextField jTextField1;

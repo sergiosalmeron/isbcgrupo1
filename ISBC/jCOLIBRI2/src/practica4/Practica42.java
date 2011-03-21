@@ -66,7 +66,7 @@ public class Practica42 implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new NewsConnector2("src/practica4/noticias",150);
+	    _connector = new NewsConnector2("src/practica4/noticias",5);
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
