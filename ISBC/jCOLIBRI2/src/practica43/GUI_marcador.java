@@ -1090,6 +1090,7 @@ public class GUI_marcador extends JFrame{
 									botonAtras2.setEnabled(false);
 									botonAdelante2.setVisible(true);
 									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
+									labelmgConsultadas.setVisible(true);
 									mostrarInfoNoticia();
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
@@ -1125,8 +1126,10 @@ public class GUI_marcador extends JFrame{
 									botonAtras2.setVisible(true);
 									botonAtras2.setEnabled(false);
 									botonAdelante2.setVisible(true);
+									
 									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 									mostrarInfoNoticia();
+									labelmgConsultadas.setVisible(true);
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -1162,6 +1165,7 @@ public class GUI_marcador extends JFrame{
 									botonAtras2.setVisible(true);
 									botonAtras2.setEnabled(false);
 									botonAdelante2.setVisible(true);
+									labelmgConsultadas.setVisible(true);
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -1197,6 +1201,7 @@ public class GUI_marcador extends JFrame{
 									botonAtras2.setVisible(true);
 									botonAtras2.setEnabled(false);
 									botonAdelante2.setVisible(true);
+									labelmgConsultadas.setVisible(true);
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -1282,6 +1287,7 @@ public class GUI_marcador extends JFrame{
 				if (auxiliar.startsWith("http://gaial.fdi.ucm.es/ontologias/Practica4.owl#")){
 					auxiliar=auxiliar.substring(49);
 				}
+				auxiliar=auxiliar.substring(0,auxiliar.length()-41);
 				System.out.println(auxiliar);
 				if(gente==""){
 					gente = auxiliar;
@@ -1303,6 +1309,7 @@ public class GUI_marcador extends JFrame{
 					auxiliar=auxiliar.substring(49);
 				}
 				System.out.println(auxiliar);
+				auxiliar=auxiliar.substring(0,auxiliar.length()-41);
 				if(gente==""){
 					gente = auxiliar;
 				}
@@ -1311,8 +1318,8 @@ public class GUI_marcador extends JFrame{
 				}
 				
 				
-				scroll = new JScrollPane();
-				
+			//	scroll = new JScrollPane();
+				areaUrlTextConsulta = null;
 				areaUrlTextConsulta = new JTextArea();
 				areaUrlTextConsulta.setEditable(false);
 				
