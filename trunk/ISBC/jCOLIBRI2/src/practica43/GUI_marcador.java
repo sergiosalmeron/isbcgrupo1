@@ -242,12 +242,13 @@ public class GUI_marcador extends JFrame{
 				jContentPane.add(getPanelRelacionPropiedades(), null);
 				jContentPane.add(getPanelConsulta(),null);
 				jContentPane.add(getPanelRecuperacionConsulta(),null);
-				panelRecuperacionConsulta.setVisible(false);
+				
 				
 				jContentPane.add(labelmgConsultadas, null);
 				jContentPane.add(imgConsultadas, null);
 				jContentPane.add(getBotonAtras2(), null);
 				jContentPane.add(getBotonAdelante2(), null);
+				panelRecuperacionConsulta.setVisible(false);
 				botonAtras2.setVisible(false);
 				botonAdelante2.setVisible(false);
 				
@@ -1080,6 +1081,11 @@ public class GUI_marcador extends JFrame{
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
 								String consulta= "Deportivas";
+								imgConsultadas.setVisible(false);
+								labelmgConsultadas.setVisible(false);
+								panelRecuperacionConsulta.setVisible(false);
+								botonAtras2.setVisible(false);
+								botonAdelante2.setVisible(false);
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
@@ -1095,7 +1101,7 @@ public class GUI_marcador extends JFrame{
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-					
+										imgConsultadas.setVisible(true);
 									}
 									catch (Exception e1){
 										imgConsultadas.setIcon(new ImageIcon());
@@ -1117,6 +1123,11 @@ public class GUI_marcador extends JFrame{
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
 								String consulta= "Politicas";
+								imgConsultadas.setVisible(false);
+								labelmgConsultadas.setVisible(false);
+								panelRecuperacionConsulta.setVisible(false);
+								botonAtras2.setVisible(false);
+								botonAdelante2.setVisible(false);
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
@@ -1133,7 +1144,7 @@ public class GUI_marcador extends JFrame{
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-					
+										imgConsultadas.setVisible(true);
 									}
 									catch (Exception e1){
 										imgConsultadas.setIcon(new ImageIcon());
@@ -1154,6 +1165,11 @@ public class GUI_marcador extends JFrame{
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
 								String consulta= "Economicas";
+								imgConsultadas.setVisible(false);
+								labelmgConsultadas.setVisible(false);
+								panelRecuperacionConsulta.setVisible(false);
+								botonAtras2.setVisible(false);
+								botonAdelante2.setVisible(false);
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
@@ -1169,7 +1185,7 @@ public class GUI_marcador extends JFrame{
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-					
+										imgConsultadas.setVisible(true);
 									}
 									catch (Exception e1){
 										imgConsultadas.setIcon(new ImageIcon());
@@ -1190,6 +1206,11 @@ public class GUI_marcador extends JFrame{
 						.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent e) {
 								String consulta= "Tecnologicas";
+								imgConsultadas.setVisible(false);
+								labelmgConsultadas.setVisible(false);
+								panelRecuperacionConsulta.setVisible(false);
+								botonAtras2.setVisible(false);
+								botonAdelante2.setVisible(false);
 								RecuperadorSemantico etiq = new RecuperadorSemantico();
 								fotosRecuperadas = new ArrayList<String>();
 								fotosRecuperadas = etiq.consultarOntologia(ob,consulta);
@@ -1205,7 +1226,7 @@ public class GUI_marcador extends JFrame{
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
-					
+										imgConsultadas.setVisible(true);
 									}
 									catch (Exception e1){
 										imgConsultadas.setIcon(new ImageIcon());
