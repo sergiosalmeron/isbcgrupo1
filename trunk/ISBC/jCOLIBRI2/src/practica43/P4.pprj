@@ -1,4 +1,4 @@
-; Fri Mar 18 17:58:23 CET 2011
+; Mon Mar 21 16:13:57 CET 2011
 ; 
 ;+ (version "3.3.1")
 ;+ (build "Build 430")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[P4_ProjectKB_Instance_50]
-		[P4_ProjectKB_Instance_51]
-		[P4_ProjectKB_Instance_52]
-		[P4_ProjectKB_Instance_53]
-		[P4_ProjectKB_Instance_54]))
+		[P4_ProjectKB_Instance_10295]
+		[P4_ProjectKB_Instance_10296]
+		[P4_ProjectKB_Instance_10297]
+		[P4_ProjectKB_Instance_10298]
+		[P4_ProjectKB_Instance_10299]))
 
 ([CLSES_TAB] of  Widget
 
@@ -6929,6 +6929,31 @@
 	(property_list [P4_ProjectKB_Instance_11])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
 
+([P4_ProjectKB_Instance_10295] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
+
+([P4_ProjectKB_Instance_10296] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([P4_ProjectKB_Instance_10297] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([P4_ProjectKB_Instance_10298] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([P4_ProjectKB_Instance_10299] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
 ([P4_ProjectKB_Instance_11] of  Property_List
 )
 
@@ -7121,31 +7146,6 @@
 ([P4_ProjectKB_Instance_5] of  Property_List
 )
 
-([P4_ProjectKB_Instance_50] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
-
-([P4_ProjectKB_Instance_51] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([P4_ProjectKB_Instance_52] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([P4_ProjectKB_Instance_53] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([P4_ProjectKB_Instance_54] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
 ([P4_ProjectKB_Instance_6] of  Widget
 
 	(is_hidden TRUE)
@@ -7181,12 +7181,12 @@
 	(customized_instance_widgets
 		[PAL_FORM_WIDGET]
 		[KB_713803_Instance_477]
-		[KB_713803_Instance_780]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[KB_713803_Instance_693]
+		[KB_713803_Instance_780]
 		[KB_301165_Instance_856]
-		[KB_713803_Instance_648]
+		[KB_713803_Instance_693]
 		[KB_691299_Instance_537]
+		[KB_713803_Instance_648]
 		[KB_691299_Instance_398]
 		[KB_303942_Instance_68]
 		[KB_938545_Instance_166]
@@ -7273,17 +7273,17 @@
 		":SYSTEM-CLASS"
 		"owl:oneOf"
 		"owl:DataRange"
-		"rdf:Property"
 		"owl:DeprecatedProperty"
-		"owl:Class"
+		"rdf:Property"
 		"owl:DeprecatedClass"
+		"owl:Class"
 		"rdf:Statement"
 		"rdf:type"
-		"rdfs:Class"
 		"rdf:subject"
+		"rdfs:Class"
 		"rdf:predicate"
-		":OWL-ANONYMOUS-ROOT"
 		"rdf:object"
+		":OWL-ANONYMOUS-ROOT"
 		"rdfs:Container"
 		"owl:AllDifferent"
 		"owl:distinctMembers"

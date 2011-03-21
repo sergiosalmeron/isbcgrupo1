@@ -22,11 +22,6 @@
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
-  <owl:Class rdf:ID="Monedas">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Bolsa"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="Economistas">
     <owl:equivalentClass>
       <owl:Class>
@@ -44,19 +39,26 @@
               <owl:ObjectProperty rdf:about="#maneja"/>
             </owl:onProperty>
             <owl:someValuesFrom>
-              <owl:Class rdf:about="#Bolsa"/>
+              <owl:Class rdf:ID="Bolsa"/>
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#maneja"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Monedas"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Monedas"/>
+            </owl:someValuesFrom>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="#Persona"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Monedas">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Bolsa"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Deporte">
     <rdfs:subClassOf>
@@ -68,12 +70,12 @@
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:ID="aparece"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:ID="Politicos"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="aparece"/>
+            </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -98,14 +100,15 @@
     <rdfs:subClassOf rdf:resource="#Temas"/>
   </owl:Class>
   <owl:Class rdf:ID="Economicas">
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="#Bolsa"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Bolsa"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
@@ -116,21 +119,20 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="#Monedas"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Monedas"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Economistas"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#aparece"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Economistas"/>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Noticias"/>
   </owl:Class>
   <owl:Class rdf:ID="Deportista">
     <owl:equivalentClass>
@@ -153,6 +155,7 @@
     <rdfs:subClassOf rdf:resource="#Lugar"/>
   </owl:Class>
   <owl:Class rdf:ID="Deportivas">
+    <rdfs:subClassOf rdf:resource="#Noticias"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -163,17 +166,17 @@
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Deporte"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#trataSobre"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Deporte"/>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Noticias"/>
   </owl:Class>
   <owl:Class rdf:about="#Politicos">
+    <rdfs:subClassOf rdf:resource="#Persona"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -184,7 +187,6 @@
         </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#Persona"/>
   </owl:Class>
   <owl:Class rdf:ID="Tecnologicas">
     <rdfs:subClassOf rdf:resource="#Noticias"/>
@@ -198,10 +200,10 @@
             <owl:someValuesFrom rdf:resource="#Tecnologias"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Cientifico"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="#aparece"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="#Cientifico"/>
           </owl:Restriction>
         </owl:unionOf>
       </owl:Class>
@@ -231,6 +233,10 @@
     <rdfs:range rdf:resource="#Bolsa"/>
     <rdfs:domain rdf:resource="#Persona"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#trataSobre">
+    <rdfs:domain rdf:resource="#Noticias"/>
+    <rdfs:range rdf:resource="#Temas"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="es_de">
     <rdfs:domain rdf:resource="#Temas"/>
     <rdfs:range>
@@ -246,21 +252,17 @@
       </owl:Class>
     </rdfs:range>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#trataSobre">
-    <rdfs:domain rdf:resource="#Noticias"/>
-    <rdfs:range rdf:resource="#Temas"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="esNacional">
     <rdfs:range rdf:resource="#Nacional"/>
     <rdfs:domain rdf:resource="#Lugar"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#practica">
-    <rdfs:domain rdf:resource="#Persona"/>
     <rdfs:range rdf:resource="#Deporte"/>
+    <rdfs:domain rdf:resource="#Persona"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#aparece">
-    <rdfs:range rdf:resource="#Persona"/>
     <rdfs:domain rdf:resource="#Noticias"/>
+    <rdfs:range rdf:resource="#Persona"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#estudia">
     <rdfs:domain rdf:resource="#Persona"/>
@@ -282,32 +284,81 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="#Noticias"/>
   </owl:DatatypeProperty>
-  <Partidos_Politicos rdf:ID="PP"/>
+  <Tecnologias rdf:ID="google"/>
+  <Persona rdf:ID="Alonso">
+    <practica>
+      <Deporte rdf:ID="Formula1"/>
+    </practica>
+  </Persona>
+  <Tecnologias rdf:ID="internet"/>
   <Deporte rdf:ID="Fútbol"/>
-  <Persona rdf:ID="Florentino"/>
   <Persona rdf:ID="Raúl">
     <practica rdf:resource="#Fútbol"/>
   </Persona>
+  <Persona rdf:ID="Polizei">
+    <pertenece_a>
+      <Partidos_Politicos rdf:ID="Partidos_Extranjeros"/>
+    </pertenece_a>
+  </Persona>
   <Tecnologias rdf:ID="facebook"/>
-  <Partidos_Politicos rdf:ID="PSOE"/>
+  <Persona rdf:ID="Vettel">
+    <practica rdf:resource="#Formula1"/>
+  </Persona>
+  <Persona rdf:ID="Cuerpo_Policia">
+    <pertenece_a>
+      <Partidos_Politicos rdf:ID="PSOE"/>
+    </pertenece_a>
+  </Persona>
   <Monedas rdf:ID="euro"/>
   <Internacional rdf:ID="EEUU">
     <esInternacional rdf:resource="#EEUU"/>
   </Internacional>
+  <Deporte rdf:ID="Ciclismo"/>
+  <Internacional rdf:ID="India"/>
   <Nacional rdf:ID="España">
     <esNacional rdf:resource="#España"/>
   </Nacional>
   <Persona rdf:ID="Zapatero">
     <pertenece_a rdf:resource="#PSOE"/>
   </Persona>
+  <Bancos rdf:ID="hipoteca"/>
+  <Persona rdf:ID="mujer_India"/>
+  <Persona rdf:ID="Contador">
+    <practica rdf:resource="#Ciclismo"/>
+  </Persona>
+  <Bolsa rdf:ID="IBEX"/>
+  <Persona rdf:ID="Talabani">
+    <pertenece_a rdf:resource="#Partidos_Extranjeros"/>
+  </Persona>
+  <Partidos_Politicos rdf:ID="PP"/>
+  <Persona rdf:ID="Florentino"/>
+  <Bolsa rdf:ID="Luthansa"/>
+  <Persona rdf:ID="Gonzalez-Sinde">
+    <estudia rdf:resource="#internet"/>
+    <pertenece_a rdf:resource="#PSOE"/>
+  </Persona>
+  <Persona rdf:ID="Montilla">
+    <pertenece_a rdf:resource="#PSOE"/>
+    <pertenece_a>
+      <Partidos_Politicos rdf:ID="PSC"/>
+    </pertenece_a>
+  </Persona>
+  <Tecnologias rdf:ID="twitter"/>
+  <Persona rdf:ID="Arenas">
+    <pertenece_a rdf:resource="#PP"/>
+  </Persona>
+  <Partidos_Politicos rdf:ID="CIU"/>
+  <Internacional rdf:ID="Iraq"/>
+  <Bolsa rdf:ID="Iberdrola"/>
   <Persona rdf:ID="Rajoy">
     <pertenece_a rdf:resource="#PP"/>
   </Persona>
   <Deporte rdf:ID="Baloncesto"/>
-  <Bancos rdf:ID="hipoteca"/>
+  <Persona rdf:ID="Artur_Mas">
+    <pertenece_a rdf:resource="#CIU"/>
+  </Persona>
   <Monedas rdf:ID="dólar"/>
-  <Partidos_Politicos rdf:ID="Partidos_Extranjeros"/>
-  <Bolsa rdf:ID="IBEX"/>
+  <Nacional rdf:ID="Cataluña"/>
 </rdf:RDF>
 
 <!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

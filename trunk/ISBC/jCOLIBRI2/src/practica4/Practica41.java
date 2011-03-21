@@ -55,7 +55,7 @@ public class Practica41 implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new NewsConnector("src/practica4/noticias",150);
+	    _connector = new NewsConnector("src/practica4/noticias",5);
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
@@ -107,7 +107,7 @@ public class Practica41 implements StandardCBRApplication
 	System.out.println("RESULT: ");
 	
 	Collection<RetrievalResult> res = NNScoringMethod.evaluateSimilarity(cases, query, nnConfig);
-	res = SelectCases.selectTopKRR(res, 25);
+	res = SelectCases.selectTopKRR(res, 5);
 	Iterator<RetrievalResult> ite = res.iterator();
 	for(RetrievalResult rr: res){
 	    System.out.println(rr);
