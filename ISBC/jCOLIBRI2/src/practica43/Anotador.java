@@ -50,7 +50,7 @@ public class Anotador {
 	public void anadirNuevoIndividuo(OntoBridge ob, String nombreInstancia, String conceptoPrimitivo) {
 		// Si estamos aquí, es porque el individuo no existe ya en el concepto primitivo
 		ob.createInstance(conceptoPrimitivo, nombreInstancia);
-		ob.save("src/practica43/P4.owl");
+		//ob.save("src/practica43/P4.owl");
 	}
 	
 	public void anadirNuevoConcepto(OntoBridge ob, String nombreConcepto, String conceptoPrimitivo, boolean check) {
@@ -58,7 +58,6 @@ public class Anotador {
 		ob.createClass(nombreConcepto);
 		if (check) 
 		ob.setSubClass(nombreConcepto, conceptoPrimitivo);
-		ob.save("src/practica43/P4.owl");
 	}
 	
 	
