@@ -44,14 +44,12 @@ public class GUI_marcador extends JFrame{
 		private JPanel panelRelacionIndividuo = null;
 		private JPanel panelEsUn = null;
 		private JPanel panelRelacionPropiedad = null;
-		private JLabel labelInstancia = null;
 		private JButton botonAgregarInstancia = null;
 		private JButton botonAgregarConcepto = null;
 		private JLabel labelAlConcepto = null;
 		private String[] listaInstancias = null;
 		private JCheckBox checkConcepto = null; 
 		private String[] listaNoticias = null;
-		private JTextField campoConsulta = null;
 		private JButton botonConsultarDeportivas = null;
 		private JButton botonConsultarPoliticas = null;
 		private JButton botonConsultarEconomicas = null;
@@ -713,6 +711,7 @@ public class GUI_marcador extends JFrame{
 									comboAlgunasInstancias.setVisible(false);
 									comboPropiedades.setVisible(false);
 									botonRelacionar.setEnabled(false);
+									JOptionPane.showMessageDialog(null,"Las instancias han sido relacionadas");
 								}
 							}
 						});
@@ -986,7 +985,7 @@ public class GUI_marcador extends JFrame{
 			if (panelRecuperacionConsulta == null) {
 				panelRecuperacionConsulta = new JPanel();
 				panelRecuperacionConsulta.setLayout(null);
-				panelRecuperacionConsulta.setBounds(new Rectangle(630, 370, 340, 380));
+				panelRecuperacionConsulta.setBounds(new Rectangle(630, 370, 340, 325));
 				panelRecuperacionConsulta.setBorder(BorderFactory.createTitledBorder(
 						null, "Informacion Noticias Consultadas",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -1257,9 +1256,9 @@ public class GUI_marcador extends JFrame{
 			return listaClases;
 		}
 		private void actualizaListas(){
-			Iterator<String> irl = ob.listInstances("Noticias");
+
 			Iterator<String> irl2 = ob.listInstances("Persona");
-			Iterator<String> irl3 = ob.listInstances("Temas");
+
 			Iterator<String> it = ob.listSubClasses("Noticias", true);
 			ArrayList<String> ar = new ArrayList<String>();
 			while (it.hasNext())
