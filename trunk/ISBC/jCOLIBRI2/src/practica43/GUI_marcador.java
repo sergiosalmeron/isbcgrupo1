@@ -76,6 +76,7 @@ public class GUI_marcador extends JFrame{
 		private JTextField LabelLugarConsulta = null;
 		private JTextField LabelPersonasConsulta = null;
 		private JTextArea areaUrlTextConsulta = null;
+		private JScrollPane scroll = null;
 		
 		
 		
@@ -984,7 +985,7 @@ public class GUI_marcador extends JFrame{
 			if (panelRecuperacionConsulta == null) {
 				panelRecuperacionConsulta = new JPanel();
 				panelRecuperacionConsulta.setLayout(null);
-				panelRecuperacionConsulta.setBounds(new Rectangle(630, 310, 340, 380));
+				panelRecuperacionConsulta.setBounds(new Rectangle(630, 370, 340, 380));
 				panelRecuperacionConsulta.setBorder(BorderFactory.createTitledBorder(
 						null, "Informacion Noticias Consultadas",
 						TitledBorder.DEFAULT_JUSTIFICATION,
@@ -1021,17 +1022,24 @@ public class GUI_marcador extends JFrame{
 				
 				LabelUrlFotoConsulta = new JTextField();
 				LabelUrlFotoConsulta.setBounds(new Rectangle(25,35,300,26));
-				LabelLugarConsulta = new JTextField();
-				LabelLugarConsulta.setBounds(new Rectangle(25,90,300,26));	
 				LabelPersonasConsulta = new JTextField();
-				LabelPersonasConsulta.setBounds(new Rectangle(25,145,300,26));	
+				LabelPersonasConsulta.setBounds(new Rectangle(25,90,300,26));
+				LabelLugarConsulta = new JTextField();
+				LabelLugarConsulta.setBounds(new Rectangle(25,145,300,26));					
 				LabelTemasConsulta = new JTextField();
 				LabelTemasConsulta.setBounds(new Rectangle(25,200,300,26));	
+				scroll = new JScrollPane();
 				areaUrlTextConsulta = new JTextArea();
 				areaUrlTextConsulta.setEditable(false);
+				
+			//	scroll.setBounds(new Rectangle(25,255,300,110));
 				//areaUrlTextConsulta.setAutoscrolls(true);
 				//areaUrlTextConsulta.setWrapStyleWord(true);
-				areaUrlTextConsulta.setBounds(new Rectangle(25,255,300,110));	
+				//areaUrlTextConsulta.setBounds(new Rectangle(0,0,300,1000));
+			//	scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+				//scroll.add(areaUrlTextConsulta);
+				
+				
 				
 			}
 			return panelRecuperacionConsulta;
@@ -1078,6 +1086,9 @@ public class GUI_marcador extends JFrame{
 								if (fotosRecuperadas.size()!=0){
 									indiceRec = 0;
 									botonAdelante2.setEnabled(true);
+									botonAtras2.setVisible(true);
+									botonAtras2.setEnabled(false);
+									botonAdelante2.setVisible(true);
 									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 									mostrarInfoNoticia();
 									try{
@@ -1111,6 +1122,9 @@ public class GUI_marcador extends JFrame{
 								if (fotosRecuperadas.size()!=0){
 									indiceRec = 0;
 									botonAdelante2.setEnabled(true);
+									botonAtras2.setVisible(true);
+									botonAtras2.setEnabled(false);
+									botonAdelante2.setVisible(true);
 									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 									mostrarInfoNoticia();
 									try{
@@ -1145,6 +1159,9 @@ public class GUI_marcador extends JFrame{
 									botonAdelante2.setEnabled(true);
 									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 									mostrarInfoNoticia();
+									botonAtras2.setVisible(true);
+									botonAtras2.setEnabled(false);
+									botonAdelante2.setVisible(true);
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -1177,6 +1194,9 @@ public class GUI_marcador extends JFrame{
 									botonAdelante2.setEnabled(true);
 									labelmgConsultadas.setText("Fotografía: Foto_" + fotosRecuperadas.get(indiceRec));
 									mostrarInfoNoticia();
+									botonAtras2.setVisible(true);
+									botonAtras2.setEnabled(false);
+									botonAdelante2.setVisible(true);
 									try{
 										imgConsultadas.setIcon(new ImageIcon(getClass().getResource(
 											"/practica4/img/" + arrayFotosNoticias.get(Integer.parseInt(fotosRecuperadas.get(indiceRec))))));
@@ -1290,19 +1310,29 @@ public class GUI_marcador extends JFrame{
 					gente = gente + ", " + auxiliar;
 				}
 				
+				
+				scroll = new JScrollPane();
+				
+				areaUrlTextConsulta = new JTextArea();
+				areaUrlTextConsulta.setEditable(false);
+				
 				areaUrlTextConsulta.setWrapStyleWord(true);
 				areaUrlTextConsulta.setLineWrap(true);
 				areaUrlTextConsulta.setAutoscrolls(true);
 				areaUrlTextConsulta.setText(gente);
 				
-				areaUrlTextConsulta.setSize(300, 110);
+				areaUrlTextConsulta.setSize(300, 50);
+				scroll.setViewportView(areaUrlTextConsulta);
 				
 				
-		
+				//scroll =new JScrollPane(areaUrlTextConsulta);
+				scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		//		areaUrlTextConsulta.add(new JScrollBar());
-				
+				scroll.setBounds(25, 255, 310, 60);
 			//	panelRecuperacionConsulta.add(new JScrollPane(areaUrlTextConsulta));
-				panelRecuperacionConsulta.add(areaUrlTextConsulta);
+				//scroll.add(areaUrlTextConsulta);
+				panelRecuperacionConsulta.add(scroll);
+				;
 			}
 		}
 			
