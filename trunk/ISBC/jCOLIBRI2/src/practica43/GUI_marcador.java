@@ -1412,6 +1412,7 @@ public class GUI_marcador extends JFrame{
 	    {
 	    	GUI_marcador este = new GUI_marcador();
 	    	este.setVisible(true);
+	   
 	    }
 
 	}
