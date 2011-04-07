@@ -4,7 +4,7 @@ import EDU.gatech.cc.is.util.Vec2;
 import teams.rolebased.Role;
 import teams.rolebased.WorldAPI;
 
-public class Novato extends Role {
+public class Portero extends Role {
 
 	@Override
 	public int configure() {
@@ -24,7 +24,8 @@ public class Novato extends Role {
 		// TODO Auto-generated method stub
 		worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
 		Vec2 bola = worldAPI.getBall();
-		worldAPI.surroundPoint(worldAPI.getPosition(), bola);
+		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
+		worldAPI.surroundPoint(worldAPI.getPosition(), mover);
 		if (worldAPI.canKick())
 			worldAPI.kick();
 		if(worldAPI.blocked())
@@ -33,3 +34,4 @@ public class Novato extends Role {
 	}
 
 }
+
