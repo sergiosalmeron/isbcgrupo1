@@ -14,6 +14,7 @@ public class equipo01Manager extends TeamManager {
 	@Override
 	public int takeStep() {
 		// TODO Auto-generated method stub
+		
 		return WorldAPI.ROBOT_OK;
 	}
 
