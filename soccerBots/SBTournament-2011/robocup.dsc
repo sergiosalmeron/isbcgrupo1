@@ -86,7 +86,7 @@ object EDU.gatech.cc.is.simulation.ObstacleInvisibleSim -2.047 -1.4396 0 1.0
 // from getting jumpy on slow machines, or when/if your process gets 
 // swapped out. 
 
-maxtimestep 20 
+maxtimestep 17 
 
 //====== 
 // TIMEOUT 
@@ -131,7 +131,7 @@ logtime 0
 // 
 // logfilename filename (saved in logfiles directory) 
 // 
-logfilename "logfiles:log.xml" 
+logfilename "logfiles;log.xml" 
 
 //====== 
 // The ball 
@@ -157,32 +157,32 @@ xF0B000 x000000 3
 // numbers according to the order in which they are listed here. 
 //======WEST TEAM====== 
 westname WestTeam 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.JunTeamHeteroG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -1.2 0 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.JunTeamHeteroG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.5 0 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.JunTeamHeteroG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.15 .5 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.JunTeamHeteroG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.15 0 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.JunTeamHeteroG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.15 -.5 0 xEAEA00 xFFFFFF 1 
 
 //======EAST TEAM====== 
 eastname EastTeam 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.PermHomoG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 1.2 0 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.PermHomoG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .5 0 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.PermHomoG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .15 .5 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.PermHomoG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .15 0 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim teamsSoccerbots.PermHomoG 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .15 -.5 0 xFF0000 x0000FF 2 
 

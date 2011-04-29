@@ -22,14 +22,14 @@ public class Portero extends Role {
 	@Override
 	public int takeStep() {
 		// TODO Auto-generated method stub
-		worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
+	//	worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		worldAPI.surroundPoint(worldAPI.getPosition(), mover);
-		if (worldAPI.canKick())
+	/*	if (worldAPI.canKick())
 			worldAPI.kick();
 		if(worldAPI.blocked())
-			worldAPI.avoidCollisions();
+			worldAPI.avoidCollisions();*/
 		return WorldAPI.ROBOT_OK;
 	}
 
