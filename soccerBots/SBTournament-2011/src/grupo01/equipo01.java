@@ -8,7 +8,7 @@ public class equipo01 extends RoleBasedTeam{
 
 	@Override
 	protected Role[] getRoles() {
-		Role[] roles= {new Novato(),new Novato(),new Novato(),new Novato(),new Portero()};
+		Role[] roles= {new Portero(),new Novato(),new Novato(),new Novato(),new Novato()};
 		
 		return roles;
 	}

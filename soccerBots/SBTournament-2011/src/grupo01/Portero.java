@@ -9,7 +9,7 @@ public class Portero extends Role {
 	@Override
 	public int configure() {
 		// TODO Auto-generated method stub
-		worldAPI.setDisplayString("trasLaBola");
+		worldAPI.setDisplayString("Portero");
 		return WorldAPI.ROBOT_OK;
 	}
 
@@ -25,7 +25,16 @@ public class Portero extends Role {
 	//	worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
-		worldAPI.surroundPoint(worldAPI.getPosition(), mover);
+		mover.sett(worldAPI.getOurGoal().t);
+		mover.setr(1.0);
+		worldAPI.setSteerHeading(bola.t);
+		worldAPI.setSpeed(1.0);
+		//worldAPI.surroundPoint(worldAPI.getPosition(), mover);
+		//worldAPI.blockForward();
+
+		//worldAPI.setBehindBall(mover);
+		
+
 	/*	if (worldAPI.canKick())
 			worldAPI.kick();
 		if(worldAPI.blocked())

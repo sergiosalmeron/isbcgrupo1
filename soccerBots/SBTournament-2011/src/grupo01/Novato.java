@@ -24,7 +24,9 @@ public class Novato extends Role {
 		// TODO Auto-generated method stub
 		worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
 		Vec2 bola = worldAPI.getBall();
-		worldAPI.surroundPoint(worldAPI.getPosition(), bola);
+		worldAPI.setSteerHeading(bola.t);
+		worldAPI.setSpeed(1.0);
+		//worldAPI.setBehindBall(worldAPI.getPosition(), bola);
 		if (worldAPI.canKick())
 			worldAPI.kick();
 		if(worldAPI.blocked())
