@@ -27,8 +27,19 @@ public class Portero extends Role {
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		mover.sett(worldAPI.getOurGoal().t);
 		mover.setr(1.0);
-		worldAPI.setSteerHeading(bola.t);
-		worldAPI.setSpeed(1.0);
+		if (bola.y>worldAPI.getPosition().y){
+			worldAPI.setSteerHeading(mover.PI/2);
+			worldAPI.setSpeed(1.0);
+		}
+		else if (bola.y<worldAPI.getPosition().y){
+			worldAPI.setSteerHeading(3*(mover.PI/2));
+			worldAPI.setSpeed(1.0);
+		}
+			else {
+				worldAPI.setSteerHeading(bola.t);
+				worldAPI.setSpeed(0.0);
+			}
+		
 		//worldAPI.surroundPoint(worldAPI.getPosition(), mover);
 		//worldAPI.blockForward();
 
