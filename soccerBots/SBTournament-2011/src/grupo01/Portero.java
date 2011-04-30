@@ -27,19 +27,34 @@ public class Portero extends Role {
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		mover.sett(worldAPI.getOurGoal().t);
 		mover.setr(1.0);
-		if (bola.y>worldAPI.getPosition().y){
-			worldAPI.setSteerHeading(mover.PI/2);
-			worldAPI.setSpeed(1.0);
-		}
-		else if (bola.y<worldAPI.getPosition().y){
-			worldAPI.setSteerHeading(3*(mover.PI/2));
-			worldAPI.setSpeed(1.0);
-		}
-			else {
-				worldAPI.setSteerHeading(bola.t);
+		System.out.println(worldAPI.getOurGoal().x);
+		System.out.println(worldAPI.getPosition().x);
+		if (Math.abs(worldAPI.getOurGoal().x)<=Math.abs(-0.07)){
+			if (bola.y>worldAPI.getPosition().y && worldAPI.getSteerHeading()==mover.PI/2 && worldAPI.getPosition().y<0.20){
+				worldAPI.setSteerHeading(mover.PI/2);
+				worldAPI.setSpeed(1.0);
+			}
+			else if (bola.y>worldAPI.getPosition().y && worldAPI.getSteerHeading()!=mover.PI/2){
+				worldAPI.setSteerHeading(mover.PI/2);
 				worldAPI.setSpeed(0.0);
 			}
-		
+			else if (bola.y<worldAPI.getPosition().y && worldAPI.getSteerHeading()==3*mover.PI/2 && worldAPI.getPosition().y>-0.20){
+				worldAPI.setSteerHeading(3*(mover.PI/2));
+				worldAPI.setSpeed(1.0);
+			}  
+			else if (bola.y<worldAPI.getPosition().y && worldAPI.getSteerHeading()!=3*mover.PI/2){
+				worldAPI.setSteerHeading(3*mover.PI/2);
+				worldAPI.setSpeed(0.0);
+			}
+			else {
+					//worldAPI.setSteerHeading(bola.t);
+				//	worldAPI.setSpeed(0.0);
+				}
+			}
+		else { 	
+			worldAPI.setSteerHeading(mover.t);
+			worldAPI.setSpeed(1.0);
+		}
 		//worldAPI.surroundPoint(worldAPI.getPosition(), mover);
 		//worldAPI.blockForward();
 
