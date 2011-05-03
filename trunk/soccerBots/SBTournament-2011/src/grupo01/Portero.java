@@ -29,6 +29,11 @@ public class Portero extends Role {
 		mover.setr(1.0);
 		System.out.println(worldAPI.getOurGoal().x);
 		System.out.println(worldAPI.getPosition().x);
+		worldAPI.setDisplayString("Portero");
+		//Antes de los otros movimientos vamos a intentar desbloquearlo si esta bloqueado
+		if (worldAPI.blocked()){
+			worldAPI.avoidCollisions();
+		}
 		if (Math.abs(worldAPI.getOurGoal().x)<=Math.abs(-0.07)){
 			if (bola.y>worldAPI.getPosition().y && worldAPI.getSteerHeading()==mover.PI/2 && worldAPI.getPosition().y<0.20){
 				worldAPI.setSteerHeading(mover.PI/2);
@@ -57,7 +62,11 @@ public class Portero extends Role {
 		}
 		//worldAPI.surroundPoint(worldAPI.getPosition(), mover);
 		//worldAPI.blockForward();
-
+		if (worldAPI.canKick()){
+			worldAPI.setDisplayString("Despejando");
+			worldAPI.setSteerHeading(worldAPI.getOurGoal().t+Math.PI);
+			worldAPI.kick();
+		}
 		//worldAPI.setBehindBall(mover);
 		
 
