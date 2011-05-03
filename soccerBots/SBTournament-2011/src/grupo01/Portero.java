@@ -65,6 +65,7 @@ public class Portero extends Role {
 		if (worldAPI.canKick()){
 			worldAPI.setDisplayString("Despejando");
 			worldAPI.setSteerHeading(worldAPI.getOurGoal().t+Math.PI);
+			if (worldAPI.canKick() && worldAPI.alignedToBallandGoal())
 			worldAPI.kick();
 		}
 		//worldAPI.setBehindBall(mover);
