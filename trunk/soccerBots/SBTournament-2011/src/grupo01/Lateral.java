@@ -315,14 +315,22 @@ public class Lateral extends Role {
 		}
 		else { //Estamos defendiendo
 			worldAPI.setDisplayString("Defended!!!!!");
-			//worldAPI.setSpeed(0.0);
-			//worldAPI.setBehindBall(eoppgoal);
-			//si tenemos nosotros la bola
+			
 			if (worldAPI.closestToBall()){
-				worldAPI.setDisplayString("sacando la bola");
-				worldAPI.setBehindBall(eoppgoal);
-				if (worldAPI.canKick()) worldAPI.kick();
-			}
+					worldAPI.setDisplayString("sacando la bola");
+			        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
+			            nextmove.sett(eoppgoal.t);
+			            nextmove.setr(1.0);
+			            
+			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+			                worldAPI.kick();
+			            }
+			        } else {
+			            moveBehind(eball, eoppgoal);
+			            worldAPI.avoidCollisions();
+			        }
+			    }
 			// Si estamos cerca de un oponente con la bola intentamos bloquearlo
 			else if (this.closestTo(worldAPI.getClosestOpponent(),bola)){
 				if(!worldAPI.isBlocking(worldAPI.getClosestOpponent())){
