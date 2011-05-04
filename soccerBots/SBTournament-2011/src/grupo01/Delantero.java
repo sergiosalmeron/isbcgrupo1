@@ -225,11 +225,11 @@ public class Delantero extends Role {
     */
     private boolean defzone(Vec2 gpoint) {
         if (lado == equipo01Manager.WESTSIDE) {
-            if ((gpoint.quadrant() == 2) || (gpoint.quadrant() == 0)) {
+            if (gpoint.x<=0) {
                 return true;
             }
         } else {
-        	if ((gpoint.quadrant() == 1) || (gpoint.quadrant() == 3)) {
+        	if (gpoint.x>=0) {
                 return true;
             }
         }       
@@ -297,14 +297,14 @@ public class Delantero extends Role {
 		//Cuando el balón está en zona de defensa
 		if (this.defzone(gball)){
 			//Si no está cerca de su posición y no controlamos la bola
-			if (!worldAPI.closestToBall()){
+			if (!this.closestTo(bola, worldAPI.getPosition())){
 				if((this.posicionInicial.x!=worldAPI.getPosition().x)||((this.posicionInicial.y!=worldAPI.getPosition().y))){
 					worldAPI.setDisplayString("Preparando el ataque");
 					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
 					mover = worldAPI.getPosition();
 					mover.sub(posicionInicial);
 					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
-					worldAPI.setSpeed(0.5);
+					worldAPI.setSpeed(1.0);
 				}
 				else {
 					worldAPI.setDisplayString("Esperando la contra");
@@ -336,7 +336,7 @@ public class Delantero extends Role {
 		}
 		else { //Estamos atacando
 			worldAPI.setDisplayString("Atacar");
-			if (worldAPI.closestToBall()){
+			if (this.closestTo(bola, worldAPI.getPosition())){
 				worldAPI.setDisplayString("Jugada Personal");
 				 if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(eoppgoal.t);
