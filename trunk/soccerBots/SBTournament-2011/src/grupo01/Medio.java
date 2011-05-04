@@ -226,11 +226,11 @@ public class Medio extends Role {
     */
     private boolean defzone(Vec2 gpoint) {
         if (lado == equipo01Manager.WESTSIDE) {
-            if ((gpoint.quadrant() == 2) || (gpoint.quadrant() == 0)) {
+            if (gpoint.x<=0) {
                 return true;
             }
         } else {
-        	if ((gpoint.quadrant() == 1) || (gpoint.quadrant() == 3)) {
+        	if (gpoint.x>=0) {
                 return true;
             }
         }       
@@ -297,7 +297,7 @@ public class Medio extends Role {
 		}
 		//Cuando el balón está en zona contraria
 		if (!this.defzone(gball)){
-			if (worldAPI.closestToBall()){
+			if (this.closestTo(bola, worldAPI.getPosition())){
 				worldAPI.setDisplayString("Toque y tal"); // conducimos un poco 
 		        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 		            nextmove.sett(eoppgoal.t);
@@ -315,16 +315,16 @@ public class Medio extends Role {
 		            }
 		            this.updateActuators();
 		        } else {
+		        	worldAPI.setDisplayString("estorbamos");
 		            moveBehind(eball, eoppgoal);
-		            worldAPI.avoidCollisions();
-		            this.updateActuators();
+		            worldAPI.blockClosest();
 		        }
 		    }
 		}
 		else { //Estamos defendiendo
 			worldAPI.setDisplayString("Cubriendo atrás");
 			
-			if (worldAPI.closestToBall()){
+			if (this.closestTo(bola, worldAPI.getPosition())){
 					worldAPI.setDisplayString("sacando la bola");
 			        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(eoppgoal.t);
