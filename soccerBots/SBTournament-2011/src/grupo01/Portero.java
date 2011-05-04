@@ -29,17 +29,18 @@ public class Portero extends Role {
 		mover.setr(1.0);
 		System.out.println(worldAPI.getOurGoal().x);
 		System.out.println(worldAPI.getPosition().x);
-		worldAPI.setDisplayString("Portero");
+	//	worldAPI.setDisplayString("Portero");
 		//Antes de los otros movimientos vamos a intentar desbloquearlo si esta bloqueado
 		if (worldAPI.blocked()){
 			worldAPI.avoidCollisions();
 		}
 		if (Math.abs(worldAPI.getOurGoal().x)<=Math.abs(-0.07)){
+			worldAPI.setDisplayString("Pong");
 			if (bola.y>worldAPI.getPosition().y && worldAPI.getSteerHeading()==mover.PI/2 && worldAPI.getPosition().y<0.20){
 				worldAPI.setSteerHeading(mover.PI/2);
 				worldAPI.setSpeed(1.0);
 			}
-			else if (bola.y>worldAPI.getPosition().y && worldAPI.getSteerHeading()!=mover.PI/2){
+			else if (bola.y>worldAPI.getPosition().y && worldAPI.getSteerHeading()!=mover.PI/2  || worldAPI.getPosition().y <=-0.20){
 				worldAPI.setSteerHeading(mover.PI/2);
 				worldAPI.setSpeed(0.0);
 			}
@@ -47,7 +48,7 @@ public class Portero extends Role {
 				worldAPI.setSteerHeading(3*(mover.PI/2));
 				worldAPI.setSpeed(1.0);
 			}  
-			else if (bola.y<worldAPI.getPosition().y && worldAPI.getSteerHeading()!=3*mover.PI/2){
+			else if (bola.y<worldAPI.getPosition().y && worldAPI.getSteerHeading()!=3*mover.PI/2  || worldAPI.getPosition().y >=0.20){
 				worldAPI.setSteerHeading(3*mover.PI/2);
 				worldAPI.setSpeed(0.0);
 			}
@@ -69,12 +70,19 @@ public class Portero extends Role {
 			worldAPI.kick();
 		}
 		//worldAPI.setBehindBall(mover);
-		
+		if (worldAPI.getPosition().y <-0.20 && worldAPI.getPosition().y >0.20 && !worldAPI.blocked()){
+			worldAPI.setSpeed(0.0);
+			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI);
+			worldAPI.setDisplayString("Limite");
+		}
 
 	/*	if (worldAPI.canKick())
-			worldAPI.kick();
-		if(worldAPI.blocked())
-			worldAPI.avoidCollisions();*/
+			worldAPI.kick();*/
+		if(worldAPI.blocked()){
+			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+			worldAPI.setSpeed(1.0);
+			worldAPI.setDisplayString("desbloqueo");
+		}
 		return WorldAPI.ROBOT_OK;
 	}
 
