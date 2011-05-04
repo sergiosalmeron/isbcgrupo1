@@ -297,7 +297,7 @@ public class Lateral extends Role {
 			worldAPI.avoidCollisions();
 		}
 		//Vuelven a su posición cuando estamos atacando
-		if (!this.defzone(gball) && (!this.closestTo(bola, worldAPI.getPosition()))){
+		if (!this.defzone(gball) && (!worldAPI.closestToBall())){
 			//Si no están cerca de su posición inicial volvemos
 			if((this.posicionInicial.x!=worldAPI.getPosition().x)||((this.posicionInicial.y!=worldAPI.getPosition().y))){
 				worldAPI.setDisplayString("Volver a posición");
@@ -319,15 +319,13 @@ public class Lateral extends Role {
 		else { //Estamos defendiendo
 			worldAPI.setDisplayString("Defended!!!!!");
 			
-			if (this.closestTo(bola, worldAPI.getPosition())){
+			if (worldAPI.closestToBall()){
 					worldAPI.setDisplayString("sacando la bola");
 			        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(eoppgoal.t);
 			            nextmove.setr(1.0);
 			            worldAPI.avoidCollisions();
-			            
-			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();

@@ -297,7 +297,7 @@ public class Medio extends Role {
 		}
 		//Cuando el balón está en zona contraria
 		if (!this.defzone(gball)){
-			if (this.closestTo(bola, worldAPI.getPosition())){
+			if (worldAPI.closestToBall()){
 				worldAPI.setDisplayString("Toque y tal"); // conducimos un poco 
 		        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 		            nextmove.sett(eoppgoal.t);
@@ -324,7 +324,7 @@ public class Medio extends Role {
 		else { //Estamos defendiendo
 			worldAPI.setDisplayString("Cubriendo atrás");
 			
-			if (this.closestTo(bola, worldAPI.getPosition())){
+			if (worldAPI.closestToBall()){
 					worldAPI.setDisplayString("sacando la bola");
 			        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(eoppgoal.t);

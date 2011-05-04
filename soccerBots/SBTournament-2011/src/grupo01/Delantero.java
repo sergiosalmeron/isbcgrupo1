@@ -297,7 +297,7 @@ public class Delantero extends Role {
 		//Cuando el balón está en zona de defensa
 		if (this.defzone(gball)){
 			//Si no está cerca de su posición y no controlamos la bola
-			if (!this.closestTo(bola, worldAPI.getPosition())){
+			if (!worldAPI.closestToBall()){
 				if((this.posicionInicial.x!=worldAPI.getPosition().x)||((this.posicionInicial.y!=worldAPI.getPosition().y))){
 					worldAPI.setDisplayString("Preparando el ataque");
 					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
@@ -336,7 +336,7 @@ public class Delantero extends Role {
 		}
 		else { //Estamos atacando
 			worldAPI.setDisplayString("Atacar");
-			if (this.closestTo(bola, worldAPI.getPosition())){
+			if (worldAPI.closestToBall()){
 				worldAPI.setDisplayString("Jugada Personal");
 				 if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(eoppgoal.t);
