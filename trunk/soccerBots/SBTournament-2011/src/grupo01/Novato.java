@@ -9,7 +9,7 @@ public class Novato extends Role {
 	@Override
 	public int configure() {
 		// TODO Auto-generated method stub
-		worldAPI.setDisplayString("trasLaBola");
+		worldAPI.setDisplayString("Bloqueador");
 		return WorldAPI.ROBOT_OK;
 	}
 
@@ -22,13 +22,13 @@ public class Novato extends Role {
 	@Override
 	public int takeStep() {
 		// TODO Auto-generated method stub
-		worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
-		Vec2 bola = worldAPI.getBall();
+		worldAPI.blockGoalKeeper();
+	/*	Vec2 bola = worldAPI.getBall();
 		worldAPI.setSteerHeading(bola.t);
 		worldAPI.setSpeed(1.0);
 		//worldAPI.setBehindBall(worldAPI.getPosition(), bola);
 		if (worldAPI.canKick())
-			worldAPI.kick();
+			worldAPI.kick();*/
 		if(worldAPI.blocked())
 			worldAPI.avoidCollisions();
 		return WorldAPI.ROBOT_OK;
