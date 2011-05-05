@@ -293,7 +293,9 @@ public class Medio extends Role {
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		if (worldAPI.blocked()){
-			worldAPI.avoidCollisions();
+			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+			worldAPI.setSpeed(1.0);
+			worldAPI.setDisplayString("desbloqueo");
 		}
 		//Cuando el balón está en zona contraria
 		if (!this.defzone(gball)){
