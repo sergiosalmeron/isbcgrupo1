@@ -294,7 +294,9 @@ public class Lateral extends Role {
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		if (worldAPI.blocked()){
-			worldAPI.avoidCollisions();
+			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+			worldAPI.setSpeed(1.0);
+			worldAPI.setDisplayString("desbloqueo");
 		}
 		//Vuelven a su posición cuando estamos atacando
 		if (!this.defzone(gball) && (!worldAPI.closestToBall())){
