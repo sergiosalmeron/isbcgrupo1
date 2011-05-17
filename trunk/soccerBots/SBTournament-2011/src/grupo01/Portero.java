@@ -32,7 +32,7 @@ public class Portero extends Role {
 		// TODO Auto-generated method stub
 	//	worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
 		ganando = (worldAPI.getMyScore()>worldAPI.getOpponentScore());
-		empate = (worldAPI.getMyScore()==worldAPI.getOpponentScore());
+		empate = (worldAPI.getMyScore()== worldAPI.getOpponentScore());
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		mover.sett(worldAPI.getOurGoal().t);
