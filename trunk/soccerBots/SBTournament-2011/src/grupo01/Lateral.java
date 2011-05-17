@@ -322,7 +322,8 @@ public class Lateral extends Role {
 			            nextmove.sett(worldAPI.getOpponentsGoal().t);
 			            nextmove.setr(1.0);
 			            worldAPI.avoidCollisions();
-			            if ((Math.abs(worldAPI.getSteerHeading() - worldAPI.getOpponentsGoal().t) < Math.PI / 8)) {
+			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+				                (eoppgoal.r < worldAPI.getPlayerRadius() * 40)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();
