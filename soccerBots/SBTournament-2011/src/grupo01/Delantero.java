@@ -360,7 +360,7 @@ public class Delantero extends Role {
 			            worldAPI.avoidCollisions();
 			            
 			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+			                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();

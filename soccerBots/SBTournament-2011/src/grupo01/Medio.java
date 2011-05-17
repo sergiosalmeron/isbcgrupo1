@@ -242,9 +242,9 @@ public class Medio extends Role {
 		posicionInicial = worldAPI.getPosition();
 		//Ahora para que cuando estemos atacando vuelvan a su posición
 		if (lado == 1)
-			posicionInicial.setx(posicionInicial.x-0.5);
+			posicionInicial.setx(posicionInicial.x-0.1);
 		else
-			posicionInicial.setx(posicionInicial.x+0.5);
+			posicionInicial.setx(posicionInicial.x+0.1);
 		System.out.println(lado);
 		worldAPI.setDisplayString("Medio");
         goalkeeper = 0;
@@ -310,7 +310,7 @@ public class Medio extends Role {
 		            nextmove.setr(1.0);
 		            //si estamos en situacion de tiro, tiramos
 		            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-		                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+		                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 		                worldAPI.kick();
 		            }
 		            else { // si no estamos en situacion de tiro, intentamos pasar
@@ -371,8 +371,16 @@ public class Medio extends Role {
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 					worldAPI.setSpeed(1.0);
 					worldAPI.setDisplayString("desbloqueo");
+					return WorldAPI.ROBOT_OK;
 				}
-				worldAPI.blockForward();
+				if((this.posicionInicial.x!=worldAPI.getPosition().x)||((this.posicionInicial.y!=worldAPI.getPosition().y))){
+					worldAPI.setDisplayString("Volver a posición");
+					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
+					mover = worldAPI.getPosition();
+					mover.sub(posicionInicial);
+					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
+					worldAPI.setSpeed(1.0);
+				}
 				return WorldAPI.ROBOT_OK;
 			}
 			
