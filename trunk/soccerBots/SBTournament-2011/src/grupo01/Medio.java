@@ -292,15 +292,11 @@ public class Medio extends Role {
 		System.out.println(lado);
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
-		if (worldAPI.blocked()){
-			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-			worldAPI.setSpeed(1.0);
-			worldAPI.setDisplayString("desbloqueo");
-			return WorldAPI.ROBOT_OK;
-		}
+
 		//Cuando el balón está en zona contraria
 		if (!this.defzone(gball)){
 			if (worldAPI.closestToBall()){
+
 				worldAPI.setDisplayString("Toque y tal"); // conducimos un poco 
 		        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 		            nextmove.sett(eoppgoal.t);
@@ -321,7 +317,15 @@ public class Medio extends Role {
 		        	worldAPI.setDisplayString("estorbamos");
 		            moveBehind(eball, eoppgoal);
 		            worldAPI.blockClosest();
+		            return WorldAPI.ROBOT_OK;
 		        }
+				if (worldAPI.blocked()){
+					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+					worldAPI.setSpeed(1.0);
+					worldAPI.setDisplayString("desbloqueo");
+					return WorldAPI.ROBOT_OK;
+					
+				}
 		    }
 		}
 		else { //Estamos defendiendo
@@ -350,12 +354,19 @@ public class Medio extends Role {
 				if(!worldAPI.isBlocking(worldAPI.getClosestOpponent())){
 					worldAPI.setDisplayString("a bloquear");
 					worldAPI.blockClosest();
+					return WorldAPI.ROBOT_OK;
 				}
 				else {
 					worldAPI.setDisplayString("seguimos Bloqueando");
+					return WorldAPI.ROBOT_OK;
 				}
 			}
 			else { //Si no, vamos a intentamos tapar al delantero
+				if (worldAPI.blocked()){
+					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+					worldAPI.setSpeed(1.0);
+					worldAPI.setDisplayString("desbloqueo");
+				}
 				worldAPI.blockForward();
 			}
 			

@@ -241,11 +241,11 @@ public class Delantero extends Role {
 		posicionInicial = worldAPI.getPosition();
 		//Ahora para que cuando estemos atacando vuelvan a su posición
 		if (lado == 1)
-			posicionInicial.setx(posicionInicial.x-0.5);
+			posicionInicial.setx(0.0);
 		else
-			posicionInicial.setx(posicionInicial.x+0.5);
+			posicionInicial.setx(0.0);
 		System.out.println(lado);
-		worldAPI.setDisplayString("Medio");
+		worldAPI.setDisplayString("Delantero");
         goalkeeper = 0;
         center = 0;
         tackler = 0;
@@ -291,16 +291,17 @@ public class Delantero extends Role {
 		System.out.println(lado);
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
-		if (worldAPI.blocked()){
-			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-			worldAPI.setSpeed(1.0);
-			worldAPI.setDisplayString("desbloqueo");
-			return WorldAPI.ROBOT_OK;
-		}
+
 		//Cuando el balón está en zona de defensa
 		if (this.defzone(gball)){
 			//Si no está cerca de su posición y no controlamos la bola
 			if (!worldAPI.closestToBall()){
+				if (worldAPI.blocked()){
+					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+					worldAPI.setSpeed(1.0);
+					worldAPI.setDisplayString("desbloqueo");
+					return WorldAPI.ROBOT_OK;
+				}
 				if((this.posicionInicial.x!=worldAPI.getPosition().x)||((this.posicionInicial.y!=worldAPI.getPosition().y))){
 					worldAPI.setDisplayString("Preparando el ataque");
 					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
@@ -320,6 +321,12 @@ public class Delantero extends Role {
 			}
 			else{ // si tenemos la bola en defensa
 				worldAPI.setDisplayString("sacando la bola");
+				if (worldAPI.blocked()){
+					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+					worldAPI.setSpeed(1.0);
+					worldAPI.setDisplayString("desbloqueo");
+					return WorldAPI.ROBOT_OK;
+				}
 		        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
 		            nextmove.sett(eoppgoal.t);
 		            nextmove.setr(1.0);
@@ -339,6 +346,12 @@ public class Delantero extends Role {
 		}
 		else { //Estamos atacando
 			worldAPI.setDisplayString("Atacar");
+			if (worldAPI.blocked()){
+				worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+				worldAPI.setSpeed(1.0);
+				worldAPI.setDisplayString("desbloqueo");
+				return WorldAPI.ROBOT_OK;
+			}
 			if (worldAPI.closestToBall()){
 				worldAPI.setDisplayString("Jugada Personal");
 				 if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
@@ -359,6 +372,12 @@ public class Delantero extends Role {
 			
 			}
 			else {
+				if (worldAPI.blocked()){
+					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+					worldAPI.setSpeed(1.0);
+					worldAPI.setDisplayString("desbloqueo");
+					return WorldAPI.ROBOT_OK;
+				}
 				if (worldAPI.opponentsHaveGoalkeeper()){
 					worldAPI.setDisplayString("Estorba al portero");
 					worldAPI.blockGoalKeeper();
