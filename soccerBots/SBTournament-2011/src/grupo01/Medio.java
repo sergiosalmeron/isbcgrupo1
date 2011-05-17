@@ -368,6 +368,8 @@ public class Medio extends Role {
 					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
 					mover = worldAPI.getPosition();
 					mover.sub(posicionInicial);
+					nextmove.sett(mover.t);
+					nextmove.setr(1.0);
 					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
 					worldAPI.setSpeed(1.0);
 				}

@@ -305,6 +305,7 @@ public class Lateral extends Role {
 				mover.sub(posicionInicial);
 				worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
 				worldAPI.setSpeed(1.0);
+				
 			}
 			else {
 				worldAPI.setDisplayString("Mantener Posición");
