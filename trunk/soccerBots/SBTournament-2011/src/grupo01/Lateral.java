@@ -93,10 +93,12 @@ public class Lateral extends Role {
     // Movement functions                           //
     //////////////////////////////////////////////////
 
+
+	
     /**
-       Has player move behind ball (or other point) with 
-       respect to some target point.
-     */
+    Has player move behind ball (or other point) with 
+    respect to some target point.
+  */
     private void moveBehind(Vec2 eball, Vec2 etarget) {
         Vec2 behindpoint = new Vec2(0, 0);
         double behind = 0;
@@ -316,7 +318,7 @@ public class Lateral extends Role {
 		else { //Estamos defendiendo
 			worldAPI.setDisplayString("Defended!!!!!");
 			
-			if (worldAPI.closestToBall()){
+			if (worldAPI.closestToBall() && !closestToBall(worldAPI.getClosestOpponent())){
 					worldAPI.setDisplayString("sacando la bola");
 			        if (behindBall(eball, worldAPI.getOpponentsGoal()) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(worldAPI.getOpponentsGoal().t);
