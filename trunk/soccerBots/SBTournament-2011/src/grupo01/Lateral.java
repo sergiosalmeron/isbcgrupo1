@@ -364,7 +364,6 @@ public class Lateral extends Role {
 			}
 			
 		}
-		this.updateActuators();
 		return WorldAPI.ROBOT_OK;
 	}
 	

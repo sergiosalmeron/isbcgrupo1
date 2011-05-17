@@ -281,7 +281,7 @@ public class Delantero extends Role {
 	}
     private void updateActuators() {
     	worldAPI.setSteerHeading(nextmove.t);
-    	worldAPI.setSpeed(nextmove.r);
+    	worldAPI.setSpeed(1.0);
 
     }
 	@Override
@@ -303,7 +303,6 @@ public class Delantero extends Role {
 					mover.sub(posicionInicial);
 					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
 					worldAPI.setSpeed(1.0);
-					this.updateActuators();
 				}
 				else {
 					worldAPI.setDisplayString("Esperando la contra");
@@ -393,7 +392,6 @@ public class Delantero extends Role {
 				}
 			}
 		}
-		//this.updateActuators();
 		
 		return WorldAPI.ROBOT_OK;
 	}
