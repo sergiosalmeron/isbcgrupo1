@@ -297,6 +297,7 @@ public class Lateral extends Role {
 			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 			worldAPI.setSpeed(1.0);
 			worldAPI.setDisplayString("desbloqueo");
+			return WorldAPI.ROBOT_OK;
 		}
 		//Vuelven a su posición cuando estamos atacando
 		if (!this.defzone(gball) && (!worldAPI.closestToBall())){
@@ -323,16 +324,16 @@ public class Lateral extends Role {
 			
 			if (worldAPI.closestToBall()){
 					worldAPI.setDisplayString("sacando la bola");
-			        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
-			            nextmove.sett(eoppgoal.t);
+			        if (behindBall(eball, worldAPI.getOpponentsGoal()) && eball.t < worldAPI.getPlayerRadius() * 4) {
+			            nextmove.sett(worldAPI.getOpponentsGoal().t);
 			            nextmove.setr(1.0);
 			            worldAPI.avoidCollisions();
-			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8)) {
+			            if ((Math.abs(worldAPI.getSteerHeading() - worldAPI.getOpponentsGoal().t) < Math.PI / 8)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();
 			        } else {
-			            moveBehind(eball, eoppgoal);
+			            moveBehind(eball, worldAPI.getOpponentsGoal());
 			            worldAPI.avoidCollisions();
 			            this.updateActuators();
 			        }

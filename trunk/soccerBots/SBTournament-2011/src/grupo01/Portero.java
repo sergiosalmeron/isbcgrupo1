@@ -6,10 +6,11 @@ import teams.rolebased.WorldAPI;
 
 public class Portero extends Role {
 
-	@Override
+	private boolean ganando;
 	public int configure() {
 		// TODO Auto-generated method stub
 		worldAPI.setDisplayString("Portero");
+		ganando = true;
 		return WorldAPI.ROBOT_OK;
 	}
 
@@ -18,11 +19,16 @@ public class Portero extends Role {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public boolean ganando(){
+	 return ganando;
+	}
 
 	@Override
 	public int takeStep() {
 		// TODO Auto-generated method stub
 	//	worldAPI.setBehindBall(worldAPI.getOpponentsGoal());
+		ganando = (worldAPI.getMyScore()>worldAPI.getOpponentScore());
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		mover.sett(worldAPI.getOurGoal().t);
