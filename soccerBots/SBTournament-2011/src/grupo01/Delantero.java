@@ -295,6 +295,7 @@ public class Delantero extends Role {
 			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 			worldAPI.setSpeed(1.0);
 			worldAPI.setDisplayString("desbloqueo");
+			return WorldAPI.ROBOT_OK;
 		}
 		//Cuando el balón está en zona de defensa
 		if (this.defzone(gball)){

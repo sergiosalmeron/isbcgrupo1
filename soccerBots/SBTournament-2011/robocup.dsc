@@ -86,7 +86,7 @@ object EDU.gatech.cc.is.simulation.ObstacleInvisibleSim -2.047 -1.4396 0 1.0
 // from getting jumpy on slow machines, or when/if your process gets 
 // swapped out. 
 
-maxtimestep 25 
+maxtimestep 22 
 
 //====== 
 // TIMEOUT 
@@ -99,7 +99,7 @@ maxtimestep 25
 // is reached. If no timeout statement is given, the default is no 
 // termination. 
 // 
-timeout 10000 // ten seconds 
+timeout 180000 // ten seconds 
 
 //====== 
 // TIME 
@@ -115,7 +115,7 @@ timeout 10000 // ten seconds
 // lose fidelity. In fact, for slow computers, values less than 1.0 
 // may be necessary. 
 
-time 2.0 
+time 1.0 
 
 //====== 
 // LOGTIME 
@@ -131,7 +131,7 @@ logtime 0
 // 
 // logfilename filename (saved in logfiles directory) 
 // 
-logfilename "logfiles:log.xml" 
+logfilename "logfiles;log.xml" 
 
 //====== 
 // The ball 
@@ -156,33 +156,33 @@ xF0B000 x000000 3
 // robots apart from one another. The robots are assigned their player 
 // numbers according to the order in which they are listed here. 
 //======WEST TEAM====== 
-westname e8 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+westname WestTeam 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -1.2 0 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.5 0 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.15 .5 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.15 0 0 xEAEA00 xFFFFFF 1 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim grupo01.equipo01 
 //------------your control system name goes here ^^^^^^^^ 
 -.15 -.5 0 xEAEA00 xFFFFFF 1 
 
 //======EAST TEAM====== 
-eastname e2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+eastname EastTeam 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 1.2 0 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .5 0 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .15 .5 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .15 0 0 xFF0000 x0000FF 2 
-robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070801.TupiTeam2 
+robot EDU.gatech.cc.is.abstractrobot.SocSmallSim t070802.TiquiTaca 
 .15 -.5 0 xFF0000 x0000FF 2 
 

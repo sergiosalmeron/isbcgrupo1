@@ -2,6 +2,7 @@ package grupo01;
 
 import teams.rolebased.TeamManager;
 import teams.rolebased.WorldAPI;
+import teams.rolebased.Role;
 
 public class equipo01Manager extends TeamManager {
 	 //////////////////////////////////////////////////
@@ -41,16 +42,35 @@ public class equipo01Manager extends TeamManager {
     public static final double MAXSPEED = 1.0;
     public static final double HALFSPEED = 0.50;
     public static final double STOP = 0.0;
+    private Portero s;
+    private equipo01 miEkipo;
+    private boolean cambio;
+
+	public equipo01Manager(equipo01 equipo01) {
+		// TODO Auto-generated constructor stub
+		miEkipo = equipo01;
+		cambio = false;
+		s = (Portero) miEkipo.getRoles()[0];
+	}
 
 	@Override
 	public int configure() {
-	
+
 		return WorldAPI.ROBOT_OK;
 	}
 
 	@Override
-	public int takeStep() {	
+	public int takeStep() {
 		
+		if (!s.ganando() && !cambio){
+			miEkipo.ganando = false;
+			cambio = true;
+		}
+		else if(cambio){
+			
+			miEkipo.ganando = true;
+			cambio = false;
+		}
 		return WorldAPI.ROBOT_OK;
 	}
 
