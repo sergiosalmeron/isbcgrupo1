@@ -321,7 +321,7 @@ public class Delantero extends Role {
 			}
 			else{ // si tenemos la bola en defensa
 				worldAPI.setDisplayString("sacando la bola");
-				if (worldAPI.blocked()){
+				if ((!worldAPI.opponentBlocking() || !worldAPI.isBlocking(worldAPI.getClosestOpponent()))){
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 					worldAPI.setSpeed(1.0);
 					worldAPI.setDisplayString("desbloqueo");
@@ -346,7 +346,7 @@ public class Delantero extends Role {
 		}
 		else { //Estamos atacando
 			worldAPI.setDisplayString("Atacar");
-			if (worldAPI.blocked()){
+			if ((!worldAPI.opponentBlocking() || !worldAPI.isBlocking(worldAPI.getClosestOpponent()))){
 				worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 				worldAPI.setSpeed(1.0);
 				worldAPI.setDisplayString("desbloqueo");
@@ -372,7 +372,7 @@ public class Delantero extends Role {
 			
 			}
 			else {
-				if (worldAPI.blocked()){
+				if ((!worldAPI.opponentBlocking()) && worldAPI.blocked()){
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 					worldAPI.setSpeed(1.0);
 					worldAPI.setDisplayString("desbloqueo");

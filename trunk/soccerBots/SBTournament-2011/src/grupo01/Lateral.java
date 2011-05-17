@@ -345,7 +345,7 @@ public class Lateral extends Role {
 				}
 			}
 			else { //Si no, vamos a por el balón
-				if (worldAPI.blocked()){
+				if ((!worldAPI.opponentBlocking()) && worldAPI.blocked()){
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 					worldAPI.setSpeed(1.0);
 					worldAPI.setDisplayString("desbloqueo");
