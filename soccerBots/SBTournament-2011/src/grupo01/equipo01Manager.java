@@ -69,11 +69,13 @@ public class equipo01Manager extends TeamManager {
 			miEkipo.ganando = false;
 			miEkipo.empate = false;
 			cambio = true;
+			cambio1 = false;
 			}
 			else if(!cambio1){
 				miEkipo.ganando = false;
 				miEkipo.empate = true;
 				cambio1 = true;
+				cambio = false;
 			}
 			
 		}
