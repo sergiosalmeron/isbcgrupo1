@@ -295,13 +295,6 @@ public class Medio extends Role {
 
 		//Cuando el balón está en zona contraria
 		if (!this.defzone(gball)){
-			if ((!worldAPI.opponentBlocking()) && worldAPI.blocked()){
-				worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-				worldAPI.setSpeed(1.0);
-				worldAPI.setDisplayString("desbloqueo");
-				return WorldAPI.ROBOT_OK;
-				
-			}
 			if (worldAPI.closestToBall()){
 
 				worldAPI.setDisplayString("Toque y tal"); // conducimos un poco 
@@ -324,7 +317,6 @@ public class Medio extends Role {
 		            
 		        } else {
 		        	worldAPI.setDisplayString("estorbamos");
-		            moveBehind(eball, eoppgoal);
 		            worldAPI.blockClosest();
 		            return WorldAPI.ROBOT_OK;
 		        }
@@ -334,26 +326,24 @@ public class Medio extends Role {
 			worldAPI.setDisplayString("Cubriendo atrás");
 			
 			if (worldAPI.closestToBall()){
-					worldAPI.setDisplayString("sacando la bola");
-			        if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
-			            nextmove.sett(eoppgoal.t);
-			            nextmove.setr(1.0);
-			            worldAPI.avoidCollisions();
-			            
-			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
-			                worldAPI.kick();
-			                
-			            }
-			            this.updateActuators();
-			            return WorldAPI.ROBOT_OK;
-			        } else {
-			            moveBehind(eball, eoppgoal);
-			            worldAPI.avoidCollisions();
-			            this.updateActuators();
-			            return WorldAPI.ROBOT_OK;
-			        }
-			    }
+				worldAPI.setDisplayString("Preparando la jugada");
+		        if (behindBall(eball, worldAPI.getOpponentsGoal()) && eball.t < worldAPI.getPlayerRadius() * 4) {
+		            nextmove.sett(worldAPI.getOpponentsGoal().t);
+		            nextmove.setr(1.0);
+		            worldAPI.avoidCollisions();
+		            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+			                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
+		                worldAPI.kick();
+		            }
+		            this.updateActuators();
+		            return WorldAPI.ROBOT_OK;
+		        } else {
+		            moveBehind(eball, worldAPI.getOpponentsGoal());
+		            worldAPI.avoidCollisions();
+		            this.updateActuators();
+		            return WorldAPI.ROBOT_OK;
+		        }
+		    }
 			// Si estamos cerca de un oponente con la bola intentamos bloquearlo
 			else if (this.closestTo(worldAPI.getClosestOpponent(),bola)){
 				if(!worldAPI.isBlocking(worldAPI.getClosestOpponent())){
@@ -381,6 +371,7 @@ public class Medio extends Role {
 					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
 					worldAPI.setSpeed(1.0);
 				}
+				this.updateActuators();
 				return WorldAPI.ROBOT_OK;
 			}
 			

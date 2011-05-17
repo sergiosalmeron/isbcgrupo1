@@ -318,7 +318,7 @@ public class Lateral extends Role {
 		else { //Estamos defendiendo
 			worldAPI.setDisplayString("Defended!!!!!");
 			
-			if (worldAPI.closestToBall() && !closestToBall(worldAPI.getClosestOpponent())){
+			if (worldAPI.closestToBall()){
 					worldAPI.setDisplayString("sacando la bola");
 			        if (behindBall(eball, worldAPI.getOpponentsGoal()) && eball.t < worldAPI.getPlayerRadius() * 4) {
 			            nextmove.sett(worldAPI.getOpponentsGoal().t);
@@ -329,10 +329,12 @@ public class Lateral extends Role {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();
+			            return WorldAPI.ROBOT_OK;
 			        } else {
 			            moveBehind(eball, worldAPI.getOpponentsGoal());
 			            worldAPI.avoidCollisions();
 			            this.updateActuators();
+			            return WorldAPI.ROBOT_OK;
 			        }
 			    }
 			// Si estamos cerca de un oponente con la bola intentamos bloquearlo
@@ -361,7 +363,7 @@ public class Lateral extends Role {
 			}
 			
 		}
-		
+		this.updateActuators();
 		return WorldAPI.ROBOT_OK;
 	}
 	
