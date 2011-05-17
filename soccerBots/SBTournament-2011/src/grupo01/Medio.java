@@ -295,6 +295,13 @@ public class Medio extends Role {
 
 		//Cuando el balón está en zona contraria
 		if (!this.defzone(gball)){
+			if ((!worldAPI.opponentBlocking()) && worldAPI.blocked()){
+				worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+				worldAPI.setSpeed(1.0);
+				worldAPI.setDisplayString("desbloqueo");
+				return WorldAPI.ROBOT_OK;
+				
+			}
 			if (worldAPI.closestToBall()){
 
 				worldAPI.setDisplayString("Toque y tal"); // conducimos un poco 
@@ -313,19 +320,14 @@ public class Medio extends Role {
 		            	}
 		            }
 		            this.updateActuators();
+		            return WorldAPI.ROBOT_OK;
+		            
 		        } else {
 		        	worldAPI.setDisplayString("estorbamos");
 		            moveBehind(eball, eoppgoal);
 		            worldAPI.blockClosest();
 		            return WorldAPI.ROBOT_OK;
 		        }
-				if (worldAPI.blocked()){
-					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-					worldAPI.setSpeed(1.0);
-					worldAPI.setDisplayString("desbloqueo");
-					return WorldAPI.ROBOT_OK;
-					
-				}
 		    }
 		}
 		else { //Estamos defendiendo
@@ -341,12 +343,15 @@ public class Medio extends Role {
 			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
 			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
 			                worldAPI.kick();
+			                
 			            }
 			            this.updateActuators();
+			            return WorldAPI.ROBOT_OK;
 			        } else {
 			            moveBehind(eball, eoppgoal);
 			            worldAPI.avoidCollisions();
 			            this.updateActuators();
+			            return WorldAPI.ROBOT_OK;
 			        }
 			    }
 			// Si estamos cerca de un oponente con la bola intentamos bloquearlo
@@ -362,12 +367,13 @@ public class Medio extends Role {
 				}
 			}
 			else { //Si no, vamos a intentamos tapar al delantero
-				if (worldAPI.blocked()){
+				if ((!worldAPI.opponentBlocking()) && worldAPI.blocked()){
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 					worldAPI.setSpeed(1.0);
 					worldAPI.setDisplayString("desbloqueo");
 				}
 				worldAPI.blockForward();
+				return WorldAPI.ROBOT_OK;
 			}
 			
 		}
