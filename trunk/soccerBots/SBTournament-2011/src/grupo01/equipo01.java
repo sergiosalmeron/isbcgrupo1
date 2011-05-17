@@ -7,14 +7,21 @@ import teams.rolebased.TeamManager;
 public class equipo01 extends RoleBasedTeam{
 
 	public boolean ganando;
+	public boolean empate;
 	protected Role[] getRoles() {
 		Role[] roles;
 		if(!ganando){
-			Role[] roles1= {new Portero(),new Delantero(),new Lateral(),new Medio(),new Lateral()};
+			if (empate){
+			Role[] roles1= {new Portero(),new Delantero(),new Lateral(),new Novato(),new Lateral()};
 			roles = roles1;
+			}
+			else {
+				Role[] roles1= {new Portero(),new Delantero(),new Medio(),new Novato(),new Lateral()};
+				roles = roles1;
+			}
 		}
 		else{
-			Role[] roles2 = {new Portero(),new Delantero(),new Lateral(),new Lateral(),new Lateral()};
+			Role[] roles2 = {new Portero(),new Novato(),new Lateral(),new Lateral(),new Lateral()};
 			roles = roles2;
 		}
 		return roles;

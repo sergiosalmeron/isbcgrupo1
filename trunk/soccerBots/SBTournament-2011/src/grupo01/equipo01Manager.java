@@ -45,31 +45,43 @@ public class equipo01Manager extends TeamManager {
     private Portero s;
     private equipo01 miEkipo;
     private boolean cambio;
+    private boolean cambio1;
 
 	public equipo01Manager(equipo01 equipo01) {
 		// TODO Auto-generated constructor stub
 		miEkipo = equipo01;
-		cambio = false;
-		s = (Portero) miEkipo.getRoles()[0];
 	}
 
 	@Override
 	public int configure() {
-
+		cambio = false;
+		cambio1 = false;
+		miEkipo.empate = true;
+		s = (Portero) miEkipo.getRoles()[0];
 		return WorldAPI.ROBOT_OK;
 	}
 
 	@Override
 	public int takeStep() {
 		
-		if (!s.ganando() && !cambio){
+		if (!s.ganando() && (!cambio||!cambio1)){
+			if(!s.empate() && !cambio){
 			miEkipo.ganando = false;
+			miEkipo.empate = false;
 			cambio = true;
-		}
-		else if(cambio){
+			}
+			else if(!cambio1){
+				miEkipo.ganando = false;
+				miEkipo.empate = true;
+				cambio1 = true;
+			}
 			
+		}
+		else if(cambio || cambio1){
 			miEkipo.ganando = true;
+			miEkipo.empate = false;
 			cambio = false;
+			cambio1 = false;
 		}
 		return WorldAPI.ROBOT_OK;
 	}
