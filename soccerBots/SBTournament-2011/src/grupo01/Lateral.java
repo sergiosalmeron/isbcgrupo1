@@ -293,12 +293,6 @@ public class Lateral extends Role {
 		System.out.println(lado);
 		Vec2 bola = worldAPI.getBall();
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
-		if (worldAPI.blocked()){
-			worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-			worldAPI.setSpeed(1.0);
-			worldAPI.setDisplayString("desbloqueo");
-			return WorldAPI.ROBOT_OK;
-		}
 		//Vuelven a su posición cuando estamos atacando
 		if (!this.defzone(gball) && (!worldAPI.closestToBall())){
 			//Si no están cerca de su posición inicial volvemos
@@ -343,12 +337,20 @@ public class Lateral extends Role {
 				if(!worldAPI.isBlocking(worldAPI.getClosestOpponent())){
 					worldAPI.setDisplayString("a bloquear");
 					worldAPI.blockClosest();
+					return WorldAPI.ROBOT_OK;
 				}
 				else {
 					worldAPI.setDisplayString("seguimos Bloqueando");
+					return WorldAPI.ROBOT_OK;
 				}
 			}
 			else { //Si no, vamos a por el balón
+				if (worldAPI.blocked()){
+					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
+					worldAPI.setSpeed(1.0);
+					worldAPI.setDisplayString("desbloqueo");
+					return WorldAPI.ROBOT_OK;
+				}
 				mover = worldAPI.getPosition();
 				mover.sub(bola);
 				worldAPI.setSteerHeading(bola.t);
