@@ -372,8 +372,8 @@ public class Medio extends Role {
 					nextmove.setr(1.0);
 					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
 					worldAPI.setSpeed(1.0);
+					return WorldAPI.ROBOT_OK;
 				}
-				this.updateActuators();
 				return WorldAPI.ROBOT_OK;
 			}
 			
