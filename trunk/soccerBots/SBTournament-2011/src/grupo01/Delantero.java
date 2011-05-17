@@ -296,12 +296,6 @@ public class Delantero extends Role {
 		if (this.defzone(gball)){
 			//Si no está cerca de su posición y no controlamos la bola
 			if (!worldAPI.closestToBall()){
-				if (worldAPI.blocked()){
-					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-					worldAPI.setSpeed(1.0);
-					worldAPI.setDisplayString("desbloqueo");
-					return WorldAPI.ROBOT_OK;
-				}
 				if((this.posicionInicial.x!=worldAPI.getPosition().x)||((this.posicionInicial.y!=worldAPI.getPosition().y))){
 					worldAPI.setDisplayString("Preparando el ataque");
 					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
@@ -320,7 +314,25 @@ public class Delantero extends Role {
 				}
 			}
 			else{ // si tenemos la bola en defensa
-				worldAPI.setDisplayString("sacando la bola");
+				if (worldAPI.closestToBall()){
+					worldAPI.setDisplayString("sacando la bola");
+			        if (behindBall(eball, worldAPI.getOpponentsGoal()) && eball.t < worldAPI.getPlayerRadius() * 4) {
+			            nextmove.sett(worldAPI.getOpponentsGoal().t);
+			            nextmove.setr(1.0);
+			            worldAPI.avoidCollisions();
+			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+				                (eoppgoal.r < worldAPI.getPlayerRadius() * 40)) {
+			                worldAPI.kick();
+			            }
+			            this.updateActuators();
+			            return WorldAPI.ROBOT_OK;
+			        } else {
+			            moveBehind(eball, worldAPI.getOpponentsGoal());
+			            worldAPI.avoidCollisions();
+			            this.updateActuators();
+			            return WorldAPI.ROBOT_OK;
+			        }
+			    }
 				if ((!worldAPI.opponentBlocking() || !worldAPI.isBlocking(worldAPI.getClosestOpponent()))){
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
 					worldAPI.setSpeed(1.0);
@@ -335,42 +347,38 @@ public class Delantero extends Role {
 		            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
 		                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
 		                worldAPI.kick();
+		                return WorldAPI.ROBOT_OK;
 		            }
 		            this.updateActuators();
 		        } else {
 		            moveBehind(eball, eoppgoal);
 		            worldAPI.avoidCollisions();
 		            this.updateActuators();
+		            return WorldAPI.ROBOT_OK;
 		        }
 			}
 		}
 		else { //Estamos atacando
 			worldAPI.setDisplayString("Atacar");
-			if ((!worldAPI.opponentBlocking() || !worldAPI.isBlocking(worldAPI.getClosestOpponent()))){
-				worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
-				worldAPI.setSpeed(1.0);
-				worldAPI.setDisplayString("desbloqueo");
-				return WorldAPI.ROBOT_OK;
-			}
 			if (worldAPI.closestToBall()){
-				worldAPI.setDisplayString("Jugada Personal");
-				 if (behindBall(eball, eoppgoal) && eball.t < worldAPI.getPlayerRadius() * 4) {
-			            nextmove.sett(eoppgoal.t);
-			            nextmove.setr(1.0);
-			            worldAPI.avoidCollisions();
-			            
-			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+				worldAPI.setDisplayString("JugadaPersonal");
+		        if (behindBall(eball, worldAPI.getOpponentsGoal()) && eball.t < worldAPI.getPlayerRadius() * 4) {
+		            nextmove.sett(worldAPI.getOpponentsGoal().t);
+		            nextmove.setr(1.0);
+		            worldAPI.avoidCollisions();
+		            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
 			                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
-			                worldAPI.kick();
-			            }
-			            this.updateActuators();
-			        } else {
-			            moveBehind(eball, eoppgoal);
-			            worldAPI.avoidCollisions();
-			            this.updateActuators();
-			        }
-			
-			}
+		                worldAPI.kick();
+		            }
+		            this.updateActuators();
+		            return WorldAPI.ROBOT_OK;
+		        } else {
+		            moveBehind(eball, worldAPI.getOpponentsGoal());
+		            worldAPI.avoidCollisions();
+		            this.updateActuators();
+		            return WorldAPI.ROBOT_OK;
+		        }
+		    }
 			else {
 				if ((!worldAPI.opponentBlocking()) && worldAPI.blocked()){
 					worldAPI.setSteerHeading(worldAPI.getSteerHeading()+bola.PI/2);
@@ -384,6 +392,7 @@ public class Delantero extends Role {
 				}
 			}
 		}
+		this.updateActuators();
 		
 		return WorldAPI.ROBOT_OK;
 	}
