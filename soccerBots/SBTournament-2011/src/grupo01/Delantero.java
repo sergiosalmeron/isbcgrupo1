@@ -328,7 +328,7 @@ public class Delantero extends Role {
 		            worldAPI.avoidCollisions();
 		            
 		            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-		                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+		                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 		                worldAPI.kick();
 		            }
 		            this.updateActuators();
@@ -349,7 +349,7 @@ public class Delantero extends Role {
 			            worldAPI.avoidCollisions();
 			            
 			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+			                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();
@@ -411,7 +411,8 @@ public class Delantero extends Role {
 				            nextmove.sett(worldAPI.getOpponentsGoal().t);
 				            nextmove.setr(1.0);
 				            worldAPI.avoidCollisions();
-				            if ((Math.abs(worldAPI.getSteerHeading() - worldAPI.getOpponentsGoal().t) < Math.PI / 8)) {
+				            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+					                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 				                worldAPI.kick();
 				            }
 				            this.updateActuators();
