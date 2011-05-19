@@ -393,7 +393,7 @@ public class Delantero extends Role {
 					worldAPI.setSteerHeading((Math.abs(Math.PI+mover.t)));
 					worldAPI.setSpeed(1.0);
 				}
-				else {
+				else{
 					//worldAPI.setDisplayString("Mantener Posición");
 					worldAPI.surroundPoint(worldAPI.getPosition(), posicionInicial);
 					mover = worldAPI.getPosition();
