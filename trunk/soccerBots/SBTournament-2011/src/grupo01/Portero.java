@@ -6,13 +6,11 @@ import teams.rolebased.WorldAPI;
 
 public class Portero extends Role {
 
-	private boolean ganando;
-	private boolean empate;
+	public boolean ganando = false;
+	public boolean empate = true;
 	public int configure() {
 		// TODO Auto-generated method stub
 		worldAPI.setDisplayString("Portero");
-		ganando = false;
-		empate = true;
 		return WorldAPI.ROBOT_OK;
 		
 	}
