@@ -7,34 +7,27 @@ import teams.rolebased.TeamManager;
 public class equipo01 extends RoleBasedTeam{
 
 	public boolean ganando;
-	public boolean empate;
+	public boolean empate = true;
+	public Role s = new Portero();
+	public Role l = new Lateral();
+	public Role l1 = new Lateral();
+	public Role l2 = new Lateral();
+	public Role d = new Delantero();
+	public Role n = new Novato();
+	public Role m = new Medio();
+	private TeamManager manager = new equipo01Manager(this);
+	
+	
 	protected Role[] getRoles() {
-		Role[] roles;
-		if(!ganando){
-			if (empate){
-			Role[] roles1= {new Portero(),new Delantero(),new Lateral(),new Novato(),new Lateral()};
-			roles = roles1;
-			}
-			else {
-				Role[] roles1= {new Portero(),new Delantero(),new Medio(),new Novato(),new Lateral()};
-				roles = roles1;
-			}
-		}
-		else{
-			Role[] roles2 = {new Portero(),new Novato(),new Lateral(),new Lateral(),new Lateral()};
-			roles = roles2;
-		}
+		Role[] roles = {s,d,l,n,l1};
+	
 		return roles;
 	}
 	
-	protected Role[] setRoles(Role[] nuevos){
-		Role[] roles = nuevos;
-		return roles;
-	}
 
 	@Override
 	protected TeamManager getTeamManager() {
-		return new equipo01Manager(this);
+		return manager;
 	}
 
 }

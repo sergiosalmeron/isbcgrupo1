@@ -57,33 +57,33 @@ public class equipo01Manager extends TeamManager {
 		cambio = false;
 		cambio1 = false;
 		miEkipo.empate = true;
-		s = (Portero) miEkipo.getRoles()[0];
+		//s = (Portero) miEkipo.getRoles()[0];
 		return WorldAPI.ROBOT_OK;
 	}
 
 	@Override
 	public int takeStep() {
-		
-		if (!s.ganando() && (!cambio||!cambio1)){
-			if(!s.empate() && !cambio){
-			miEkipo.ganando = false;
-			miEkipo.empate = false;
+		s = (Portero) miEkipo.getRoles()[0];
+		if (!s.ganando && (!cambio||!cambio1)){
+			if(!s.empate && !cambio){
 			cambio = true;
 			cambio1 = false;
+			((Delantero)miEkipo.getRoles()[1]).lateral=false;
+			((Lateral)miEkipo.getRoles()[2]).medio=true;
 			}
-			else if(!cambio1){
-				miEkipo.ganando = false;
-				miEkipo.empate = true;
+			else if(!cambio1 && s.empate){
 				cambio1 = true;
 				cambio = false;
+				((Delantero)miEkipo.getRoles()[1]).lateral=false;
+				((Lateral)miEkipo.getRoles()[2]).medio=false;
 			}
 			
 		}
 		else if(cambio || cambio1){
-			miEkipo.ganando = true;
-			miEkipo.empate = false;
 			cambio = false;
 			cambio1 = false;
+			((Delantero)miEkipo.getRoles()[1]).lateral=true;
+			((Lateral)miEkipo.getRoles()[2]).medio=false;
 		}
 		return WorldAPI.ROBOT_OK;
 	}
