@@ -35,8 +35,7 @@ public class Portero extends Role {
 		Vec2 mover = new Vec2 (worldAPI.getOurGoal().x,bola.y);
 		mover.sett(worldAPI.getOurGoal().t);
 		mover.setr(1.0);
-	//	System.out.println(worldAPI.getOurGoal().x);
-	//	System.out.println(worldAPI.getPosition().x);
+
 	//	worldAPI.setDisplayString("Portero");
 		//Antes de los otros movimientos vamos a intentar desbloquearlo si esta bloqueado
 		if (worldAPI.blocked()){

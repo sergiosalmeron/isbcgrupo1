@@ -4,7 +4,7 @@ import teams.rolebased.Role;
 import teams.rolebased.RoleBasedTeam;
 import teams.rolebased.TeamManager;
 
-public class equipo01 extends RoleBasedTeam{
+public class SeDondeVives extends RoleBasedTeam{
 
 	public boolean ganando;
 	public boolean empate = true;

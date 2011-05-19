@@ -43,11 +43,11 @@ public class equipo01Manager extends TeamManager {
     public static final double HALFSPEED = 0.50;
     public static final double STOP = 0.0;
     private Portero s;
-    private equipo01 miEkipo;
+    private SeDondeVives miEkipo;
     private boolean cambio;
     private boolean cambio1;
 
-	public equipo01Manager(equipo01 equipo01) {
+	public equipo01Manager(SeDondeVives equipo01) {
 		// TODO Auto-generated constructor stub
 		miEkipo = equipo01;
 	}
