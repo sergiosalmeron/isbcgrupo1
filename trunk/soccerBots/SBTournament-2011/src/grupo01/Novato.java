@@ -23,12 +23,7 @@ public class Novato extends Role {
 	public int takeStep() {
 		// TODO Auto-generated method stub
 		worldAPI.blockGoalKeeper();
-	/*	Vec2 bola = worldAPI.getBall();
-		worldAPI.setSteerHeading(bola.t);
-		worldAPI.setSpeed(1.0);
-		//worldAPI.setBehindBall(worldAPI.getPosition(), bola);
-		if (worldAPI.canKick())
-			worldAPI.kick();*/
+
 		if(worldAPI.blocked())
 			worldAPI.avoidCollisions();
 		return WorldAPI.ROBOT_OK;
