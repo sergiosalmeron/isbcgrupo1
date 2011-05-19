@@ -331,7 +331,8 @@ public class Lateral extends Role {
 			            nextmove.sett(worldAPI.getOpponentsGoal().t);
 			            nextmove.setr(1.0);
 			            worldAPI.avoidCollisions();
-			            if ((Math.abs(worldAPI.getSteerHeading() - worldAPI.getOpponentsGoal().t) < Math.PI / 8)) {
+			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
+				                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();
@@ -382,7 +383,7 @@ public class Lateral extends Role {
 			            nextmove.setr(1.0);
 			            //si estamos en situacion de tiro, tiramos
 			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+			                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 			                worldAPI.kick();
 			            }
 			            else { // si no estamos en situacion de tiro, intentamos pasar
@@ -410,7 +411,7 @@ public class Lateral extends Role {
 				            worldAPI.avoidCollisions();
 				            
 				            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-				                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+				                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 				                worldAPI.kick();
 				            }
 				            this.updateActuators();

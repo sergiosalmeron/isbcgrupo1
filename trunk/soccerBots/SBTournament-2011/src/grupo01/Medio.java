@@ -307,7 +307,7 @@ public class Medio extends Role {
 		            nextmove.setr(1.0);
 		            //si estamos en situacion de tiro, tiramos
 		            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-		                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+		                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 		                worldAPI.kick();
 		            }
 		            else { // si no estamos en situacion de tiro, intentamos pasar
@@ -335,7 +335,7 @@ public class Medio extends Role {
 			            worldAPI.avoidCollisions();
 			            
 			            if ((Math.abs(worldAPI.getSteerHeading() - eoppgoal.t) < Math.PI / 8) && 
-			                (eoppgoal.r < worldAPI.getPlayerRadius() * 15)) {
+			                (eoppgoal.r < worldAPI.getPlayerRadius() * 35)) {
 			                worldAPI.kick();
 			            }
 			            this.updateActuators();
